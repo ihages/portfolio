@@ -6,10 +6,10 @@ export type Page = {
 export const LinkMap: Page[] = [
     {
         name: "Home",
-        url: "/"
+        url: "/portfolio/"
     },
     {
         name:"Test Environment",
-        url:"/test-environment"
+        url:"/portfolio/test-environment"
     }
 ]
