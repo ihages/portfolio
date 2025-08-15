@@ -1,0 +1,9 @@
+.header{
+    display: flex;
+    gap: 20px;
+    padding: var(--page-padding);
+    padding-top: 20px;
+    padding-bottom:20px;
+    background-color: var(--header-color);
+    border-bottom:1px solid #540202;
+}
