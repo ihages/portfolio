@@ -4,25 +4,31 @@ export type Page = {
 }
 
 // Helper to determine base path
+
 const getBasePath = () => {
-    if (typeof window !== 'undefined') {
-        const host = window.location.host;
-        if (host.startsWith('localhost')) { //handles local
-            return '';
-        } else if (host.includes('github.io')) { //handles prod
-            return '/portfolio';
-        }
+    if (typeof window === 'undefined') {
+        return '';
     }
-    return '';
+    const host = window.location.host;
+    if (host.startsWith('localhost')) {
+        return '/';
+    } else if (host.includes('github.io')) {
+        return 'portfolio'; // no leading slash for GitHub Pages
+    }
+    return '/';
 };
 
 export const LinkMap: Page[] = [
     {
         name: "Home",
-        url: `${getBasePath()}/`
+        url: typeof window !== 'undefined' && window.location.host.includes('github.io')
+            ? `${getBasePath()}/`
+            : `${getBasePath()}`
     },
     {
         name: "Test Environment",
-        url: `${getBasePath()}/test-environment`
+        url: typeof window !== 'undefined' && window.location.host.includes('github.io')
+            ? `${getBasePath()}/test-environment`
+            : `${getBasePath()}test-environment`
     }
 ];
