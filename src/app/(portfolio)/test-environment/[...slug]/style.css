@@ -1,0 +1,11 @@
+
+
+.nav-buttons {
+  display:flex;
+  justify-content: space-between;
+}
+
+.nav-buttons-left, .nav-buttons-right{
+  display:flex;
+  gap:20px;
+}

@@ -44,7 +44,7 @@
   --header-color: var(--primary-500);
 
   --radius: 0.625rem;
-  --background: var(--secondary-50);
+  --background: var(--primary-50);
   --foreground: black;
   --card: var(--secondary-100);
   --card-foreground: black;
@@ -55,7 +55,7 @@
   --secondary: var(--secondary-500);
   --secondary-foreground: black;
   --muted: var(--secondary-200);
-  --muted-foreground: black;
+  --muted-foreground: var(--primary-1000);
   --accent: var(--accent-500);
   --accent-foreground: black;
   --destructive: var(--primary-600);
@@ -119,7 +119,7 @@
     --header-color: var(--primary-500);
 
     --radius: 0.625rem;
-    --background: var(--secondary-50);
+    --background: var(--primary-50);
     --foreground: white;
     --card: var(--secondary-100);
     --card-foreground: white;
@@ -130,7 +130,7 @@
     --secondary: var(--secondary-500);
     --secondary-foreground: white;
     --muted: var(--secondary-200);
-    --muted-foreground: white;
+    --muted-foreground: var(--primary-900);
     --accent: var(--accent-500);
     --accent-foreground: white;
     --destructive: var(--primary-600);
@@ -151,6 +151,10 @@
     --sidebar-border: var(--secondary-400);
     --sidebar-ring: var(--primary-300);
   }
+}
+
+.border-b{
+  border-color: var(--primary-300);
 }
 
 html,
@@ -203,6 +207,7 @@ a {
 
 .page-body {
   padding: var(--page-padding);
+  min-height: 900px ;
 }
 
 @media (prefers-color-scheme: dark) {

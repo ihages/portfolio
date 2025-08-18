@@ -1,8 +1,5 @@
 import { Button } from "@/components/ui/button";
 import "./style.css";
-import { ChevronRightIcon } from "lucide-react";
-import { IconGitBranch } from "@tabler/icons-react";
-
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -17,37 +14,17 @@ export default function TestEnvironment() {
     <div className="page-body testing">
       <h1>Testing Grounds</h1>
       <h2>Shadcn</h2>
-      <h3>Button</h3>
-      <div className="test-zone">
+      <p>
+        <strong>Takeaways: </strong>These may required restyling, especially
+        since I added custom colors. Accessibility is not default, so adding
+        titles and aria would need to be done manually.
+      </p>
+      <div className="nav-pages">
         <Button asChild variant={"default"} size={"default"}>
-          <Link href="/portfolio">Default Button</Link>
+          <Link href="/test-environment/shad-a">a</Link>
         </Button>
-        <Button variant={"destructive"} size={"default"}>
-          Destructive
-        </Button>
-        <Button variant={"ghost"} size={"default"}>
-          Ghost
-        </Button>
-        <Button variant={"link"} size={"default"}>
-          Link
-        </Button>
-        <Button variant={"outline"} size={"default"}>
-          Outline
-        </Button>
-        <Button variant={"secondary"} size={"default"}>
-          Secondary
-        </Button>
-        <Button variant={"outline"}>
-          <IconGitBranch /> New Branch
-        </Button>
-        <Button size={"icon"}>
-          <ChevronRightIcon />
-        </Button>
-        <Button variant={"default"} size={"sm"}>
-          Small
-        </Button>
-        <Button variant={"default"} size={"lg"}>
-          Large
+        <Button asChild variant={"default"} size={"default"}>
+          <Link href="/test-environment/shad-b">b</Link>
         </Button>
       </div>
     </div>
