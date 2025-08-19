@@ -3,6 +3,9 @@
 .nav-buttons {
   display:flex;
   justify-content: space-between;
+  a{
+    text-decoration: none;
+  }
 }
 
 .nav-buttons-left, .nav-buttons-right{

@@ -37,7 +37,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { usePathname } from "next/navigation";
 import Breadcrumbs from "@/components/breadcrumbs";
@@ -46,17 +46,19 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Calendar } from "@/components/ui/calendar";
 import { ChevronDownIcon } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { parseDate } from "chrono-node";
+import * as chrono from "chrono-node";
 import { CalendarIcon } from "lucide-react";
 import Calendar24 from "@/components/calendar-24";
 import {
@@ -80,7 +82,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import {
   ChartConfig,
@@ -96,8 +97,69 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
-
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@/components/ui/menubar";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+import { Progress } from "@/components/ui/progress";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
@@ -461,7 +523,7 @@ export function ShadC() {
   const [open2, setOpen2] = React.useState(false);
   const [value, setValue] = React.useState("In 2 days");
   const [date, setDate] = React.useState<Date | undefined>(
-    parseDate(value) || undefined
+    chrono.parseDate(value) || undefined
   );
   const [month, setMonth] = React.useState<Date | undefined>(date);
   const [checked, setChecked] = React.useState<boolean>(false);
@@ -510,7 +572,7 @@ export function ShadC() {
               className="bg-background pr-10"
               onChange={(e) => {
                 setValue(e.target.value);
-                const date = parseDate(e.target.value);
+                const date = chrono.parseDate(e.target.value);
                 if (date) {
                   setDate(date);
                   setMonth(date);
@@ -777,24 +839,6 @@ export function ShadC() {
           </CollapsibleContent>
         </Collapsible>
       </div>
-      <h3>Combobox</h3>
-      <Button
-        variant={"link"}
-        asChild
-        style={{
-          padding: "0",
-          marginBottom: "20px",
-          textDecoration: "underline",
-        }}
-      >
-        <Link href="https://ui.shadcn.com/docs/components/combobox">
-          Documentation
-        </Link>
-      </Button>{" "}
-      <p>
-        <strong>Note: </strong>This is a composition of other components and
-        does not have its own component. See documentation.
-      </p>
       <h3>Context Menu</h3>
       <Button
         variant={"link"}
@@ -819,6 +863,454 @@ export function ShadC() {
             <ContextMenuItem>Subscription</ContextMenuItem>
           </ContextMenuContent>
         </ContextMenu>
+      </div>
+    </div>
+  );
+}
+
+export function ShadD() {
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  return (
+    <div className="page-body testing">
+      <h3>Dialog</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/dialog">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <Dialog>
+          <DialogTrigger>Dialog trigger</DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Dialog title</DialogTitle>
+              <DialogDescription>Dialog descritpion</DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+        <Dialog>
+          <form>
+            <DialogTrigger asChild>
+              <Button variant="outline">Open Dialog</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Edit profile</DialogTitle>
+                <DialogDescription>
+                  Make changes to your profile here. Click save when you&apos;re
+                  done.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="grid gap-[10px]">
+                <div className="grid gap-[7px]]">
+                  <Label htmlFor="name-1">Name</Label>
+                  <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+                </div>
+                <div className="grid gap-[7px]">
+                  <Label htmlFor="username-1">Username</Label>
+                  <Input
+                    id="username-1"
+                    name="username"
+                    defaultValue="@peduarte"
+                  />
+                </div>
+              </div>
+              <DialogFooter className="flex-row justify-end gap-[7px] py-[10px]">
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </DialogContent>
+          </form>
+        </Dialog>
+      </div>
+
+      <h3>Drawer</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/drawer">
+          Documentation
+        </Link>
+      </Button>
+      <p>
+        <strong>Note: </strong>I could not get this component to work. The
+        drawer contents never even show up in the DOM.
+      </p>
+      <div className="test-zone">
+        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+          <DrawerTrigger asChild>
+            <Button variant="outline">Edit Profile</Button>
+          </DrawerTrigger>
+          <DrawerContent>
+            <DrawerHeader className="text-left">
+              <DrawerTitle>Edit profile</DrawerTitle>
+              <DrawerDescription>
+                Make changes to your profile here. Click save when you&apos;re
+                done.
+              </DrawerDescription>
+            </DrawerHeader>
+            <div>hi</div>
+            <DrawerFooter className="pt-2">
+              <DrawerClose asChild>
+                <Button variant="outline">Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </DrawerContent>
+        </Drawer>
+      </div>
+
+      <h3>Dropdown Menu</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/dropdown-menu">
+          Documentation
+        </Link>
+      </Button>
+      <p>
+        <strong>Note: </strong>see{" "}
+        <a href="https://www.radix-ui.com/primitives/docs/components/dropdown-menu#api-reference">
+          radix API documentation
+        </a>{" "}
+        for properties that can be passed on to different components.
+      </p>
+      <div className="test-zone">
+        <DropdownMenu>
+          <Button variant={"outline"} asChild>
+            <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+          </Button>
+          <DropdownMenuContent side="bottom" align={"start"}>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </div>
+  );
+}
+
+export function ShadHM() {
+  return (
+    <div className="page-body testing">
+      <h3>Hover Card</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/hover-card">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <HoverCard>
+          <HoverCardTrigger>Hover</HoverCardTrigger>
+          <HoverCardContent>
+            The React Framework – created and maintained by @vercel.
+          </HoverCardContent>
+        </HoverCard>
+      </div>
+
+      <h3>Input</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/input">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <Input type="email" placeholder="Email" />
+      </div>
+
+      <h3>Input One-Time Password</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/input-otp">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <InputOTP maxLength={6}>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+      </div>
+
+      <h3>Label</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/label">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <Input type="email" placeholder="Email" id="email" />
+        <Label htmlFor="email">this is a label for that input above</Label>
+      </div>
+
+      <h3>Menu Bar</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/menu-bar">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <Menubar>
+          <MenubarMenu>
+            <MenubarTrigger>File</MenubarTrigger>
+            <MenubarContent side="bottom">
+              <MenubarItem>
+                New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+              </MenubarItem>
+              <MenubarItem>New Window</MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>Share</MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem>Print</MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
+        </Menubar>
+      </div>
+    </div>
+  );
+}
+
+export function ShadNR() {
+  const [progress, setProgress] = useState<number>(0);
+  const [progressOn, setProgressOn] = useState<boolean>(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => (progressOn ? (prev + 1) % 100 : prev));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="page-body testing">
+      <h3>Navigation Menu</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/navigation-menu">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+              <NavigationMenuContent className="w-[200px]">
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+              <NavigationMenuContent className="w-[200px]">
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
+              <NavigationMenuContent className="w-[200px]">
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+                <NavigationMenuLink>Link</NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+      <h3>Pagination</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/pagination">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href="" />
+            </PaginationItem>
+            <PaginationItem>
+              <Button variant={"outline"} asChild>
+                <PaginationLink style={{ textDecoration: "none" }} href="">
+                  1
+                </PaginationLink>
+              </Button>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href="" />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
+
+      <h3>Popover</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/popover">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <Popover>
+          <PopoverTrigger>Open</PopoverTrigger>
+          <PopoverContent side="bottom">
+            Place content for the popover here.
+          </PopoverContent>
+        </Popover>
+      </div>
+
+      <h3>Progress</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/progress">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+      <Button variant={progressOn ? "destructive" : "default"} onClick={() => setProgressOn(!progressOn)}>Start/Stop</Button>
+      <Progress value={Math.min(100, Math.max(0, progress))} />
+      </div>
+
+      <h3>Radio Group</h3>
+      <Button
+        variant={"link"}
+        asChild
+        style={{
+          padding: "0",
+          marginBottom: "20px",
+          textDecoration: "underline",
+        }}
+      >
+        <Link href="https://ui.shadcn.com/docs/components/radio-group">
+          Documentation
+        </Link>
+      </Button>
+      <div className="test-zone">
+        <RadioGroup defaultValue="option-one">
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="option-one" id="option-one" />
+            <Label htmlFor="option-one">Option One</Label>
+          </div>
+          <div className="flex items-center space-x-2">
+            <RadioGroupItem value="option-two" id="option-two" />
+            <Label htmlFor="option-two">Option Two</Label>
+          </div>
+        </RadioGroup>
       </div>
     </div>
   );

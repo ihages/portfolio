@@ -3,13 +3,13 @@
 import { Button } from "@/components/ui/button";
 import "./style.css";
 import "../style.css"; //ensure styles load with client rendering
-;
 import Link from "next/link";
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
 
-import { ShadA, ShadB, ShadC } from "./shad-pages";
+import { ShadA, ShadB, ShadC, ShadD, ShadHM, ShadNR } from "./shad-pages";
 import { generateStaticParams } from "./generateStaticParams";
+import PageNotFound from "@/components/pageNotFound";
 
 export default function Slugs({
   params,
@@ -37,37 +37,60 @@ export default function Slugs({
     case "shad-c":
       slugpage = <ShadC />;
       prevPage = "B";
+      nextPage = "D";
+      break;
+    case "shad-d":
+      slugpage = <ShadD />;
+      prevPage = "C";
+      nextPage = "H-M";
+      break;
+    case "shad-h-m":
+      slugpage = <ShadHM />;
+      prevPage = "D";
+      nextPage = "N-R";
+      break;
+      
+    case "shad-n-r":
+      slugpage = <ShadNR />;
+      prevPage = "H-M";
       nextPage = null;
       break;
+   
     case undefined:
     default:
-      slugpage = <div className="page-body">Page not found</div>;
+      slugpage = <PageNotFound></PageNotFound>;
       break;
   }
 
   const slughead = (
     <>
       <Breadcrumbs />
-      <div className="nav-buttons">
-        <div className="nav-buttons-left">
-          {prevPage !== null ? (
-            <Button asChild variant={"default"} size={"default"}>
-              <Link href={`/test-environment/shad-${prevPage?.toLowerCase()}`}>
-                {prevPage}
-              </Link>
-            </Button>
-          ) : null}
+      {slugpage === <PageNotFound></PageNotFound> ? null : (
+        <div className="nav-buttons">
+          <div className="nav-buttons-left">
+            {prevPage !== null ? (
+              <Button asChild variant={"default"} size={"default"}>
+                <Link
+                  href={`/test-environment/shad-${prevPage?.toLowerCase()}`}
+                >
+                  {prevPage}
+                </Link>
+              </Button>
+            ) : null}
+          </div>
+          <div className="nav-buttons-right">
+            {nextPage !== null ? (
+              <Button asChild variant={"default"} size={"default"}>
+                <Link
+                  href={`/test-environment/shad-${nextPage?.toLowerCase()}`}
+                >
+                  {nextPage}
+                </Link>
+              </Button>
+            ) : null}
+          </div>
         </div>
-        <div className="nav-buttons-right">
-          {nextPage !== null ? (
-            <Button asChild variant={"default"} size={"default"}>
-              <Link href={`/test-environment/shad-${nextPage?.toLowerCase()}`}>
-                {nextPage}
-              </Link>
-            </Button>
-          ) : null}
-        </div>
-      </div>
+      )}
     </>
   );
 
