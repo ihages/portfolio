@@ -319,7 +319,7 @@ export function ShadA() {
       <div className="test-zone">
         <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
           <Image
-            src="RapidTech.png"
+            src="/portfolio/images/RapidTech.png"
             alt="A thumbnail of the RapidTech webpage"
             fill
             className="object-cover"

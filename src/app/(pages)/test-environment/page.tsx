@@ -18,8 +18,24 @@ export default function TestEnvironment() {
       <div className="page-body testing">
         <Breadcrumbs />
         <h1>Testing Grounds</h1>
-        <h2>Shadcn</h2>
-        
+        <h2>Shadcn Components</h2>
+        <div className="flex gap-[20px]">
+          <Button asChild>
+            <Link href="/test-environment/shad-a">A</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/shad-a">B</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/shad-a">C</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/shad-a">H-M</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/shad-a">N-R</Link>
+          </Button>
+        </div>
       </div>
     </>
   );

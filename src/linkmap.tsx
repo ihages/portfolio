@@ -13,6 +13,12 @@ export const LinkMap: Page[] = [
         metaDesc: "Isabelle Hageman's portfolio and web development testing grounds",
     },
     {
+        name:"Gallery",
+        url:"/portfolio/gallery",
+        title: "Ihages | Gallery",
+        metaDesc: "Isabelle Hageman's image Gallery",
+    },
+    {
         name:"Test Environment",
         url:"/portfolio/test-environment",
         title: "Ihages | Test Environment",
