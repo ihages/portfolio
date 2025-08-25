@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
 
-import { ShadA, ShadB, ShadC, ShadD, ShadHM, ShadNR } from "./shad-pages";
+import { ShadA, ShadB, ShadC, ShadD, ShadHM, ShadNR, ShadS } from "./shad-pages";
 import { generateStaticParams } from "./generateStaticParams";
 import PageNotFound from "@/components/pageNotFound";
 
@@ -53,6 +53,12 @@ export default function Slugs({
     case "shad-n-r":
       slugpage = <ShadNR />;
       prevPage = "H-M";
+      nextPage = "S";
+      break;
+
+      case "shad-s":
+      slugpage = <ShadS />;
+      prevPage = "N-R";
       nextPage = null;
       break;
    

@@ -27,13 +27,13 @@ export default function TestEnvironment() {
             <Link href="/test-environment/shad-a">B</Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/shad-a">C</Link>
+            <Link href="/test-environment/shad-c">C</Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/shad-a">H-M</Link>
+            <Link href="/test-environment/shad-h-m">H-M</Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/shad-a">N-R</Link>
+            <Link href="/test-environment/shad-n-r">N-R</Link>
           </Button>
         </div>
       </div>

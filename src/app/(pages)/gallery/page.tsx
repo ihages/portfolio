@@ -22,40 +22,40 @@ export default function Gallery() {
         <ImageGallery
           images={[
             {
-              title: "Silly cat",
-              description: "This is a silly cat",
+              title: "Placeholder",
+              description: "This is a placeholder image",
               src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-              alt: "What a silly cat",
+              alt: "A placeholder square of dark purple",
               url: "https://cultofthepartyparrot.com/"
             },{
-              title: "Silly cat",
-              description: "This is a silly cat",
+              title: "Placeholder",
+              description: "This is a placeholder image",
               src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-              alt: "What a silly cat",
+              alt: "A placeholder square of dark purple",
               url: "https://cultofthepartyparrot.com/"
             },{
-              title: "Silly cat",
-              description: "This is a silly cat",
+              title: "Placeholder",
+              description: "This is a placeholder image",
               src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-              alt: "What a silly cat",
+              alt: "A placeholder square of dark purple",
               url: "https://cultofthepartyparrot.com/"
             },{
-              title: "Silly cat",
-              description: "This is a silly cat",
+              title: "Placeholder",
+              description: "This is a placeholder image",
               src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-              alt: "What a silly cat",
+              alt: "A placeholder square of dark purple",
               url: "https://cultofthepartyparrot.com/"
             },{
-              title: "Silly cat",
-              description: "This is a silly cat",
+              title: "Placeholder",
+              description: "This is a placeholder image",
               src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-              alt: "What a silly cat",
+              alt: "A placeholder square of dark purple",
               url: "https://cultofthepartyparrot.com/"
             },{
-              title: "Silly cat",
-              description: "This is a silly cat",
+              title: "Placeholder",
+              description: "This is a placeholder image",
               src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-              alt: "What a silly cat",
+              alt: "A placeholder square of dark purple",
               url: "https://cultofthepartyparrot.com/"
             },
           ]}
