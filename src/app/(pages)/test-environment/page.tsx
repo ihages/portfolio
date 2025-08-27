@@ -42,6 +42,13 @@ export default function TestEnvironment() {
             <Link href="/test-environment/shad-t">T</Link>
           </Button>
         </div>
+        <h2>MUI Components</h2>
+        <p>Components use Roboto font by default. Colors do not access global.css.</p>
+        <div className="flex gap-[20px]">
+          <Button asChild>
+            <Link href="/test-environment/mui">Mui</Link>
+          </Button>
+        </div>
       </div>
     </>
   );

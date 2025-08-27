@@ -17,7 +17,7 @@ import {
   ShadS,
   ShadT,
 } from "./shad-pages";
-import { generateStaticParams } from "./generateStaticParams";
+import { MUI } from "./mui-pages";
 import PageNotFound from "@/components/pageNotFound";
 
 export default function Slugs({
@@ -77,11 +77,32 @@ export default function Slugs({
       nextPage = null;
       break;
 
+    case "mui":
+      slugpage = <MUI />;
+      prevPage=null;
+      nextPage=null;
+      break;
+
     case undefined:
     default:
       slugpage = <PageNotFound></PageNotFound>;
+			prevPage=null;
+			nextPage=null;
       break;
   }
+
+  const prevSlug = 
+    slugValue?.includes("shad")
+    ? `shad-${prevPage?.toLocaleLowerCase() as string}`
+    : slugValue?.includes("mui")
+    ? `mui-${prevPage?.toLocaleLowerCase() as string}`
+    : null;
+  const nextSlug = 
+    slugValue?.includes("shad")
+    ? `shad-${nextPage?.toLocaleLowerCase() as string}`
+    : slugValue?.includes("mui")
+    ? `mui-${nextPage?.toLocaleLowerCase() as string}`
+    : null;
 
   const slughead = (
     <>
@@ -91,22 +112,14 @@ export default function Slugs({
           <div className="nav-buttons-left">
             {prevPage !== null ? (
               <Button asChild variant={"default"} size={"default"}>
-                <Link
-                  href={`/test-environment/shad-${prevPage?.toLowerCase()}`}
-                >
-                  {prevPage}
-                </Link>
+                <Link href={`/test-environment/${prevSlug}`}>{prevPage}</Link>
               </Button>
             ) : null}
           </div>
           <div className="nav-buttons-right">
             {nextPage !== null ? (
               <Button asChild variant={"default"} size={"default"}>
-                <Link
-                  href={`/test-environment/shad-${nextPage?.toLowerCase()}`}
-                >
-                  {nextPage}
-                </Link>
+                <Link href={`/test-environment/${nextSlug}`}>{nextPage}</Link>
               </Button>
             ) : null}
           </div>

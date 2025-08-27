@@ -3,234 +3,64 @@
 import { Button } from "@/components/ui/button";
 import "./style.css";
 import "../style.css"; //ensure styles load with client rendering
-import { ChevronRightIcon } from "lucide-react";
+import {
+  ChevronRightIcon,
+  AlertCircleIcon,
+  CheckCircle2Icon,
+  PopcornIcon,
+  CalendarIcon,
+  Bold,
+  Italic,
+  Underline,
+} from "lucide-react";
 import { IconGitBranch } from "@tabler/icons-react";
 import Link from "next/link";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { AlertCircleIcon, CheckCircle2Icon, PopcornIcon } from "lucide-react";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import * as Accordion from "@/components/ui/accordion";
+import * as Alert from "@/components/ui/alert";
+import * as AlertDialog from "@/components/ui/alert-dialog";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  Breadcrumb,
-  BreadcrumbEllipsis,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import * as Avatar from "@/components/ui/avatar";
+import * as Breadcrumb from "@/components/ui/breadcrumb";
 import React, { ReactNode, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { usePathname } from "next/navigation";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu";
+import * as DropdownMenu from "@/components/ui/dropdown-menu";
 import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+import * as Popover from "@/components/ui/popover";
 import * as chrono from "chrono-node";
-import { CalendarIcon } from "lucide-react";
 import Calendar24 from "@/components/calendar-24";
-import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import * as Card from "@/components/ui/card";
+import * as Carousel from "@/components/ui/carousel";
+import * as Collapsible from "@/components/ui/collapsible";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
+import * as Chart from "@/components/ui/chart";
+import * as ContextMenu from "@/components/ui/context-menu";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import {
-  InputOTP,
-  InputOTPGroup,
-  InputOTPSeparator,
-  InputOTPSlot,
-} from "@/components/ui/input-otp";
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuIndicator,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  NavigationMenuViewport,
-} from "@/components/ui/navigation-menu";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
+import * as Dialog from "@/components/ui/dialog";
+import * as Drawer from "@/components/ui/drawer";
+import * as HoverCard from "@/components/ui/hover-card";
+import * as InputOTP from "@/components/ui/input-otp";
+import * as Menubar from "@/components/ui/menubar";
+import * as NavigationMenu from "@/components/ui/navigation-menu";
+import * as Pagination from "@/components/ui/pagination";
 import { Progress } from "@/components/ui/progress";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-  SelectGroup,
-  SelectLabel,
-} from "@/components/ui/select";
+import * as RadioGroup from "@/components/ui/radio-group";
+import * as Resizable from "@/components/ui/resizable";
+import * as Select from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import * as Sheet from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import * as Tabs from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { Toggle } from "@/components/ui/toggle";
-import { Bold, Italic, Underline } from "lucide-react";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-
-export type TestBlockProps = {
-  title: string;
-  docSlug: string;
-  zone: ReactNode;
-  note?: string;
-};
-
-export function TestBlock(props: TestBlockProps) {
-  const { title, docSlug, zone, note } = props;
-  return (
-    <div className="test-block">
-      <h3>{title}</h3>
-      <Button
-        variant={"link"}
-        asChild
-        style={{
-          padding: "0",
-          marginBottom: "20px",
-          textDecoration: "underline",
-        }}
-      >
-        <Link href={`https://ui.shadcn.com/docs/components/${docSlug}`}>
-          Documentation
-        </Link>
-      </Button>
-      {note ? (
-        <p>
-          <strong>Note: </strong>
-          {note}
-        </p>
-      ) : null}
-      <div className="test-zone">{zone}</div>
-    </div>
-  );
-}
+import * as ToggleGroup from "@/components/ui/toggle-group";
+import * as Tooltip from "@/components/ui/tooltip";
+import { TestBlock } from "@/components/testblock";
 
 const chartData = [
   { month: "January", desktop: 186, mobile: 80 },
@@ -250,7 +80,7 @@ const chartConfig = {
     label: "Mobile",
     color: "#60a5fa",
   },
-} satisfies ChartConfig;
+} satisfies Chart.ChartConfig;
 
 function formatDate(date: Date | undefined) {
   if (!date) {
@@ -268,86 +98,104 @@ export function ShadA() {
     <div className="page-body testing">
       <TestBlock
         title="Accordion"
-        docSlug="accordion"
+        docLink="https://ui.shadcn.com/docs/components/accordion"
         zone={
-          <Accordion
+          <Accordion.Accordion
             type="single"
             collapsible
             className="w-full"
             defaultValue="item-1"
           >
-            <AccordionItem value="item 1">
-              <AccordionTrigger>Accordion Trigger 1 </AccordionTrigger>
-              <AccordionContent>Accordion Contents 1</AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item 2">
-              <AccordionTrigger>Accordion Trigger 2 </AccordionTrigger>
-              <AccordionContent>Accordion Contents 2</AccordionContent>
-            </AccordionItem>
-          </Accordion>
+            <Accordion.AccordionItem value="item 1">
+              <Accordion.AccordionTrigger>
+                Accordion Trigger 1{" "}
+              </Accordion.AccordionTrigger>
+              <Accordion.AccordionContent>
+                Accordion Contents 1
+              </Accordion.AccordionContent>
+            </Accordion.AccordionItem>
+            <Accordion.AccordionItem value="item 2">
+              <Accordion.AccordionTrigger>
+                Accordion Trigger 2{" "}
+              </Accordion.AccordionTrigger>
+              <Accordion.AccordionContent>
+                Accordion Contents 2
+              </Accordion.AccordionContent>
+            </Accordion.AccordionItem>
+          </Accordion.Accordion>
         }
       />
       <TestBlock
         title="Alert"
-        docSlug="alert"
+        docLink="https://ui.shadcn.com/docs/components/alert"
         zone={
           <>
-            <Alert>
+            <Alert.Alert>
               <CheckCircle2Icon size={20} style={{ paddingRight: "5px" }} />
-              <AlertTitle>Success! Your changes have been saved</AlertTitle>
-              <AlertDescription>
+              <Alert.AlertTitle>
+                Success! Your changes have been saved
+              </Alert.AlertTitle>
+              <Alert.AlertDescription>
                 This is an alert with icon, title and description.
-              </AlertDescription>
-            </Alert>
-            <Alert>
+              </Alert.AlertDescription>
+            </Alert.Alert>
+            <Alert.Alert>
               <PopcornIcon size={20} style={{ paddingRight: "5px" }} />
-              <AlertTitle>
+              <Alert.AlertTitle>
                 This Alert has a title and an icon. No description.
-              </AlertTitle>
-            </Alert>
-            <Alert variant="destructive">
+              </Alert.AlertTitle>
+            </Alert.Alert>
+            <Alert.Alert variant="destructive">
               <AlertCircleIcon size={20} style={{ paddingRight: "5px" }} />
-              <AlertTitle>Unable to process your payment.</AlertTitle>
-              <AlertDescription>
+              <Alert.AlertTitle>
+                Unable to process your payment.
+              </Alert.AlertTitle>
+              <Alert.AlertDescription>
                 <p>Please verify your billing information and try again.</p>
                 <ul className="list-inside list-disc text-sm">
                   <li>Check your card details</li>
                   <li>Ensure sufficient funds</li>
                   <li>Verify billing address</li>
                 </ul>
-              </AlertDescription>
-            </Alert>
+              </Alert.AlertDescription>
+            </Alert.Alert>
           </>
         }
       />
 
       <TestBlock
         title="Alert Dialog"
-        docSlug="alert-dialog"
+        docLink="https://ui.shadcn.com/docs/components/alert-dialog"
         zone={
-          <AlertDialog>
-            <AlertDialogTrigger asChild>
+          <AlertDialog.AlertDialog>
+            <AlertDialog.AlertDialogTrigger asChild>
               <Button variant="outline">Show Dialog</Button>
-            </AlertDialogTrigger>
-            <AlertDialogContent>
-              <AlertDialogHeader>
-                <AlertDialogTitle>Alert Dialog Title</AlertDialogTitle>
-                <AlertDialogDescription>
+            </AlertDialog.AlertDialogTrigger>
+            <AlertDialog.AlertDialogContent>
+              <AlertDialog.AlertDialogHeader>
+                <AlertDialog.AlertDialogTitle>
+                  Alert Dialog Title
+                </AlertDialog.AlertDialogTitle>
+                <AlertDialog.AlertDialogDescription>
                   This is the description of the dialog
-                </AlertDialogDescription>
-              </AlertDialogHeader>
-              <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction>Continue</AlertDialogAction>
-              </AlertDialogFooter>
-            </AlertDialogContent>
-          </AlertDialog>
+                </AlertDialog.AlertDialogDescription>
+              </AlertDialog.AlertDialogHeader>
+              <AlertDialog.AlertDialogFooter>
+                <AlertDialog.AlertDialogCancel>
+                  Cancel
+                </AlertDialog.AlertDialogCancel>
+                <AlertDialog.AlertDialogAction>
+                  Continue
+                </AlertDialog.AlertDialogAction>
+              </AlertDialog.AlertDialogFooter>
+            </AlertDialog.AlertDialogContent>
+          </AlertDialog.AlertDialog>
         }
       />
 
       <TestBlock
         title="Aspect Ratio"
-        docSlug="aspect-ratio"
+        docLink="https://ui.shadcn.com/docs/components/aspect-ratio"
         note="The class name for the next/Image was outdated in the docs."
         zone={
           <AspectRatio ratio={16 / 9} className="bg-muted rounded-lg">
@@ -363,18 +211,18 @@ export function ShadA() {
 
       <TestBlock
         title="Avatar"
-        docSlug="avatar"
+        docLink="https://ui.shadcn.com/docs/components/avatar"
         note="Changing the username in the image src will return different icons. This could be set up with a GitHub integrated login to get the username for the Avatar Fallback initials as well."
         zone={
           <>
-            <Avatar style={{ width: "100px", height: "100px" }}>
-              <AvatarImage src="https://github.com/ihages.png" />
-              <AvatarFallback>IH</AvatarFallback>
-            </Avatar>
-            <Avatar style={{ width: "100px", height: "100px" }}>
-              <AvatarImage src="" />
-              <AvatarFallback>IH</AvatarFallback>
-            </Avatar>
+            <Avatar.Avatar style={{ width: "100px", height: "100px" }}>
+              <Avatar.AvatarImage src="https://github.com/ihages.png" />
+              <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
+            </Avatar.Avatar>
+            <Avatar.Avatar style={{ width: "100px", height: "100px" }}>
+              <Avatar.AvatarImage src="" />
+              <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
+            </Avatar.Avatar>
           </>
         }
       />
@@ -390,7 +238,7 @@ export function ShadB() {
     <div className="page-body testing">
       <TestBlock
         title="Badge"
-        docSlug="badge"
+        docLink="https://ui.shadcn.com/docs/components/badge"
         zone={
           <>
             <Badge variant="default">Default</Badge>
@@ -403,85 +251,93 @@ export function ShadB() {
 
       <TestBlock
         title="Breadcrumb"
-        docSlug="breadcrumb"
+        docLink="https://ui.shadcn.com/docs/components/breadcrumb"
         note="Breadcrumbs by default are staticly defined. For dynamic implementation, see the top of each page. There are two more examples--custom separator and responsive--in the documentation."
         zone={
           <div className="vertical">
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/test-environment">
+            <Breadcrumb.Breadcrumb>
+              <Breadcrumb.BreadcrumbList>
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbLink href="/">
+                    Home
+                  </Breadcrumb.BreadcrumbLink>
+                </Breadcrumb.BreadcrumbItem>
+                <Breadcrumb.BreadcrumbSeparator />
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbLink href="/test-environment">
                     Test Environment
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Shad B</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+                  </Breadcrumb.BreadcrumbLink>
+                </Breadcrumb.BreadcrumbItem>
+                <Breadcrumb.BreadcrumbSeparator />
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbPage>Shad B</Breadcrumb.BreadcrumbPage>
+                </Breadcrumb.BreadcrumbItem>
+              </Breadcrumb.BreadcrumbList>
+            </Breadcrumb.Breadcrumb>
 
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger>Dropdown</DropdownMenuTrigger>
-                    <DropdownMenuContent align="start">
-                      <DropdownMenuItem>
-                        <BreadcrumbLink href="/test-environment">
+            <Breadcrumb.Breadcrumb>
+              <Breadcrumb.BreadcrumbList>
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbLink href="/">
+                    Home
+                  </Breadcrumb.BreadcrumbLink>
+                </Breadcrumb.BreadcrumbItem>
+                <Breadcrumb.BreadcrumbSeparator />
+                <Breadcrumb.BreadcrumbItem>
+                  <DropdownMenu.DropdownMenu>
+                    <DropdownMenu.DropdownMenuTrigger>
+                      Dropdown
+                    </DropdownMenu.DropdownMenuTrigger>
+                    <DropdownMenu.DropdownMenuContent align="start">
+                      <DropdownMenu.DropdownMenuItem>
+                        <Breadcrumb.BreadcrumbLink href="/test-environment">
                           Test Environment
-                        </BreadcrumbLink>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <BreadcrumbLink href="/test-environment/shad-a">
+                        </Breadcrumb.BreadcrumbLink>
+                      </DropdownMenu.DropdownMenuItem>
+                      <DropdownMenu.DropdownMenuItem>
+                        <Breadcrumb.BreadcrumbLink href="/test-environment/shad-a">
                           Shad A
-                        </BreadcrumbLink>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <BreadcrumbLink href="/test-environment/shad-b">
+                        </Breadcrumb.BreadcrumbLink>
+                      </DropdownMenu.DropdownMenuItem>
+                      <DropdownMenu.DropdownMenuItem>
+                        <Breadcrumb.BreadcrumbLink href="/test-environment/shad-b">
                           Shad B
-                        </BreadcrumbLink>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Shad B</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+                        </Breadcrumb.BreadcrumbLink>
+                      </DropdownMenu.DropdownMenuItem>
+                    </DropdownMenu.DropdownMenuContent>
+                  </DropdownMenu.DropdownMenu>
+                </Breadcrumb.BreadcrumbItem>
+                <Breadcrumb.BreadcrumbSeparator />
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbPage>Shad B</Breadcrumb.BreadcrumbPage>
+                </Breadcrumb.BreadcrumbItem>
+              </Breadcrumb.BreadcrumbList>
+            </Breadcrumb.Breadcrumb>
 
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem>
-                  <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbEllipsis />
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Shad B</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
+            <Breadcrumb.Breadcrumb>
+              <Breadcrumb.BreadcrumbList>
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbLink href="/">
+                    Home
+                  </Breadcrumb.BreadcrumbLink>
+                </Breadcrumb.BreadcrumbItem>
+                <Breadcrumb.BreadcrumbSeparator />
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbEllipsis />
+                </Breadcrumb.BreadcrumbItem>
+                <Breadcrumb.BreadcrumbSeparator />
+                <Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbPage>Shad B</Breadcrumb.BreadcrumbPage>
+                </Breadcrumb.BreadcrumbItem>
+              </Breadcrumb.BreadcrumbList>
+            </Breadcrumb.Breadcrumb>
           </div>
         }
       />
 
       <TestBlock
         title="Button"
-        docSlug="button"
+        docLink="https://ui.shadcn.com/docs/components/button"
         note="Destructive is red regardless of theme. My color palet just makes all the primary colors red."
         zone={
           <>
@@ -524,7 +380,6 @@ export function ShadB() {
 
 export function ShadC() {
   const [open, setOpen] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
   const [value, setValue] = React.useState("In 2 days");
   const [date, setDate] = React.useState<Date | undefined>(
     chrono.parseDate(value) || undefined
@@ -536,7 +391,7 @@ export function ShadC() {
     <div className="page-body testing">
       <TestBlock
         title="Calendar"
-        docSlug="calendar"
+        docLink="https://ui.shadcn.com/docs/components/calendar"
         note="Some of the implementations of the calendar require different libraries to be installed. The components can also be very large. Due to this, ShadCN has importable blocks that may be a good substitute."
         zone={
           <div className="vertical">
@@ -574,8 +429,8 @@ export function ShadC() {
                     }
                   }}
                 />
-                <Popover open={open} onOpenChange={setOpen}>
-                  <PopoverTrigger asChild>
+                <Popover.Popover open={open} onOpenChange={setOpen}>
+                  <Popover.PopoverTrigger asChild>
                     <Button
                       id="date-picker"
                       variant="ghost"
@@ -584,8 +439,8 @@ export function ShadC() {
                       <CalendarIcon className="size-3.5" />
                       <span className="sr-only">Select date</span>
                     </Button>
-                  </PopoverTrigger>
-                  <PopoverContent
+                  </Popover.PopoverTrigger>
+                  <Popover.PopoverContent
                     className="w-auto overflow-hidden p-0"
                     align="end"
                   >
@@ -601,8 +456,8 @@ export function ShadC() {
                         setOpen(false);
                       }}
                     />
-                  </PopoverContent>
-                </Popover>
+                  </Popover.PopoverContent>
+                </Popover.Popover>
               </div>
               <div className="text-muted-foreground px-1 text-sm">
                 Your post will be published on{" "}
@@ -615,20 +470,20 @@ export function ShadC() {
 
       <TestBlock
         title="Card"
-        docSlug="card"
+        docLink="https://ui.shadcn.com/docs/components/card"
         zone={
           <>
-            <Card className="w-full max-w-sm">
-              <CardHeader>
-                <CardTitle>Login to your account</CardTitle>
-                <CardDescription>
+            <Card.Card className="w-full max-w-sm">
+              <Card.CardHeader>
+                <Card.CardTitle>Login to your account</Card.CardTitle>
+                <Card.CardDescription>
                   Enter your email below to login to your account
-                </CardDescription>
-                <CardAction>
+                </Card.CardDescription>
+                <Card.CardAction>
                   <Button variant="link">Sign Up</Button>
-                </CardAction>
-              </CardHeader>
-              <CardContent>
+                </Card.CardAction>
+              </Card.CardHeader>
+              <Card.CardContent>
                 <form>
                   <div className="flex flex-col gap-[10px]">
                     <div className="grid gap-[5px]">
@@ -654,94 +509,97 @@ export function ShadC() {
                     </div>
                   </div>
                 </form>
-              </CardContent>
-              <CardFooter className="flex-col gap-[5px]">
+              </Card.CardContent>
+              <Card.CardFooter className="flex-col gap-[5px]">
                 <Button type="submit" className="w-full">
                   Login
                 </Button>
                 <Button variant="outline" className="w-full">
                   Login with Google
                 </Button>
-              </CardFooter>
-            </Card>
-            <Card className="w-[500px]">
-              <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-                <CardAction>Card Action</CardAction>
-              </CardHeader>
-              <CardContent>
+              </Card.CardFooter>
+            </Card.Card>
+            <Card.Card className="w-[500px]">
+              <Card.CardHeader>
+                <Card.CardTitle>Card Title</Card.CardTitle>
+                <Card.CardDescription>Card Description</Card.CardDescription>
+                <Card.CardAction>Card Action</Card.CardAction>
+              </Card.CardHeader>
+              <Card.CardContent>
                 <p>Card Content</p>
-              </CardContent>
-              <CardFooter>
+              </Card.CardContent>
+              <Card.CardFooter>
                 <p>Card Footer</p>
-              </CardFooter>
-            </Card>
+              </Card.CardFooter>
+            </Card.Card>
           </>
         }
       />
 
       <TestBlock
         title="Carousel"
-        docSlug="carousel"
+        docLink="https://ui.shadcn.com/docs/components/carousel"
         zone={
           <>
-            <Carousel className="w-[50%]">
-              <CarouselContent>
+            <Carousel.Carousel className="w-[50%]">
+              <Carousel.CarouselContent>
                 {Array.from({ length: 5 }).map((_, index) => (
-                  <CarouselItem key={index}>
+                  <Carousel.CarouselItem key={index}>
                     <div className="p-1">
-                      <Card>
-                        <CardContent className="flex aspect-square items-center justify-center p-2">
+                      <Card.Card>
+                        <Card.CardContent className="flex aspect-square items-center justify-center p-2">
                           <span className="text-4xl font-semibold">
                             {index + 1}
                             {"  "}no loop
                           </span>
-                        </CardContent>
-                      </Card>
+                        </Card.CardContent>
+                      </Card.Card>
                     </div>
-                  </CarouselItem>
+                  </Carousel.CarouselItem>
                 ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
-            <Carousel
+              </Carousel.CarouselContent>
+              <Carousel.CarouselPrevious />
+              <Carousel.CarouselNext />
+            </Carousel.Carousel>
+            <Carousel.Carousel
               opts={{
                 align: "start",
                 loop: true,
               }}
               className="w-[50%]"
             >
-              <CarouselContent>
+              <Carousel.CarouselContent>
                 {Array.from({ length: 5 }).map((_, index) => (
-                  <CarouselItem key={index}>
+                  <Carousel.CarouselItem key={index}>
                     <div className="p-1">
-                      <Card>
-                        <CardContent className="flex aspect-square items-center justify-center p-2">
+                      <Card.Card>
+                        <Card.CardContent className="flex aspect-square items-center justify-center p-2">
                           <span className="text-4xl font-semibold">
                             {index + 1}
                             {"  "}loop
                           </span>
-                        </CardContent>
-                      </Card>
+                        </Card.CardContent>
+                      </Card.Card>
                     </div>
-                  </CarouselItem>
+                  </Carousel.CarouselItem>
                 ))}
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+              </Carousel.CarouselContent>
+              <Carousel.CarouselPrevious />
+              <Carousel.CarouselNext />
+            </Carousel.Carousel>
           </>
         }
       />
 
       <TestBlock
         title="Chart"
-        docSlug="chart"
+        docLink="https://ui.shadcn.com/docs/components/chart"
         note="There is supposed to be a chart here, but for some reason, it is invisible."
         zone={
-          <ChartContainer config={chartConfig} className="min-h-[200px] w-full">
+          <Chart.ChartContainer
+            config={chartConfig}
+            className="min-h-[200px] w-full"
+          >
             <BarChart accessibilityLayer data={chartData}>
               <CartesianGrid vertical={false} />
               <XAxis
@@ -751,18 +609,18 @@ export function ShadC() {
                 axisLine={false}
                 tickFormatter={(value) => value.slice(0, 3)}
               />
-              <ChartTooltip content={<ChartTooltipContent />} />
-              <ChartLegend content={<ChartLegendContent />} />
+              <Chart.ChartTooltip content={<Chart.ChartTooltipContent />} />
+              <Chart.ChartLegend content={<Chart.ChartLegendContent />} />
               <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
               <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
             </BarChart>
-          </ChartContainer>
+          </Chart.ChartContainer>
         }
       />
 
       <TestBlock
         title="Checkbox"
-        docSlug="checkbox"
+        docLink="https://ui.shadcn.com/docs/components/checkbox"
         zone={
           <>
             <Checkbox
@@ -777,33 +635,37 @@ export function ShadC() {
 
       <TestBlock
         title="Collapsible"
-        docSlug="collapsible"
+        docLink="https://ui.shadcn.com/docs/components/collapsible"
         zone={
-          <Collapsible>
-            <CollapsibleTrigger>
+          <Collapsible.Collapsible>
+            <Collapsible.CollapsibleTrigger>
               Can I use this in my project?
-            </CollapsibleTrigger>
-            <CollapsibleContent>
+            </Collapsible.CollapsibleTrigger>
+            <Collapsible.CollapsibleContent>
               Yes. Free to use for personal and commercial projects. No
               attribution required.
-            </CollapsibleContent>
-          </Collapsible>
+            </Collapsible.CollapsibleContent>
+          </Collapsible.Collapsible>
         }
       />
 
       <TestBlock
         title="Context Menu"
-        docSlug="context-menu"
+        docLink="https://ui.shadcn.com/docs/components/context-menu"
         zone={
-          <ContextMenu>
-            <ContextMenuTrigger>Right Click Here</ContextMenuTrigger>
-            <ContextMenuContent>
-              <ContextMenuItem>Profile</ContextMenuItem>
-              <ContextMenuItem>Billing</ContextMenuItem>
-              <ContextMenuItem>Team</ContextMenuItem>
-              <ContextMenuItem>Subscription</ContextMenuItem>
-            </ContextMenuContent>
-          </ContextMenu>
+          <ContextMenu.ContextMenu>
+            <ContextMenu.ContextMenuTrigger>
+              Right Click Here
+            </ContextMenu.ContextMenuTrigger>
+            <ContextMenu.ContextMenuContent>
+              <ContextMenu.ContextMenuItem>Profile</ContextMenu.ContextMenuItem>
+              <ContextMenu.ContextMenuItem>Billing</ContextMenu.ContextMenuItem>
+              <ContextMenu.ContextMenuItem>Team</ContextMenu.ContextMenuItem>
+              <ContextMenu.ContextMenuItem>
+                Subscription
+              </ContextMenu.ContextMenuItem>
+            </ContextMenu.ContextMenuContent>
+          </ContextMenu.ContextMenu>
         }
       />
     </div>
@@ -816,31 +678,33 @@ export function ShadD() {
     <div className="page-body testing">
       <TestBlock
         title="Dialog"
-        docSlug="dialog"
+        docLink="https://ui.shadcn.com/docs/components/dialog"
         zone={
           <>
-            <Dialog>
-              <DialogTrigger>Dialog trigger</DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>Dialog title</DialogTitle>
-                  <DialogDescription>Dialog descritpion</DialogDescription>
-                </DialogHeader>
-              </DialogContent>
-            </Dialog>
-            <Dialog>
+            <Dialog.Dialog>
+              <Dialog.DialogTrigger>Dialog trigger</Dialog.DialogTrigger>
+              <Dialog.DialogContent>
+                <Dialog.DialogHeader>
+                  <Dialog.DialogTitle>Dialog title</Dialog.DialogTitle>
+                  <Dialog.DialogDescription>
+                    Dialog descritpion
+                  </Dialog.DialogDescription>
+                </Dialog.DialogHeader>
+              </Dialog.DialogContent>
+            </Dialog.Dialog>
+            <Dialog.Dialog>
               <form>
-                <DialogTrigger asChild>
+                <Dialog.DialogTrigger asChild>
                   <Button variant="outline">Open Dialog</Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
-                  <DialogHeader>
-                    <DialogTitle>Edit profile</DialogTitle>
-                    <DialogDescription>
+                </Dialog.DialogTrigger>
+                <Dialog.DialogContent className="sm:max-w-[425px]">
+                  <Dialog.DialogHeader>
+                    <Dialog.DialogTitle>Edit profile</Dialog.DialogTitle>
+                    <Dialog.DialogDescription>
                       Make changes to your profile here. Click save when
                       you&apos;re done.
-                    </DialogDescription>
-                  </DialogHeader>
+                    </Dialog.DialogDescription>
+                  </Dialog.DialogHeader>
                   <div className="grid gap-[10px]">
                     <div className="grid gap-[7px]]">
                       <Label htmlFor="name-1">Name</Label>
@@ -859,65 +723,77 @@ export function ShadD() {
                       />
                     </div>
                   </div>
-                  <DialogFooter className="flex-row justify-end gap-[7px] py-[10px]">
-                    <DialogClose asChild>
+                  <Dialog.DialogFooter className="flex-row justify-end gap-[7px] py-[10px]">
+                    <Dialog.DialogClose asChild>
                       <Button variant="outline">Cancel</Button>
-                    </DialogClose>
+                    </Dialog.DialogClose>
                     <Button type="submit">Save changes</Button>
-                  </DialogFooter>
-                </DialogContent>
+                  </Dialog.DialogFooter>
+                </Dialog.DialogContent>
               </form>
-            </Dialog>
+            </Dialog.Dialog>
           </>
         }
       />
 
       <TestBlock
         title="Drawer"
-        docSlug="drawer"
+        docLink="https://ui.shadcn.com/docs/components/drawer"
         note="I could not get this component to work. The drawer contents never even show up in the DOM."
         zone={
-          <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-            <DrawerTrigger asChild>
+          <Drawer.Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+            <Drawer.DrawerTrigger asChild>
               <Button variant="outline">Edit Profile</Button>
-            </DrawerTrigger>
-            <DrawerContent>
-              <DrawerHeader className="text-left">
-                <DrawerTitle>Edit profile</DrawerTitle>
-                <DrawerDescription>
+            </Drawer.DrawerTrigger>
+            <Drawer.DrawerContent>
+              <Drawer.DrawerHeader className="text-left">
+                <Drawer.DrawerTitle>Edit profile</Drawer.DrawerTitle>
+                <Drawer.DrawerDescription>
                   Make changes to your profile here. Click save when you&apos;re
                   done.
-                </DrawerDescription>
-              </DrawerHeader>
+                </Drawer.DrawerDescription>
+              </Drawer.DrawerHeader>
               <div>hi</div>
-              <DrawerFooter className="pt-2">
-                <DrawerClose asChild>
+              <Drawer.DrawerFooter className="pt-2">
+                <Drawer.DrawerClose asChild>
                   <Button variant="outline">Cancel</Button>
-                </DrawerClose>
-              </DrawerFooter>
-            </DrawerContent>
-          </Drawer>
+                </Drawer.DrawerClose>
+              </Drawer.DrawerFooter>
+            </Drawer.DrawerContent>
+          </Drawer.Drawer>
         }
       />
 
       <TestBlock
         title="Dropdown Menu"
-        docSlug="dropdown-menu"
+        docLink="https://ui.shadcn.com/docs/components/dropdown-menu"
         note="see radix API documentation for properties that can be passed on to different components."
         zone={
-          <DropdownMenu>
+          <DropdownMenu.DropdownMenu>
             <Button variant={"outline"} asChild>
-              <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+              <DropdownMenu.DropdownMenuTrigger>
+                Open
+              </DropdownMenu.DropdownMenuTrigger>
             </Button>
-            <DropdownMenuContent side="bottom" align={"start"}>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+            <DropdownMenu.DropdownMenuContent side="bottom" align={"start"}>
+              <DropdownMenu.DropdownMenuLabel>
+                My Account
+              </DropdownMenu.DropdownMenuLabel>
+              <DropdownMenu.DropdownMenuSeparator />
+              <DropdownMenu.DropdownMenuItem>
+                Profile
+              </DropdownMenu.DropdownMenuItem>
+              <DropdownMenu.DropdownMenuItem>
+                Billing
+              </DropdownMenu.DropdownMenuItem>
+              <DropdownMenu.DropdownMenuItem>
+                Team
+              </DropdownMenu.DropdownMenuItem>
+              <DropdownMenu.DropdownMenuItem>
+                Subscription
+              </DropdownMenu.DropdownMenuItem>
+            </DropdownMenu.DropdownMenuContent>
+          </DropdownMenu.DropdownMenu>
         }
       />
     </div>
@@ -929,46 +805,46 @@ export function ShadHM() {
     <div className="page-body testing">
       <TestBlock
         title="Hover Card"
-        docSlug="hover-card"
+        docLink="https://ui.shadcn.com/docs/components/hover-card"
         zone={
-          <HoverCard>
-            <HoverCardTrigger>Hover</HoverCardTrigger>
-            <HoverCardContent>
+          <HoverCard.HoverCard>
+            <HoverCard.HoverCardTrigger>Hover</HoverCard.HoverCardTrigger>
+            <HoverCard.HoverCardContent>
               The React Framework – created and maintained by @vercel.
-            </HoverCardContent>
-          </HoverCard>
+            </HoverCard.HoverCardContent>
+          </HoverCard.HoverCard>
         }
       />
 
       <TestBlock
         title="Input"
-        docSlug="input"
+        docLink="https://ui.shadcn.com/docs/components/input"
         zone={<Input type="email" placeholder="Email" />}
       />
 
       <TestBlock
         title="Input OTP"
-        docSlug="input-otp"
+        docLink="https://ui.shadcn.com/docs/components/input-otp"
         zone={
-          <InputOTP maxLength={6}>
-            <InputOTPGroup>
-              <InputOTPSlot index={0} />
-              <InputOTPSlot index={1} />
-              <InputOTPSlot index={2} />
-            </InputOTPGroup>
-            <InputOTPSeparator />
-            <InputOTPGroup>
-              <InputOTPSlot index={3} />
-              <InputOTPSlot index={4} />
-              <InputOTPSlot index={5} />
-            </InputOTPGroup>
-          </InputOTP>
+          <InputOTP.InputOTP maxLength={6}>
+            <InputOTP.InputOTPGroup>
+              <InputOTP.InputOTPSlot index={0} />
+              <InputOTP.InputOTPSlot index={1} />
+              <InputOTP.InputOTPSlot index={2} />
+            </InputOTP.InputOTPGroup>
+            <InputOTP.InputOTPSeparator />
+            <InputOTP.InputOTPGroup>
+              <InputOTP.InputOTPSlot index={3} />
+              <InputOTP.InputOTPSlot index={4} />
+              <InputOTP.InputOTPSlot index={5} />
+            </InputOTP.InputOTPGroup>
+          </InputOTP.InputOTP>
         }
       />
 
       <TestBlock
         title="Label"
-        docSlug="label"
+        docLink="https://ui.shadcn.com/docs/components/label"
         zone={
           <>
             <Input type="email" placeholder="Email" id="email" />
@@ -979,23 +855,23 @@ export function ShadHM() {
 
       <TestBlock
         title="Menubar"
-        docSlug="menubar"
+        docLink="https://ui.shadcn.com/docs/components/menubar"
         zone={
-          <Menubar>
-            <MenubarMenu>
-              <MenubarTrigger>File</MenubarTrigger>
-              <MenubarContent side="bottom">
-                <MenubarItem>
-                  New Tab <MenubarShortcut>⌘T</MenubarShortcut>
-                </MenubarItem>
-                <MenubarItem>New Window</MenubarItem>
-                <MenubarSeparator />
-                <MenubarItem>Share</MenubarItem>
-                <MenubarSeparator />
-                <MenubarItem>Print</MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-          </Menubar>
+          <Menubar.Menubar>
+            <Menubar.MenubarMenu>
+              <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
+              <Menubar.MenubarContent side="bottom">
+                <Menubar.MenubarItem>
+                  New Tab <Menubar.MenubarShortcut>⌘T</Menubar.MenubarShortcut>
+                </Menubar.MenubarItem>
+                <Menubar.MenubarItem>New Window</Menubar.MenubarItem>
+                <Menubar.MenubarSeparator />
+                <Menubar.MenubarItem>Share</Menubar.MenubarItem>
+                <Menubar.MenubarSeparator />
+                <Menubar.MenubarItem>Print</Menubar.MenubarItem>
+              </Menubar.MenubarContent>
+            </Menubar.MenubarMenu>
+          </Menubar.Menubar>
         }
       />
     </div>
@@ -1018,88 +894,127 @@ export function ShadNR() {
     <div className="page-body testing">
       <TestBlock
         title="Navigation Menu"
-        docSlug="navigation-menu"
+        docLink="https://ui.shadcn.com/docs/components/navigation-menu"
         zone={
-          <NavigationMenu>
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Item One</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-[200px]">
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Item Two</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-[200px]">
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger>Item Three</NavigationMenuTrigger>
-                <NavigationMenuContent className="w-[200px]">
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                  <NavigationMenuLink>Link</NavigationMenuLink>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          <NavigationMenu.NavigationMenu>
+            <NavigationMenu.NavigationMenuList>
+              <NavigationMenu.NavigationMenuItem>
+                <NavigationMenu.NavigationMenuTrigger>
+                  Item One
+                </NavigationMenu.NavigationMenuTrigger>
+                <NavigationMenu.NavigationMenuContent className="w-[200px]">
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                </NavigationMenu.NavigationMenuContent>
+              </NavigationMenu.NavigationMenuItem>
+              <NavigationMenu.NavigationMenuItem>
+                <NavigationMenu.NavigationMenuTrigger>
+                  Item Two
+                </NavigationMenu.NavigationMenuTrigger>
+                <NavigationMenu.NavigationMenuContent className="w-[200px]">
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                </NavigationMenu.NavigationMenuContent>
+              </NavigationMenu.NavigationMenuItem>
+              <NavigationMenu.NavigationMenuItem>
+                <NavigationMenu.NavigationMenuTrigger>
+                  Item Three
+                </NavigationMenu.NavigationMenuTrigger>
+                <NavigationMenu.NavigationMenuContent className="w-[200px]">
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                  <NavigationMenu.NavigationMenuLink>
+                    Link
+                  </NavigationMenu.NavigationMenuLink>
+                </NavigationMenu.NavigationMenuContent>
+              </NavigationMenu.NavigationMenuItem>
+            </NavigationMenu.NavigationMenuList>
+          </NavigationMenu.NavigationMenu>
         }
       />
 
       <TestBlock
         title="Pagination"
-        docSlug="pagination"
+        docLink="https://ui.shadcn.com/docs/components/pagination"
         zone={
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious href="" />
-              </PaginationItem>
-              <PaginationItem>
+          <Pagination.Pagination>
+            <Pagination.PaginationContent>
+              <Pagination.PaginationItem>
+                <Pagination.PaginationPrevious href="" />
+              </Pagination.PaginationItem>
+              <Pagination.PaginationItem>
                 <Button variant={"outline"} asChild>
-                  <PaginationLink style={{ textDecoration: "none" }} href="">
+                  <Pagination.PaginationLink
+                    style={{ textDecoration: "none" }}
+                    href=""
+                  >
                     1
-                  </PaginationLink>
+                  </Pagination.PaginationLink>
                 </Button>
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationEllipsis />
-              </PaginationItem>
-              <PaginationItem>
-                <PaginationNext href="" />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+              </Pagination.PaginationItem>
+              <Pagination.PaginationItem>
+                <Pagination.PaginationEllipsis />
+              </Pagination.PaginationItem>
+              <Pagination.PaginationItem>
+                <Pagination.PaginationNext href="" />
+              </Pagination.PaginationItem>
+            </Pagination.PaginationContent>
+          </Pagination.Pagination>
         }
       />
 
       <TestBlock
         title="Popover"
-        docSlug="popover"
+        docLink="https://ui.shadcn.com/docs/components/popover"
         zone={
-          <Popover>
-            <PopoverTrigger>Open</PopoverTrigger>
-            <PopoverContent side="bottom">
+          <Popover.Popover>
+            <Popover.PopoverTrigger>Open</Popover.PopoverTrigger>
+            <Popover.PopoverContent side="bottom">
               Place content for the popover here.
-            </PopoverContent>
-          </Popover>
+            </Popover.PopoverContent>
+          </Popover.Popover>
         }
       />
 
       <TestBlock
         title="Progress"
-        docSlug="progress"
+        docLink="https://ui.shadcn.com/docs/components/progress"
         zone={
           <div className="flex flex-col gap-4">
             <Progress value={Math.min(100, Math.max(0, progress))} />
@@ -1112,59 +1027,59 @@ export function ShadNR() {
 
       <TestBlock
         title="Radio Group"
-        docSlug="radio-group"
+        docLink="https://ui.shadcn.com/docs/components/radio-group"
         zone={
-          <RadioGroup defaultValue="option-one">
+          <RadioGroup.RadioGroup defaultValue="option-one">
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-one" id="option-one" />
+              <RadioGroup.RadioGroupItem value="option-one" id="option-one" />
               <Label htmlFor="option-one">Option One</Label>
             </div>
             <div className="flex items-center space-x-2">
-              <RadioGroupItem value="option-two" id="option-two" />
+              <RadioGroup.RadioGroupItem value="option-two" id="option-two" />
               <Label htmlFor="option-two">Option Two</Label>
             </div>
-          </RadioGroup>
+          </RadioGroup.RadioGroup>
         }
       />
 
       <TestBlock
         title="Resizable"
-        docSlug="resizable"
+        docLink="https://ui.shadcn.com/docs/components/resizable"
         note="I think this is my favorite component of them all."
         zone={
           <>
-            <ResizablePanelGroup direction="horizontal">
-              <ResizablePanel>One</ResizablePanel>
-              <ResizableHandle />
-              <ResizablePanel>Two</ResizablePanel>
-            </ResizablePanelGroup>
+            <Resizable.ResizablePanelGroup direction="horizontal">
+              <Resizable.ResizablePanel>One</Resizable.ResizablePanel>
+              <Resizable.ResizableHandle />
+              <Resizable.ResizablePanel>Two</Resizable.ResizablePanel>
+            </Resizable.ResizablePanelGroup>
 
-            <ResizablePanelGroup
+            <Resizable.ResizablePanelGroup
               direction="horizontal"
               className="max-w-md rounded-lg border md:min-w-[450px]"
             >
-              <ResizablePanel defaultSize={50}>
+              <Resizable.ResizablePanel defaultSize={50}>
                 <div className="flex h-[200px] items-center justify-center p-6">
                   <span className="font-semibold">One</span>
                 </div>
-              </ResizablePanel>
-              <ResizableHandle />
-              <ResizablePanel defaultSize={50}>
-                <ResizablePanelGroup direction="vertical">
-                  <ResizablePanel defaultSize={25}>
+              </Resizable.ResizablePanel>
+              <Resizable.ResizableHandle />
+              <Resizable.ResizablePanel defaultSize={50}>
+                <Resizable.ResizablePanelGroup direction="vertical">
+                  <Resizable.ResizablePanel defaultSize={25}>
                     <div className="flex h-full items-center justify-center p-6">
                       <span className="font-semibold">Two</span>
                     </div>
-                  </ResizablePanel>
-                  <ResizableHandle />
-                  <ResizablePanel defaultSize={75}>
+                  </Resizable.ResizablePanel>
+                  <Resizable.ResizableHandle />
+                  <Resizable.ResizablePanel defaultSize={75}>
                     <div className="flex h-full items-center justify-center p-6">
                       <span className="font-semibold">Three</span>
                     </div>
-                  </ResizablePanel>
-                </ResizablePanelGroup>
-              </ResizablePanel>
-            </ResizablePanelGroup>
+                  </Resizable.ResizablePanel>
+                </Resizable.ResizablePanelGroup>
+              </Resizable.ResizablePanel>
+            </Resizable.ResizablePanelGroup>
           </>
         }
       />
@@ -1177,7 +1092,7 @@ export function ShadS() {
     <div className="page-body testing">
       <TestBlock
         title="Scroll Area"
-        docSlug="scroll-area"
+        docLink="https://ui.shadcn.com/docs/components/scroll-area"
         zone={
           <p>
             see this component on{" "}
@@ -1190,45 +1105,49 @@ export function ShadS() {
 
       <TestBlock
         title="Select"
-        docSlug="select"
+        docLink="https://ui.shadcn.com/docs/components/select"
         zone={
-          <Select>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a fruit" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectLabel>Fruits</SelectLabel>
-                <SelectItem value="apple">Apple</SelectItem>
-                <SelectItem value="banana">Banana</SelectItem>
-                <SelectItem value="blueberry">Blueberry</SelectItem>
-                <SelectItem value="grapes">Grapes</SelectItem>
-                <SelectItem value="pineapple">Pineapple</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <Select.Select>
+            <Select.SelectTrigger className="w-[180px]">
+              <Select.SelectValue placeholder="Select a fruit" />
+            </Select.SelectTrigger>
+            <Select.SelectContent>
+              <Select.SelectGroup>
+                <Select.SelectLabel>Fruits</Select.SelectLabel>
+                <Select.SelectItem value="apple">Apple</Select.SelectItem>
+                <Select.SelectItem value="banana">Banana</Select.SelectItem>
+                <Select.SelectItem value="blueberry">
+                  Blueberry
+                </Select.SelectItem>
+                <Select.SelectItem value="grapes">Grapes</Select.SelectItem>
+                <Select.SelectItem value="pineapple">
+                  Pineapple
+                </Select.SelectItem>
+              </Select.SelectGroup>
+            </Select.SelectContent>
+          </Select.Select>
         }
       />
 
-      <TestBlock title="Separator" docSlug="separator" zone={<Separator />} />
+      <TestBlock title="Separator" docLink="https://ui.shadcn.com/docs/components/separator" zone={<Separator />} />
 
       <TestBlock
         title="Sheet"
-        docSlug="sheet"
+        docLink="https://ui.shadcn.com/docs/components/sheet"
         note="This has the same structure as the Drawer component. Needs further tweaking to get it to display."
         zone={
-          <Sheet>
-            <SheetTrigger asChild>
+          <Sheet.Sheet>
+            <Sheet.SheetTrigger asChild>
               <Button variant="outline">Open</Button>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Edit profile</SheetTitle>
-                <SheetDescription>
+            </Sheet.SheetTrigger>
+            <Sheet.SheetContent>
+              <Sheet.SheetHeader>
+                <Sheet.SheetTitle>Edit profile</Sheet.SheetTitle>
+                <Sheet.SheetDescription>
                   Make changes to your profile here. Click save when you&apos;re
                   done.
-                </SheetDescription>
-              </SheetHeader>
+                </Sheet.SheetDescription>
+              </Sheet.SheetHeader>
               <div className="grid flex-1 auto-rows-min gap-6 px-4">
                 <div className="grid gap-3">
                   <Label htmlFor="sheet-demo-name">Name</Label>
@@ -1239,20 +1158,20 @@ export function ShadS() {
                   <Input id="sheet-demo-username" defaultValue="@peduarte" />
                 </div>
               </div>
-              <SheetFooter>
+              <Sheet.SheetFooter>
                 <Button type="submit">Save changes</Button>
-                <SheetClose asChild>
+                <Sheet.SheetClose asChild>
                   <Button variant="outline">Close</Button>
-                </SheetClose>
-              </SheetFooter>
-            </SheetContent>
-          </Sheet>
+                </Sheet.SheetClose>
+              </Sheet.SheetFooter>
+            </Sheet.SheetContent>
+          </Sheet.Sheet>
         }
       />
 
       <TestBlock
         title="Skeleton"
-        docSlug="skeleton"
+        docLink="https://ui.shadcn.com/docs/components/skeleton"
         note="Shape of the skeleton component needs to be programmed into the style. Further looking into how you can get the color to pulse like in the documentation."
         zone={
           <div className="flex items-center space-x-4">
@@ -1267,14 +1186,14 @@ export function ShadS() {
 
       <TestBlock
         title="Slider"
-        docSlug="slider"
+        docLink="https://ui.shadcn.com/docs/components/slider"
         note="Look into connecting to a variable"
         zone={<Slider defaultValue={[50]} max={100} step={1} />}
       />
 
       <TestBlock
         title="Switch"
-        docSlug="slider"
+        docLink="https://ui.shadcn.com/docs/components/slider"
         note="Look into connecting to a variable"
         zone={
           <div className="flex items-center space-x-2">
@@ -1293,22 +1212,22 @@ export function ShadT() {
     <div className="page-body testing">
       <TestBlock
         title="Tabs"
-        docSlug="tabs"
+        docLink="https://ui.shadcn.com/docs/components/tabs"
         zone={
-          <Tabs defaultValue="t1" className="w-full">
-            <TabsList>
-              <TabsTrigger value="t1">tab 1 trigger</TabsTrigger>
-              <TabsTrigger value="t2">tab 2 trigger</TabsTrigger>
-            </TabsList>
-            <TabsContent value="t1">Tab one content</TabsContent>
-            <TabsContent value="t2">Tab two content</TabsContent>
-          </Tabs>
+          <Tabs.Tabs defaultValue="t1" className="w-full">
+            <Tabs.TabsList>
+              <Tabs.TabsTrigger value="t1">tab 1 trigger</Tabs.TabsTrigger>
+              <Tabs.TabsTrigger value="t2">tab 2 trigger</Tabs.TabsTrigger>
+            </Tabs.TabsList>
+            <Tabs.TabsContent value="t1">Tab one content</Tabs.TabsContent>
+            <Tabs.TabsContent value="t2">Tab two content</Tabs.TabsContent>
+          </Tabs.Tabs>
         }
       />
 
       <TestBlock
         title="Text Area"
-        docSlug="textarea"
+        docLink="https://ui.shadcn.com/docs/components/textarea"
         zone={
           <>
             <p>input: {input}</p>
@@ -1323,43 +1242,46 @@ export function ShadT() {
       />
       <TestBlock
         title="Toggle"
-        docSlug="toggle"
+        docLink="https://ui.shadcn.com/docs/components/toggle"
         zone={<Toggle>Toggle</Toggle>}
       />
 
       <TestBlock
         title="Toggle Group"
-        docSlug="toggle-group"
+        docLink="https://ui.shadcn.com/docs/components/toggle-group"
         zone={
-          <ToggleGroup variant="outline" type="multiple">
-            <ToggleGroupItem value="bold" aria-label="Toggle bold">
+          <ToggleGroup.ToggleGroup variant="outline" type="multiple">
+            <ToggleGroup.ToggleGroupItem value="bold" aria-label="Toggle bold">
               <Bold className="h-4 w-4" />
-            </ToggleGroupItem>
-            <ToggleGroupItem value="italic" aria-label="Toggle italic">
+            </ToggleGroup.ToggleGroupItem>
+            <ToggleGroup.ToggleGroupItem
+              value="italic"
+              aria-label="Toggle italic"
+            >
               <Italic className="h-4 w-4" />
-            </ToggleGroupItem>
-            <ToggleGroupItem
+            </ToggleGroup.ToggleGroupItem>
+            <ToggleGroup.ToggleGroupItem
               value="strikethrough"
               aria-label="Toggle strikethrough"
             >
               <Underline className="h-4 w-4" />
-            </ToggleGroupItem>
-          </ToggleGroup>
+            </ToggleGroup.ToggleGroupItem>
+          </ToggleGroup.ToggleGroup>
         }
       />
 
       <TestBlock
         title="Tooltip"
-        docSlug="tooltip"
+        docLink="https://ui.shadcn.com/docs/components/tooltip"
         zone={
-          <Tooltip>
-            <TooltipTrigger asChild>
+          <Tooltip.Tooltip>
+            <Tooltip.TooltipTrigger asChild>
               <Button variant="outline">Hover</Button>
-            </TooltipTrigger>
-            <TooltipContent>
+            </Tooltip.TooltipTrigger>
+            <Tooltip.TooltipContent>
               <p>Add to library</p>
-            </TooltipContent>
-          </Tooltip>
+            </Tooltip.TooltipContent>
+          </Tooltip.Tooltip>
         }
       />
     </div>
