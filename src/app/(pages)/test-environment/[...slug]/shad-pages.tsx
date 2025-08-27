@@ -187,7 +187,14 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Toggle } from "@/components/ui/toggle"
+import { Toggle } from "@/components/ui/toggle";
+import { Bold, Italic, Underline } from "lucide-react";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export type TestBlockProps = {
   title: string;
@@ -1314,14 +1321,47 @@ export function ShadT() {
         }
         note="Connect a variable by having a state variable and then using onChange."
       />
-     <TestBlock
+      <TestBlock
         title="Toggle"
         docSlug="toggle"
+        zone={<Toggle>Toggle</Toggle>}
+      />
+
+      <TestBlock
+        title="Toggle Group"
+        docSlug="toggle-group"
         zone={
-         <Toggle>Toggle</Toggle>
+          <ToggleGroup variant="outline" type="multiple">
+            <ToggleGroupItem value="bold" aria-label="Toggle bold">
+              <Bold className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem value="italic" aria-label="Toggle italic">
+              <Italic className="h-4 w-4" />
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              value="strikethrough"
+              aria-label="Toggle strikethrough"
+            >
+              <Underline className="h-4 w-4" />
+            </ToggleGroupItem>
+          </ToggleGroup>
+        }
+      />
+
+      <TestBlock
+        title="Tooltip"
+        docSlug="tooltip"
+        zone={
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button variant="outline">Hover</Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Add to library</p>
+            </TooltipContent>
+          </Tooltip>
         }
       />
     </div>
-
   );
 }
