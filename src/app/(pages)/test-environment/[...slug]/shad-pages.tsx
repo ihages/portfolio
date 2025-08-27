@@ -185,6 +185,9 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
+import { Toggle } from "@/components/ui/toggle"
 
 export type TestBlockProps = {
   title: string;
@@ -1274,5 +1277,51 @@ export function ShadS() {
         }
       />
     </div>
+  );
+}
+
+export function ShadT() {
+  const [input, setInput] = useState("");
+  return (
+    <div className="page-body testing">
+      <TestBlock
+        title="Tabs"
+        docSlug="tabs"
+        zone={
+          <Tabs defaultValue="t1" className="w-full">
+            <TabsList>
+              <TabsTrigger value="t1">tab 1 trigger</TabsTrigger>
+              <TabsTrigger value="t2">tab 2 trigger</TabsTrigger>
+            </TabsList>
+            <TabsContent value="t1">Tab one content</TabsContent>
+            <TabsContent value="t2">Tab two content</TabsContent>
+          </Tabs>
+        }
+      />
+
+      <TestBlock
+        title="Text Area"
+        docSlug="textarea"
+        zone={
+          <>
+            <p>input: {input}</p>
+            <Textarea
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="placeholder"
+            />
+          </>
+        }
+        note="Connect a variable by having a state variable and then using onChange."
+      />
+     <TestBlock
+        title="Toggle"
+        docSlug="toggle"
+        zone={
+         <Toggle>Toggle</Toggle>
+        }
+      />
+    </div>
+
   );
 }
