@@ -17,7 +17,8 @@ export function MUI() {
             <div className="flex gap-[20px] flex-row">
               <ThemeProvider theme={theme("light")}>
                 <div className="flex gap-[10px] flex-col justify-center">
-                  Primary<Button variant="text">Text</Button>
+                  Primary                  Secondary
+<Button variant="text">Text</Button>
                   <Button variant="contained">Contained</Button>
                   <Button variant="outlined">Outlined</Button>
                 </div>
