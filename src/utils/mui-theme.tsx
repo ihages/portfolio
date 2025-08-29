@@ -3,10 +3,10 @@ import React from "react";
 
 export default function theme(override?:string) {
 
-  const [isDarkMode, setIsDarkMode] = React.useState(window.matchMedia("(prefers-color-scheme: dark)").matches);
+  const [isDarkMode, setIsDarkMode] = React.useState(false);
 
   React.useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const mediaQuery = typeof window !== "undefined" ? window.matchMedia("(prefers-color-scheme: dark)") : { matches: false, addEventListener: () => {}, removeEventListener: () => {} };
     const handleChange = () => setIsDarkMode(mediaQuery.matches);
 
     mediaQuery.addEventListener("change", handleChange);

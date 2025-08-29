@@ -17,7 +17,7 @@ import {
   ShadS,
   ShadT,
 } from "./shad-pages";
-import { MUI } from "./mui-pages";
+import { MUIa } from "./mui-pages";
 import PageNotFound from "@/components/pageNotFound";
 
 export default function Slugs({
@@ -78,7 +78,7 @@ export default function Slugs({
       break;
 
     case "mui":
-      slugpage = <MUI />;
+      slugpage = <MUIa />;
       prevPage=null;
       nextPage=null;
       break;
