@@ -17,7 +17,7 @@ import {
   ShadS,
   ShadT,
 } from "./shad-pages";
-import { MUIa } from "./mui-pages";
+import { MUIa, MUIb } from "./mui-pages";
 import PageNotFound from "@/components/pageNotFound";
 
 export default function Slugs({
@@ -77,28 +77,32 @@ export default function Slugs({
       nextPage = null;
       break;
 
-    case "mui":
+    case "mui-a":
       slugpage = <MUIa />;
-      prevPage=null;
-      nextPage=null;
+      prevPage = null;
+      nextPage = "B";
       break;
 
+    case "mui-b":
+      slugpage = <MUIb />;
+      prevPage = "A";
+      nextPage = null;
+      break;
+      
     case undefined:
     default:
       slugpage = <PageNotFound></PageNotFound>;
-			prevPage=null;
-			nextPage=null;
+      prevPage = null;
+      nextPage = null;
       break;
   }
 
-  const prevSlug = 
-    slugValue?.includes("shad")
+  const prevSlug = slugValue?.includes("shad")
     ? `shad-${prevPage?.toLocaleLowerCase() as string}`
     : slugValue?.includes("mui")
     ? `mui-${prevPage?.toLocaleLowerCase() as string}`
     : null;
-  const nextSlug = 
-    slugValue?.includes("shad")
+  const nextSlug = slugValue?.includes("shad")
     ? `shad-${nextPage?.toLocaleLowerCase() as string}`
     : slugValue?.includes("mui")
     ? `mui-${nextPage?.toLocaleLowerCase() as string}`

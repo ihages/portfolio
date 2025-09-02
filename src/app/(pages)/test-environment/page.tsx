@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { useEffect } from "react";
+import * as mui from "@mui/material";
+import theme from "@/utils/mui-theme";
 
 export default function TestEnvironment() {
   return (
@@ -43,11 +45,25 @@ export default function TestEnvironment() {
           </Button>
         </div>
         <h2>MUI Components</h2>
-        <p>Components use Roboto font by default. Colors do not access global.css.</p>
+        <p>
+          Components use Roboto font by default. Colors do not access
+          global.css.
+        </p>
         <div className="flex gap-[20px]">
-          <Button asChild>
-            <Link href="/test-environment/mui">Mui</Link>
-          </Button>
+          <mui.ThemeProvider theme={theme()}>
+            <mui.Button
+              variant="contained"
+              href="/portfolio/test-environment/mui-a"
+            >
+              A
+            </mui.Button>
+            <mui.Button
+              variant="contained"
+              href="/portfolio/test-environment/mui-b"
+            >
+              B
+            </mui.Button>
+          </mui.ThemeProvider>
         </div>
       </div>
     </>

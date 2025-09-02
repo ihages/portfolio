@@ -8,14 +8,20 @@ import theme from "@/utils/mui-theme";
 import { blue, red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AdbIcon from "@mui/icons-material/Adb";
-import MenuIcon from '@mui/icons-material/Menu';
+import MenuIcon from "@mui/icons-material/Menu";
+import MailIcon from "@mui/icons-material/Mail";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export function MUIa() {
   const pages = ["Products", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-  const [anchorElNav, setAnchorElNav] = React.useState<HTMLElement | null>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null>(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<HTMLElement | null>(
+    null
+  );
+  const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null>(
+    null
+  );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
@@ -134,135 +140,154 @@ export function MUIa() {
         docLink="https://mui.com/material-ui/react-app-bar/"
         zone={
           <mui.ThemeProvider theme={theme()}>
-          <mui.AppBar color="secondary" position="static">
-            <mui.Container maxWidth="xl">
-              <mui.Toolbar disableGutters>
-                <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
-                <mui.Typography
-                  variant="h6"
-                  noWrap
-                  component="a"
-                  href="#app-bar-with-responsive-menu"
-                  sx={{
-                    mr: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "var(--secondary)",
-                    textDecoration: "none",
-                  }}
-                >
-                  LOGO
-                </mui.Typography>
-
-                <mui.Box
-                  sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-                >
-                  <mui.IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleOpenNavMenu}
-                    color="inherit"
+            <mui.AppBar color="secondary" position="static">
+              <mui.Container maxWidth="xl">
+                <mui.Toolbar disableGutters>
+                  <AdbIcon
+                    sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                  />
+                  <mui.Typography
+                    variant="h6"
+                    noWrap
+                    component="a"
+                    href="#app-bar-with-responsive-menu"
+                    sx={{
+                      mr: 2,
+                      display: { xs: "none", md: "flex" },
+                      fontFamily: "monospace",
+                      fontWeight: 700,
+                      letterSpacing: ".3rem",
+                      color: "var(--secondary)",
+                      textDecoration: "none",
+                    }}
                   >
-                    <MenuIcon />
-                  </mui.IconButton>
-                  <mui.Menu
-                    id="menu-appbar"
-                    anchorEl={anchorElNav}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
+                    LOGO
+                  </mui.Typography>
+
+                  <mui.Box
+                    sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+                  >
+                    <mui.IconButton
+                      size="large"
+                      aria-label="account of current user"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      onClick={handleOpenNavMenu}
+                      color="inherit"
+                    >
+                      <MenuIcon />
+                    </mui.IconButton>
+                    <mui.Menu
+                      id="menu-appbar"
+                      anchorEl={anchorElNav}
+                      anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "left",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "left",
+                      }}
+                      open={Boolean(anchorElNav)}
+                      onClose={handleCloseNavMenu}
+                      sx={{ display: { xs: "block", md: "none" } }}
+                    >
+                      {pages.map((page) => (
+                        <mui.MenuItem key={page} onClick={handleCloseNavMenu}>
+                          <mui.Typography
+                            sx={{
+                              textAlign: "center",
+                              color: "var(--secondary)",
+                            }}
+                          >
+                            {page}
+                          </mui.Typography>
+                        </mui.MenuItem>
+                      ))}
+                    </mui.Menu>
+                  </mui.Box>
+                  <AdbIcon
+                    sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+                  />
+                  <mui.Typography
+                    variant="h5"
+                    noWrap
+                    component="a"
+                    href="#app-bar-with-responsive-menu"
+                    sx={{
+                      mr: 2,
+                      display: { xs: "flex", md: "none" },
+                      flexGrow: 1,
+                      fontFamily: "monospace",
+                      fontWeight: 700,
+                      letterSpacing: ".3rem",
+                      color: "var(--secondary)",
+                      textDecoration: "none",
                     }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "left",
-                    }}
-                    open={Boolean(anchorElNav)}
-                    onClose={handleCloseNavMenu}
-                    sx={{ display: { xs: "block", md: "none" } }}
+                  >
+                    LOGO
+                  </mui.Typography>
+                  <mui.Box
+                    sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
                   >
                     {pages.map((page) => (
-                      <mui.MenuItem key={page} onClick={handleCloseNavMenu}>
-                        <mui.Typography sx={{ textAlign: "center", color:"var(--secondary)"}}>
-                          {page}
-                        </mui.Typography>
-                      </mui.MenuItem>
+                      <mui.Button
+                        key={page}
+                        onClick={handleCloseNavMenu}
+                        sx={{
+                          my: 2,
+                          color: "var(--secondary)",
+                          display: "block",
+                        }}
+                      >
+                        {page}
+                      </mui.Button>
                     ))}
-                  </mui.Menu>
-                </mui.Box>
-                <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-                <mui.Typography
-                  variant="h5"
-                  noWrap
-                  component="a"
-                  href="#app-bar-with-responsive-menu"
-                  sx={{
-                    mr: 2,
-                    display: { xs: "flex", md: "none" },
-                    flexGrow: 1,
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "var(--secondary)",
-                    textDecoration: "none",
-                  }}
-                >
-                  LOGO
-                </mui.Typography>
-                <mui.Box
-                  sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
-                >
-                  {pages.map((page) => (
-                    <mui.Button
-                      key={page}
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: "var(--secondary)", display: "block" }}
+                  </mui.Box>
+                  <mui.Box sx={{ flexGrow: 0 }}>
+                    <mui.Tooltip title="Open settings">
+                      <mui.IconButton
+                        onClick={handleOpenUserMenu}
+                        sx={{ p: 0 }}
+                      >
+                        <mui.Avatar
+                          alt="Remy Sharp"
+                          src="/static/images/avatar/2.jpg"
+                        />
+                      </mui.IconButton>
+                    </mui.Tooltip>
+                    <mui.Menu
+                      sx={{ mt: "45px" }}
+                      id="menu-appbar"
+                      anchorEl={anchorElUser}
+                      anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      keepMounted
+                      transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                      }}
+                      open={Boolean(anchorElUser)}
+                      onClose={handleCloseUserMenu}
                     >
-                      {page}
-                    </mui.Button>
-                  ))}
-                </mui.Box>
-                <mui.Box sx={{ flexGrow: 0 }}>
-                  <mui.Tooltip title="Open settings">
-                    <mui.IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <mui.Avatar
-                        alt="Remy Sharp"
-                        src="/static/images/avatar/2.jpg"
-                      />
-                    </mui.IconButton>
-                  </mui.Tooltip>
-                  <mui.Menu
-                    sx={{ mt: "45px" }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
-                  >
-                    {settings.map((setting) => (
-                      <mui.MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <mui.Typography sx={{ textAlign: "center" }}>
-                          {setting}
-                        </mui.Typography>
-                      </mui.MenuItem>
-                    ))}
-                  </mui.Menu>
-                </mui.Box>
-              </mui.Toolbar>
-            </mui.Container>
-          </mui.AppBar>
+                      {settings.map((setting) => (
+                        <mui.MenuItem
+                          key={setting}
+                          onClick={handleCloseUserMenu}
+                        >
+                          <mui.Typography sx={{ textAlign: "center" }}>
+                            {setting}
+                          </mui.Typography>
+                        </mui.MenuItem>
+                      ))}
+                    </mui.Menu>
+                  </mui.Box>
+                </mui.Toolbar>
+              </mui.Container>
+            </mui.AppBar>
           </mui.ThemeProvider>
         }
       />
@@ -316,8 +341,46 @@ export function MUIa() {
 }
 
 export function MUIb() {
+  const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false);
+  const handleClose = () => {
+    setOpenBackdrop(false);
+  };
+  const handleOpen = () => {
+    setOpenBackdrop(true);
+  };
   return (
     <div className="page-body testing">
+      <TestBlock
+        title="Backdrop"
+        docLink="https://mui.com/material-ui/react-backdrop/"
+        note="This is similar to some of the dialog-related components of shadcn that weren't rendering properly."
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <mui.Button onClick={handleOpen}>Show backdrop</mui.Button>
+            <mui.Backdrop
+              sx={(theme) => ({
+                color: "#fff",
+                zIndex: theme.zIndex.drawer + 1,
+              })}
+              open={openBackdrop}
+              onClick={handleClose}
+            >
+              <CircularProgress color="inherit" />
+            </mui.Backdrop>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Badge"
+        docLink=""
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <mui.Badge badgeContent={4} color="primary">
+              <MailIcon />
+            </mui.Badge>
+          </mui.ThemeProvider>
+        }
+      />
       <TestBlock
         title="Button"
         docLink="https://mui.com/material-ui/react-button/"
@@ -326,7 +389,7 @@ export function MUIb() {
             <div className="flex gap-[20px] flex-row flex-wrap">
               <mui.ThemeProvider theme={theme("light")}>
                 <div className="flex gap-[10px] flex-col justify-center">
-                  Primary Secondary
+                  Primary
                   <mui.Button variant="text">Text</mui.Button>
                   <mui.Button variant="contained">Contained</mui.Button>
                   <mui.Button variant="outlined">Outlined</mui.Button>
@@ -395,6 +458,36 @@ export function MUIb() {
           </div>
         }
         note="I love the click animation on these buttons. The color, though, does not utilize globals.css. You have to make a tsx page and create themes. https://mui.com/material-ui/customization/palette/"
+      />
+      <TestBlock
+        title="Button Group"
+        docLink="https://mui.com/material-ui/react-button-group/"
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <mui.ButtonGroup
+              variant="contained"
+              aria-label="Basic button group"
+            >
+              <mui.Button>One</mui.Button>
+              <mui.Button>Two</mui.Button>
+              <mui.Button>Three</mui.Button>
+            </mui.ButtonGroup>
+            <mui.ButtonGroup variant="outlined" aria-label="Basic button group">
+              <mui.Button>One</mui.Button>
+              <mui.Button>Two</mui.Button>
+              <mui.Button>Three</mui.Button>
+            </mui.ButtonGroup>
+            <mui.ButtonGroup
+              variant="contained"
+              color="secondary"
+              aria-label="Basic button group"
+            >
+              <mui.Button>One</mui.Button>
+              <mui.Button>Two</mui.Button>
+              <mui.Button>Three</mui.Button>
+            </mui.ButtonGroup>
+          </mui.ThemeProvider>
+        }
       />
     </div>
   );
