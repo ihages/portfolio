@@ -11,6 +11,9 @@ import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import MailIcon from "@mui/icons-material/Mail";
 import CircularProgress from "@mui/material/CircularProgress";
+import RestoreIcon from "@mui/icons-material/Restore";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
 
 export function MUIa() {
   const pages = ["Products", "Pricing", "Blog"];
@@ -348,6 +351,7 @@ export function MUIb() {
   const handleOpen = () => {
     setOpenBackdrop(true);
   };
+  const [value, setValue] = React.useState(0);
   return (
     <div className="page-body testing">
       <TestBlock
@@ -379,6 +383,45 @@ export function MUIb() {
               <MailIcon />
             </mui.Badge>
           </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Bottom Navigation"
+        docLink="https://mui.com/material-ui/react-bottom-nagivation/"
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <mui.Box sx={{ width: 500 }}>
+              <mui.BottomNavigation
+                showLabels
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+              >
+                <mui.BottomNavigationAction
+                  label="Recents"
+                  icon={<RestoreIcon />}
+                />
+                <mui.BottomNavigationAction
+                  label="Favorites"
+                  icon={<FavoriteIcon />}
+                />
+                <mui.BottomNavigationAction
+                  label="Nearby"
+                  icon={<LocationOnIcon />}
+                />
+              </mui.BottomNavigation>
+            </mui.Box>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Box"
+        docLink="https://mui.com/material-ui/react-box/"
+        zone={
+          <mui.Box component="section" sx={{ p: 2, border: "1px dashed grey" }}>
+            This Box renders as an HTML section element.
+          </mui.Box>
         }
       />
       <TestBlock
