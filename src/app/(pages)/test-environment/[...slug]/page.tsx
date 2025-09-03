@@ -1,12 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import "./style.css";
-import "../style.css"; //ensure styles load with client rendering
-import Link from "next/link";
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
-
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   ShadA,
   ShadB,
@@ -17,21 +14,38 @@ import {
   ShadS,
   ShadT,
 } from "./shad-pages";
-import { MUIa, MUIb } from "./mui-pages";
-import PageNotFound from "@/components/pageNotFound";
+import {
+  MUIDataDisplay,
+  MUIFeedback,
+  MUIInputs,
+  MUILayout,
+  MUINavigation,
+  MUISurfaces,
+  MUIUtils,
+} from "./mui-pages";
+import {
+  ComparisonA,
+  ComparisonB,
+  ComparisonC,
+  ComparisonD,
+  ComparisonHI,
+  ComparisonLMN,
+  ComparisonPRS,
+  ComparisonT,
+} from "./comparison-pages";
 
 export default function Slugs({
   params,
 }: {
   params: Promise<{ slug?: string[] }>;
 }) {
-  // slug will be an array or undefined
   const { slug } = React.use(params);
   const slugValue = slug?.[0];
 
   let prevPage;
   let nextPage;
   let slugpage;
+
   switch (slugValue) {
     case "shad-a":
       slugpage = <ShadA />;
@@ -58,60 +72,126 @@ export default function Slugs({
       prevPage = "D";
       nextPage = "N-R";
       break;
-
     case "shad-n-r":
       slugpage = <ShadNR />;
       prevPage = "H-M";
       nextPage = "S";
       break;
-
     case "shad-s":
       slugpage = <ShadS />;
       prevPage = "N-R";
       nextPage = "T";
       break;
-
     case "shad-t":
       slugpage = <ShadT />;
       prevPage = "S";
       nextPage = null;
       break;
-
-    case "mui-a":
-      slugpage = <MUIa />;
+    case "mui-data-display":
+      slugpage = <MUIDataDisplay />;
+      prevPage = null;
+      nextPage = "Feedback";
+      break;
+    case "mui-feedback":
+      slugpage = <MUIFeedback />;
+      prevPage = "Data Display";
+      nextPage = "Inputs";
+      break;
+    case "mui-inputs":
+      slugpage = <MUIInputs />;
+      prevPage = "Feedback";
+      nextPage = "Layouts";
+      break;
+    case "mui-layouts":
+      slugpage = <MUILayout />;
+      prevPage = "Inputs";
+      nextPage = "Navigation";
+      break;
+    case "mui-navigation":
+      slugpage = <MUINavigation />;
+      prevPage = "Layouts";
+      nextPage = "Surfaces";
+      break;
+    case "mui-surfaces":
+      slugpage = <MUISurfaces />;
+      prevPage = "Navigation";
+      nextPage = "Utils";
+      break;
+    case "mui-utils":
+      slugpage = <MUIUtils />;
+      prevPage = "Surfaces";
+      nextPage = null;
+      break;
+    case "comparison-a":
+      slugpage = <ComparisonA />;
       prevPage = null;
       nextPage = "B";
       break;
-
-    case "mui-b":
-      slugpage = <MUIb />;
+    case "comparison-b":
+      slugpage = <ComparisonB />;
       prevPage = "A";
+      nextPage = "C";
+      break;
+    case "comparison-c":
+      slugpage = <ComparisonC />;
+      prevPage = "B";
+      nextPage = "D";
+      break;
+    case "comparison-d":
+      slugpage = <ComparisonD />;
+      prevPage = "C";
+      nextPage = "H-I";
+      break;
+    case "comparison-h-i":
+      slugpage = <ComparisonHI />;
+      prevPage = "D";
+      nextPage = "L-M-N";
+      break;
+    case "comparison-l-m-n":
+      slugpage = <ComparisonLMN />;
+      prevPage = "H-I";
+      nextPage = "P-R-S";
+      break;
+    case "comparison-p-r-s":
+      slugpage = <ComparisonPRS />;
+      prevPage = "L-M-N";
+      nextPage = "T";
+      break;
+    case "comparison-t":
+      slugpage = <ComparisonT />;
+      prevPage = "P-R-S";
       nextPage = null;
       break;
-      
     case undefined:
     default:
-      slugpage = <PageNotFound></PageNotFound>;
+      slugpage = <div>Page not found</div>;
       prevPage = null;
       nextPage = null;
       break;
   }
 
-  const prevSlug = slugValue?.includes("shad")
-    ? `shad-${prevPage?.toLocaleLowerCase() as string}`
-    : slugValue?.includes("mui")
-    ? `mui-${prevPage?.toLocaleLowerCase() as string}`
-    : null;
-  const nextSlug = slugValue?.includes("shad")
-    ? `shad-${nextPage?.toLocaleLowerCase() as string}`
-    : slugValue?.includes("mui")
-    ? `mui-${nextPage?.toLocaleLowerCase() as string}`
-    : null;
+  const prevSlug =
+    slugValue?.includes("shad") && !slugValue?.includes("mui")
+      ? `shad-${prevPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("mui") && !slugValue?.includes("shad")
+      ? `mui-${prevPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("comparison")
+      ? `comparison-${prevPage?.toLowerCase().replace(" ", "-")}`
+      : null;
+
+  const nextSlug =
+    slugValue?.includes("shad") && !slugValue?.includes("mui")
+      ? `shad-${nextPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("mui") && !slugValue?.includes("shad")
+      ? `mui-${nextPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("comparison")
+      ? `comparison-${nextPage?.toLowerCase().replace(" ", "-")}`
+      : null;
 
   const slughead = (
     <>
       <Breadcrumbs />
-      {slugpage === <PageNotFound></PageNotFound> ? null : (
+      {slugpage && (
         <div className="nav-buttons">
           <div className="nav-buttons-left">
             {prevPage !== null ? (
@@ -157,7 +237,6 @@ export default function Slugs({
 
   return (
     <>
-      <title>Ihages | Testing Environment</title>
       <meta
         name="description"
         content="Isabelle Hageman's testing environment for various npm libraries, currently including ShadCN"

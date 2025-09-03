@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Button } from "../ui/button";
 import Link from "next/link";
-
+import "./style.css";
 
 export type TestBlockProps = {
   title: string;
@@ -24,9 +24,7 @@ export function TestBlock(props: TestBlockProps) {
           textDecoration: "underline",
         }}
       >
-        <Link href={`https://ui.shadcn.com/docs/components/${docLink}`}>
-          Documentation
-        </Link>
+        <Link href={`${docLink}`}>Documentation</Link>
       </Button>
       {note ? (
         <p>
@@ -36,5 +34,50 @@ export function TestBlock(props: TestBlockProps) {
       ) : null}
       <div className="test-zone">{zone}</div>
     </div>
+  );
+}
+export type CompareBlock = {
+  title: string;
+  docLink: string;
+  zone: ReactNode;
+  note?: string;
+};
+
+export type TestCompareProps = {
+  title: string;
+  components: CompareBlock[];
+};
+
+export function TestCompare(props: TestCompareProps) {
+  const { title, components } = props;
+  return (
+    <>
+      <h3>{title}</h3>
+      <div className="test-compare">
+        {components.map((component) => (
+          <div className="compare-component">
+            <h4>{component.title}</h4>
+            <Button
+              variant={"link"}
+              asChild
+              style={{
+                padding: "0",
+                marginBottom: "20px",
+                textDecoration: "underline",
+              }}
+            >
+              <Link href={`${component.docLink}`}>Documentation</Link>
+            </Button>
+            {component.note ? (
+              <p>
+                <strong>Note: </strong>
+                {component.note}
+              </p>
+            ) : null}
+            <div className="test-zone">{component.zone}</div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }

@@ -20,6 +20,33 @@ export default function TestEnvironment() {
       <div className="page-body testing">
         <Breadcrumbs />
         <h1>Testing Grounds</h1>
+        <h2>ShadCN versus MUI</h2>
+        <div className="flex gap-[20px]">
+          <Button asChild>
+            <Link href="/test-environment/comparison-a">A</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-b">B</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-c">C</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-d">D</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-h-i">H-I</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-l-m-n">L-M-N</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-p-r-s">P-R-S</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-t">T</Link>
+          </Button>
+        </div>
         <h2>Shadcn Components</h2>
         <div className="flex gap-[20px]">
           <Button asChild>
@@ -53,15 +80,45 @@ export default function TestEnvironment() {
           <mui.ThemeProvider theme={theme()}>
             <mui.Button
               variant="contained"
-              href="/portfolio/test-environment/mui-a"
+              href="/portfolio/test-environment/mui-data-display"
             >
-              A
+              Data Display
             </mui.Button>
             <mui.Button
               variant="contained"
-              href="/portfolio/test-environment/mui-b"
+              href="/portfolio/test-environment/mui-feedback"
             >
-              B
+              Feedback
+            </mui.Button>
+            <mui.Button
+              variant="contained"
+              href="/portfolio/test-environment/mui-inouts"
+            >
+              Inputs
+            </mui.Button>
+            <mui.Button
+              variant="contained"
+              href="/portfolio/test-environment/mui-layouts"
+            >
+              Layouts
+            </mui.Button>
+            <mui.Button
+              variant="contained"
+              href="/portfolio/test-environment/mui-navigation"
+            >
+              Navigation
+            </mui.Button>
+            <mui.Button
+              variant="contained"
+              href="/portfolio/test-environment/mui-surfaces"
+            >
+              Surfaces
+            </mui.Button>
+            <mui.Button
+              variant="contained"
+              href="/portfolio/test-environment/mui-utils"
+            >
+              Utils
             </mui.Button>
           </mui.ThemeProvider>
         </div>

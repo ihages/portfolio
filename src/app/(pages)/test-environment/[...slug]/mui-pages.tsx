@@ -15,7 +15,298 @@ import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-export function MUIa() {
+export function MUIDataDisplay() {
+  return (
+    <div className="page-body testing">
+      <TestBlock
+        title="Avatar"
+        docLink="https://mui.com/material-ui/avatar/"
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <div className="flex gap-[10px] flex-col justify-center">
+              Image
+              <mui.Avatar
+                alt="Isabelle Hageman"
+                src="https://github.com/ihages.png"
+              />
+              <mui.Avatar
+                alt="Travis Howard"
+                src="https://th.bing.com/th/id/R.9b9c8c0b37fe357c94e7c9e68cce18f3?rik=zU6quaZBuG5o%2fg&pid=ImgRaw&r=0"
+              />
+              <mui.Avatar
+                alt="Cindy Baker"
+                src="https://makeawebsitehub.com/wp-content/uploads/2014/12/130.jpg"
+              />
+            </div>
+            <div className="flex gap-[10px] flex-col justify-center">
+              Initials
+              <mui.Avatar>H</mui.Avatar>
+              <mui.Avatar sx={{ bgcolor: red }}>N</mui.Avatar>
+              <mui.Avatar sx={{ bgcolor: blue }}>OP</mui.Avatar>
+            </div>
+            <div className="flex gap-[10px] flex-col justify-center">
+              Sizes
+              <mui.Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                sx={{ width: 24, height: 24 }}
+              />
+              <mui.Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+              <mui.Avatar
+                alt="Remy Sharp"
+                src="/static/images/avatar/1.jpg"
+                sx={{ width: 56, height: 56 }}
+              />
+            </div>
+          </mui.ThemeProvider>
+        }
+        note="If images aren't known, the initials come from the alt image. Alternatively, you can just call them without
+     images and define the letters inside the avatar component. You can also put icons inside the avatars by this method."
+      />
+    </div>
+  );
+}
+
+export function MUIFeedback() {
+  const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false);
+  const handleClose = () => {
+    setOpenBackdrop(false);
+  };
+  const handleOpen = () => {
+    setOpenBackdrop(true);
+  };
+  return (
+    <div className="page-body testing">
+      <TestBlock
+        title="Alert"
+        docLink="https://mui.com/material-ui/react-alert/"
+        zone={
+          <div>
+            <div className="grid grid-cols-2 width-full gap-[10px]">
+              <p className="m-px">Theme Provider</p>
+              <p className="m-px">Default Theme</p>
+              <div className="flex gap-[2px] flex-col">
+                <mui.ThemeProvider theme={theme()}>
+                  <mui.Alert severity="success">
+                    This is a success Alert.
+                  </mui.Alert>
+                  <mui.Alert severity="info">This is an info Alert.</mui.Alert>
+                  <mui.Alert severity="warning">
+                    This is a warning Alert.
+                  </mui.Alert>
+                  <mui.Alert severity="error">
+                    This is an error Alert.
+                  </mui.Alert>
+                </mui.ThemeProvider>
+              </div>
+              <div className="flex gap-[2px] flex-col">
+                <mui.Alert severity="success">
+                  This is a success Alert.
+                </mui.Alert>
+                <mui.Alert severity="info">This is an info Alert.</mui.Alert>
+                <mui.Alert severity="warning">
+                  This is a warning Alert.
+                </mui.Alert>
+                <mui.Alert severity="error">This is an error Alert.</mui.Alert>
+              </div>
+            </div>
+          </div>
+        }
+      />
+      <TestBlock
+        title="Backdrop"
+        docLink="https://mui.com/material-ui/react-backdrop/"
+        note="This is similar to some of the dialog-related components of shadcn that weren't rendering properly."
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <mui.Button onClick={handleOpen}>Show backdrop</mui.Button>
+            <mui.Backdrop
+              sx={(theme) => ({
+                color: "#fff",
+                zIndex: theme.zIndex.drawer + 1,
+              })}
+              open={openBackdrop}
+              onClick={handleClose}
+            >
+              <CircularProgress color="inherit" />
+            </mui.Backdrop>
+          </mui.ThemeProvider>
+        }
+      />
+    </div>
+  );
+}
+
+export function MUIInputs() {
+  return (
+    <div className="page-body testing">
+      <TestBlock
+        title="Button"
+        docLink="https://mui.com/material-ui/react-button/"
+        zone={
+          <div className="flex gap-[10px] flex-row flex-wrap alig-center">
+            <div className="flex gap-[20px] flex-row flex-wrap">
+              <mui.ThemeProvider theme={theme("light")}>
+                <div className="flex gap-[10px] flex-col justify-center">
+                  Primary
+                  <mui.Button variant="text">Text</mui.Button>
+                  <mui.Button variant="contained">Contained</mui.Button>
+                  <mui.Button variant="outlined">Outlined</mui.Button>
+                </div>
+                <div className="flex gap-[10px] flex-col justify-center">
+                  Secondary
+                  <mui.Button variant="text" color="secondary">
+                    Text
+                  </mui.Button>
+                  <mui.Button variant="contained" color="secondary">
+                    Contained
+                  </mui.Button>
+                  <mui.Button variant="outlined" color="secondary">
+                    Outlined
+                  </mui.Button>
+                </div>
+                <div className="flex gap-[10px] flex-col justify-center">
+                  Info (Accent)
+                  <mui.Button variant="text" color="info">
+                    Text
+                  </mui.Button>
+                  <mui.Button variant="contained" color="info">
+                    Contained
+                  </mui.Button>
+                  <mui.Button variant="outlined" color="info">
+                    Outlined
+                  </mui.Button>
+                </div>
+              </mui.ThemeProvider>
+            </div>
+            <mui.Divider />
+            <div className="flex gap-[20px] flex-row flex-wrap">
+              <mui.ThemeProvider theme={theme("dark")}>
+                <div className="flex gap-[10px] flex-col justify-center">
+                  Primary
+                  <mui.Button variant="text">Text</mui.Button>
+                  <mui.Button variant="contained">Contained</mui.Button>
+                  <mui.Button variant="outlined">Outlined</mui.Button>
+                </div>
+                <div className="flex gap-[10px] flex-col justify-center">
+                  Secondary
+                  <mui.Button variant="text" color="secondary">
+                    Text
+                  </mui.Button>
+                  <mui.Button variant="contained" color="secondary">
+                    Contained
+                  </mui.Button>
+                  <mui.Button variant="outlined" color="secondary">
+                    Outlined
+                  </mui.Button>
+                </div>
+                <div className="flex gap-[10px] flex-col justify-center">
+                  Info (Accent)
+                  <mui.Button variant="text" color="info">
+                    Text
+                  </mui.Button>
+                  <mui.Button variant="contained" color="info">
+                    Contained
+                  </mui.Button>
+                  <mui.Button variant="outlined" color="info">
+                    Outlined
+                  </mui.Button>
+                </div>
+              </mui.ThemeProvider>
+            </div>
+          </div>
+        }
+        note="I love the click animation on these buttons. The color, though, does not utilize globals.css. You have to make a tsx page and create themes. https://mui.com/material-ui/customization/palette/"
+      />
+      <TestBlock
+        title="Button Group"
+        docLink="https://mui.com/material-ui/react-button-group/"
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <mui.ButtonGroup
+              variant="contained"
+              aria-label="Basic button group"
+            >
+              <mui.Button>One</mui.Button>
+              <mui.Button>Two</mui.Button>
+              <mui.Button>Three</mui.Button>
+            </mui.ButtonGroup>
+            <mui.ButtonGroup variant="outlined" aria-label="Basic button group">
+              <mui.Button>One</mui.Button>
+              <mui.Button>Two</mui.Button>
+              <mui.Button>Three</mui.Button>
+            </mui.ButtonGroup>
+            <mui.ButtonGroup
+              variant="contained"
+              color="secondary"
+              aria-label="Basic button group"
+            >
+              <mui.Button>One</mui.Button>
+              <mui.Button>Two</mui.Button>
+              <mui.Button>Three</mui.Button>
+            </mui.ButtonGroup>
+          </mui.ThemeProvider>
+        }
+      />
+    </div>
+  );
+}
+
+export function MUILayout() {
+  return (
+    <div className="page-body testing">
+      <TestBlock
+        title="Box"
+        docLink="https://mui.com/material-ui/react-box/"
+        zone={
+          <mui.Box component="section" sx={{ p: 2, border: "1px dashed grey" }}>
+            This Box renders as an HTML section element.
+          </mui.Box>
+        }
+      />
+    </div>
+  );
+}
+
+export function MUINavigation() {
+  const [value, setValue] = React.useState(0);
+  return (
+    <div className="page-body testing">
+      <TestBlock
+        title="Bottom Navigation"
+        docLink="https://mui.com/material-ui/react-bottom-nagivation/"
+        zone={
+          <mui.ThemeProvider theme={theme()}>
+            <mui.Box sx={{ width: 500 }}>
+              <mui.BottomNavigation
+                showLabels
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+              >
+                <mui.BottomNavigationAction
+                  label="Recents"
+                  icon={<RestoreIcon />}
+                />
+                <mui.BottomNavigationAction
+                  label="Favorites"
+                  icon={<FavoriteIcon />}
+                />
+                <mui.BottomNavigationAction
+                  label="Nearby"
+                  icon={<LocationOnIcon />}
+                />
+              </mui.BottomNavigation>
+            </mui.Box>
+          </mui.ThemeProvider>
+        }
+      />
+    </div>
+  );
+}
+
+export function MUISurfaces() {
   const pages = ["Products", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -99,42 +390,6 @@ export function MUIa() {
                 </mui.AccordionActions>
               </mui.Accordion>
             </mui.ThemeProvider>
-          </div>
-        }
-      />
-      <TestBlock
-        title="Alert"
-        docLink="https://mui.com/material-ui/react-alert/"
-        zone={
-          <div>
-            <div className="grid grid-cols-2 width-full gap-[10px]">
-              <p className="m-px">Theme Provider</p>
-              <p className="m-px">Default Theme</p>
-              <div className="flex gap-[2px] flex-col">
-                <mui.ThemeProvider theme={theme()}>
-                  <mui.Alert severity="success">
-                    This is a success Alert.
-                  </mui.Alert>
-                  <mui.Alert severity="info">This is an info Alert.</mui.Alert>
-                  <mui.Alert severity="warning">
-                    This is a warning Alert.
-                  </mui.Alert>
-                  <mui.Alert severity="error">
-                    This is an error Alert.
-                  </mui.Alert>
-                </mui.ThemeProvider>
-              </div>
-              <div className="flex gap-[2px] flex-col">
-                <mui.Alert severity="success">
-                  This is a success Alert.
-                </mui.Alert>
-                <mui.Alert severity="info">This is an info Alert.</mui.Alert>
-                <mui.Alert severity="warning">
-                  This is a warning Alert.
-                </mui.Alert>
-                <mui.Alert severity="error">This is an error Alert.</mui.Alert>
-              </div>
-            </div>
           </div>
         }
       />
@@ -294,244 +549,10 @@ export function MUIa() {
           </mui.ThemeProvider>
         }
       />
-      <TestBlock
-        title="Avatar"
-        docLink="https://mui.com/material-ui/avatar/"
-        zone={
-          <mui.ThemeProvider theme={theme()}>
-            <div className="flex gap-[10px] flex-col justify-center">
-              Image
-              <mui.Avatar
-                alt="Isabelle Hageman"
-                src="https://github.com/ihages.png"
-              />
-              <mui.Avatar
-                alt="Travis Howard"
-                src="https://th.bing.com/th/id/R.9b9c8c0b37fe357c94e7c9e68cce18f3?rik=zU6quaZBuG5o%2fg&pid=ImgRaw&r=0"
-              />
-              <mui.Avatar
-                alt="Cindy Baker"
-                src="https://makeawebsitehub.com/wp-content/uploads/2014/12/130.jpg"
-              />
-            </div>
-            <div className="flex gap-[10px] flex-col justify-center">
-              Initials
-              <mui.Avatar>H</mui.Avatar>
-              <mui.Avatar sx={{ bgcolor: red }}>N</mui.Avatar>
-              <mui.Avatar sx={{ bgcolor: blue }}>OP</mui.Avatar>
-            </div>
-            <div className="flex gap-[10px] flex-col justify-center">
-              Sizes
-              <mui.Avatar
-                alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
-                sx={{ width: 24, height: 24 }}
-              />
-              <mui.Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-              <mui.Avatar
-                alt="Remy Sharp"
-                src="/static/images/avatar/1.jpg"
-                sx={{ width: 56, height: 56 }}
-              />
-            </div>
-          </mui.ThemeProvider>
-        }
-        note="If images aren't known, the initials come from the alt image. Alternatively, you can just call them without
-     images and define the letters inside the avatar component. You can also put icons inside the avatars by this method."
-      />
     </div>
   );
 }
 
-export function MUIb() {
-  const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false);
-  const handleClose = () => {
-    setOpenBackdrop(false);
-  };
-  const handleOpen = () => {
-    setOpenBackdrop(true);
-  };
-  const [value, setValue] = React.useState(0);
-  return (
-    <div className="page-body testing">
-      <TestBlock
-        title="Backdrop"
-        docLink="https://mui.com/material-ui/react-backdrop/"
-        note="This is similar to some of the dialog-related components of shadcn that weren't rendering properly."
-        zone={
-          <mui.ThemeProvider theme={theme()}>
-            <mui.Button onClick={handleOpen}>Show backdrop</mui.Button>
-            <mui.Backdrop
-              sx={(theme) => ({
-                color: "#fff",
-                zIndex: theme.zIndex.drawer + 1,
-              })}
-              open={openBackdrop}
-              onClick={handleClose}
-            >
-              <CircularProgress color="inherit" />
-            </mui.Backdrop>
-          </mui.ThemeProvider>
-        }
-      />
-      <TestBlock
-        title="Badge"
-        docLink=""
-        zone={
-          <mui.ThemeProvider theme={theme()}>
-            <mui.Badge badgeContent={4} color="primary">
-              <MailIcon />
-            </mui.Badge>
-          </mui.ThemeProvider>
-        }
-      />
-      <TestBlock
-        title="Bottom Navigation"
-        docLink="https://mui.com/material-ui/react-bottom-nagivation/"
-        zone={
-          <mui.ThemeProvider theme={theme()}>
-            <mui.Box sx={{ width: 500 }}>
-              <mui.BottomNavigation
-                showLabels
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-              >
-                <mui.BottomNavigationAction
-                  label="Recents"
-                  icon={<RestoreIcon />}
-                />
-                <mui.BottomNavigationAction
-                  label="Favorites"
-                  icon={<FavoriteIcon />}
-                />
-                <mui.BottomNavigationAction
-                  label="Nearby"
-                  icon={<LocationOnIcon />}
-                />
-              </mui.BottomNavigation>
-            </mui.Box>
-          </mui.ThemeProvider>
-        }
-      />
-      <TestBlock
-        title="Box"
-        docLink="https://mui.com/material-ui/react-box/"
-        zone={
-          <mui.Box component="section" sx={{ p: 2, border: "1px dashed grey" }}>
-            This Box renders as an HTML section element.
-          </mui.Box>
-        }
-      />
-      <TestBlock
-        title="Button"
-        docLink="https://mui.com/material-ui/react-button/"
-        zone={
-          <div className="flex gap-[10px] flex-row flex-wrap alig-center">
-            <div className="flex gap-[20px] flex-row flex-wrap">
-              <mui.ThemeProvider theme={theme("light")}>
-                <div className="flex gap-[10px] flex-col justify-center">
-                  Primary
-                  <mui.Button variant="text">Text</mui.Button>
-                  <mui.Button variant="contained">Contained</mui.Button>
-                  <mui.Button variant="outlined">Outlined</mui.Button>
-                </div>
-                <div className="flex gap-[10px] flex-col justify-center">
-                  Secondary
-                  <mui.Button variant="text" color="secondary">
-                    Text
-                  </mui.Button>
-                  <mui.Button variant="contained" color="secondary">
-                    Contained
-                  </mui.Button>
-                  <mui.Button variant="outlined" color="secondary">
-                    Outlined
-                  </mui.Button>
-                </div>
-                <div className="flex gap-[10px] flex-col justify-center">
-                  Info (Accent)
-                  <mui.Button variant="text" color="info">
-                    Text
-                  </mui.Button>
-                  <mui.Button variant="contained" color="info">
-                    Contained
-                  </mui.Button>
-                  <mui.Button variant="outlined" color="info">
-                    Outlined
-                  </mui.Button>
-                </div>
-              </mui.ThemeProvider>
-            </div>
-            <mui.Divider />
-            <div className="flex gap-[20px] flex-row flex-wrap">
-              <mui.ThemeProvider theme={theme("dark")}>
-                <div className="flex gap-[10px] flex-col justify-center">
-                  Primary
-                  <mui.Button variant="text">Text</mui.Button>
-                  <mui.Button variant="contained">Contained</mui.Button>
-                  <mui.Button variant="outlined">Outlined</mui.Button>
-                </div>
-                <div className="flex gap-[10px] flex-col justify-center">
-                  Secondary
-                  <mui.Button variant="text" color="secondary">
-                    Text
-                  </mui.Button>
-                  <mui.Button variant="contained" color="secondary">
-                    Contained
-                  </mui.Button>
-                  <mui.Button variant="outlined" color="secondary">
-                    Outlined
-                  </mui.Button>
-                </div>
-                <div className="flex gap-[10px] flex-col justify-center">
-                  Info (Accent)
-                  <mui.Button variant="text" color="info">
-                    Text
-                  </mui.Button>
-                  <mui.Button variant="contained" color="info">
-                    Contained
-                  </mui.Button>
-                  <mui.Button variant="outlined" color="info">
-                    Outlined
-                  </mui.Button>
-                </div>
-              </mui.ThemeProvider>
-            </div>
-          </div>
-        }
-        note="I love the click animation on these buttons. The color, though, does not utilize globals.css. You have to make a tsx page and create themes. https://mui.com/material-ui/customization/palette/"
-      />
-      <TestBlock
-        title="Button Group"
-        docLink="https://mui.com/material-ui/react-button-group/"
-        zone={
-          <mui.ThemeProvider theme={theme()}>
-            <mui.ButtonGroup
-              variant="contained"
-              aria-label="Basic button group"
-            >
-              <mui.Button>One</mui.Button>
-              <mui.Button>Two</mui.Button>
-              <mui.Button>Three</mui.Button>
-            </mui.ButtonGroup>
-            <mui.ButtonGroup variant="outlined" aria-label="Basic button group">
-              <mui.Button>One</mui.Button>
-              <mui.Button>Two</mui.Button>
-              <mui.Button>Three</mui.Button>
-            </mui.ButtonGroup>
-            <mui.ButtonGroup
-              variant="contained"
-              color="secondary"
-              aria-label="Basic button group"
-            >
-              <mui.Button>One</mui.Button>
-              <mui.Button>Two</mui.Button>
-              <mui.Button>Three</mui.Button>
-            </mui.ButtonGroup>
-          </mui.ThemeProvider>
-        }
-      />
-    </div>
-  );
+export function MUIUtils() {
+  return <div className="page-body testing"></div>;
 }
