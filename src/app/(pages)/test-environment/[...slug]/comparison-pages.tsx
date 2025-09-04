@@ -7,7 +7,7 @@ import "../style.css";
 import React, { ReactNode, useEffect, useState } from "react";
 import { TestCompare } from "@/components/testblock";
 import * as mui from "@mui/material";
-import {useTheme} from "@/utils/mui-theme";
+import { useTheme } from "@/utils/mui-theme";
 
 // Lucide Icons
 import {
@@ -27,6 +27,22 @@ import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import CircularProgress from "@mui/material/CircularProgress";
+import AdbIcon from "@mui/icons-material/Adb";
+import MenuIcon from "@mui/icons-material/Menu";
+import FormatBoldIcon from "@mui/icons-material/FormatBold";
+import FormatItalicIcon from "@mui/icons-material/FormatItalic";
+import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
+import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 
 // Shad UI Components
 import * as Accordion from "@/components/ui/accordion";
@@ -213,6 +229,34 @@ export function ComparisonA() {
                   <mui.Avatar src="https://github.com/ihages.png" />
                   <mui.Avatar>AB</mui.Avatar>
                 </div>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="App Bar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-app-bar/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <mui.AppBar position="static" color="secondary">
+                  <mui.Toolbar>
+                    <AdbIcon sx={{ mr: 2 }} />
+                    <mui.Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                      LOGO
+                    </mui.Typography>
+                    <mui.Button color="inherit">Login</mui.Button>
+                  </mui.Toolbar>
+                </mui.AppBar>
               </mui.ThemeProvider>
             ),
           },
@@ -407,7 +451,20 @@ export function ComparisonB() {
 
 export function ComparisonC() {
   const [date, setDate] = useState<Date>();
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState([false, false]);
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, event.target.checked]);
+  };
+
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, checked[1]]);
+  };
+
+  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([checked[0], event.target.checked]);
+  };
 
   return (
     <div className="page-body testing">
@@ -499,20 +556,88 @@ export function ComparisonC() {
             title: "Shad",
             docLink: "https://ui.shadcn.com/docs/components/checkbox",
             zone: (
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="shad-check"
-                  checked={checked}
-                  onCheckedChange={(checked) => setChecked(checked === true)}
-                />
-                <Label htmlFor="shad-check">Accept terms</Label>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" />
+                  <Label htmlFor="terms">Accept terms and conditions</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="disabled" disabled />
+                  <Label htmlFor="disabled">Disabled</Label>
+                </div>
               </div>
             ),
           },
           {
             title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            docLink: "https://mui.com/material-ui/react-checkbox/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <div className="flex flex-col gap-2">
+                  <mui.Checkbox {...label} defaultChecked />
+                  <mui.Checkbox {...label} />
+                  <mui.Checkbox {...label} disabled />
+                  <mui.FormGroup>
+                    <mui.FormControlLabel
+                      control={<mui.Checkbox defaultChecked />}
+                      label="Label"
+                    />
+                    <mui.FormControlLabel
+                      required
+                      control={<mui.Checkbox />}
+                      label="Required"
+                    />
+                    <mui.FormControlLabel
+                      disabled
+                      control={<mui.Checkbox />}
+                      label="Disabled"
+                    />
+                  </mui.FormGroup>
+                  <div>
+                    <mui.FormControlLabel
+                      label="Parent"
+                      control={
+                        <mui.Checkbox
+                          checked={checked[0] && checked[1]}
+                          indeterminate={checked[0] !== checked[1]}
+                          onChange={handleChange1}
+                        />
+                      }
+                    />
+                    <mui.Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
+                      <mui.FormControlLabel
+                        label="Child 1"
+                        control={
+                          <mui.Checkbox
+                            checked={checked[0]}
+                            onChange={handleChange2}
+                          />
+                        }
+                      />
+                      <mui.FormControlLabel
+                        label="Child 2"
+                        control={
+                          <mui.Checkbox
+                            checked={checked[1]}
+                            onChange={handleChange3}
+                          />
+                        }
+                      />
+                    </mui.Box>
+                  </div>
+                  <mui.Checkbox
+                    {...label}
+                    icon={<FavoriteBorder />}
+                    checkedIcon={<Favorite />}
+                  />
+                  <mui.Checkbox
+                    {...label}
+                    icon={<BookmarkBorderIcon />}
+                    checkedIcon={<BookmarkIcon />}
+                  />
+                </div>
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />
@@ -821,6 +946,170 @@ export function ComparisonLMN() {
 
 export function ComparisonPRS() {
   const [progress, setProgress] = useState(13);
+  const [volume, setVolume] = React.useState(30);
+  const [rating, setRating] = React.useState<number | null>(2);
+  const [age, setAge] = React.useState("");
+  const [formats, setFormats] = React.useState(["bold"]);
+
+  const handleVolume = (event: Event, newValue: number | number[]) => {
+    setVolume(newValue as number);
+  };
+
+  const handleChange = (event: mui.SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
+
+  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+    setFormats(newFormats);
+  };
+
+  const label = { inputProps: { "aria-label": "Switch demo" } };
+
+  function not(a: readonly number[], b: readonly number[]) {
+    return a.filter((value) => !b.includes(value));
+  }
+
+  function intersection(a: readonly number[], b: readonly number[]) {
+    return a.filter((value) => b.includes(value));
+  }
+
+  function TransferList() {
+    const [trChecked, setTrChecked] = React.useState<readonly number[]>([]);
+    const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
+    const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
+
+    const leftChecked: readonly number[] = intersection(trChecked, left);
+    const rightChecked: readonly number[] = intersection(trChecked, right);
+
+    const handleToggle = (value: number) => () => {
+      const currentIndex = trChecked.indexOf(value);
+      const newChecked = [...trChecked];
+
+      if (currentIndex === -1) {
+        newChecked.push(value);
+      } else {
+        newChecked.splice(currentIndex, 1);
+      }
+
+      setTrChecked(newChecked);
+    };
+
+    const handleAllRight = () => {
+      setRight(right.concat(left));
+      setLeft([]);
+    };
+
+    const handleCheckedRight = () => {
+      setRight(right.concat(leftChecked));
+      setLeft(not(left, leftChecked));
+      setTrChecked(not(trChecked, leftChecked));
+    };
+
+    const handleCheckedLeft = () => {
+      setLeft(left.concat(rightChecked));
+      setRight(not(right, rightChecked));
+      setTrChecked(not(trChecked, rightChecked));
+    };
+
+    const handleAllLeft = () => {
+      setLeft(left.concat(right));
+      setRight([]);
+    };
+
+    const customList = (items: readonly number[]) => (
+      <mui.Paper sx={{ width: 200, height: 230, overflow: "auto" }}>
+        <mui.List dense component="div" role="list">
+          {items.map((value: number) => {
+            const labelId = `transfer-list-item-${value}-label`;
+
+            return (
+              <mui.ListItemButton
+                key={value}
+                role="listitem"
+                onClick={handleToggle(value)}
+              >
+                <mui.ListItemIcon>
+                  <mui.Checkbox
+                    checked={trChecked.includes(value)}
+                    tabIndex={-1}
+                    disableRipple
+                    inputProps={{
+                      "aria-labelledby": labelId,
+                    }}
+                  />
+                </mui.ListItemIcon>
+                <mui.ListItemText
+                  id={labelId}
+                  primary={`List item ${value + 1}`}
+                />
+              </mui.ListItemButton>
+            );
+          })}
+        </mui.List>
+      </mui.Paper>
+    );
+
+    return (
+      <mui.ThemeProvider theme={useTheme()}>
+        <mui.Grid
+          container
+          spacing={2}
+          sx={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <mui.Grid>{customList(left)}</mui.Grid>
+          <mui.Grid>
+            <mui.Grid
+              container
+              direction="column"
+              sx={{ alignItems: "center" }}
+            >
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleAllRight}
+                disabled={left.length === 0}
+                aria-label="move all right"
+              >
+                ≫
+              </mui.Button>
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleCheckedRight}
+                disabled={leftChecked.length === 0}
+                aria-label="move selected right"
+              >
+                &gt;
+              </mui.Button>
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleCheckedLeft}
+                disabled={rightChecked.length === 0}
+                aria-label="move selected left"
+              >
+                &lt;
+              </mui.Button>
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleAllLeft}
+                disabled={right.length === 0}
+                aria-label="move all left"
+              >
+                ≪
+              </mui.Button>
+            </mui.Grid>
+          </mui.Grid>
+          <mui.Grid>{customList(right)}</mui.Grid>
+        </mui.Grid>
+      </mui.ThemeProvider>
+    );
+  }
 
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
@@ -921,8 +1210,47 @@ export function ComparisonPRS() {
           },
           {
             title: "MUI",
+            docLink: "https://mui.com/material-ui/react-radio-button/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <mui.FormControl>
+                  <mui.FormLabel>Gender</mui.FormLabel>
+                  <mui.RadioGroup defaultValue="female" name="radio-buttons-group">
+                    <mui.FormControlLabel value="female" control={<mui.Radio />} label="Female" />
+                    <mui.FormControlLabel value="male" control={<mui.Radio />} label="Male" />
+                    <mui.FormControlLabel value="other" control={<mui.Radio />} label="Other" />
+                  </mui.RadioGroup>
+                </mui.FormControl>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Rating"
+        components={[
+          {
+            title: "Shad",
             docLink: "",
             zone: <div className="text-muted-foreground">No direct equivalent</div>,
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-rating/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <div className="flex flex-col gap-2">
+                  <mui.Rating
+                    name="controlled"
+                    value={rating}
+                    onChange={(event, newValue) => setRating(newValue)}
+                  />
+                  <mui.Rating name="read-only" value={rating} readOnly />
+                  <mui.Rating name="disabled" value={rating} disabled />
+                </div>
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />
@@ -966,20 +1294,37 @@ export function ComparisonPRS() {
             zone: (
               <Select.Select>
                 <Select.SelectTrigger className="w-[180px]">
-                  <Select.SelectValue placeholder="Select a fruit" />
+                  <Select.SelectValue placeholder="Select age" />
                 </Select.SelectTrigger>
                 <Select.SelectContent>
-                  <Select.SelectItem value="apple">Apple</Select.SelectItem>
-                  <Select.SelectItem value="banana">Banana</Select.SelectItem>
-                  <Select.SelectItem value="orange">Orange</Select.SelectItem>
+                  <Select.SelectItem value="10">Ten</Select.SelectItem>
+                  <Select.SelectItem value="20">Twenty</Select.SelectItem>
+                  <Select.SelectItem value="30">Thirty</Select.SelectItem>
                 </Select.SelectContent>
               </Select.Select>
             ),
           },
           {
             title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            docLink: "https://mui.com/material-ui/react-select/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <mui.FormControl fullWidth>
+                  <mui.InputLabel id="demo-simple-select-label">Age</mui.InputLabel>
+                  <mui.Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={age}
+                    label="Age"
+                    onChange={handleChange}
+                  >
+                    <mui.MenuItem value={10}>Ten</mui.MenuItem>
+                    <mui.MenuItem value={20}>Twenty</mui.MenuItem>
+                    <mui.MenuItem value={30}>Thirty</mui.MenuItem>
+                  </mui.Select>
+                </mui.FormControl>
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />
@@ -1081,8 +1426,18 @@ export function ComparisonPRS() {
           },
           {
             title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            docLink: "https://mui.com/material-ui/react-slider/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <mui.Box sx={{ width: 200 }}>
+                  <mui.Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
+                    <VolumeDown />
+                    <mui.Slider aria-label="Volume" defaultValue={30} />
+                    <VolumeUp />
+                  </mui.Stack>
+                </mui.Box>
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />
@@ -1102,8 +1457,17 @@ export function ComparisonPRS() {
           },
           {
             title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            docLink: "https://mui.com/material-ui/react-switch/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <div className="flex flex-col gap-2">
+                  <mui.Switch {...label} defaultChecked />
+                  <mui.Switch {...label} />
+                  <mui.Switch {...label} disabled defaultChecked />
+                  <mui.Switch {...label} disabled />
+                </div>
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />
@@ -1113,6 +1477,16 @@ export function ComparisonPRS() {
 
 export function ComparisonT() {
   const [input, setInput] = useState("");
+  const [age, setAge] = React.useState("");
+  const [formats, setFormats] = React.useState(["bold"]);
+
+  const handleChange = (event: mui.SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
+
+  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+    setFormats(newFormats);
+  };
 
   return (
     <div className="page-body testing">
@@ -1168,6 +1542,35 @@ export function ComparisonT() {
       />
 
       <TestCompare
+        title="Text Field"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/input",
+            zone: (
+              <div className="flex flex-col gap-2">
+                <Input placeholder="Enter text" />
+                <Textarea placeholder="Enter message" />
+              </div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-text-field/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <div className="flex flex-col gap-2">
+                  <mui.TextField label="Outlined" variant="outlined" />
+                  <mui.TextField label="Filled" variant="filled" />
+                  <mui.TextField label="Standard" variant="standard" />
+                </div>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
         title="Toggle"
         components={[
           {
@@ -1205,8 +1608,26 @@ export function ComparisonT() {
           },
           {
             title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            docLink: "https://mui.com/material-ui/react-toggle-button/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <mui.ToggleButtonGroup value={formats} onChange={handleFormat}>
+                  <mui.ToggleButton value="bold">
+                    <FormatBoldIcon />
+                  </mui.ToggleButton>
+                  <mui.ToggleButton value="italic">
+                    <FormatItalicIcon />
+                  </mui.ToggleButton>
+                  <mui.ToggleButton value="underlined">
+                    <FormatUnderlinedIcon />
+                  </mui.ToggleButton>
+                  <mui.ToggleButton value="color" disabled>
+                    <FormatColorFillIcon />
+                    <ArrowDropDownIcon />
+                  </mui.ToggleButton>
+                </mui.ToggleButtonGroup>
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />
@@ -1232,6 +1653,70 @@ export function ComparisonT() {
             title: "MUI",
             docLink: "",
             zone: <div className="text-muted-foreground">No direct equivalent</div>,
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Transfer List"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-transfer-list/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <div>Transfer List component would go here</div>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonF() {
+  const [checked, setChecked] = React.useState(false);
+  const [formats, setFormats] = React.useState(["bold"]);
+
+  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
+    setFormats(newFormats);
+  };
+
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Floating Action Button"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-floating-action-button/",
+            zone: (
+              <mui.ThemeProvider theme={useTheme()}>
+                <div className="flex gap-2">
+                  <mui.Fab color="primary" aria-label="add">
+                    <AddIcon />
+                  </mui.Fab>
+                  <mui.Fab color="secondary" aria-label="edit">
+                    <EditIcon />
+                  </mui.Fab>
+                  <mui.Fab variant="extended">
+                    <NavigationIcon sx={{ mr: 1 }} />
+                    Navigate
+                  </mui.Fab>
+                </div>
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />

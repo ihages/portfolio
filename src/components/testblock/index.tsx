@@ -55,7 +55,7 @@ export function TestCompare(props: TestCompareProps) {
       <h3>{title}</h3>
       <div className="test-compare">
         {components.map((component) => (
-          <div className="compare-component">
+          <div className="compare-component" key={component.title}>
             <h4>{component.title}</h4>
             <Button
               variant={"link"}
