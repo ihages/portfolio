@@ -7,7 +7,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { useEffect } from "react";
 import * as mui from "@mui/material";
-import theme from "@/utils/mui-theme";
+import {useTheme} from "@/utils/mui-theme";
 
 export default function TestEnvironment() {
   return (
@@ -74,10 +74,10 @@ export default function TestEnvironment() {
         <h2>MUI Components</h2>
         <p>
           Components use Roboto font by default. Colors do not access
-          global.css.
+          global.css. The disabled color's opacity also has difficulty rendering in dark mode.
         </p>
         <div className="flex gap-[20px]">
-          <mui.ThemeProvider theme={theme()}>
+          <mui.ThemeProvider theme={useTheme()}>
             <mui.Button
               variant="contained"
               href="/portfolio/test-environment/mui-data-display"
@@ -92,7 +92,7 @@ export default function TestEnvironment() {
             </mui.Button>
             <mui.Button
               variant="contained"
-              href="/portfolio/test-environment/mui-inouts"
+              href="/portfolio/test-environment/mui-inputs"
             >
               Inputs
             </mui.Button>

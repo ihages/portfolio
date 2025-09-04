@@ -7,7 +7,7 @@ import "../style.css";
 import React, { ReactNode, useEffect, useState } from "react";
 import { TestCompare } from "@/components/testblock";
 import * as mui from "@mui/material";
-import theme from "@/utils/mui-theme";
+import {useTheme} from "@/utils/mui-theme";
 
 // Lucide Icons
 import {
@@ -95,7 +95,7 @@ export function ComparisonA() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-accordion/",
             zone: (
-              <mui.ThemeProvider theme={theme()}>
+              <mui.ThemeProvider theme={useTheme()}>
                 <div>
                   <mui.Accordion>
                     <mui.AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -141,7 +141,7 @@ export function ComparisonA() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-alert/",
             zone: (
-              <mui.ThemeProvider theme={theme()}>
+              <mui.ThemeProvider theme={useTheme()}>
                 <div className="flex flex-col gap-2">
                   <mui.Alert severity="success">Your changes have been saved.</mui.Alert>
                   <mui.Alert severity="error">Something went wrong.</mui.Alert>
@@ -208,7 +208,7 @@ export function ComparisonA() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-avatar/",
             zone: (
-              <mui.ThemeProvider theme={theme()}>
+              <mui.ThemeProvider theme={useTheme()}>
                 <div className="flex gap-2">
                   <mui.Avatar src="https://github.com/ihages.png" />
                   <mui.Avatar>AB</mui.Avatar>
@@ -261,7 +261,7 @@ export function ComparisonB() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-backdrop/",
             zone: (
-              <mui.ThemeProvider theme={theme()}>
+              <mui.ThemeProvider theme={useTheme()}>
                 <Button onClick={() => setOpenBackdrop(true)}>Show Backdrop</Button>
                 <mui.Backdrop
                   sx={{ color: '#fff', zIndex: 9999 }}
@@ -288,7 +288,7 @@ export function ComparisonB() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-bottom-navigation/",
             zone: (
-              <mui.ThemeProvider theme={theme()}>
+              <mui.ThemeProvider theme={useTheme()}>
                 <mui.BottomNavigation showLabels>
                   <mui.BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
                   <mui.BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
@@ -366,7 +366,7 @@ export function ComparisonB() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-button/",
             zone: (
-              <mui.ThemeProvider theme={theme()}>
+              <mui.ThemeProvider theme={useTheme()}>
                 <div className="flex gap-2">
                   <mui.Button variant="contained">Contained</mui.Button>
                   <mui.Button variant="outlined">Outlined</mui.Button>
@@ -390,7 +390,7 @@ export function ComparisonB() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-button-group/",
             zone: (
-              <mui.ThemeProvider theme={theme()}>
+              <mui.ThemeProvider theme={useTheme()}>
                 <mui.ButtonGroup variant="contained">
                   <mui.Button>One</mui.Button>
                   <mui.Button>Two</mui.Button>

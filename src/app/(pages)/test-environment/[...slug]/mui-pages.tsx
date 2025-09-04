@@ -4,7 +4,7 @@ import * as mui from "@mui/material";
 import { TestBlock } from "@/components/testblock";
 import "./style.css";
 import "../style.css"; //ensure styles load with client rendering
-import theme from "@/utils/mui-theme";
+import { useTheme } from "@/utils/mui-theme";
 import { blue, red } from "@mui/material/colors";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AdbIcon from "@mui/icons-material/Adb";
@@ -14,15 +14,30 @@ import CircularProgress from "@mui/material/CircularProgress";
 import RestoreIcon from "@mui/icons-material/Restore";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import AddIcon from "@mui/icons-material/Add";
+import EditIcon from "@mui/icons-material/Edit";
+import NavigationIcon from "@mui/icons-material/Navigation";
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
+import FormatBoldIcon from "@mui/icons-material/FormatBold";
+import FormatItalicIcon from "@mui/icons-material/FormatItalic";
+import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
+import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export function MUIDataDisplay() {
+  const currentTheme = useTheme();
   return (
     <div className="page-body testing">
       <TestBlock
         title="Avatar"
         docLink="https://mui.com/material-ui/avatar/"
         zone={
-          <mui.ThemeProvider theme={theme()}>
+          <mui.ThemeProvider theme={currentTheme}>
             <div className="flex gap-[10px] flex-col justify-center">
               Image
               <mui.Avatar
@@ -68,6 +83,7 @@ export function MUIDataDisplay() {
 }
 
 export function MUIFeedback() {
+  const currentTheme = useTheme();
   const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false);
   const handleClose = () => {
     setOpenBackdrop(false);
@@ -86,7 +102,7 @@ export function MUIFeedback() {
               <p className="m-px">Theme Provider</p>
               <p className="m-px">Default Theme</p>
               <div className="flex gap-[2px] flex-col">
-                <mui.ThemeProvider theme={theme()}>
+                <mui.ThemeProvider theme={currentTheme}>
                   <mui.Alert severity="success">
                     This is a success Alert.
                   </mui.Alert>
@@ -118,7 +134,7 @@ export function MUIFeedback() {
         docLink="https://mui.com/material-ui/react-backdrop/"
         note="This is similar to some of the dialog-related components of shadcn that weren't rendering properly."
         zone={
-          <mui.ThemeProvider theme={theme()}>
+          <mui.ThemeProvider theme={currentTheme}>
             <mui.Button onClick={handleOpen}>Show backdrop</mui.Button>
             <mui.Backdrop
               sx={(theme) => ({
@@ -138,6 +154,189 @@ export function MUIFeedback() {
 }
 
 export function MUIInputs() {
+  const currentTheme = useTheme();
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [checked, setChecked] = React.useState<boolean[]>([false, false]);
+  const [ratingValue, setRatingValue] = React.useState<number | null>(2);
+
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event: mui.SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
+
+  const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, event.target.checked]);
+  };
+
+  const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([event.target.checked, checked[1]]);
+  };
+
+  const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked([checked[0], event.target.checked]);
+  };
+
+  const [volume, setVolume] = React.useState<number>(30);
+
+  const handleVolume = (event: Event, newValue: number) => {
+    setVolume(newValue);
+  };
+
+  function not(a: readonly number[], b: readonly number[]) {
+    return a.filter((value) => !b.includes(value));
+  }
+
+  function intersection(a: readonly number[], b: readonly number[]) {
+    return a.filter((value) => b.includes(value));
+  }
+
+  function TransferList() {
+    const [trChecked, setTrChecked] = React.useState<readonly number[]>([]);
+    const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
+    const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
+
+    const leftChecked: readonly number[] = intersection(trChecked, left);
+    const rightChecked: readonly number[] = intersection(trChecked, right);
+
+    const handleToggle = (value: number) => () => {
+      const currentIndex = trChecked.indexOf(value);
+      const newChecked = [...trChecked];
+
+      if (currentIndex === -1) {
+        newChecked.push(value);
+      } else {
+        newChecked.splice(currentIndex, 1);
+      }
+
+      setTrChecked(newChecked);
+    };
+
+    const handleAllRight = () => {
+      setRight(right.concat(left));
+      setLeft([]);
+    };
+
+    const handleCheckedRight = () => {
+      setRight(right.concat(leftChecked));
+      setLeft(not(left, leftChecked));
+      setTrChecked(not(trChecked, leftChecked));
+    };
+
+    const handleCheckedLeft = () => {
+      setLeft(left.concat(rightChecked));
+      setRight(not(right, rightChecked));
+      setTrChecked(not(trChecked, rightChecked));
+    };
+
+    const handleAllLeft = () => {
+      setLeft(left.concat(right));
+      setRight([]);
+    };
+
+    const customList = (items: readonly number[]) => (
+      <mui.Paper sx={{ width: 200, height: 230, overflow: "auto" }}>
+        <mui.List dense component="div" role="list">
+          {items.map((value: number) => {
+            const labelId = `transfer-list-item-${value}-label`;
+
+            return (
+              <mui.ListItemButton
+                key={value}
+                role="listitem"
+                onClick={handleToggle(value)}
+              >
+                <mui.ListItemIcon>
+                  <mui.Checkbox
+                    checked={trChecked.includes(value)}
+                    tabIndex={-1}
+                    disableRipple
+                    inputProps={{
+                      "aria-labelledby": labelId,
+                    }}
+                  />
+                </mui.ListItemIcon>
+                <mui.ListItemText
+                  id={labelId}
+                  primary={`List item ${value + 1}`}
+                />
+              </mui.ListItemButton>
+            );
+          })}
+        </mui.List>
+      </mui.Paper>
+    );
+    return (
+      <mui.ThemeProvider theme={currentTheme}>
+        <mui.Grid
+          container
+          spacing={2}
+          sx={{ justifyContent: "center", alignItems: "center" }}
+        >
+          <mui.Grid>{customList(left)}</mui.Grid>
+          <mui.Grid>
+            <mui.Grid
+              container
+              direction="column"
+              sx={{ alignItems: "center" }}
+            >
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleAllRight}
+                disabled={left.length === 0}
+                aria-label="move all right"
+              >
+                ≫
+              </mui.Button>
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleCheckedRight}
+                disabled={leftChecked.length === 0}
+                aria-label="move selected right"
+              >
+                &gt;
+              </mui.Button>
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleCheckedLeft}
+                disabled={rightChecked.length === 0}
+                aria-label="move selected left"
+              >
+                &lt;
+              </mui.Button>
+              <mui.Button
+                sx={{ my: 0.5 }}
+                variant="outlined"
+                size="small"
+                onClick={handleAllLeft}
+                disabled={right.length === 0}
+                aria-label="move all left"
+              >
+                ≪
+              </mui.Button>
+            </mui.Grid>
+          </mui.Grid>
+          <mui.Grid>{customList(right)}</mui.Grid>
+        </mui.Grid>
+      </mui.ThemeProvider>
+    );
+  }
+
+  const [formats, setFormats] = React.useState(() => ["bold", "italic"]);
+
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[]
+  ) => {
+    setFormats(newFormats);
+  };
+
   return (
     <div className="page-body testing">
       <TestBlock
@@ -146,7 +345,7 @@ export function MUIInputs() {
         zone={
           <div className="flex gap-[10px] flex-row flex-wrap alig-center">
             <div className="flex gap-[20px] flex-row flex-wrap">
-              <mui.ThemeProvider theme={theme("light")}>
+              <mui.ThemeProvider theme={useTheme("light")}>
                 <div className="flex gap-[10px] flex-col justify-center">
                   Primary
                   <mui.Button variant="text">Text</mui.Button>
@@ -181,7 +380,7 @@ export function MUIInputs() {
             </div>
             <mui.Divider />
             <div className="flex gap-[20px] flex-row flex-wrap">
-              <mui.ThemeProvider theme={theme("dark")}>
+              <mui.ThemeProvider theme={useTheme("dark")}>
                 <div className="flex gap-[10px] flex-col justify-center">
                   Primary
                   <mui.Button variant="text">Text</mui.Button>
@@ -222,7 +421,7 @@ export function MUIInputs() {
         title="Button Group"
         docLink="https://mui.com/material-ui/react-button-group/"
         zone={
-          <mui.ThemeProvider theme={theme()}>
+          <mui.ThemeProvider theme={currentTheme}>
             <mui.ButtonGroup
               variant="contained"
               aria-label="Basic button group"
@@ -248,11 +447,297 @@ export function MUIInputs() {
           </mui.ThemeProvider>
         }
       />
+
+      <TestBlock
+        title="Checkbox"
+        docLink="https://mui.com/material-ui/react-checkbox/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Checkbox {...label} defaultChecked />
+            <mui.Checkbox {...label} />
+            <mui.Checkbox {...label} disabled />
+            <mui.Checkbox {...label} disabled checked />
+            <mui.FormGroup>
+              <mui.FormControlLabel
+                control={<mui.Checkbox defaultChecked />}
+                label="Label"
+              />
+              <mui.FormControlLabel
+                required
+                control={<mui.Checkbox />}
+                label="Required"
+              />
+              <mui.FormControlLabel
+                disabled
+                color="#ffffff"
+                control={<mui.Checkbox />}
+                label="Disabled"
+              />
+            </mui.FormGroup>
+            <div>
+              <mui.FormControlLabel
+                label="Parent"
+                control={
+                  <mui.Checkbox
+                    checked={checked[0] && checked[1]}
+                    indeterminate={checked[0] !== checked[1]}
+                    onChange={handleChange1}
+                  />
+                }
+              />
+              <mui.Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
+                <mui.FormControlLabel
+                  label="Child 1"
+                  control={
+                    <mui.Checkbox
+                      checked={checked[0]}
+                      onChange={handleChange2}
+                    />
+                  }
+                />
+                <mui.FormControlLabel
+                  label="Child 2"
+                  control={
+                    <mui.Checkbox
+                      checked={checked[1]}
+                      onChange={handleChange3}
+                    />
+                  }
+                />
+              </mui.Box>
+            </div>
+            <mui.Checkbox
+              {...label}
+              icon={<FavoriteBorder />}
+              checkedIcon={<Favorite />}
+            />
+            <mui.Checkbox
+              {...label}
+              icon={<BookmarkBorderIcon />}
+              checkedIcon={<BookmarkIcon />}
+            />
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Basic Floating Action Buttons (FAB)"
+        docLink="https://mui.com/material-ui/react-floating-action-button/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Fab color="primary" aria-label="add">
+              <AddIcon />
+            </mui.Fab>
+            <mui.Fab color="secondary" aria-label="edit">
+              <EditIcon />
+            </mui.Fab>
+            <mui.Fab variant="extended">
+              <NavigationIcon sx={{ mr: 1 }} />
+              Navigate
+            </mui.Fab>
+            <mui.Fab disabled aria-label="like">
+              <FavoriteIcon />
+            </mui.Fab>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Radio Group"
+        docLink="https://mui.com/material-ui/react-radio-button/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.FormControl>
+              <mui.FormLabel id="demo-radio-buttons-group-label">
+                Gender
+              </mui.FormLabel>
+              <mui.RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue="female"
+                name="radio-buttons-group"
+              >
+                <mui.FormControlLabel
+                  value="female"
+                  control={<mui.Radio />}
+                  label="Female"
+                />
+                <mui.FormControlLabel
+                  value="male"
+                  control={<mui.Radio />}
+                  label="Male"
+                />
+                <mui.FormControlLabel
+                  value="other"
+                  control={<mui.Radio />}
+                  label="Other"
+                />
+              </mui.RadioGroup>
+            </mui.FormControl>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Rating"
+        docLink="https://mui.com/material-ui/react-rating/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Box sx={{ "& > legend": { mt: 2 } }}>
+              <mui.Typography component="legend">Controlled</mui.Typography>
+              <mui.Rating
+                name="simple-controlled"
+                value={ratingValue}
+                onChange={(event, newValue) => {
+                  setRatingValue(newValue);
+                }}
+              />
+              <mui.Typography component="legend">Uncontrolled</mui.Typography>
+              <mui.Rating
+                name="simple-uncontrolled"
+                onChange={(event, newValue) => {
+                  console.log(newValue);
+                }}
+                defaultValue={2}
+              />
+              <mui.Typography component="legend">Read only</mui.Typography>
+              <mui.Rating name="read-only" value={ratingValue} readOnly />
+              <mui.Typography component="legend">Disabled</mui.Typography>
+              <mui.Rating name="disabled" value={ratingValue} disabled />
+              <mui.Typography component="legend">
+                No rating given
+              </mui.Typography>
+              <mui.Rating name="no-value" value={null} />
+            </mui.Box>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Select"
+        docLink="https://mui.com/material-ui/react-select/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.FormControl fullWidth>
+              <mui.InputLabel id="demo-simple-select-label">Age</mui.InputLabel>
+              <mui.Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={age}
+                label="Age"
+                onChange={handleChange}
+              >
+                <mui.MenuItem value={10}>Ten</mui.MenuItem>
+                <mui.MenuItem value={20}>Twenty</mui.MenuItem>
+                <mui.MenuItem value={30}>Thirty</mui.MenuItem>
+              </mui.Select>
+            </mui.FormControl>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Sliders"
+        docLink="https://mui.com/material-ui/react-slider/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Box sx={{ width: 200 }}>
+              Enabled
+              <mui.Stack
+                spacing={2}
+                direction="row"
+                sx={{ alignItems: "center", mb: 1 }}
+              >
+                <VolumeDown />
+                <mui.Slider
+                  aria-label="Volume"
+                  value={volume}
+                  onChange={handleVolume}
+                />
+                <VolumeUp />
+              </mui.Stack>
+              Disabled
+              <mui.Slider
+                disabled
+                defaultValue={30}
+                aria-label="Disabled slider"
+              />
+            </mui.Box>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Switch"
+        docLink="https://mui.com/material-ui/react-switch/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Switch {...label} defaultChecked />
+            <mui.Switch {...label} />
+            <mui.Switch {...label} disabled defaultChecked />
+            <mui.Switch {...label} disabled />
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Text Field"
+        docLink="https://mui.com/material-ui/react-text-field/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.TextField
+              id="outlined-basic"
+              label="Outlined"
+              variant="outlined"
+            />
+            <mui.TextField id="filled-basic" label="Filled" variant="filled" />
+            <mui.TextField
+              id="standard-basic"
+              label="Standard"
+              variant="standard"
+            />
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Transfer List"
+        docLink="https://mui.com/material-ui/react-transfer-list/"
+        zone={<TransferList />}
+      />
+
+      <TestBlock
+        title="Toggle"
+        docLink="https://mui.com/material-ui/react-toggle-button/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.ToggleButtonGroup
+              value={formats}
+              onChange={handleFormat}
+              aria-label="text formatting"
+            >
+              <mui.ToggleButton value="bold" aria-label="bold">
+                <FormatBoldIcon />
+              </mui.ToggleButton>
+              <mui.ToggleButton value="italic" aria-label="italic">
+                <FormatItalicIcon />
+              </mui.ToggleButton>
+              <mui.ToggleButton value="underlined" aria-label="underlined">
+                <FormatUnderlinedIcon />
+              </mui.ToggleButton>
+              <mui.ToggleButton value="color" aria-label="color" disabled>
+                <FormatColorFillIcon />
+                <ArrowDropDownIcon />
+              </mui.ToggleButton>
+            </mui.ToggleButtonGroup>
+          </mui.ThemeProvider>
+        }
+      />
     </div>
   );
 }
 
 export function MUILayout() {
+  const currentTheme = useTheme();
   return (
     <div className="page-body testing">
       <TestBlock
@@ -269,6 +754,7 @@ export function MUILayout() {
 }
 
 export function MUINavigation() {
+  const currentTheme = useTheme();
   const [value, setValue] = React.useState(0);
   return (
     <div className="page-body testing">
@@ -276,7 +762,7 @@ export function MUINavigation() {
         title="Bottom Navigation"
         docLink="https://mui.com/material-ui/react-bottom-nagivation/"
         zone={
-          <mui.ThemeProvider theme={theme()}>
+          <mui.ThemeProvider theme={currentTheme}>
             <mui.Box sx={{ width: 500 }}>
               <mui.BottomNavigation
                 showLabels
@@ -307,6 +793,7 @@ export function MUINavigation() {
 }
 
 export function MUISurfaces() {
+  const currentTheme = useTheme();
   const pages = ["Products", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -340,7 +827,7 @@ export function MUISurfaces() {
     So watch out for that. I also put this inside a theme provider."
         zone={
           <div className="gap-0">
-            <mui.ThemeProvider theme={theme()}>
+            <mui.ThemeProvider theme={currentTheme}>
               <mui.Accordion>
                 <mui.AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
@@ -397,7 +884,7 @@ export function MUISurfaces() {
         title="App Bar"
         docLink="https://mui.com/material-ui/react-app-bar/"
         zone={
-          <mui.ThemeProvider theme={theme()}>
+          <mui.ThemeProvider theme={currentTheme}>
             <mui.AppBar color="secondary" position="static">
               <mui.Container maxWidth="xl">
                 <mui.Toolbar disableGutters>
@@ -554,5 +1041,6 @@ export function MUISurfaces() {
 }
 
 export function MUIUtils() {
+  const currentTheme = useTheme();
   return <div className="page-body testing"></div>;
 }

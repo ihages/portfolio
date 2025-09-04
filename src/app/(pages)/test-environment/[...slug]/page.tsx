@@ -191,6 +191,9 @@ export default function Slugs({
   const slughead = (
     <>
       <Breadcrumbs />
+      <h1 className="flex justify-center m-[0px]">
+        {slugValue?.replace(/-/g, " ").toLocaleUpperCase()}
+      </h1>
       {slugpage && (
         <div className="nav-buttons">
           <div className="nav-buttons-left">
@@ -217,18 +220,14 @@ export default function Slugs({
       <div className="nav-buttons-left">
         {prevPage !== null ? (
           <Button asChild variant={"default"} size={"default"}>
-            <Link href={`/test-environment/shad-${prevPage?.toLowerCase()}`}>
-              {prevPage}
-            </Link>
+            <Link href={`/test-environment/${prevSlug}`}>{prevPage}</Link>
           </Button>
         ) : null}
       </div>
       <div className="nav-buttons-right">
         {nextPage !== null ? (
           <Button asChild variant={"default"} size={"default"}>
-            <Link href={`/test-environment/shad-${nextPage?.toLowerCase()}`}>
-              {nextPage}
-            </Link>
+            <Link href={`/test-environment/${nextSlug}`}>{nextPage}</Link>
           </Button>
         ) : null}
       </div>
