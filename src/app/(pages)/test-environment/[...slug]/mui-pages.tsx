@@ -33,6 +33,7 @@ import {
   Delete as DeleteIcon,
 } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
+import CloseIcon from "@mui/icons-material/Close";
 
 import { faEllipsisV, faInfo } from "@fortawesome/free-solid-svg-icons";
 
@@ -289,6 +290,49 @@ export function MUIFeedback() {
   const handleOpen = () => {
     setOpenBackdrop(true);
   };
+
+  const [dialogOpen, setDialogOpen] = React.useState(false);
+
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
+  };
+
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  const handleSnackClick = () => {
+    setOpenSnackbar(true);
+  };
+
+  const handleSnackClose = (
+    event: React.SyntheticEvent | Event,
+    reason?: mui.SnackbarCloseReason
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpenSnackbar(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <mui.Button color="secondary" size="small" onClick={handleSnackClose}>
+        UNDO
+      </mui.Button>
+      <mui.IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleSnackClose}
+      >
+        <CloseIcon fontSize="small" />
+      </mui.IconButton>
+    </React.Fragment>
+  );
   return (
     <div className="page-body testing">
       <TestBlock
@@ -344,6 +388,116 @@ export function MUIFeedback() {
             >
               <CircularProgress color="inherit" />
             </mui.Backdrop>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Dialog"
+        docLink="https://mui.com/material-ui/react-dialog/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <React.Fragment>
+              <mui.Button variant="outlined" onClick={handleDialogOpen}>
+                Open alert dialog
+              </mui.Button>
+              <mui.Dialog
+                open={dialogOpen}
+                onClose={handleDialogClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+              >
+                <mui.DialogTitle id="alert-dialog-title">
+                  {"Use Google's location service?"}
+                </mui.DialogTitle>
+                <mui.DialogContent>
+                  <mui.DialogContentText id="alert-dialog-description">
+                    Let Google help apps determine location. This means sending
+                    anonymous location data to Google, even when no apps are
+                    running.
+                  </mui.DialogContentText>
+                </mui.DialogContent>
+                <mui.DialogActions>
+                  <mui.Button onClick={handleDialogClose}>Disagree</mui.Button>
+                  <mui.Button onClick={handleDialogClose} autoFocus>
+                    Agree
+                  </mui.Button>
+                </mui.DialogActions>
+              </mui.Dialog>
+            </React.Fragment>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Progress"
+        docLink="https://mui.com/material-ui/react-progress/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <div className="w-full flex flex-col gap-[20px]">
+              <mui.LinearProgress />
+              <mui.LinearProgress variant="determinate" value={50} />
+            </div>
+            <mui.CircularProgress />
+            <mui.CircularProgress variant="determinate" value={50} />
+            <React.Fragment>
+              <svg width={0} height={0}>
+                <defs>
+                  <linearGradient
+                    id="my_gradient"
+                    x1="0%"
+                    y1="0%"
+                    x2="0%"
+                    y2="100%"
+                  >
+                    <stop offset="0%" stopColor="#e01cd5" />
+                    <stop offset="100%" stopColor="#1CB5E0" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <mui.CircularProgress
+                sx={{ "svg circle": { stroke: "url(#my_gradient)" } }}
+              />
+            </React.Fragment>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Skeleton"
+        docLink="https://mui.com/material-ui/react-skeleton/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Skeleton
+              variant="text"
+              sx={{ width: "100%", fontSize: "1rem" }}
+            />
+            <mui.Skeleton variant="circular" width={40} height={40} />
+            <mui.Skeleton variant="rectangular" width={210} height={60} />
+            <mui.Skeleton variant="rounded" width={210} height={60} />
+            <mui.Skeleton
+              animation="wave"
+              variant="circular"
+              width={40}
+              height={40}
+            />
+          </mui.ThemeProvider>
+        }
+        note="Pulsing is actually built into the component. Some shapes are given as variants."
+      />
+
+      <TestBlock
+        title="Snackbar"
+        docLink="https://mui.com/material-ui/react-snackbar/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Button onClick={handleSnackClick}>Open Snackbar</mui.Button>
+            <mui.Snackbar
+              open={openSnackbar}
+              autoHideDuration={6000}
+              onClose={handleSnackClose}
+              message="This is what the snackbar does"
+              action={action}
+            />
           </mui.ThemeProvider>
         }
       />
