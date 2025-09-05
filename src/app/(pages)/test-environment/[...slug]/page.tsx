@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -35,13 +33,18 @@ import {
   ComparisonPRS,
   ComparisonT,
 } from "./comparison-pages";
+import PageNotFound from "@/components/pageNotFound";
+import { generateStaticParams as generateParams } from "./generateStaticParams";
 
-export default function Slugs({
+export { generateParams as generateStaticParams };
+
+export default async function Slugs({
   params,
 }: {
   params: Promise<{ slug?: string[] }>;
 }) {
-  const { slug } = React.use(params);
+  // slug will be an array or undefined
+  const { slug } = await params;
   const slugValue = slug?.[0];
 
   let prevPage;

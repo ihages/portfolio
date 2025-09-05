@@ -231,8 +231,6 @@ export function ShadA() {
 }
 
 export function ShadB() {
-  const pathname = usePathname().replace("/", " ").trimStart();
-  const pathlist = pathname.split("/");
 
   return (
     <div className="page-body testing">
