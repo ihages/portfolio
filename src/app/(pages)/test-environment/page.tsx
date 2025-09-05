@@ -7,7 +7,7 @@ import Link from "next/link";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { useEffect } from "react";
 import * as mui from "@mui/material";
-import {useTheme} from "@/utils/mui-theme";
+import { useTheme } from "@/utils/mui-theme";
 
 export default function TestEnvironment() {
   return (
@@ -22,32 +22,13 @@ export default function TestEnvironment() {
         <h1>Testing Grounds</h1>
         <h2>ShadCN versus MUI</h2>
         <div className="flex gap-[20px]">
-           <Button asChild>
+          <Button asChild>
+            <Link href="/test-environment/comparison-data-display">
+              Data Displays
+            </Link>
+          </Button>
+          <Button asChild>
             <Link href="/test-environment/comparison-inputs">Inputs</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-a">A</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-b">B</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-c">C</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-d">D</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-h-i">H-I</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-l-m-n">L-M-N</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-p-r-s">P-R-S</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/test-environment/comparison-t">T</Link>
           </Button>
         </div>
         <h2>Shadcn Components</h2>
@@ -77,7 +58,8 @@ export default function TestEnvironment() {
         <h2>MUI Components</h2>
         <p>
           Components use Roboto font by default. Colors do not access
-          global.css. The disabled color's opacity also has difficulty rendering in dark mode.
+          global.css. The disabled color's opacity also has difficulty rendering
+          in dark mode.
         </p>
         <div className="flex gap-[20px]">
           <mui.ThemeProvider theme={useTheme()}>

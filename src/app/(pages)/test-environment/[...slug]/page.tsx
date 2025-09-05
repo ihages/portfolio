@@ -28,6 +28,7 @@ import {
   ComparisonB,
   ComparisonC,
   ComparisonD,
+  ComparisonDataDisplay,
   ComparisonHI,
   ComparisonInputs,
   ComparisonLMN,
@@ -122,50 +123,16 @@ export default function Slugs({
       slugpage = <MUIUtils />;
       prevPage = "Surfaces";
       nextPage = null;
-      break; case "comparison-inputs":
+      break;
+    case "comparison-inputs":
       slugpage = <ComparisonInputs />;
       prevPage = null;
       nextPage = "A";
       break;
-    case "comparison-a":
-      slugpage = <ComparisonA />;
+    case "comparison-data-display":
+      slugpage = <ComparisonDataDisplay />;
       prevPage = null;
-      nextPage = "B";
-      break;
-    case "comparison-b":
-      slugpage = <ComparisonB />;
-      prevPage = "A";
-      nextPage = "C";
-      break;
-    case "comparison-c":
-      slugpage = <ComparisonC />;
-      prevPage = "B";
-      nextPage = "D";
-      break;
-    case "comparison-d":
-      slugpage = <ComparisonD />;
-      prevPage = "C";
-      nextPage = "H-I";
-      break;
-    case "comparison-h-i":
-      slugpage = <ComparisonHI />;
-      prevPage = "D";
-      nextPage = "L-M-N";
-      break;
-    case "comparison-l-m-n":
-      slugpage = <ComparisonLMN />;
-      prevPage = "H-I";
-      nextPage = "P-R-S";
-      break;
-    case "comparison-p-r-s":
-      slugpage = <ComparisonPRS />;
-      prevPage = "L-M-N";
-      nextPage = "T";
-      break;
-    case "comparison-t":
-      slugpage = <ComparisonT />;
-      prevPage = "P-R-S";
-      nextPage = null;
+      nextPage = "Inputs";
       break;
     case undefined:
     default:

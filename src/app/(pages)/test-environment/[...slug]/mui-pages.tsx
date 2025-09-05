@@ -6,29 +6,34 @@ import "./style.css";
 import "../style.css"; //ensure styles load with client rendering
 import { useTheme } from "@/utils/mui-theme";
 import { blue, red } from "@mui/material/colors";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import AdbIcon from "@mui/icons-material/Adb";
-import MenuIcon from "@mui/icons-material/Menu";
-import MailIcon from "@mui/icons-material/Mail";
+import {
+  ExpandMore as ExpandMoreIcon,
+  Adb as AdbIcon,
+  Menu as MenuIcon,
+  Mail as MailIcon,
+  Restore as RestoreIcon,
+  Favorite as FavoriteIcon,
+  LocationOn as LocationOnIcon,
+  FavoriteBorder,
+  Favorite,
+  BookmarkBorder as BookmarkBorderIcon,
+  Bookmark as BookmarkIcon,
+  Add as AddIcon,
+  Edit as EditIcon,
+  Navigation as NavigationIcon,
+  VolumeDown,
+  VolumeUp,
+  FormatBold as FormatBoldIcon,
+  FormatItalic as FormatItalicIcon,
+  FormatUnderlined as FormatUnderlinedIcon,
+  FormatColorFill as FormatColorFillIcon,
+  ArrowDropDown as ArrowDropDownIcon,
+  Inbox as InboxIcon,
+  Drafts as DraftsIcon,
+  Delete as DeleteIcon,
+} from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
-import NavigationIcon from "@mui/icons-material/Navigation";
-import VolumeDown from "@mui/icons-material/VolumeDown";
-import VolumeUp from "@mui/icons-material/VolumeUp";
-import FormatBoldIcon from "@mui/icons-material/FormatBold";
-import FormatItalicIcon from "@mui/icons-material/FormatItalic";
-import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
-import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faEllipsisV, faInfo } from "@fortawesome/free-solid-svg-icons";
 
 import FontAwesomeSvgIcon from "@/components/fa-mui-icon";
@@ -38,6 +43,23 @@ export function MUIDataDisplay() {
   const handleDelete = () => {
     console.info("You clicked the delete icon.");
   };
+  function createData(
+    name: string,
+    calories: number,
+    fat: number,
+    carbs: number,
+    protein: number
+  ) {
+    return { name, calories, fat, carbs, protein };
+  }
+
+  const rows = [
+    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+    createData("Eclair", 262, 16.0, 24, 6.0),
+    createData("Cupcake", 305, 3.7, 67, 4.3),
+    createData("Gingerbread", 356, 16.0, 49, 3.9),
+  ];
   return (
     <div className="page-body testing">
       <TestBlock
@@ -85,6 +107,7 @@ export function MUIDataDisplay() {
         note="If images aren't known, the initials come from the alt image. Alternatively, you can just call them without
      images and define the letters inside the avatar component. You can also put icons inside the avatars by this method."
       />
+
       <TestBlock
         title="Badge"
         docLink="https://mui.com/material-ui/react-badge/"
@@ -96,6 +119,7 @@ export function MUIDataDisplay() {
           </mui.ThemeProvider>
         }
       />
+
       <TestBlock
         title="Badge"
         docLink="https://mui.com/material-ui/react-chip/"
@@ -112,6 +136,7 @@ export function MUIDataDisplay() {
           </mui.ThemeProvider>
         }
       />
+
       <TestBlock
         title="Divider (Separator)"
         docLink="https://mui.com/material-ui/react-divider/"
@@ -145,6 +170,7 @@ export function MUIDataDisplay() {
         }
         note="This is the same thing as ShadCN's separator component. Inlcudes horizontal and vertical orientations"
       />
+
       <TestBlock
         title="Icons"
         docLink="https://mui.com/material-ui/icons/"
@@ -173,6 +199,82 @@ export function MUIDataDisplay() {
           </div>
         }
         note="Icons are in the library '@mui/icons-material'. The svgicon component lets you use non-mui components inside mui components."
+      />
+
+      <TestBlock
+        title="List"
+        docLink="https://mui.com/material-ui/react-list/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.List>
+              <mui.ListItem disablePadding>
+                <mui.ListItemButton>
+                  <mui.ListItemIcon>
+                    <InboxIcon />
+                  </mui.ListItemIcon>
+                  <mui.ListItemText primary="Inbox" />
+                </mui.ListItemButton>
+              </mui.ListItem>
+              <mui.ListItem disablePadding>
+                <mui.ListItemButton>
+                  <mui.ListItemIcon>
+                    <DraftsIcon />
+                  </mui.ListItemIcon>
+                  <mui.ListItemText primary="Drafts" />
+                </mui.ListItemButton>
+              </mui.ListItem>
+            </mui.List>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Table"
+        docLink="https://mui.com/material-ui/react-table/"
+        note="This is actually not a tanstack table. It is very nice looking. Sorting requires programmed logic (is not included in the library) and also requires you to define your header cells. There is also a sticky header prop that makes the header stick while you scroll through the table data. There is also an iption for built-in table pagination and virtualization."
+        zone={
+          <mui.TableContainer component={mui.Paper}>
+            <mui.Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <mui.TableHead>
+                <mui.TableRow>
+                  <mui.TableCell>Dessert (100g serving)</mui.TableCell>
+                  <mui.TableCell align="right">Calories</mui.TableCell>
+                  <mui.TableCell align="right">Fat&nbsp;(g)</mui.TableCell>
+                  <mui.TableCell align="right">Carbs&nbsp;(g)</mui.TableCell>
+                  <mui.TableCell align="right">Protein&nbsp;(g)</mui.TableCell>
+                </mui.TableRow>
+              </mui.TableHead>
+              <mui.TableBody>
+                {rows.map((row) => (
+                  <mui.TableRow
+                    key={row.name}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <mui.TableCell component="th" scope="row">
+                      {row.name}
+                    </mui.TableCell>
+                    <mui.TableCell align="right">{row.calories}</mui.TableCell>
+                    <mui.TableCell align="right">{row.fat}</mui.TableCell>
+                    <mui.TableCell align="right">{row.carbs}</mui.TableCell>
+                    <mui.TableCell align="right">{row.protein}</mui.TableCell>
+                  </mui.TableRow>
+                ))}
+              </mui.TableBody>
+            </mui.Table>
+          </mui.TableContainer>
+        }
+      />
+
+      <TestBlock
+        title="Tooltip"
+        docLink="https://mui.com/material-ui/react-tooltip/"
+        zone={
+          <mui.Tooltip title="Delete">
+            <mui.IconButton>
+              <DeleteIcon />
+            </mui.IconButton>
+          </mui.Tooltip>
+        }
       />
     </div>
   );
