@@ -17,7 +17,6 @@ import {
   ShadS,
   ShadT,
 } from "./shad-pages";
-import { generateStaticParams } from "./generateStaticParams";
 import PageNotFound from "@/components/pageNotFound";
 
 export default function Slugs({

@@ -1,13 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import "./style.css";
-import type { Metadata } from "next";
-import Link from "next/link";
 import Breadcrumbs from "@/components/breadcrumbs";
-import { useEffect } from "react";
 import { ImageGallery } from "@/components/img-gallery";
-
 
 export default function Gallery() {
   return (

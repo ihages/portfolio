@@ -4,8 +4,8 @@ interface ParsedDateResult {
   text: string;
   index: number;
   date: string;
-  start: any;
-  end?: any;
+  start: number | Date;
+  end?: number | Date;
 }
 
 interface ParseDateResponse {
