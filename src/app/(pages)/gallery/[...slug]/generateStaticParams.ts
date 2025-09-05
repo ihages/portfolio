@@ -1,5 +1,7 @@
 export async function generateStaticParams() {
-  // No gallery pages implemented yet, return empty array to prevent build errors
-  const validSlugs: string[] = [];
-  return validSlugs.map((slug) => ({ slug: [slug] }));
+  // Provide a fallback route to satisfy build requirements
+  // This dynamic route currently only serves PageNotFound
+  return [
+    { slug: ["not-found"] }
+  ];
 }
