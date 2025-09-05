@@ -20,7 +20,7 @@ export function ImageGallery(props: GalleryProps) {
     <ScrollArea className="w-full rounded-md whitespace-nowrap border-[1px] border-secondary">
       <div className="flex w-max space-x-4 p-[20px] gap-[20px] bg-popover">
         {props.images.map((img) => (
-          <div>
+          <div key={img.title}>
             <Image
               key={img.title}
               src={img.src}

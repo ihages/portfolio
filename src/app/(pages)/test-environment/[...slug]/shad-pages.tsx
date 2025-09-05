@@ -39,7 +39,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import React, { ReactNode, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
-import { usePathname } from "next/navigation";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -139,12 +138,10 @@ import {
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuIndicator,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import {
   Pagination,
@@ -383,8 +380,6 @@ export function ShadA() {
 }
 
 export function ShadB() {
-  const pathname = usePathname().replace("/", " ").trimStart();
-  const pathlist = pathname.split("/");
 
   return (
     <div className="page-body testing">
@@ -524,7 +519,6 @@ export function ShadB() {
 
 export function ShadC() {
   const [open, setOpen] = React.useState(false);
-  const [open2, setOpen2] = React.useState(false);
   const [value, setValue] = React.useState("In 2 days");
   const [date, setDate] = React.useState<Date | undefined>(
     chrono.parseDate(value) || undefined
