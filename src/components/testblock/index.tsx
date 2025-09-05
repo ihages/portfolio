@@ -52,7 +52,7 @@ export function TestCompare(props: TestCompareProps) {
   const { title, components } = props;
   return (
     <>
-      <h3>{title}</h3>
+      <h3 className="compare-title">{title}</h3>
       <div className="test-compare">
         {components.map((component) => (
           <div className="compare-component" key={component.title}>
@@ -68,13 +68,13 @@ export function TestCompare(props: TestCompareProps) {
             >
               <Link href={`${component.docLink}`}>Documentation</Link>
             </Button>
+            <div className="test-zone">{component.zone}</div>
             {component.note ? (
               <p>
                 <strong>Note: </strong>
                 {component.note}
               </p>
             ) : null}
-            <div className="test-zone">{component.zone}</div>
           </div>
         ))}
       </div>

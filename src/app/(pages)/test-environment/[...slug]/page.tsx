@@ -29,6 +29,7 @@ import {
   ComparisonC,
   ComparisonD,
   ComparisonHI,
+  ComparisonInputs,
   ComparisonLMN,
   ComparisonPRS,
   ComparisonT,
@@ -121,6 +122,10 @@ export default function Slugs({
       slugpage = <MUIUtils />;
       prevPage = "Surfaces";
       nextPage = null;
+      break; case "comparison-inputs":
+      slugpage = <ComparisonInputs />;
+      prevPage = null;
+      nextPage = "A";
       break;
     case "comparison-a":
       slugpage = <ComparisonA />;

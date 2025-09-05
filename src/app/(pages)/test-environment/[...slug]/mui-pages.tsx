@@ -28,9 +28,16 @@ import FormatItalicIcon from "@mui/icons-material/FormatItalic";
 import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
 import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisV, faInfo } from "@fortawesome/free-solid-svg-icons";
+
+import FontAwesomeSvgIcon from "@/components/fa-mui-icon";
 
 export function MUIDataDisplay() {
   const currentTheme = useTheme();
+  const handleDelete = () => {
+    console.info("You clicked the delete icon.");
+  };
   return (
     <div className="page-body testing">
       <TestBlock
@@ -77,6 +84,95 @@ export function MUIDataDisplay() {
         }
         note="If images aren't known, the initials come from the alt image. Alternatively, you can just call them without
      images and define the letters inside the avatar component. You can also put icons inside the avatars by this method."
+      />
+      <TestBlock
+        title="Badge"
+        docLink="https://mui.com/material-ui/react-badge/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Badge badgeContent={4} color="primary">
+              <MailIcon color="action" />
+            </mui.Badge>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Badge"
+        docLink="https://mui.com/material-ui/react-chip/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Chip label="Chip Filled" />
+            <mui.Chip label="Chip Outlined" variant="outlined" />
+            <mui.Chip label="Deletable" onDelete={handleDelete} />
+            <mui.Chip
+              label="Deletable"
+              variant="outlined"
+              onDelete={handleDelete}
+            />
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Divider (Separator)"
+        docLink="https://mui.com/material-ui/react-divider/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.List className="w-full" aria-label="mailbox folders">
+              <mui.ListItem>
+                <mui.ListItemText primary="Inbox" />
+              </mui.ListItem>
+              <mui.Divider component="li">
+                <mui.Chip label="inline chip" size="small"></mui.Chip>
+              </mui.Divider>
+              <mui.ListItem>
+                <mui.ListItemText primary="Drafts" />
+              </mui.ListItem>
+              <mui.Divider component="li" />
+              <mui.ListItem>
+                <mui.ListItemText primary="Trash" />
+              </mui.ListItem>
+              <mui.Divider component="li" />
+              <mui.ListItem>
+                <mui.ListItemText primary="Spam" />
+              </mui.ListItem>
+            </mui.List>
+            <div className="h-[50px] flex">
+              <FormatBoldIcon />
+              <mui.Divider orientation="vertical" variant="middle" flexItem />
+              <FormatItalicIcon />
+            </div>
+          </mui.ThemeProvider>
+        }
+        note="This is the same thing as ShadCN's separator component. Inlcudes horizontal and vertical orientations"
+      />
+      <TestBlock
+        title="Icons"
+        docLink="https://mui.com/material-ui/icons/"
+        zone={
+          <div className="flex gap-[20px] flex-wrap">
+            <mui.ThemeProvider theme={currentTheme}>
+              <div className="flex flex-col">
+                <p>Material UI</p> <FavoriteIcon></FavoriteIcon>
+              </div>
+              <mui.Divider sx={{ borderColor: "primary.main" }} />
+              <div className="flex flex-col justify-center">
+                <p>Font Awesome with SVG Component</p>
+                <mui.Stack direction="row" spacing={2}>
+                  <mui.IconButton aria-label="Example">
+                    <FontAwesomeSvgIcon icon={faEllipsisV} />
+                  </mui.IconButton>
+                  <mui.Button
+                    variant="contained"
+                    startIcon={<FontAwesomeSvgIcon icon={faInfo} />}
+                  >
+                    Example
+                  </mui.Button>
+                </mui.Stack>
+              </div>
+            </mui.ThemeProvider>
+          </div>
+        }
+        note="Icons are in the library '@mui/icons-material'. The svgicon component lets you use non-mui components inside mui components."
       />
     </div>
   );

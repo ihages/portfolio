@@ -43,6 +43,7 @@ import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
+import CheckIcon from "@mui/icons-material/Check"
 
 // Shad UI Components
 import * as Accordion from "@/components/ui/accordion";
@@ -85,374 +86,31 @@ import { Toggle } from "@/components/ui/toggle";
 import * as ToggleGroup from "@/components/ui/toggle-group";
 import * as Tooltip from "@/components/ui/tooltip";
 
-export function ComparisonA() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Accordion"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/accordion",
-            zone: (
-              <Accordion.Accordion type="single" collapsible className="w-full">
-                <Accordion.AccordionItem value="item-1">
-                  <Accordion.AccordionTrigger>Section 1</Accordion.AccordionTrigger>
-                  <Accordion.AccordionContent>Content 1</Accordion.AccordionContent>
-                </Accordion.AccordionItem>
-                <Accordion.AccordionItem value="item-2">
-                  <Accordion.AccordionTrigger>Section 2</Accordion.AccordionTrigger>
-                  <Accordion.AccordionContent>Content 2</Accordion.AccordionContent>
-                </Accordion.AccordionItem>
-              </Accordion.Accordion>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-accordion/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div>
-                  <mui.Accordion>
-                    <mui.AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                      <mui.Typography>Section 1</mui.Typography>
-                    </mui.AccordionSummary>
-                    <mui.AccordionDetails>Content 1</mui.AccordionDetails>
-                  </mui.Accordion>
-                  <mui.Accordion>
-                    <mui.AccordionSummary expandIcon={<ExpandMoreIcon />}>
-                      <mui.Typography>Section 2</mui.Typography>
-                    </mui.AccordionSummary>
-                    <mui.AccordionDetails>Content 2</mui.AccordionDetails>
-                  </mui.Accordion>
-                </div>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Alert"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/alert",
-            zone: (
-              <div className="flex flex-col gap-2">
-                <Alert.Alert>
-                  <CheckCircle2Icon className="h-4 w-4" />
-                  <Alert.AlertTitle>Success</Alert.AlertTitle>
-                  <Alert.AlertDescription>Your changes have been saved.</Alert.AlertDescription>
-                </Alert.Alert>
-                <Alert.Alert variant="destructive">
-                  <AlertCircleIcon className="h-4 w-4" />
-                  <Alert.AlertTitle>Error</Alert.AlertTitle>
-                  <Alert.AlertDescription>Something went wrong.</Alert.AlertDescription>
-                </Alert.Alert>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-alert/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex flex-col gap-2">
-                  <mui.Alert severity="success">Your changes have been saved.</mui.Alert>
-                  <mui.Alert severity="error">Something went wrong.</mui.Alert>
-                </div>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Alert Dialog"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/alert-dialog",
-            zone: (
-              <AlertDialog.AlertDialog>
-                <AlertDialog.AlertDialogTrigger asChild>
-                  <Button variant="outline">Show Alert</Button>
-                </AlertDialog.AlertDialogTrigger>
-                <AlertDialog.AlertDialogContent>
-                  <AlertDialog.AlertDialogHeader>
-                    <AlertDialog.AlertDialogTitle>Are you sure?</AlertDialog.AlertDialogTitle>
-                    <AlertDialog.AlertDialogDescription>
-                      This action cannot be undone.
-                    </AlertDialog.AlertDialogDescription>
-                  </AlertDialog.AlertDialogHeader>
-                  <AlertDialog.AlertDialogFooter>
-                    <AlertDialog.AlertDialogCancel>Cancel</AlertDialog.AlertDialogCancel>
-                    <AlertDialog.AlertDialogAction>Continue</AlertDialog.AlertDialogAction>
-                  </AlertDialog.AlertDialogFooter>
-                </AlertDialog.AlertDialogContent>
-              </AlertDialog.AlertDialog>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Avatar"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/avatar",
-            zone: (
-              <div className="flex gap-2">
-                <Avatar.Avatar>
-                  <Avatar.AvatarImage src="https://github.com/ihages.png" />
-                  <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
-                </Avatar.Avatar>
-                <Avatar.Avatar>
-                  <Avatar.AvatarFallback>AB</Avatar.AvatarFallback>
-                </Avatar.Avatar>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-avatar/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex gap-2">
-                  <mui.Avatar src="https://github.com/ihages.png" />
-                  <mui.Avatar>AB</mui.Avatar>
-                </div>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="App Bar"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-app-bar/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <mui.AppBar position="static" color="secondary">
-                  <mui.Toolbar>
-                    <AdbIcon sx={{ mr: 2 }} />
-                    <mui.Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                      LOGO
-                    </mui.Typography>
-                    <mui.Button color="inherit">Login</mui.Button>
-                  </mui.Toolbar>
-                </mui.AppBar>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonB() {
-  const [openBackdrop, setOpenBackdrop] = useState(false);
-
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Badge"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/badge",
-            zone: (
-              <div className="flex gap-2">
-                <Badge variant="default">Default</Badge>
-                <Badge variant="secondary">Secondary</Badge>
-                <Badge variant="destructive">Destructive</Badge>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Backdrop"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-backdrop/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <Button onClick={() => setOpenBackdrop(true)}>Show Backdrop</Button>
-                <mui.Backdrop
-                  sx={{ color: '#fff', zIndex: 9999 }}
-                  open={openBackdrop}
-                  onClick={() => setOpenBackdrop(false)}
-                >
-                  <CircularProgress color="inherit" />
-                </mui.Backdrop>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Bottom Navigation"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-bottom-navigation/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <mui.BottomNavigation showLabels>
-                  <mui.BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-                  <mui.BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-                  <mui.BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
-                </mui.BottomNavigation>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Box"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-box/",
-            zone: (
-              <mui.Box sx={{ p: 2, border: '1px dashed grey' }}>
-                This is a Box component
-              </mui.Box>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Breadcrumb"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/breadcrumb",
-            zone: (
-              <Breadcrumb.Breadcrumb>
-                <Breadcrumb.BreadcrumbList>
-                  <Breadcrumb.BreadcrumbItem>
-                    <Breadcrumb.BreadcrumbLink href="/">Home</Breadcrumb.BreadcrumbLink>
-                  </Breadcrumb.BreadcrumbItem>
-                  <Breadcrumb.BreadcrumbSeparator />
-                  <Breadcrumb.BreadcrumbItem>
-                    <Breadcrumb.BreadcrumbPage>Current</Breadcrumb.BreadcrumbPage>
-                  </Breadcrumb.BreadcrumbItem>
-                </Breadcrumb.BreadcrumbList>
-              </Breadcrumb.Breadcrumb>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Button"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/button",
-            zone: (
-              <div className="flex gap-2">
-                <Button variant="default">Default</Button>
-                <Button variant="outline">Outline</Button>
-                <Button variant="secondary">Secondary</Button>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-button/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex gap-2">
-                  <mui.Button variant="contained">Contained</mui.Button>
-                  <mui.Button variant="outlined">Outlined</mui.Button>
-                  <mui.Button variant="text">Text</mui.Button>
-                </div>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Button Group"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-button-group/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <mui.ButtonGroup variant="contained">
-                  <mui.Button>One</mui.Button>
-                  <mui.Button>Two</mui.Button>
-                  <mui.Button>Three</mui.Button>
-                </mui.ButtonGroup>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonC() {
+export function ComparisonInputs() {
   const [date, setDate] = useState<Date>();
   const [checked, setChecked] = useState([false, false]);
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const CheckboxLabel = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [volume, setVolume] = React.useState(30);
+  const [rating, setRating] = React.useState<number | null>(2);
+  const [age, setAge] = React.useState("");
+  const [toggleSelected, setToggleSelected] = React.useState<boolean>(false);
+
+  const [progress, setProgress] = useState(13);
+  const [formats, setFormats] = React.useState(["bold"]);
+
+  const handleVolume = (event: Event, newValue: number | number[]) => {
+    setVolume(newValue as number);
+  };
+
+  const handleFormat = (
+    event: React.MouseEvent<HTMLElement>,
+    newFormats: string[]
+  ) => {
+    setFormats(newFormats);
+  };
+  const handleAgeChange = (event: mui.SelectChangeEvent) => {
+    setAge(event.target.value as string);
+  };
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([event.target.checked, event.target.checked]);
@@ -465,505 +123,7 @@ export function ComparisonC() {
   const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked([checked[0], event.target.checked]);
   };
-
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Calendar"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/calendar",
-            zone: (
-              <Calendar
-                mode="single"
-                selected={date}
-                onSelect={setDate}
-                className="rounded-lg border"
-              />
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Card"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/card",
-            zone: (
-              <Card.Card className="w-[300px]">
-                <Card.CardHeader>
-                  <Card.CardTitle>Card Title</Card.CardTitle>
-                  <Card.CardDescription>Card description</Card.CardDescription>
-                </Card.CardHeader>
-                <Card.CardContent>
-                  <p>Card content goes here.</p>
-                </Card.CardContent>
-              </Card.Card>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Carousel"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/carousel",
-            zone: (
-              <Carousel.Carousel className="w-[200px]">
-                <Carousel.CarouselContent>
-                  {[1, 2, 3].map((num) => (
-                    <Carousel.CarouselItem key={num}>
-                      <Card.Card>
-                        <Card.CardContent className="flex aspect-square items-center justify-center p-6">
-                          <span className="text-2xl font-semibold">{num}</span>
-                        </Card.CardContent>
-                      </Card.Card>
-                    </Carousel.CarouselItem>
-                  ))}
-                </Carousel.CarouselContent>
-                <Carousel.CarouselPrevious />
-                <Carousel.CarouselNext />
-              </Carousel.Carousel>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Checkbox"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/checkbox",
-            zone: (
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="terms" />
-                  <Label htmlFor="terms">Accept terms and conditions</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox id="disabled" disabled />
-                  <Label htmlFor="disabled">Disabled</Label>
-                </div>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-checkbox/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex flex-col gap-2">
-                  <mui.Checkbox {...label} defaultChecked />
-                  <mui.Checkbox {...label} />
-                  <mui.Checkbox {...label} disabled />
-                  <mui.FormGroup>
-                    <mui.FormControlLabel
-                      control={<mui.Checkbox defaultChecked />}
-                      label="Label"
-                    />
-                    <mui.FormControlLabel
-                      required
-                      control={<mui.Checkbox />}
-                      label="Required"
-                    />
-                    <mui.FormControlLabel
-                      disabled
-                      control={<mui.Checkbox />}
-                      label="Disabled"
-                    />
-                  </mui.FormGroup>
-                  <div>
-                    <mui.FormControlLabel
-                      label="Parent"
-                      control={
-                        <mui.Checkbox
-                          checked={checked[0] && checked[1]}
-                          indeterminate={checked[0] !== checked[1]}
-                          onChange={handleChange1}
-                        />
-                      }
-                    />
-                    <mui.Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
-                      <mui.FormControlLabel
-                        label="Child 1"
-                        control={
-                          <mui.Checkbox
-                            checked={checked[0]}
-                            onChange={handleChange2}
-                          />
-                        }
-                      />
-                      <mui.FormControlLabel
-                        label="Child 2"
-                        control={
-                          <mui.Checkbox
-                            checked={checked[1]}
-                            onChange={handleChange3}
-                          />
-                        }
-                      />
-                    </mui.Box>
-                  </div>
-                  <mui.Checkbox
-                    {...label}
-                    icon={<FavoriteBorder />}
-                    checkedIcon={<Favorite />}
-                  />
-                  <mui.Checkbox
-                    {...label}
-                    icon={<BookmarkBorderIcon />}
-                    checkedIcon={<BookmarkIcon />}
-                  />
-                </div>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Collapsible"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/collapsible",
-            zone: (
-              <Collapsible.Collapsible>
-                <Collapsible.CollapsibleTrigger>
-                  Can I use this?
-                </Collapsible.CollapsibleTrigger>
-                <Collapsible.CollapsibleContent>
-                  Yes, free to use for personal and commercial projects.
-                </Collapsible.CollapsibleContent>
-              </Collapsible.Collapsible>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Context Menu"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/context-menu",
-            zone: (
-              <ContextMenu.ContextMenu>
-                <ContextMenu.ContextMenuTrigger>
-                  Right click here
-                </ContextMenu.ContextMenuTrigger>
-                <ContextMenu.ContextMenuContent>
-                  <ContextMenu.ContextMenuItem>Profile</ContextMenu.ContextMenuItem>
-                  <ContextMenu.ContextMenuItem>Settings</ContextMenu.ContextMenuItem>
-                </ContextMenu.ContextMenuContent>
-              </ContextMenu.ContextMenu>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonD() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Dialog"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/dialog",
-            zone: (
-              <Dialog.Dialog>
-                <Dialog.DialogTrigger asChild>
-                  <Button variant="outline">Open Dialog</Button>
-                </Dialog.DialogTrigger>
-                <Dialog.DialogContent>
-                  <Dialog.DialogHeader>
-                    <Dialog.DialogTitle>Dialog Title</Dialog.DialogTitle>
-                    <Dialog.DialogDescription>
-                      This is a dialog description.
-                    </Dialog.DialogDescription>
-                  </Dialog.DialogHeader>
-                </Dialog.DialogContent>
-              </Dialog.Dialog>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Drawer"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/drawer",
-            zone: (
-              <Drawer.Drawer>
-                <Drawer.DrawerTrigger asChild>
-                  <Button variant="outline">Open Drawer</Button>
-                </Drawer.DrawerTrigger>
-                <Drawer.DrawerContent>
-                  <Drawer.DrawerHeader>
-                    <Drawer.DrawerTitle>Drawer Title</Drawer.DrawerTitle>
-                  </Drawer.DrawerHeader>
-                </Drawer.DrawerContent>
-              </Drawer.Drawer>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Dropdown Menu"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/dropdown-menu",
-            zone: (
-              <DropdownMenu.DropdownMenu>
-                <DropdownMenu.DropdownMenuTrigger asChild>
-                  <Button variant="outline">Menu</Button>
-                </DropdownMenu.DropdownMenuTrigger>
-                <DropdownMenu.DropdownMenuContent>
-                  <DropdownMenu.DropdownMenuItem>Profile</DropdownMenu.DropdownMenuItem>
-                  <DropdownMenu.DropdownMenuItem>Settings</DropdownMenu.DropdownMenuItem>
-                </DropdownMenu.DropdownMenuContent>
-              </DropdownMenu.DropdownMenu>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonHI() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Hover Card"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/hover-card",
-            zone: (
-              <HoverCard.HoverCard>
-                <HoverCard.HoverCardTrigger>Hover me</HoverCard.HoverCardTrigger>
-                <HoverCard.HoverCardContent>
-                  This content appears on hover.
-                </HoverCard.HoverCardContent>
-              </HoverCard.HoverCard>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Input"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/input",
-            zone: <Input type="email" placeholder="Enter email" />,
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Input OTP"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/input-otp",
-            zone: (
-              <InputOTP.InputOTP maxLength={6}>
-                <InputOTP.InputOTPGroup>
-                  <InputOTP.InputOTPSlot index={0} />
-                  <InputOTP.InputOTPSlot index={1} />
-                  <InputOTP.InputOTPSlot index={2} />
-                </InputOTP.InputOTPGroup>
-                <InputOTP.InputOTPSeparator />
-                <InputOTP.InputOTPGroup>
-                  <InputOTP.InputOTPSlot index={3} />
-                  <InputOTP.InputOTPSlot index={4} />
-                  <InputOTP.InputOTPSlot index={5} />
-                </InputOTP.InputOTPGroup>
-              </InputOTP.InputOTP>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonLMN() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Label"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/label",
-            zone: (
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" />
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Menubar"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/menubar",
-            zone: (
-              <Menubar.Menubar>
-                <Menubar.MenubarMenu>
-                  <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
-                  <Menubar.MenubarContent>
-                    <Menubar.MenubarItem>New</Menubar.MenubarItem>
-                    <Menubar.MenubarItem>Open</Menubar.MenubarItem>
-                  </Menubar.MenubarContent>
-                </Menubar.MenubarMenu>
-              </Menubar.Menubar>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Navigation Menu"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
-            zone: (
-              <NavigationMenu.NavigationMenu>
-                <NavigationMenu.NavigationMenuList>
-                  <NavigationMenu.NavigationMenuItem>
-                    <NavigationMenu.NavigationMenuTrigger>
-                      Getting started
-                    </NavigationMenu.NavigationMenuTrigger>
-                    <NavigationMenu.NavigationMenuContent>
-                      <NavigationMenu.NavigationMenuLink>
-                        Introduction
-                      </NavigationMenu.NavigationMenuLink>
-                    </NavigationMenu.NavigationMenuContent>
-                  </NavigationMenu.NavigationMenuItem>
-                </NavigationMenu.NavigationMenuList>
-              </NavigationMenu.NavigationMenu>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonPRS() {
-  const [progress, setProgress] = useState(13);
-  const [volume, setVolume] = React.useState(30);
-  const [rating, setRating] = React.useState<number | null>(2);
-  const [age, setAge] = React.useState("");
-  const [formats, setFormats] = React.useState(["bold"]);
-
-  const handleVolume = (event: Event, newValue: number | number[]) => {
-    setVolume(newValue as number);
-  };
-
-  const handleChange = (event: mui.SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
-
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
-    setFormats(newFormats);
-  };
-
-  const label = { inputProps: { "aria-label": "Switch demo" } };
+  const switchLabel = { inputProps: { "aria-label": "Switch demo" } };
 
   function not(a: readonly number[], b: readonly number[]) {
     return a.filter((value) => !b.includes(value));
@@ -972,7 +132,7 @@ export function ComparisonPRS() {
   function intersection(a: readonly number[], b: readonly number[]) {
     return a.filter((value) => b.includes(value));
   }
-
+  const currentTheme = useTheme();
   function TransferList() {
     const [trChecked, setTrChecked] = React.useState<readonly number[]>([]);
     const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
@@ -1050,7 +210,7 @@ export function ComparisonPRS() {
     );
 
     return (
-      <mui.ThemeProvider theme={useTheme()}>
+      <mui.ThemeProvider theme={currentTheme}>
         <mui.Grid
           container
           spacing={2}
@@ -1110,85 +270,265 @@ export function ComparisonPRS() {
       </mui.ThemeProvider>
     );
   }
-
-  useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="page-body testing">
       <TestCompare
-        title="Pagination"
+        title="Action Button"
         components={[
           {
             title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/pagination",
+            docLink: "",
             zone: (
-              <Pagination.Pagination>
-                <Pagination.PaginationContent>
-                  <Pagination.PaginationItem>
-                    <Pagination.PaginationPrevious href="#" />
-                  </Pagination.PaginationItem>
-                  <Pagination.PaginationItem>
-                    <Pagination.PaginationLink href="#">1</Pagination.PaginationLink>
-                  </Pagination.PaginationItem>
-                  <Pagination.PaginationItem>
-                    <Pagination.PaginationNext href="#" />
-                  </Pagination.PaginationItem>
-                </Pagination.PaginationContent>
-              </Pagination.Pagination>
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink:
+              "https://mui.com/material-ui/react-floating-action-button/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-[5px]">
+                  <mui.Fab color="primary" aria-label="add">
+                    <AddIcon />
+                  </mui.Fab>
+                  <mui.Fab color="secondary" aria-label="edit">
+                    <EditIcon />
+                  </mui.Fab>
+                  <mui.Fab variant="extended">
+                    <NavigationIcon sx={{ mr: 1 }} />
+                    Navigate
+                  </mui.Fab>
+                </div>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+      <TestCompare
+        title="Button"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/button",
+            zone: (
+              <div className="flex gap-[5px]">
+                <Button variant="default">Default</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="secondary">Secondary</Button>
+                <Button variant="destructive">Destructive</Button>
+                <Button variant="ghost">Ghost</Button>
+              </div>
+            ),
+            note: "Has five variants, all with customizable colors. No click animations, but there is still a hover color.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-button/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-[20px]">
+                  Primary
+                  <mui.Button variant="contained">Contained</mui.Button>
+                  <mui.Button variant="outlined">Outlined</mui.Button>
+                  <mui.Button variant="text">Text</mui.Button>
+                </div>
+                <div className="flex gap-[5px]">
+                  Seconday
+                  <mui.Button color="secondary" variant="contained">
+                    Contained
+                  </mui.Button>
+                  <mui.Button color="secondary" variant="outlined">
+                    Outlined
+                  </mui.Button>
+                  <mui.Button color="secondary" variant="text">
+                    Text
+                  </mui.Button>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Has three variants, with only one color for the entire button. This comes with a risk for accessability. Custom theme colors are also limited. Click animations are very nice.",
+          },
+        ]}
+      />
+      <TestCompare
+        title="Button Group"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-button-group/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.ButtonGroup variant="contained">
+                  <mui.Button>One</mui.Button>
+                  <mui.Button>Two</mui.Button>
+                  <mui.Button>Three</mui.Button>
+                </mui.ButtonGroup>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+      <TestCompare
+        title="Calendar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/calendar",
+            zone: (
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                className="rounded-lg border"
+              />
             ),
           },
           {
             title: "MUI",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Available with MUIX.",
+          },
+        ]}
+      />
+      <TestCompare
+        title="Checkbox"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/checkbox",
+            zone: (
+              <div className="flex flex-col gap-[5px]">
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="terms" />
+                  <Label htmlFor="terms">Accept terms and conditions</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Checkbox id="disabled" disabled />
+                  <Label htmlFor="disabled">Disabled</Label>
+                </div>
+              </div>
+            ),
+            note: "Lower thickness of checkbox border may make it harder to see. This can be changed, but the thin line is standard.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-checkbox/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-wrap gap-[5px]">
+                  <mui.Checkbox {...CheckboxLabel} defaultChecked />
+                  <mui.Checkbox {...CheckboxLabel} />
+                  <mui.Checkbox {...CheckboxLabel} disabled />
+                  <mui.FormGroup>
+                    <mui.FormControlLabel
+                      control={<mui.Checkbox defaultChecked />}
+                      label="Label"
+                    />
+                    <mui.FormControlLabel
+                      required
+                      control={<mui.Checkbox />}
+                      label="Required"
+                    />
+                    <mui.FormControlLabel
+                      disabled
+                      control={<mui.Checkbox />}
+                      label="Disabled"
+                    />
+                  </mui.FormGroup>
+                  <div>
+                    <mui.FormControlLabel
+                      label="Parent"
+                      control={
+                        <mui.Checkbox
+                          checked={checked[0] && checked[1]}
+                          indeterminate={checked[0] !== checked[1]}
+                          onChange={handleChange1}
+                        />
+                      }
+                    />
+                    <mui.Box
+                      sx={{ display: "flex", flexDirection: "column", ml: 3 }}
+                    >
+                      <mui.FormControlLabel
+                        label="Child 1"
+                        control={
+                          <mui.Checkbox
+                            checked={checked[0]}
+                            onChange={handleChange2}
+                          />
+                        }
+                      />
+                      <mui.FormControlLabel
+                        label="Child 2"
+                        control={
+                          <mui.Checkbox
+                            checked={checked[1]}
+                            onChange={handleChange3}
+                          />
+                        }
+                      />
+                    </mui.Box>
+                  </div>
+                  <mui.Checkbox
+                    {...CheckboxLabel}
+                    icon={<FavoriteBorder />}
+                    checkedIcon={<Favorite />}
+                  />
+                  <mui.Checkbox
+                    {...CheckboxLabel}
+                    icon={<BookmarkBorderIcon />}
+                    checkedIcon={<BookmarkIcon />}
+                  />
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Has far more options and better visibility on checkboxes",
           },
         ]}
       />
 
       <TestCompare
-        title="Popover"
+        title="Input One Time Password"
         components={[
           {
             title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/popover",
+            docLink: "https://ui.shadcn.com/docs/components/input-otp",
             zone: (
-              <Popover.Popover>
-                <Popover.PopoverTrigger asChild>
-                  <Button variant="outline">Open popover</Button>
-                </Popover.PopoverTrigger>
-                <Popover.PopoverContent>
-                  Place content for the popover here.
-                </Popover.PopoverContent>
-              </Popover.Popover>
+              <InputOTP.InputOTP maxLength={6}>
+                <InputOTP.InputOTPGroup>
+                  <InputOTP.InputOTPSlot index={0} />
+                  <InputOTP.InputOTPSlot index={1} />
+                  <InputOTP.InputOTPSlot index={2} />
+                </InputOTP.InputOTPGroup>
+                <InputOTP.InputOTPSeparator />
+                <InputOTP.InputOTPGroup>
+                  <InputOTP.InputOTPSlot index={3} />
+                  <InputOTP.InputOTPSlot index={4} />
+                  <InputOTP.InputOTPSlot index={5} />
+                </InputOTP.InputOTPGroup>
+              </InputOTP.InputOTP>
             ),
           },
           {
             title: "MUI",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
           },
         ]}
       />
-
-      <TestCompare
-        title="Progress"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/progress",
-            zone: <Progress value={progress} className="w-[60%]" />,
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
       <TestCompare
         title="Radio Group"
         components={[
@@ -1206,23 +546,35 @@ export function ComparisonPRS() {
                   <Label htmlFor="r2">Option Two</Label>
                 </div>
               </RadioGroup.RadioGroup>
-            ),
+            ), note: "This is by far the least visually appealing of the two."
           },
           {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-radio-button/",
             zone: (
-              <mui.ThemeProvider theme={useTheme()}>
+              <mui.ThemeProvider theme={currentTheme}>
                 <mui.FormControl>
-                  <mui.FormLabel>Gender</mui.FormLabel>
-                  <mui.RadioGroup defaultValue="female" name="radio-buttons-group">
-                    <mui.FormControlLabel value="female" control={<mui.Radio />} label="Female" />
-                    <mui.FormControlLabel value="male" control={<mui.Radio />} label="Male" />
-                    <mui.FormControlLabel value="other" control={<mui.Radio />} label="Other" />
+                  <mui.FormLabel>Pick 1</mui.FormLabel>
+                  <mui.RadioGroup defaultValue="1" name="radio-buttons-group">
+                    <mui.FormControlLabel
+                      value="1"
+                      control={<mui.Radio />}
+                      label="1"
+                    />
+                    <mui.FormControlLabel
+                      value="2"
+                      control={<mui.Radio />}
+                      label="2"
+                    />
+                    <mui.FormControlLabel
+                      value="3"
+                      control={<mui.Radio />}
+                      label="3"
+                    />
                   </mui.RadioGroup>
                 </mui.FormControl>
               </mui.ThemeProvider>
-            ),
+            ),note: "This one is gorgous."
           },
         ]}
       />
@@ -1233,14 +585,16 @@ export function ComparisonPRS() {
           {
             title: "Shad",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
           },
           {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-rating/",
             zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex flex-col gap-2">
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-[5px]">
                   <mui.Rating
                     name="controlled"
                     value={rating}
@@ -1251,36 +605,6 @@ export function ComparisonPRS() {
                 </div>
               </mui.ThemeProvider>
             ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Resizable"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/resizable",
-            zone: (
-              <Resizable.ResizablePanelGroup direction="horizontal" className="max-w-md rounded-lg border">
-                <Resizable.ResizablePanel defaultSize={50}>
-                  <div className="flex h-[200px] items-center justify-center p-6">
-                    <span className="font-semibold">One</span>
-                  </div>
-                </Resizable.ResizablePanel>
-                <Resizable.ResizableHandle />
-                <Resizable.ResizablePanel defaultSize={50}>
-                  <div className="flex h-[200px] items-center justify-center p-6">
-                    <span className="font-semibold">Two</span>
-                  </div>
-                </Resizable.ResizablePanel>
-              </Resizable.ResizablePanelGroup>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
           },
         ]}
       />
@@ -1308,15 +632,17 @@ export function ComparisonPRS() {
             title: "MUI",
             docLink: "https://mui.com/material-ui/react-select/",
             zone: (
-              <mui.ThemeProvider theme={useTheme()}>
+              <mui.ThemeProvider theme={currentTheme}>
                 <mui.FormControl fullWidth>
-                  <mui.InputLabel id="demo-simple-select-label">Age</mui.InputLabel>
+                  <mui.InputLabel id="demo-simple-select-label">
+                    Age
+                  </mui.InputLabel>
                   <mui.Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
                     value={age}
                     label="Age"
-                    onChange={handleChange}
+                    onChange={handleAgeChange}
                   >
                     <mui.MenuItem value={10}>Ten</mui.MenuItem>
                     <mui.MenuItem value={20}>Twenty</mui.MenuItem>
@@ -1324,6 +650,1061 @@ export function ComparisonPRS() {
                   </mui.Select>
                 </mui.FormControl>
               </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Slider"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/slider",
+            zone: (
+              <Slider
+                defaultValue={[50]}
+                max={100}
+                step={1}
+                className="w-[60%]"
+              />
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-slider/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Box sx={{ width: 200 }}>
+                  <mui.Stack
+                    spacing={2}
+                    direction="row"
+                    sx={{ alignItems: "center" }}
+                  >
+                    <VolumeDown />
+                    <mui.Slider aria-label="Volume" defaultValue={30} />
+                    <VolumeUp />
+                  </mui.Stack>
+                </mui.Box>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Switch"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/switch",
+            zone: (
+              <div className="flex items-center space-x-2">
+                <Switch id="airplane-mode" />
+                <Label htmlFor="airplane-mode">Airplane Mode</Label>
+              </div>
+            ),
+            note: "No animations or built-in hover state.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-switch/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-[5px]">
+                  <mui.Switch {...switchLabel} defaultChecked />
+                  <mui.Switch {...switchLabel} />
+                  <mui.Switch {...switchLabel} disabled defaultChecked />
+                  <mui.Switch {...switchLabel} disabled />
+                </div>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+      <TestCompare
+        title="Text Field"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/input",
+            zone: (
+              <div className="flex flex-col gap-[5px]">
+                <Input placeholder="Enter text" />
+                <Textarea placeholder="Enter message" />
+              </div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-text-field/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-[5px]">
+                  <mui.TextField label="Outlined" variant="outlined" />
+                  <mui.TextField label="Filled" variant="filled" />
+                  <mui.TextField label="Standard" variant="standard" />
+                  <mui.TextField
+                    label="Multiline"
+                    multiline
+                    variant="outlined"
+                  />
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Interface user cannot resize text box. Multiline prop enables textarea autoresizing, though. ",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Toggle"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/toggle",
+            zone: <Toggle aria-label="Toggle italic">Toggle</Toggle>,note: "Simplistic animations are nice, could use more styling."
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-toggle-button/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.ToggleButton
+  value="check"
+  selected={toggleSelected}
+  onChange={() => setToggleSelected((prevSelected) => !prevSelected)}
+>
+  <CheckIcon />
+</mui.ToggleButton>
+              </mui.ThemeProvider>
+            ),note: "Animations can be very overwhelming, plus the hover state makes it harder to determine state."
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Toggle Group"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/toggle-group",
+            zone: (
+              <ToggleGroup.ToggleGroup type="multiple">
+                <ToggleGroup.ToggleGroupItem
+                  value="bold"
+                  aria-label="Toggle bold"
+                >
+                  <Bold className="h-4 w-4" />
+                </ToggleGroup.ToggleGroupItem>
+                <ToggleGroup.ToggleGroupItem
+                  value="italic"
+                  aria-label="Toggle italic"
+                >
+                  <Italic className="h-4 w-4" />
+                </ToggleGroup.ToggleGroupItem>
+                <ToggleGroup.ToggleGroupItem
+                  value="underline"
+                  aria-label="Toggle underline"
+                >
+                  <Underline className="h-4 w-4" />
+                </ToggleGroup.ToggleGroupItem>
+              </ToggleGroup.ToggleGroup>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-toggle-button/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.ToggleButtonGroup value={formats} onChange={handleFormat}>
+                  <mui.ToggleButton value="bold">
+                    <FormatBoldIcon />
+                  </mui.ToggleButton>
+                  <mui.ToggleButton value="italic">
+                    <FormatItalicIcon />
+                  </mui.ToggleButton>
+                  <mui.ToggleButton value="underlined">
+                    <FormatUnderlinedIcon />
+                  </mui.ToggleButton>
+                  <mui.ToggleButton value="color" disabled>
+                    <FormatColorFillIcon />
+                    <ArrowDropDownIcon />
+                  </mui.ToggleButton>
+                </mui.ToggleButtonGroup>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+      <TestCompare
+        title="Transfer List"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-transfer-list/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <TransferList />
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonA() {
+const currentTheme = useTheme();
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Accordion"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/accordion",
+            zone: (
+              <Accordion.Accordion type="single" collapsible className="w-full">
+                <Accordion.AccordionItem value="item-1">
+                  <Accordion.AccordionTrigger>
+                    Section 1
+                  </Accordion.AccordionTrigger>
+                  <Accordion.AccordionContent>
+                    Content 1
+                  </Accordion.AccordionContent>
+                </Accordion.AccordionItem>
+                <Accordion.AccordionItem value="item-2">
+                  <Accordion.AccordionTrigger>
+                    Section 2
+                  </Accordion.AccordionTrigger>
+                  <Accordion.AccordionContent>
+                    Content 2
+                  </Accordion.AccordionContent>
+                </Accordion.AccordionItem>
+              </Accordion.Accordion>
+            ),
+            note: "Styling needs to be corrected in its file. Benefits of downloading the component allows for more custom styling.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-accordion/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div>
+                  <mui.Accordion>
+                    <mui.AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      <mui.Typography>Section 1</mui.Typography>
+                    </mui.AccordionSummary>
+                    <mui.AccordionDetails>Content 1</mui.AccordionDetails>
+                  </mui.Accordion>
+                  <mui.Accordion>
+                    <mui.AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                      <mui.Typography>Section 2</mui.Typography>
+                    </mui.AccordionSummary>
+                    <mui.AccordionDetails>Content 2</mui.AccordionDetails>
+                  </mui.Accordion>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Nice animations, but odd gap between accordion folds that is intended. Also, the accordion component is actually each fold, leaving the component needing to be put inside a div.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Alert"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/alert",
+            zone: (
+              <div className="flex flex-col gap-[5px]">
+                <Alert.Alert>
+                  <CheckCircle2Icon className="h-4 w-4" />
+                  <Alert.AlertTitle>Success</Alert.AlertTitle>
+                  <Alert.AlertDescription>
+                    Your changes have been saved.
+                  </Alert.AlertDescription>
+                </Alert.Alert>
+                <Alert.Alert variant="destructive">
+                  <AlertCircleIcon className="h-4 w-4" />
+                  <Alert.AlertTitle>Error</Alert.AlertTitle>
+                  <Alert.AlertDescription>
+                    Something went wrong.
+                  </Alert.AlertDescription>
+                </Alert.Alert>
+              </div>
+            ),
+            note: "Uses primary color for success and destructive color for error.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-alert/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-[5px]">
+                  <mui.Alert severity="success">
+                    Your changes have been saved.
+                  </mui.Alert>
+                  <mui.Alert severity="error">Something went wrong.</mui.Alert>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Uses distinct and recognizable success/failure colors",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Alert Dialog"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/alert-dialog",
+            zone: (
+              <AlertDialog.AlertDialog>
+                <AlertDialog.AlertDialogTrigger asChild>
+                  <Button variant="outline">Show Alert</Button>
+                </AlertDialog.AlertDialogTrigger>
+                <AlertDialog.AlertDialogContent>
+                  <AlertDialog.AlertDialogHeader>
+                    <AlertDialog.AlertDialogTitle>
+                      Are you sure?
+                    </AlertDialog.AlertDialogTitle>
+                    <AlertDialog.AlertDialogDescription>
+                      This action cannot be undone.
+                    </AlertDialog.AlertDialogDescription>
+                  </AlertDialog.AlertDialogHeader>
+                  <AlertDialog.AlertDialogFooter>
+                    <AlertDialog.AlertDialogCancel>
+                      Cancel
+                    </AlertDialog.AlertDialogCancel>
+                    <AlertDialog.AlertDialogAction>
+                      Continue
+                    </AlertDialog.AlertDialogAction>
+                  </AlertDialog.AlertDialogFooter>
+                </AlertDialog.AlertDialogContent>
+              </AlertDialog.AlertDialog>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Avatar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/avatar",
+            zone: (
+              <div className="flex gap-[5px]">
+                <Avatar.Avatar className="size-[50px]">
+                  <Avatar.AvatarImage src="https://github.com/ihages.png" />
+                  <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
+                </Avatar.Avatar>
+                <Avatar.Avatar className="size-[50px]">
+                  <Avatar.AvatarFallback>AB</Avatar.AvatarFallback>
+                </Avatar.Avatar>
+              </div>
+            ),
+            note: "Size by default is 100%",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-avatar/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-[5px]">
+                  <mui.Avatar src="https://github.com/ihages.png" />
+                  <mui.Avatar>AB</mui.Avatar>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Size be default is 40px.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="App Bar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-app-bar/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.AppBar position="static" color="secondary">
+                  <mui.Toolbar>
+                    <AdbIcon sx={{ mr: 2 }} />
+                    <mui.Typography
+                      variant="h6"
+                      component="div"
+                      sx={{ flexGrow: 1 }}
+                    >
+                      LOGO
+                    </mui.Typography>
+                    <mui.Button color="inherit">Login</mui.Button>
+                  </mui.Toolbar>
+                </mui.AppBar>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonB() {
+const currentTheme = useTheme();
+  const [openBackdrop, setOpenBackdrop] = useState(false);
+
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Badge"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/badge",
+            zone: (
+              <div className="flex gap-[5px]">
+                <Badge variant="default">Default</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+                <Badge variant="destructive">Destructive</Badge>
+              </div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Backdrop"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-backdrop/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <Button onClick={() => setOpenBackdrop(true)}>
+                  Show Backdrop
+                </Button>
+                <mui.Backdrop
+                  sx={{ color: "#fff", zIndex: 9999 }}
+                  open={openBackdrop}
+                  onClick={() => setOpenBackdrop(false)}
+                >
+                  <CircularProgress color="inherit" />
+                </mui.Backdrop>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Bottom Navigation"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-bottom-navigation/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.BottomNavigation showLabels>
+                  <mui.BottomNavigationAction
+                    label="Recents"
+                    icon={<RestoreIcon />}
+                  />
+                  <mui.BottomNavigationAction
+                    label="Favorites"
+                    icon={<FavoriteIcon />}
+                  />
+                  <mui.BottomNavigationAction
+                    label="Nearby"
+                    icon={<LocationOnIcon />}
+                  />
+                </mui.BottomNavigation>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Box"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-box/",
+            zone: (
+              <mui.Box sx={{ p: 2, border: "1px dashed grey" }}>
+                This is a Box component
+              </mui.Box>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Breadcrumb"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/breadcrumb",
+            zone: (
+              <Breadcrumb.Breadcrumb>
+                <Breadcrumb.BreadcrumbList>
+                  <Breadcrumb.BreadcrumbItem>
+                    <Breadcrumb.BreadcrumbLink href="/">
+                      Home
+                    </Breadcrumb.BreadcrumbLink>
+                  </Breadcrumb.BreadcrumbItem>
+                  <Breadcrumb.BreadcrumbSeparator />
+                  <Breadcrumb.BreadcrumbItem>
+                    <Breadcrumb.BreadcrumbPage>
+                      Current
+                    </Breadcrumb.BreadcrumbPage>
+                  </Breadcrumb.BreadcrumbItem>
+                </Breadcrumb.BreadcrumbList>
+              </Breadcrumb.Breadcrumb>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonC() {
+const currentTheme = useTheme();
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Card"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/card",
+            zone: (
+              <Card.Card className="w-[300px]">
+                <Card.CardHeader>
+                  <Card.CardTitle>Card Title</Card.CardTitle>
+                  <Card.CardDescription>Card description</Card.CardDescription>
+                </Card.CardHeader>
+                <Card.CardContent>
+                  <p>Card content goes here.</p>
+                </Card.CardContent>
+              </Card.Card>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Carousel"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/carousel",
+            zone: (
+              <Carousel.Carousel className="w-[200px]">
+                <Carousel.CarouselContent>
+                  {[1, 2, 3].map((num) => (
+                    <Carousel.CarouselItem key={num}>
+                      <Card.Card>
+                        <Card.CardContent className="flex aspect-square items-center justify-center p-6">
+                          <span className="text-2xl font-semibold">{num}</span>
+                        </Card.CardContent>
+                      </Card.Card>
+                    </Carousel.CarouselItem>
+                  ))}
+                </Carousel.CarouselContent>
+                <Carousel.CarouselPrevious />
+                <Carousel.CarouselNext />
+              </Carousel.Carousel>
+            ),
+            note: "Has variant that loops",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Collapsible"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/collapsible",
+            zone: (
+              <Collapsible.Collapsible>
+                <Collapsible.CollapsibleTrigger>
+                  Click here
+                </Collapsible.CollapsibleTrigger>
+                <Collapsible.CollapsibleContent>
+                  Yes, free to use for personal and commercial projects.
+                </Collapsible.CollapsibleContent>
+              </Collapsible.Collapsible>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Context Menu"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/context-menu",
+            zone: (
+              <ContextMenu.ContextMenu>
+                <ContextMenu.ContextMenuTrigger>
+                  Right click here
+                </ContextMenu.ContextMenuTrigger>
+                <ContextMenu.ContextMenuContent>
+                  <ContextMenu.ContextMenuItem>
+                    Profile
+                  </ContextMenu.ContextMenuItem>
+                  <ContextMenu.ContextMenuItem>
+                    Settings
+                  </ContextMenu.ContextMenuItem>
+                </ContextMenu.ContextMenuContent>
+              </ContextMenu.ContextMenu>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonD() {
+const currentTheme = useTheme();
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Dialog"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/dialog",
+            zone: (
+              <Dialog.Dialog>
+                <Dialog.DialogTrigger asChild>
+                  <Button variant="outline">Open Dialog</Button>
+                </Dialog.DialogTrigger>
+                <Dialog.DialogContent>
+                  <Dialog.DialogHeader>
+                    <Dialog.DialogTitle>Dialog Title</Dialog.DialogTitle>
+                    <Dialog.DialogDescription>
+                      This is a dialog description.
+                    </Dialog.DialogDescription>
+                  </Dialog.DialogHeader>
+                </Dialog.DialogContent>
+              </Dialog.Dialog>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Drawer"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/drawer",
+            zone: (
+              <Drawer.Drawer>
+                <Drawer.DrawerTrigger asChild>
+                  <Button variant="outline">Open Drawer</Button>
+                </Drawer.DrawerTrigger>
+                <Drawer.DrawerContent>
+                  <Drawer.DrawerHeader>
+                    <Drawer.DrawerTitle>Drawer Title</Drawer.DrawerTitle>
+                  </Drawer.DrawerHeader>
+                </Drawer.DrawerContent>
+              </Drawer.Drawer>
+            ),
+            note: "Does not work",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Dropdown Menu"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/dropdown-menu",
+            zone: (
+              <DropdownMenu.DropdownMenu>
+                <DropdownMenu.DropdownMenuTrigger asChild>
+                  <Button variant="outline">Menu</Button>
+                </DropdownMenu.DropdownMenuTrigger>
+                <DropdownMenu.DropdownMenuContent>
+                  <DropdownMenu.DropdownMenuItem>
+                    Profile
+                  </DropdownMenu.DropdownMenuItem>
+                  <DropdownMenu.DropdownMenuItem>
+                    Settings
+                  </DropdownMenu.DropdownMenuItem>
+                </DropdownMenu.DropdownMenuContent>
+              </DropdownMenu.DropdownMenu>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonHI() {
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Hover Card"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/hover-card",
+            zone: (
+              <HoverCard.HoverCard>
+                <HoverCard.HoverCardTrigger>
+                  Hover me
+                </HoverCard.HoverCardTrigger>
+                <HoverCard.HoverCardContent>
+                  This content appears on hover.
+                </HoverCard.HoverCardContent>
+              </HoverCard.HoverCard>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonLMN() {
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Label"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/label",
+            zone: (
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input id="email" type="email" />
+              </div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Menubar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/menubar",
+            zone: (
+              <Menubar.Menubar>
+                <Menubar.MenubarMenu>
+                  <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
+                  <Menubar.MenubarContent>
+                    <Menubar.MenubarItem>New</Menubar.MenubarItem>
+                    <Menubar.MenubarItem>Open</Menubar.MenubarItem>
+                  </Menubar.MenubarContent>
+                </Menubar.MenubarMenu>
+              </Menubar.Menubar>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Navigation Menu"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
+            zone: (
+              <NavigationMenu.NavigationMenu>
+                <NavigationMenu.NavigationMenuList>
+                  <NavigationMenu.NavigationMenuItem>
+                    <NavigationMenu.NavigationMenuTrigger>
+                      Getting started
+                    </NavigationMenu.NavigationMenuTrigger>
+                    <NavigationMenu.NavigationMenuContent>
+                      <NavigationMenu.NavigationMenuLink>
+                        Introduction
+                      </NavigationMenu.NavigationMenuLink>
+                    </NavigationMenu.NavigationMenuContent>
+                  </NavigationMenu.NavigationMenuItem>
+                </NavigationMenu.NavigationMenuList>
+              </NavigationMenu.NavigationMenu>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonPRS() {
+  const [progress, setProgress] = useState(13);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setProgress(66), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Pagination"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/pagination",
+            zone: (
+              <Pagination.Pagination>
+                <Pagination.PaginationContent>
+                  <Pagination.PaginationItem>
+                    <Pagination.PaginationPrevious href="#" />
+                  </Pagination.PaginationItem>
+                  <Pagination.PaginationItem>
+                    <Pagination.PaginationLink href="#">
+                      1
+                    </Pagination.PaginationLink>
+                  </Pagination.PaginationItem>
+                  <Pagination.PaginationItem>
+                    <Pagination.PaginationNext href="#" />
+                  </Pagination.PaginationItem>
+                </Pagination.PaginationContent>
+              </Pagination.Pagination>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Popover"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/popover",
+            zone: (
+              <Popover.Popover>
+                <Popover.PopoverTrigger asChild>
+                  <Button variant="outline">Open popover</Button>
+                </Popover.PopoverTrigger>
+                <Popover.PopoverContent>
+                  Place content for the popover here.
+                </Popover.PopoverContent>
+              </Popover.Popover>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Progress"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/progress",
+            zone: <Progress value={progress} className="w-[60%]" />,
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Resizable"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/resizable",
+            zone: (
+              <Resizable.ResizablePanelGroup
+                direction="horizontal"
+                className="max-w-md rounded-lg border"
+              >
+                <Resizable.ResizablePanel defaultSize={50}>
+                  <div className="flex h-[200px] items-center justify-center p-6">
+                    <span className="font-semibold">One</span>
+                  </div>
+                </Resizable.ResizablePanel>
+                <Resizable.ResizableHandle />
+                <Resizable.ResizablePanel defaultSize={50}>
+                  <div className="flex h-[200px] items-center justify-center p-6">
+                    <span className="font-semibold">Two</span>
+                  </div>
+                </Resizable.ResizablePanel>
+              </Resizable.ResizablePanelGroup>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
         ]}
@@ -1338,7 +1719,9 @@ export function ComparisonPRS() {
             zone: (
               <div>
                 <div className="space-y-1">
-                  <h4 className="text-sm font-medium leading-none">Radix Primitives</h4>
+                  <h4 className="text-sm font-medium leading-none">
+                    Radix Primitives
+                  </h4>
                   <p className="text-sm text-muted-foreground">
                     An open-source UI component library.
                   </p>
@@ -1357,7 +1740,9 @@ export function ComparisonPRS() {
           {
             title: "MUI",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
           },
         ]}
       />
@@ -1387,7 +1772,9 @@ export function ComparisonPRS() {
           {
             title: "MUI",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
           },
         ]}
       />
@@ -1411,62 +1798,8 @@ export function ComparisonPRS() {
           {
             title: "MUI",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Slider"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/slider",
-            zone: <Slider defaultValue={[50]} max={100} step={1} className="w-[60%]" />,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-slider/",
             zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <mui.Box sx={{ width: 200 }}>
-                  <mui.Stack spacing={2} direction="row" sx={{ alignItems: "center" }}>
-                    <VolumeDown />
-                    <mui.Slider aria-label="Volume" defaultValue={30} />
-                    <VolumeUp />
-                  </mui.Stack>
-                </mui.Box>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Switch"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/switch",
-            zone: (
-              <div className="flex items-center space-x-2">
-                <Switch id="airplane-mode" />
-                <Label htmlFor="airplane-mode">Airplane Mode</Label>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-switch/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex flex-col gap-2">
-                  <mui.Switch {...label} defaultChecked />
-                  <mui.Switch {...label} />
-                  <mui.Switch {...label} disabled defaultChecked />
-                  <mui.Switch {...label} disabled />
-                </div>
-              </mui.ThemeProvider>
+              <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
         ]}
@@ -1476,18 +1809,6 @@ export function ComparisonPRS() {
 }
 
 export function ComparisonT() {
-  const [input, setInput] = useState("");
-  const [age, setAge] = React.useState("");
-  const [formats, setFormats] = React.useState(["bold"]);
-
-  const handleChange = (event: mui.SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
-
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
-    setFormats(newFormats);
-  };
-
   return (
     <div className="page-body testing">
       <TestCompare
@@ -1514,119 +1835,8 @@ export function ComparisonT() {
           {
             title: "MUI",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Textarea"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/textarea",
             zone: (
-              <Textarea
-                placeholder="Type your message here."
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-              />
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Text Field"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/input",
-            zone: (
-              <div className="flex flex-col gap-2">
-                <Input placeholder="Enter text" />
-                <Textarea placeholder="Enter message" />
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-text-field/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex flex-col gap-2">
-                  <mui.TextField label="Outlined" variant="outlined" />
-                  <mui.TextField label="Filled" variant="filled" />
-                  <mui.TextField label="Standard" variant="standard" />
-                </div>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Toggle"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/toggle",
-            zone: <Toggle aria-label="Toggle italic">Toggle</Toggle>,
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Toggle Group"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/toggle-group",
-            zone: (
-              <ToggleGroup.ToggleGroup type="multiple">
-                <ToggleGroup.ToggleGroupItem value="bold" aria-label="Toggle bold">
-                  <Bold className="h-4 w-4" />
-                </ToggleGroup.ToggleGroupItem>
-                <ToggleGroup.ToggleGroupItem value="italic" aria-label="Toggle italic">
-                  <Italic className="h-4 w-4" />
-                </ToggleGroup.ToggleGroupItem>
-                <ToggleGroup.ToggleGroupItem value="underline" aria-label="Toggle underline">
-                  <Underline className="h-4 w-4" />
-                </ToggleGroup.ToggleGroupItem>
-              </ToggleGroup.ToggleGroup>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-toggle-button/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <mui.ToggleButtonGroup value={formats} onChange={handleFormat}>
-                  <mui.ToggleButton value="bold">
-                    <FormatBoldIcon />
-                  </mui.ToggleButton>
-                  <mui.ToggleButton value="italic">
-                    <FormatItalicIcon />
-                  </mui.ToggleButton>
-                  <mui.ToggleButton value="underlined">
-                    <FormatUnderlinedIcon />
-                  </mui.ToggleButton>
-                  <mui.ToggleButton value="color" disabled>
-                    <FormatColorFillIcon />
-                    <ArrowDropDownIcon />
-                  </mui.ToggleButton>
-                </mui.ToggleButtonGroup>
-              </mui.ThemeProvider>
+              <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
         ]}
@@ -1652,70 +1862,8 @@ export function ComparisonT() {
           {
             title: "MUI",
             docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Transfer List"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-transfer-list/",
             zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div>Transfer List component would go here</div>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonF() {
-  const [checked, setChecked] = React.useState(false);
-  const [formats, setFormats] = React.useState(["bold"]);
-
-  const handleFormat = (event: React.MouseEvent<HTMLElement>, newFormats: string[]) => {
-    setFormats(newFormats);
-  };
-
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Floating Action Button"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: <div className="text-muted-foreground">No direct equivalent</div>,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-floating-action-button/",
-            zone: (
-              <mui.ThemeProvider theme={useTheme()}>
-                <div className="flex gap-2">
-                  <mui.Fab color="primary" aria-label="add">
-                    <AddIcon />
-                  </mui.Fab>
-                  <mui.Fab color="secondary" aria-label="edit">
-                    <EditIcon />
-                  </mui.Fab>
-                  <mui.Fab variant="extended">
-                    <NavigationIcon sx={{ mr: 1 }} />
-                    Navigate
-                  </mui.Fab>
-                </div>
-              </mui.ThemeProvider>
+              <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
         ]}

@@ -3,6 +3,14 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap:20px;
+    padding-bottom:20px;
+    border-bottom: 1px solid white;
+}
+
+.compare-title{
+  margin-bottom:0;
+  text-decoration: double var(--color-accent) underline;
+  text-align: left;
 }
 
 .test-zone {
@@ -20,5 +28,5 @@
 }
 
 .compare-component{
-    width:calc((100% - 20px) / 2)
+    width:calc((100% - 20px) / 2);
 }

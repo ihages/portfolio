@@ -22,6 +22,9 @@ export default function TestEnvironment() {
         <h1>Testing Grounds</h1>
         <h2>ShadCN versus MUI</h2>
         <div className="flex gap-[20px]">
+           <Button asChild>
+            <Link href="/test-environment/comparison-inputs">Inputs</Link>
+          </Button>
           <Button asChild>
             <Link href="/test-environment/comparison-a">A</Link>
           </Button>
