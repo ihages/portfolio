@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import "./style.css";
 import "../style.css"; //ensure styles load with client rendering
@@ -18,14 +16,17 @@ import {
   ShadT,
 } from "./shad-pages";
 import PageNotFound from "@/components/pageNotFound";
+import { generateStaticParams as generateParams } from "./generateStaticParams";
 
-export default function Slugs({
+export { generateParams as generateStaticParams };
+
+export default async function Slugs({
   params,
 }: {
   params: Promise<{ slug?: string[] }>;
 }) {
   // slug will be an array or undefined
-  const { slug } = React.use(params);
+  const { slug } = await params;
   const slugValue = slug?.[0];
 
   let prevPage;

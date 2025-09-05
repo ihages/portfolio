@@ -1,4 +1,5 @@
 export async function generateStaticParams() {
-  const validSlugs = ["shad-a", "shad-b", "shad-c", "shad-d", "shad-h-m", "shad-date-parser"];
+  // No gallery pages implemented yet, return empty array to prevent build errors
+  const validSlugs: string[] = [];
   return validSlugs.map((slug) => ({ slug: [slug] }));
 }
