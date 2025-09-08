@@ -48,6 +48,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import DeleteIcon from "@mui/icons-material/Delete";
 import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
+import CloseIcon from "@mui/icons-material/Close"
 
 
 // Shad UI Components
@@ -91,6 +92,341 @@ import { Toggle } from "@/components/ui/toggle";
 import * as ToggleGroup from "@/components/ui/toggle-group";
 import * as Tooltip from "@/components/ui/tooltip";
 
+export function ComparisonDataDisplay() {
+  const currentTheme = useTheme();
+  const handleDelete = () => {
+    console.info("You clicked the delete icon.");
+  };
+
+  function createData(
+    name: string,
+    calories: number,
+    fat: number,
+    carbs: number,
+    protein: number
+  ) {
+    return { name, calories, fat, carbs, protein };
+  }
+
+  const rows = [
+    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
+    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
+    createData("Eclair", 262, 16.0, 24, 6.0),
+    createData("Cupcake", 305, 3.7, 67, 4.3),
+    createData("Gingerbread", 356, 16.0, 49, 3.9),
+  ];
+
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Avatar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/avatar",
+            zone: (
+              <div className="flex gap-[5px]">
+                <Avatar.Avatar className="size-[50px]">
+                  <Avatar.AvatarImage src="https://github.com/ihages.png" />
+                  <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
+                </Avatar.Avatar>
+                <Avatar.Avatar className="size-[50px]">
+                  <Avatar.AvatarFallback>AB</Avatar.AvatarFallback>
+                </Avatar.Avatar>
+              </div>
+            ),
+            note: "Size by default is 100%. Changing the username in the image src will return different icons.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-avatar/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-[5px] flex-col justify-center">
+                  <div className="flex gap-[5px]">
+                    <mui.Avatar
+                      alt="Isabelle Hageman"
+                      src="https://github.com/ihages.png"
+                    />
+                    <mui.Avatar alt="Travis Howard" src="" />
+                    <mui.Avatar>AB</mui.Avatar>
+                  </div>
+                  <div className="flex gap-[5px]">
+                    <mui.Avatar
+                      alt="Small"
+                      src="https://github.com/ihages.png"
+                      sx={{ width: 24, height: 24 }}
+                    />
+                    <mui.Avatar alt="Medium" src="https://github.com/ihages.png" />
+                    <mui.Avatar
+                      alt="Large"
+                      src="https://github.com/ihages.png"
+                      sx={{ width: 56, height: 56 }}
+                    />
+                  </div>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Size by default is 40px. If images aren't known, initials come from the alt text. Multiple size options available.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Badge"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/badge",
+            zone: (
+              <div className="flex gap-[5px]">
+                <Badge variant="default">Default</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+                <Badge variant="destructive">Destructive</Badge>
+                <Badge variant="outline">Outline</Badge>
+              </div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-badge/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-[5px] items-center">
+                  <mui.Badge badgeContent={4} color="primary">
+                    <MailIcon color="action" />
+                  </mui.Badge>
+                  <mui.Badge badgeContent={99} color="secondary">
+                    <MailIcon color="action" />
+                  </mui.Badge>
+                  <mui.Badge variant="dot" color="primary">
+                    <MailIcon color="action" />
+                  </mui.Badge>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "MUI badges are notification badges that overlay content, different from Shad's text badges.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Chip"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-chip/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-[5px] flex-wrap">
+                  <mui.Chip label="Chip Filled" />
+                  <mui.Chip label="Chip Outlined" variant="outlined" />
+                  <mui.Chip label="Deletable" onDelete={handleDelete} />
+                  <mui.Chip
+                    label="Deletable Outlined"
+                    variant="outlined"
+                    onDelete={handleDelete}
+                  />
+                </div>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Divider (Separator)"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/separator",
+            zone: (
+              <div>
+                <div className="space-y-1">
+                  <h4 className="text-sm font-medium leading-none">
+                    Radix Primitives
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    An open-source UI component library.
+                  </p>
+                </div>
+                <Separator className="my-4" />
+                <div className="flex h-5 items-center space-x-4 text-sm">
+                  <div>Blog</div>
+                  <Separator orientation="vertical" />
+                  <div>Docs</div>
+                  <Separator orientation="vertical" />
+                  <div>Source</div>
+                </div>
+              </div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-divider/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-[10px]">
+                  <mui.List className="w-full" aria-label="mailbox folders">
+                    <mui.ListItem>
+                      <mui.ListItemText primary="Inbox" />
+                    </mui.ListItem>
+                    <mui.Divider component="li">
+                      <mui.Chip label="inline chip" size="small" />
+                    </mui.Divider>
+                    <mui.ListItem>
+                      <mui.ListItemText primary="Drafts" />
+                    </mui.ListItem>
+                    <mui.Divider component="li" />
+                    <mui.ListItem>
+                      <mui.ListItemText primary="Trash" />
+                    </mui.ListItem>
+                  </mui.List>
+                  <div className="h-[50px] flex">
+                    <FormatBoldIcon />
+                    <mui.Divider orientation="vertical" variant="middle" flexItem />
+                    <FormatItalicIcon />
+                  </div>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Same as ShadCN's separator component. Includes horizontal and vertical orientations with chip integration.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="List"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-list/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.List>
+                  <mui.ListItem disablePadding>
+                    <mui.ListItemButton>
+                      <mui.ListItemIcon>
+                        <InboxIcon />
+                      </mui.ListItemIcon>
+                      <mui.ListItemText primary="Inbox" />
+                    </mui.ListItemButton>
+                  </mui.ListItem>
+                  <mui.ListItem disablePadding>
+                    <mui.ListItemButton>
+                      <mui.ListItemIcon>
+                        <DraftsIcon />
+                      </mui.ListItemIcon>
+                      <mui.ListItemText primary="Drafts" />
+                    </mui.ListItemButton>
+                  </mui.ListItem>
+                </mui.List>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Table"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent - use Tanstack Table</div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-table/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.TableContainer component={mui.Paper}>
+                  <mui.Table sx={{ minWidth: 650 }} aria-label="simple table">
+                    <mui.TableHead>
+                      <mui.TableRow>
+                        <mui.TableCell>Dessert (100g serving)</mui.TableCell>
+                        <mui.TableCell align="right">Calories</mui.TableCell>
+                        <mui.TableCell align="right">Fat&nbsp;(g)</mui.TableCell>
+                        <mui.TableCell align="right">Carbs&nbsp;(g)</mui.TableCell>
+                        <mui.TableCell align="right">Protein&nbsp;(g)</mui.TableCell>
+                      </mui.TableRow>
+                    </mui.TableHead>
+                    <mui.TableBody>
+                      {rows.map((row) => (
+                        <mui.TableRow
+                          key={row.name}
+                          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                        >
+                          <mui.TableCell component="th" scope="row">
+                            {row.name}
+                          </mui.TableCell>
+                          <mui.TableCell align="right">{row.calories}</mui.TableCell>
+                          <mui.TableCell align="right">{row.fat}</mui.TableCell>
+                          <mui.TableCell align="right">{row.carbs}</mui.TableCell>
+                          <mui.TableCell align="right">{row.protein}</mui.TableCell>
+                        </mui.TableRow>
+                      ))}
+                    </mui.TableBody>
+                  </mui.Table>
+                </mui.TableContainer>
+              </mui.ThemeProvider>
+            ),
+            note: "Not a Tanstack table. Very nice looking. Sorting requires custom logic. Has sticky header and pagination options.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Tooltip"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/tooltip",
+            zone: (
+              <Tooltip.Tooltip>
+                <Tooltip.TooltipTrigger asChild>
+                  <Button variant="outline">Hover</Button>
+                </Tooltip.TooltipTrigger>
+                <Tooltip.TooltipContent>
+                  <p>Add to library</p>
+                </Tooltip.TooltipContent>
+              </Tooltip.Tooltip>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-tooltip/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Tooltip title="Delete">
+                  <mui.IconButton>
+                    <DeleteIcon />
+                  </mui.IconButton>
+                </mui.Tooltip>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+    </div>
+  );
+}
 export function ComparisonInputs() {
   const [date, setDate] = useState<Date>();
   const [checked, setChecked] = useState([false, false]);
@@ -866,128 +1202,118 @@ export function ComparisonInputs() {
     </div>
   );
 }
+export function ComparisonFeedback(){
+  const currentTheme = useTheme();  const [openBackdrop, setOpenBackdrop] = useState(false);
+  const [progress, setProgress] = useState(13);
 
-
-export function ComparisonDataDisplay() {
-  const currentTheme = useTheme();
-  const handleDelete = () => {
-    console.info("You clicked the delete icon.");
-  };
-
-  function createData(
-    name: string,
-    calories: number,
-    fat: number,
-    carbs: number,
-    protein: number
-  ) {
-    return { name, calories, fat, carbs, protein };
-  }
-
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
-
-  return (
+  useEffect(() => {
+    const timer = setTimeout(() => setProgress(66), 500);
+    return () => clearTimeout(timer);
+  }, []);const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  
+    const handleSnackClick = () => {
+      setOpenSnackbar(true);
+    };
+  
+    const handleSnackClose = (
+      event: React.SyntheticEvent | Event,
+      reason?: mui.SnackbarCloseReason
+    ) => {
+      if (reason === "clickaway") {
+        return;
+      }
+  
+      setOpenSnackbar(false);
+    };
+  
+  return(
     <div className="page-body testing">
-      <TestCompare
-        title="Avatar"
+ <TestCompare
+        title="Alert"
         components={[
           {
             title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/avatar",
+            docLink: "https://ui.shadcn.com/docs/components/alert",
             zone: (
-              <div className="flex gap-[5px]">
-                <Avatar.Avatar className="size-[50px]">
-                  <Avatar.AvatarImage src="https://github.com/ihages.png" />
-                  <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
-                </Avatar.Avatar>
-                <Avatar.Avatar className="size-[50px]">
-                  <Avatar.AvatarFallback>AB</Avatar.AvatarFallback>
-                </Avatar.Avatar>
+              <div className="flex flex-col gap-[5px]">
+                <Alert.Alert>
+                  <CheckCircle2Icon className="h-4 w-4" />
+                  <Alert.AlertTitle>Success</Alert.AlertTitle>
+                  <Alert.AlertDescription>
+                    Your changes have been saved.
+                  </Alert.AlertDescription>
+                </Alert.Alert>
+                <Alert.Alert variant="destructive">
+                  <AlertCircleIcon className="h-4 w-4" />
+                  <Alert.AlertTitle>Error</Alert.AlertTitle>
+                  <Alert.AlertDescription>
+                    Something went wrong.
+                  </Alert.AlertDescription>
+                </Alert.Alert>
               </div>
             ),
-            note: "Size by default is 100%. Changing the username in the image src will return different icons.",
+            note: "Uses primary color for success and destructive color for error.",
           },
           {
             title: "MUI",
-            docLink: "https://mui.com/material-ui/react-avatar/",
+            docLink: "https://mui.com/material-ui/react-alert/",
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex gap-[5px] flex-col justify-center">
-                  <div className="flex gap-[5px]">
-                    <mui.Avatar
-                      alt="Isabelle Hageman"
-                      src="https://github.com/ihages.png"
-                    />
-                    <mui.Avatar alt="Travis Howard" src="" />
-                    <mui.Avatar>AB</mui.Avatar>
-                  </div>
-                  <div className="flex gap-[5px]">
-                    <mui.Avatar
-                      alt="Small"
-                      src="https://github.com/ihages.png"
-                      sx={{ width: 24, height: 24 }}
-                    />
-                    <mui.Avatar alt="Medium" src="https://github.com/ihages.png" />
-                    <mui.Avatar
-                      alt="Large"
-                      src="https://github.com/ihages.png"
-                      sx={{ width: 56, height: 56 }}
-                    />
-                  </div>
+                <div className="flex flex-col gap-[5px]">
+                  <mui.Alert severity="success">
+                    Your changes have been saved.
+                  </mui.Alert>
+                  <mui.Alert severity="error">Something went wrong.</mui.Alert>
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Size by default is 40px. If images aren't known, initials come from the alt text. Multiple size options available.",
+            note: "Uses distinct and recognizable success/failure colors",
           },
         ]}
       />
-
-      <TestCompare
-        title="Badge"
+ <TestCompare
+        title="Alert Dialog"
         components={[
           {
             title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/badge",
+            docLink: "https://ui.shadcn.com/docs/components/alert-dialog",
             zone: (
-              <div className="flex gap-[5px]">
-                <Badge variant="default">Default</Badge>
-                <Badge variant="secondary">Secondary</Badge>
-                <Badge variant="destructive">Destructive</Badge>
-                <Badge variant="outline">Outline</Badge>
-              </div>
+              <AlertDialog.AlertDialog>
+                <AlertDialog.AlertDialogTrigger asChild>
+                  <Button variant="outline">Show Alert</Button>
+                </AlertDialog.AlertDialogTrigger>
+                <AlertDialog.AlertDialogContent>
+                  <AlertDialog.AlertDialogHeader>
+                    <AlertDialog.AlertDialogTitle>
+                      Are you sure?
+                    </AlertDialog.AlertDialogTitle>
+                    <AlertDialog.AlertDialogDescription>
+                      This action cannot be undone.
+                    </AlertDialog.AlertDialogDescription>
+                  </AlertDialog.AlertDialogHeader>
+                  <AlertDialog.AlertDialogFooter>
+                    <AlertDialog.AlertDialogCancel>
+                      Cancel
+                    </AlertDialog.AlertDialogCancel>
+                    <AlertDialog.AlertDialogAction>
+                      Continue
+                    </AlertDialog.AlertDialogAction>
+                  </AlertDialog.AlertDialogFooter>
+                </AlertDialog.AlertDialogContent>
+              </AlertDialog.AlertDialog>
             ),
           },
           {
             title: "MUI",
-            docLink: "https://mui.com/material-ui/react-badge/",
+            docLink: "",
             zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex gap-[5px] items-center">
-                  <mui.Badge badgeContent={4} color="primary">
-                    <MailIcon color="action" />
-                  </mui.Badge>
-                  <mui.Badge badgeContent={99} color="secondary">
-                    <MailIcon color="action" />
-                  </mui.Badge>
-                  <mui.Badge variant="dot" color="primary">
-                    <MailIcon color="action" />
-                  </mui.Badge>
-                </div>
-              </mui.ThemeProvider>
+              <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "MUI badges are notification badges that overlay content, different from Shad's text badges.",
           },
         ]}
       />
-
       <TestCompare
-        title="Chip"
+        title="Backdrop"
         components={[
           {
             title: "Shad",
@@ -998,211 +1324,147 @@ export function ComparisonDataDisplay() {
           },
           {
             title: "MUI",
-            docLink: "https://mui.com/material-ui/react-chip/",
+            docLink: "https://mui.com/material-ui/react-backdrop/",
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex gap-[5px] flex-wrap">
-                  <mui.Chip label="Chip Filled" />
-                  <mui.Chip label="Chip Outlined" variant="outlined" />
-                  <mui.Chip label="Deletable" onDelete={handleDelete} />
-                  <mui.Chip
-                    label="Deletable Outlined"
-                    variant="outlined"
-                    onDelete={handleDelete}
-                  />
-                </div>
+                <Button onClick={() => setOpenBackdrop(true)}>
+                  Show Backdrop
+                </Button>
+                <mui.Backdrop
+                  sx={{ color: "#fff", zIndex: 9999 }}
+                  open={openBackdrop}
+                  onClick={() => setOpenBackdrop(false)}
+                >
+                  <CircularProgress color="inherit" />
+                </mui.Backdrop>
               </mui.ThemeProvider>
             ),
           },
         ]}
-      />
-
-      <TestCompare
-        title="Divider (Separator)"
+      />   <TestCompare
+        title="Dialog"
         components={[
           {
             title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/separator",
+            docLink: "https://ui.shadcn.com/docs/components/dialog",
             zone: (
-              <div>
-                <div className="space-y-1">
-                  <h4 className="text-sm font-medium leading-none">
-                    Radix Primitives
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    An open-source UI component library.
-                  </p>
-                </div>
-                <Separator className="my-4" />
-                <div className="flex h-5 items-center space-x-4 text-sm">
-                  <div>Blog</div>
-                  <Separator orientation="vertical" />
-                  <div>Docs</div>
-                  <Separator orientation="vertical" />
-                  <div>Source</div>
+              <Dialog.Dialog>
+                <Dialog.DialogTrigger asChild>
+                  <Button variant="outline">Open Dialog</Button>
+                </Dialog.DialogTrigger>
+                <Dialog.DialogContent>
+                  <Dialog.DialogHeader>
+                    <Dialog.DialogTitle>Dialog Title</Dialog.DialogTitle>
+                    <Dialog.DialogDescription>
+                      This is a dialog description.
+                    </Dialog.DialogDescription>
+                  </Dialog.DialogHeader>
+                </Dialog.DialogContent>
+              </Dialog.Dialog>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      /> <TestCompare
+        title="Progress"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/progress",
+            zone: <Progress value={progress} className="w-[60%]" />,
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />  <TestCompare
+        title="Skeleton"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/skeleton",
+            zone: (
+              <div className="flex items-center space-x-4">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[250px]" />
+                  <Skeleton className="h-4 w-[200px]" />
                 </div>
               </div>
             ),
           },
           {
             title: "MUI",
-            docLink: "https://mui.com/material-ui/react-divider/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex flex-col gap-[10px]">
-                  <mui.List className="w-full" aria-label="mailbox folders">
-                    <mui.ListItem>
-                      <mui.ListItemText primary="Inbox" />
-                    </mui.ListItem>
-                    <mui.Divider component="li">
-                      <mui.Chip label="inline chip" size="small" />
-                    </mui.Divider>
-                    <mui.ListItem>
-                      <mui.ListItemText primary="Drafts" />
-                    </mui.ListItem>
-                    <mui.Divider component="li" />
-                    <mui.ListItem>
-                      <mui.ListItemText primary="Trash" />
-                    </mui.ListItem>
-                  </mui.List>
-                  <div className="h-[50px] flex">
-                    <FormatBoldIcon />
-                    <mui.Divider orientation="vertical" variant="middle" flexItem />
-                    <FormatItalicIcon />
-                  </div>
-                </div>
-              </mui.ThemeProvider>
-            ),
-            note: "Same as ShadCN's separator component. Includes horizontal and vertical orientations with chip integration.",
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="List"
-        components={[
-          {
-            title: "Shad",
             docLink: "",
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
+        ]}
+      />
+      <TestCompare
+        title="Snackbar"
+        components={[
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-list/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <mui.List>
-                  <mui.ListItem disablePadding>
-                    <mui.ListItemButton>
-                      <mui.ListItemIcon>
-                        <InboxIcon />
-                      </mui.ListItemIcon>
-                      <mui.ListItemText primary="Inbox" />
-                    </mui.ListItemButton>
-                  </mui.ListItem>
-                  <mui.ListItem disablePadding>
-                    <mui.ListItemButton>
-                      <mui.ListItemIcon>
-                        <DraftsIcon />
-                      </mui.ListItemIcon>
-                      <mui.ListItemText primary="Drafts" />
-                    </mui.ListItemButton>
-                  </mui.ListItem>
-                </mui.List>
-              </mui.ThemeProvider>
-            ),
+        title: "Shad",
+        docLink: "",
+        zone: (
+          <div className="text-muted-foreground">No direct equivalent</div>
+        ),
+          },
+          {
+        title: "MUI",
+        docLink: "https://mui.com/material-ui/react-snackbar/",
+        zone: (
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Button onClick={() => setOpenSnackbar(true)}>
+          Open Snackbar
+            </mui.Button>
+            <mui.Snackbar
+          open={openSnackbar}
+          autoHideDuration={6000}
+          onClose={handleSnackClose}
+          message="This is what the snackbar does"
+          action={
+            <React.Fragment>
+              <mui.Button
+            color="secondary"
+            size="small"
+            onClick={handleSnackClose}
+              >
+            UNDO
+              </mui.Button>
+              <mui.IconButton
+            size="small"
+            aria-label="close"
+            color="inherit"
+            onClick={handleSnackClose}
+              >
+            <CloseIcon fontSize="small" />
+              </mui.IconButton>
+            </React.Fragment>
+          }
+            />
+          </mui.ThemeProvider>
+        ),
           },
         ]}
       />
 
-      <TestCompare
-        title="Table"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent - use Tanstack Table</div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-table/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <mui.TableContainer component={mui.Paper}>
-                  <mui.Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <mui.TableHead>
-                      <mui.TableRow>
-                        <mui.TableCell>Dessert (100g serving)</mui.TableCell>
-                        <mui.TableCell align="right">Calories</mui.TableCell>
-                        <mui.TableCell align="right">Fat&nbsp;(g)</mui.TableCell>
-                        <mui.TableCell align="right">Carbs&nbsp;(g)</mui.TableCell>
-                        <mui.TableCell align="right">Protein&nbsp;(g)</mui.TableCell>
-                      </mui.TableRow>
-                    </mui.TableHead>
-                    <mui.TableBody>
-                      {rows.map((row) => (
-                        <mui.TableRow
-                          key={row.name}
-                          sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                        >
-                          <mui.TableCell component="th" scope="row">
-                            {row.name}
-                          </mui.TableCell>
-                          <mui.TableCell align="right">{row.calories}</mui.TableCell>
-                          <mui.TableCell align="right">{row.fat}</mui.TableCell>
-                          <mui.TableCell align="right">{row.carbs}</mui.TableCell>
-                          <mui.TableCell align="right">{row.protein}</mui.TableCell>
-                        </mui.TableRow>
-                      ))}
-                    </mui.TableBody>
-                  </mui.Table>
-                </mui.TableContainer>
-              </mui.ThemeProvider>
-            ),
-            note: "Not a Tanstack table. Very nice looking. Sorting requires custom logic. Has sticky header and pagination options.",
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Tooltip"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/tooltip",
-            zone: (
-              <Tooltip.Tooltip>
-                <Tooltip.TooltipTrigger asChild>
-                  <Button variant="outline">Hover</Button>
-                </Tooltip.TooltipTrigger>
-                <Tooltip.TooltipContent>
-                  <p>Add to library</p>
-                </Tooltip.TooltipContent>
-              </Tooltip.Tooltip>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-tooltip/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <mui.Tooltip title="Delete">
-                  <mui.IconButton>
-                    <DeleteIcon />
-                  </mui.IconButton>
-                </mui.Tooltip>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
     </div>
-  );
+  )
 }
+
 
 export function ComparisonA() {
 const currentTheme = useTheme();
@@ -1261,93 +1523,6 @@ const currentTheme = useTheme();
           },
         ]}
       />
-
-      <TestCompare
-        title="Alert"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/alert",
-            zone: (
-              <div className="flex flex-col gap-[5px]">
-                <Alert.Alert>
-                  <CheckCircle2Icon className="h-4 w-4" />
-                  <Alert.AlertTitle>Success</Alert.AlertTitle>
-                  <Alert.AlertDescription>
-                    Your changes have been saved.
-                  </Alert.AlertDescription>
-                </Alert.Alert>
-                <Alert.Alert variant="destructive">
-                  <AlertCircleIcon className="h-4 w-4" />
-                  <Alert.AlertTitle>Error</Alert.AlertTitle>
-                  <Alert.AlertDescription>
-                    Something went wrong.
-                  </Alert.AlertDescription>
-                </Alert.Alert>
-              </div>
-            ),
-            note: "Uses primary color for success and destructive color for error.",
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-alert/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex flex-col gap-[5px]">
-                  <mui.Alert severity="success">
-                    Your changes have been saved.
-                  </mui.Alert>
-                  <mui.Alert severity="error">Something went wrong.</mui.Alert>
-                </div>
-              </mui.ThemeProvider>
-            ),
-            note: "Uses distinct and recognizable success/failure colors",
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Alert Dialog"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/alert-dialog",
-            zone: (
-              <AlertDialog.AlertDialog>
-                <AlertDialog.AlertDialogTrigger asChild>
-                  <Button variant="outline">Show Alert</Button>
-                </AlertDialog.AlertDialogTrigger>
-                <AlertDialog.AlertDialogContent>
-                  <AlertDialog.AlertDialogHeader>
-                    <AlertDialog.AlertDialogTitle>
-                      Are you sure?
-                    </AlertDialog.AlertDialogTitle>
-                    <AlertDialog.AlertDialogDescription>
-                      This action cannot be undone.
-                    </AlertDialog.AlertDialogDescription>
-                  </AlertDialog.AlertDialogHeader>
-                  <AlertDialog.AlertDialogFooter>
-                    <AlertDialog.AlertDialogCancel>
-                      Cancel
-                    </AlertDialog.AlertDialogCancel>
-                    <AlertDialog.AlertDialogAction>
-                      Continue
-                    </AlertDialog.AlertDialogAction>
-                  </AlertDialog.AlertDialogFooter>
-                </AlertDialog.AlertDialogContent>
-              </AlertDialog.AlertDialog>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
       <TestCompare
         title="Avatar"
         components={[
@@ -1422,7 +1597,6 @@ const currentTheme = useTheme();
 
 export function ComparisonB() {
 const currentTheme = useTheme();
-  const [openBackdrop, setOpenBackdrop] = useState(false);
 
   return (
     <div className="page-body testing">
@@ -1450,36 +1624,6 @@ const currentTheme = useTheme();
         ]}
       />
 
-      <TestCompare
-        title="Backdrop"
-        components={[
-          {
-            title: "Shad",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-backdrop/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <Button onClick={() => setOpenBackdrop(true)}>
-                  Show Backdrop
-                </Button>
-                <mui.Backdrop
-                  sx={{ color: "#fff", zIndex: 9999 }}
-                  open={openBackdrop}
-                  onClick={() => setOpenBackdrop(false)}
-                >
-                  <CircularProgress color="inherit" />
-                </mui.Backdrop>
-              </mui.ThemeProvider>
-            ),
-          },
-        ]}
-      />
 
       <TestCompare
         title="Bottom Navigation"
@@ -1708,37 +1852,7 @@ export function ComparisonD() {
 const currentTheme = useTheme();
   return (
     <div className="page-body testing">
-      <TestCompare
-        title="Dialog"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/dialog",
-            zone: (
-              <Dialog.Dialog>
-                <Dialog.DialogTrigger asChild>
-                  <Button variant="outline">Open Dialog</Button>
-                </Dialog.DialogTrigger>
-                <Dialog.DialogContent>
-                  <Dialog.DialogHeader>
-                    <Dialog.DialogTitle>Dialog Title</Dialog.DialogTitle>
-                    <Dialog.DialogDescription>
-                      This is a dialog description.
-                    </Dialog.DialogDescription>
-                  </Dialog.DialogHeader>
-                </Dialog.DialogContent>
-              </Dialog.Dialog>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
+   
 
       <TestCompare
         title="Drawer"
@@ -1929,12 +2043,7 @@ export function ComparisonLMN() {
 }
 
 export function ComparisonPRS() {
-  const [progress, setProgress] = useState(13);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className="page-body testing">
@@ -1999,24 +2108,7 @@ export function ComparisonPRS() {
         ]}
       />
 
-      <TestCompare
-        title="Progress"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/progress",
-            zone: <Progress value={progress} className="w-[60%]" />,
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
+     
       <TestCompare
         title="Resizable"
         components={[
@@ -2121,31 +2213,7 @@ export function ComparisonPRS() {
         ]}
       />
 
-      <TestCompare
-        title="Skeleton"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/skeleton",
-            zone: (
-              <div className="flex items-center space-x-4">
-                <Skeleton className="h-12 w-12 rounded-full" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-[250px]" />
-                  <Skeleton className="h-4 w-[200px]" />
-                </div>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
+    
     </div>
   );
 }

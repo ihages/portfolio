@@ -31,15 +31,21 @@ import {
   Inbox as InboxIcon,
   Drafts as DraftsIcon,
   Delete as DeleteIcon,
+  WidthFull,
 } from "@mui/icons-material";
 import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
+import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
+import SaveIcon from "@mui/icons-material/Save";
+import PrintIcon from "@mui/icons-material/Print";
+import ShareIcon from "@mui/icons-material/Share";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
 
 import { faEllipsisV, faInfo } from "@fortawesome/free-solid-svg-icons";
 
 import FontAwesomeSvgIcon from "@/components/fa-mui-icon";
 
-export function MUIDataDisplay() {
+export function MUIDataDisplay() { //done
   const currentTheme = useTheme();
   const handleDelete = () => {
     console.info("You clicked the delete icon.");
@@ -281,7 +287,7 @@ export function MUIDataDisplay() {
   );
 }
 
-export function MUIFeedback() {
+export function MUIFeedback() {//done
   const currentTheme = useTheme();
   const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false);
   const handleClose = () => {
@@ -505,7 +511,7 @@ export function MUIFeedback() {
   );
 }
 
-export function MUIInputs() {
+export function MUIInputs() {//done
   const currentTheme = useTheme();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [checked, setChecked] = React.useState<boolean[]>([false, false]);
@@ -1090,6 +1096,7 @@ export function MUIInputs() {
 
 export function MUILayout() {
   const currentTheme = useTheme();
+
   return (
     <div className="page-body testing">
       <TestBlock
@@ -1105,9 +1112,118 @@ export function MUILayout() {
   );
 }
 
-export function MUINavigation() {
+export function MUINavigation() { //done
   const currentTheme = useTheme();
   const [value, setValue] = React.useState(0);
+  const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
+    null
+  );
+  const menuOpen = Boolean(menuAnchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setMenuAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setMenuAnchorEl(null);
+  };
+  const [openDrawer, setOpenDrawer] = React.useState({
+    top: false,
+    left: false,
+    bottom: false,
+    right: false,
+  });
+  type Anchor = "top" | "left" | "bottom" | "right";
+  const toggleDrawer =
+    (anchor: Anchor, open: boolean) =>
+    (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
+
+      setOpenDrawer({ ...openDrawer, [anchor]: open });
+    };
+  const drawerList = (anchor: Anchor) => (
+    <mui.Box
+      sx={{ width: 250 }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+    >
+      <mui.List>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <mui.ListItem key={text} disablePadding>
+            <mui.ListItemButton>
+              <mui.ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </mui.ListItemIcon>
+              <mui.ListItemText primary={text} />
+            </mui.ListItemButton>
+          </mui.ListItem>
+        ))}
+      </mui.List>
+      <mui.Divider />
+      <mui.List>
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <mui.ListItem key={text} disablePadding>
+            <mui.ListItemButton>
+              <mui.ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </mui.ListItemIcon>
+              <mui.ListItemText primary={text} />
+            </mui.ListItemButton>
+          </mui.ListItem>
+        ))}
+      </mui.List>
+    </mui.Box>
+  );
+  const speedDialActions = [
+    { icon: <FileCopyIcon />, name: "Copy" },
+    { icon: <SaveIcon />, name: "Save" },
+    { icon: <PrintIcon />, name: "Print" },
+    { icon: <ShareIcon />, name: "Share" },
+  ];
+
+  const steps = [
+    "Select master blaster campaign settings",
+    "Create an ad group",
+    "Create an ad",
+  ];
+  interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+  }
+
+  function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`simple-tabpanel-${index}`}
+        aria-labelledby={`simple-tab-${index}`}
+        {...other}
+      >
+        {value === index && <mui.Box sx={{ p: 3 }}>{children}</mui.Box>}
+      </div>
+    );
+  }
+
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
+  const [tabValue, setTabValue] = React.useState(0);
+
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+  };
+
   return (
     <div className="page-body testing">
       <TestBlock
@@ -1140,36 +1256,251 @@ export function MUINavigation() {
           </mui.ThemeProvider>
         }
       />
+      <TestBlock
+        title="Breadcrumbs"
+        docLink="https://mui.com/material-ui/react-breadcrumbs/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Breadcrumbs aria-label="breadcrumb">
+              <mui.Link underline="hover" color="inherit" href={undefined}>
+                MUI
+              </mui.Link>
+              <mui.Link underline="hover" color="inherit" href={undefined}>
+                Core
+              </mui.Link>
+              <mui.Typography sx={{ color: "text.primary" }}>
+                Breadcrumbs
+              </mui.Typography>
+            </mui.Breadcrumbs>
+            <mui.Breadcrumbs separator=">>" aria-label="breadcrumb">
+              <mui.Link underline="hover" color="inherit" href={undefined}>
+                MUI
+              </mui.Link>
+              <mui.Link underline="hover" color="inherit" href={undefined}>
+                Core
+              </mui.Link>
+              <mui.Typography sx={{ color: "text.primary" }}>
+                Breadcrumbs
+              </mui.Typography>
+            </mui.Breadcrumbs>
+            <mui.Breadcrumbs maxItems={2} aria-label="breadcrumb">
+              <mui.Link underline="hover" color="inherit" href={undefined}>
+                MUI
+              </mui.Link>
+              <mui.Link underline="hover" color="inherit" href={undefined}>
+                Core
+              </mui.Link>
+              <mui.Typography sx={{ color: "text.primary" }}>
+                Breadcrumbs
+              </mui.Typography>
+            </mui.Breadcrumbs>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Drawer"
+        docLink="https://mui.com/material-ui/react-drawer/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            {(["left", "right", "top", "bottom"] as const).map((anchor) => (
+              <React.Fragment key={anchor}>
+                <mui.Button onClick={toggleDrawer(anchor, true)}>
+                  {anchor}
+                </mui.Button>
+                <mui.Drawer
+                  anchor={anchor}
+                  open={openDrawer[anchor]}
+                  onClose={toggleDrawer(anchor, false)}
+                >
+                  {drawerList(anchor)}
+                </mui.Drawer>
+              </React.Fragment>
+            ))}
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Link"
+        docLink="https://mui.com/material-ui/react-link/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Link href="#">Link</mui.Link>
+            <mui.Link href="#" color="inherit">
+              {'color="inherit"'}
+            </mui.Link>
+            <mui.Link href="#" variant="body2">
+              {'variant="body2"'}
+            </mui.Link>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Menu"
+        docLink="https://mui.com/material-ui/react-menu/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Button
+              id="basic-button"
+              aria-controls={menuOpen ? "basic-menu" : undefined}
+              aria-haspopup="true"
+              aria-expanded={menuOpen ? "true" : undefined}
+              onClick={handleClick}
+            >
+              Dashboard
+            </mui.Button>
+            <mui.Menu
+              id="basic-menu"
+              anchorEl={menuAnchorEl}
+              open={menuOpen}
+              onClose={handleClose}
+              slotProps={{
+                list: {
+                  "aria-labelledby": "basic-button",
+                },
+              }}
+            >
+              <mui.MenuItem onClick={handleClose}>Profile</mui.MenuItem>
+              <mui.MenuItem onClick={handleClose}>My account</mui.MenuItem>
+              <mui.MenuItem onClick={handleClose}>Logout</mui.MenuItem>
+            </mui.Menu>
+          </mui.ThemeProvider>
+        }
+      />
+
+      <TestBlock
+        title="Pagination"
+        docLink="https://mui.com/material-ui/react-pagination/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Pagination count={10} />
+            <mui.Pagination count={10} color="primary" />
+            <mui.Pagination count={10} color="secondary" />
+            <mui.Pagination count={10} disabled />
+            <mui.Pagination variant="outlined" count={10} />
+            <mui.Pagination count={10} variant="outlined" color="primary" />
+            <mui.Pagination count={10} variant="outlined" color="secondary" />
+            <mui.Pagination count={10} variant="outlined" disabled />
+          </mui.ThemeProvider>
+        }
+        note="Pagination state is done via API, not via state variable. Add props page and onChange to make it controlled state."
+      />
+
+      <TestBlock
+        title="Speed Dial"
+        docLink="https://mui.com/material-ui/react-speed-dial/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Box
+              sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}
+            >
+              <mui.SpeedDial
+                ariaLabel="SpeedDial basic example"
+                sx={{ position: "absolute", bottom: 16, right: 16 }}
+                icon={<SpeedDialIcon />}
+              >
+                {speedDialActions.map((action) => (
+                  <mui.SpeedDialAction
+                    key={action.name}
+                    icon={action.icon}
+                    slotProps={{
+                      tooltip: {
+                        title: action.name,
+                      },
+                    }}
+                  />
+                ))}
+              </mui.SpeedDial>
+            </mui.Box>
+          </mui.ThemeProvider>
+        }
+        note="Can opt for a controlled component with open, onOpen, and onClose states. Can also format to oepn to bottom, left, or right in addition to top."
+      />
+
+      <TestBlock
+        title="Stepper"
+        docLink="https://mui.com/material-ui/react-stepper/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Stepper activeStep={1} alternativeLabel>
+              {steps.map((label) => (
+                <mui.Step key={label}>
+                  <mui.StepLabel>{label}</mui.StepLabel>
+                </mui.Step>
+              ))}
+            </mui.Stepper>
+          </mui.ThemeProvider>
+        }
+        note="Can controll steps using activeStep prop for stepper. This would be of good use for a multi-page form, using buttons to navigate between steps. Using the nonLinear prop allows the user to click on steps to navigate to them, even if the click order isn't the linear order."
+      />
+
+      <TestBlock
+        title="Tabs"
+        docLink="https://mui.com/material-ui/react-tabs/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Stack>
+              <mui.Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                <mui.Tabs
+                  value={tabValue}
+                  onChange={handleTabChange}
+                  aria-label="basic tabs example"
+                >
+                  <mui.Tab label="Item One" {...a11yProps(0)} />
+                  <mui.Tab label="Item Two" {...a11yProps(1)} />
+                  <mui.Tab label="Item Three" {...a11yProps(2)} />
+                </mui.Tabs>
+              </mui.Box>
+              <CustomTabPanel value={tabValue} index={0}>
+                Item One
+              </CustomTabPanel>
+              <CustomTabPanel value={tabValue} index={1}>
+                Item Two
+              </CustomTabPanel>
+              <CustomTabPanel value={tabValue} index={2}>
+                Item Three
+              </CustomTabPanel>
+            </mui.Stack>
+          </mui.ThemeProvider>
+        }
+        note="style works best if you put it in a mui.Stack component. You have to make a custom component CustomTabPanel with value same as the mui.Tabs value. This CustomTabPanel component is listed in the documentation."
+      />
     </div>
   );
 }
 
-export function MUISurfaces() {
+export function MUISurfaces() { //done
   const currentTheme = useTheme();
   const pages = ["Products", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-  const [anchorElNav, setAnchorElNav] = React.useState<HTMLElement | null>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<HTMLElement | null>(
-    null
-  );
+  const [menuAnchorElNav, setmenuAnchorElNav] =
+    React.useState<HTMLElement | null>(null);
+  const [menuAnchorElUser, setmenuAnchorElUser] =
+    React.useState<HTMLElement | null>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
-    setAnchorElNav(event.currentTarget);
+    setmenuAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
+    setmenuAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setmenuAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
+    setmenuAnchorElUser(null);
   };
+  const bull = (
+    <mui.Box
+      component="span"
+      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+    >
+      •
+    </mui.Box>
+  );
   return (
     <div className="page-body testing">
       <TestBlock
@@ -1276,7 +1607,7 @@ export function MUISurfaces() {
                     </mui.IconButton>
                     <mui.Menu
                       id="menu-appbar"
-                      anchorEl={anchorElNav}
+                      anchorEl={menuAnchorElNav}
                       anchorOrigin={{
                         vertical: "bottom",
                         horizontal: "left",
@@ -1286,7 +1617,7 @@ export function MUISurfaces() {
                         vertical: "top",
                         horizontal: "left",
                       }}
-                      open={Boolean(anchorElNav)}
+                      open={Boolean(menuAnchorElNav)}
                       onClose={handleCloseNavMenu}
                       sx={{ display: { xs: "block", md: "none" } }}
                     >
@@ -1357,7 +1688,7 @@ export function MUISurfaces() {
                     <mui.Menu
                       sx={{ mt: "45px" }}
                       id="menu-appbar"
-                      anchorEl={anchorElUser}
+                      anchorEl={menuAnchorElUser}
                       anchorOrigin={{
                         vertical: "top",
                         horizontal: "right",
@@ -1367,7 +1698,7 @@ export function MUISurfaces() {
                         vertical: "top",
                         horizontal: "right",
                       }}
-                      open={Boolean(anchorElUser)}
+                      open={Boolean(menuAnchorElUser)}
                       onClose={handleCloseUserMenu}
                     >
                       {settings.map((setting) => (
@@ -1387,6 +1718,72 @@ export function MUISurfaces() {
             </mui.AppBar>
           </mui.ThemeProvider>
         }
+      />
+      <TestBlock
+        title="Card"
+        docLink="https://mui.com/material-ui/react-card/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Card sx={{ minWidth: 275 }}>
+              <mui.CardContent>
+                <mui.Typography
+                  gutterBottom
+                  sx={{ color: "text.secondary", fontSize: 14 }}
+                >
+                  Word of the Day
+                </mui.Typography>
+                <mui.Typography variant="h5" component="div">
+                  be{bull}nev{bull}o{bull}lent
+                </mui.Typography>
+                <mui.Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                  adjective
+                </mui.Typography>
+                <mui.Typography variant="body2">
+                  well meaning and kindly.
+                  <br />
+                  {'"a benevolent smile"'}
+                </mui.Typography>
+              </mui.CardContent>
+              <mui.CardActions>
+                <mui.Button size="small">Learn More</mui.Button>
+              </mui.CardActions>
+            </mui.Card>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="paper"
+        docLink="https://mui.com/material-ui/react-paper/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Paper sx={{ width: "80px", height: "80px" }} elevation={0} />
+            <mui.Paper sx={{ width: "80px", height: "80px" }} />
+            <mui.Paper sx={{ width: "80px", height: "80px" }} elevation={3} />
+            <mui.Paper
+              sx={{
+                width: "80px",
+                height: "80px",
+                textAlign: "center",
+                alignContent: "center",
+              }}
+              variant="elevation"
+            >
+              default variant
+            </mui.Paper>
+            <mui.Paper
+              sx={{
+                width: "80px",
+                height: "80px",
+                textAlign: "center",
+                alignContent: "center",
+              }}
+              variant="outlined"
+            >
+              outlined variant
+            </mui.Paper>
+          </mui.ThemeProvider>
+        }
+        note="Light mode: elevation changes the box shadow around the box. Dark mode:elevation changes the lightness of the box."
       />
     </div>
   );
