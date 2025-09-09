@@ -22,16 +22,7 @@ import {
   MUIUtils,
 } from "./mui-pages";
 import {
-  ComparisonA,
-  ComparisonB,
-  ComparisonC,
-  ComparisonD,
-  ComparisonDataDisplay,
-  ComparisonHI,
-  ComparisonInputs,
-  ComparisonLMN,
-  ComparisonPRS,
-  ComparisonT,
+  ComparisonDataDisplay, ComparisonFeedback, ComparisonInputs, ComparisonNavigation, ComparisonSurfaces
 } from "./comparison-pages";
 import PageNotFound from "@/components/pageNotFound";
 import { generateStaticParams as generateParams } from "./generateStaticParams";
