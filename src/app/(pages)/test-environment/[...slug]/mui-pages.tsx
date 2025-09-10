@@ -33,6 +33,8 @@ import {
   Delete as DeleteIcon,
   WidthFull,
 } from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
+import InfoIcon from "@mui/icons-material/Info";
 import CircularProgress from "@mui/material/CircularProgress";
 import CloseIcon from "@mui/icons-material/Close";
 import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
@@ -45,7 +47,8 @@ import { faEllipsisV, faInfo } from "@fortawesome/free-solid-svg-icons";
 
 import FontAwesomeSvgIcon from "@/components/fa-mui-icon";
 
-export function MUIDataDisplay() { //done
+export function MUIDataDisplay() {
+  //done
   const currentTheme = useTheme();
   const handleDelete = () => {
     console.info("You clicked the delete icon.");
@@ -287,7 +290,8 @@ export function MUIDataDisplay() { //done
   );
 }
 
-export function MUIFeedback() {//done
+export function MUIFeedback() {
+  //done
   const currentTheme = useTheme();
   const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false);
   const handleClose = () => {
@@ -511,7 +515,8 @@ export function MUIFeedback() {//done
   );
 }
 
-export function MUIInputs() {//done
+export function MUIInputs() {
+  //done
   const currentTheme = useTheme();
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const [checked, setChecked] = React.useState<boolean[]>([false, false]);
@@ -1096,6 +1101,149 @@ export function MUIInputs() {//done
 
 export function MUILayout() {
   const currentTheme = useTheme();
+  const [selectedGallery, setSelectedGallery] = React.useState("default");
+  
+  const Item = mui.styled(mui.Paper)(({ theme }) => ({
+    backgroundColor: "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: (theme.vars ?? theme).palette.text.secondary,
+    ...theme.applyStyles("dark", {
+      backgroundColor: "#1A2027",
+    }),
+  }));
+  const itemData = [
+    {
+      img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
+      title: "Breakfast",
+      author: "@bkristastucchio",
+      rows: 2,
+      cols: 2,
+      featured: true,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
+      title: "Burger",
+      author: "@rollelflex_graphy726",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
+      title: "Camera",
+      author: "@helloimnik",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
+      title: "Coffee",
+      author: "@nolanissac",
+      cols: 2,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
+      title: "Hats",
+      author: "@hjrc33",
+      cols: 2,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
+      title: "Honey",
+      author: "@arwinneil",
+      rows: 2,
+      cols: 2,
+      featured: true,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
+      title: "Basketball",
+      author: "@tjdragotta",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
+      title: "Fern",
+      author: "@katie_wasserman",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
+      title: "Mushrooms",
+      author: "@silverdalex",
+      rows: 2,
+      cols: 2,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
+      title: "Tomato basil",
+      author: "@shelleypauls",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
+      title: "Sea star",
+      author: "@peterlaster",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+      title: "Bike",
+      author: "@southside_customs",
+      cols: 2,
+    },
+  ];
+  const itemData2 = [
+   {
+    img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
+    title: 'Bed',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
+    title: 'Books',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
+    title: 'Sink',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
+    title: 'Kitchen',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
+    title: 'Blinds',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
+    title: 'Chairs',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
+    title: 'Laptop',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
+    title: 'Doors',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
+    title: 'Coffee',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
+    title: 'Storage',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
+    title: 'Candle',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
+    title: 'Coffee table',
+  },
+  ];
+  function srcset(image: string, size: number, rows = 1, cols = 1) {
+    return {
+      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+      srcSet: `${image}?w=${size * cols}&h=${
+        size * rows
+      }&fit=crop&auto=format&dpr=2 2x`,
+    };
+  }
 
   return (
     <div className="page-body testing">
@@ -1108,11 +1256,235 @@ export function MUILayout() {
           </mui.Box>
         }
       />
+      <TestBlock
+        title="Container"
+        docLink="https://mui.com/material-ui/react-container/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Container
+              maxWidth="lg"
+              sx={{ p: 2, border: "1px dashed grey" }}
+            >
+              <p>Lg maxwidth</p>
+              <mui.Box
+                sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
+              >
+                <p>set height 200px</p>
+              </mui.Box>
+            </mui.Container>
+            <mui.Container
+              fixed
+              maxWidth="sm"
+              sx={{ p: 2, border: "1px dashed grey" }}
+            >
+              <p>Sm maxwidth</p>
+              <mui.Box
+                sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
+              >
+                <p>set height 200px</p>
+              </mui.Box>
+            </mui.Container>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Grid"
+        docLink="https://mui.com/material-ui/react-grid/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Grid
+              container
+              spacing={2}
+              sx={{ p: 2, border: "1px dashed grey" }}
+            >
+              <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+                <Item>size=8</Item>
+              </mui.Grid>
+              <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+                <Item>size=4</Item>
+              </mui.Grid>
+              <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+                <Item>size=4</Item>
+              </mui.Grid>
+              <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+                <Item>size=8</Item>
+              </mui.Grid>
+            </mui.Grid>
+          </mui.ThemeProvider>
+        }
+        note="Accomplished by putting grids inside of a larger grid"
+      />
+      <TestBlock
+        title="Stack"
+        docLink="https://mui.com/material-ui/react-stack/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Stack spacing={2} sx={{ p: 2, border: "1px dashed grey" }}>
+              <Item>Item 1</Item>
+              <Item>Item 2</Item>
+              <Item>Item 3</Item>
+            </mui.Stack>
+            <mui.Stack
+              direction="row"
+              divider={<mui.Divider orientation="vertical" flexItem />}
+              spacing={2}
+              sx={{ p: 2, border: "1px dashed grey" }}
+            >
+              <Item>Item 1</Item>
+              <Item>Item 2</Item>
+              <Item>Item 3</Item>
+            </mui.Stack>
+          </mui.ThemeProvider>
+        }
+        note="Pretty much the same as a flex-col. You can throw in a 'direction' prop to make it a row."
+      />{" "}
+      <TestBlock
+        title="Image List"
+        docLink="https://mui.com/material-ui/react-image-list/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Stack spacing={2}>
+              <mui.ToggleButtonGroup
+                value={selectedGallery}
+                exclusive
+                onChange={(event, newGallery) => {
+                  if (newGallery !== null) {
+                    setSelectedGallery(newGallery);
+                  }
+                }}
+                aria-label="gallery selection"
+              >
+                <mui.ToggleButton value="default" aria-label="default gallery">
+                  Default
+                </mui.ToggleButton>
+                <mui.ToggleButton value="quilted" aria-label="quilted gallery">
+                  Quilted
+                </mui.ToggleButton>
+                <mui.ToggleButton value="woven" aria-label="woven gallery">
+                  Woven
+                </mui.ToggleButton>
+                <mui.ToggleButton value="masonry" aria-label="masonry gallery">
+                  Masonry
+                </mui.ToggleButton>
+                <mui.ToggleButton value="overlay" aria-label="overlay gallery">
+                  Desc Overlay
+                </mui.ToggleButton>
+              </mui.ToggleButtonGroup>
+
+              {selectedGallery === "default" && (
+                <mui.ImageList
+                  sx={{ width: 500, height: 450 }}
+                  cols={3}
+                  rowHeight={164}
+                >
+                  {itemData.map((item) => (
+                    <mui.ImageListItem key={item.img}>
+                      <img
+                        srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                        alt={item.title}
+                        loading="lazy"
+                      />
+                    </mui.ImageListItem>
+                  ))}
+                </mui.ImageList>
+              )}
+
+              {selectedGallery === "quilted" && (
+                <mui.ImageList
+                  sx={{ width: 500, height: 450 }}
+                  variant="quilted"
+                  cols={4}
+                  rowHeight={121}
+                >
+                  {itemData.map((item) => (
+                    <mui.ImageListItem
+                      key={item.img}
+                      cols={item.cols || 1}
+                      rows={item.rows || 1}
+                    >
+                      <img
+                        {...srcset(item.img, 121, item.rows, item.cols)}
+                        alt={item.title}
+                        loading="lazy"
+                      />
+                    </mui.ImageListItem>
+                  ))}
+                </mui.ImageList>
+              )}
+
+              {selectedGallery === "woven" && (
+                <mui.ImageList
+                  sx={{ width: 500, height: 450 }}
+                  variant="woven"
+                  cols={3}
+                  rowHeight={164}
+                >
+                  {itemData2.map((item) => (
+                    <mui.ImageListItem key={item.img}>
+                      <img
+                        srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${item.img}?w=161&fit=crop&auto=format`}
+                        alt={item.title}
+                        loading="lazy"
+                      />
+                    </mui.ImageListItem>
+                  ))}
+                </mui.ImageList>
+              )}
+
+              {selectedGallery === "masonry" && (
+                <mui.ImageList variant="masonry" cols={3} gap={8}
+                  sx={{ width: 500, height: 450 }}>
+                  {itemData2.map((item) => (
+                    <mui.ImageListItem key={item.img}>
+                      <img
+                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${item.img}?w=248&fit=crop&auto=format`}
+                        alt={item.title}
+                        loading="lazy"
+                      />
+                    </mui.ImageListItem>
+                  ))}
+                </mui.ImageList>
+              )}
+
+              {selectedGallery === "overlay" && (
+                <mui.ImageList sx={{ width: 500, height: 450 }}>
+                  {itemData.map((item) => (
+                    <mui.ImageListItem key={item.img}>
+                      <img
+                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${item.img}?w=248&fit=crop&auto=format`}
+                        alt={item.title}
+                        loading="lazy"
+                      />
+                      <mui.ImageListItemBar
+                        title={item.title}
+                        subtitle={item.author}
+                        actionIcon={
+                          <IconButton
+                            sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                            aria-label={`info about ${item.title}`}
+                          >
+                            <InfoIcon />
+                          </IconButton>
+                        }
+                      />
+                    </mui.ImageListItem>
+                  ))}
+                </mui.ImageList>
+              )}
+            </mui.Stack>
+          </mui.ThemeProvider>
+        } note="Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)"
+      />
     </div>
   );
 }
 
-export function MUINavigation() { //done
+export function MUINavigation() {
+  //done
   const currentTheme = useTheme();
   const [value, setValue] = React.useState(0);
   const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
@@ -1469,7 +1841,8 @@ export function MUINavigation() { //done
   );
 }
 
-export function MUISurfaces() { //done
+export function MUISurfaces() {
+  //done
   const currentTheme = useTheme();
   const pages = ["Products", "Pricing", "Blog"];
   const settings = ["Profile", "Account", "Dashboard", "Logout"];

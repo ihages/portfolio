@@ -27,7 +27,19 @@ export default function TestEnvironment() {
             </Link>
           </Button>
           <Button asChild>
+            <Link href="/test-environment/comparison-feedback">Feedback</Link>
+          </Button>
+          <Button asChild>
             <Link href="/test-environment/comparison-inputs">Inputs</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-layouts">Layouts</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-navigation">Navigation</Link>
+          </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-surfaces">Surfaces</Link>
           </Button>
         </div>
         <h2>Shadcn Components</h2>

@@ -49,7 +49,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import InboxIcon from "@mui/icons-material/Inbox";
 import DraftsIcon from "@mui/icons-material/Drafts";
 import CloseIcon from "@mui/icons-material/Close";
-
+import IconButton from "@mui/material/IconButton";
+import InfoIcon from "@mui/icons-material/Info";
+// TODO: from shad ui, add Aspect Ratio, Carousel, and Sheet to ComparisonLayouts. Put Menubar in Navigation. Put Chart in DataDisplay. Put HoverCard and Contextmenu in feedback
 // Shad UI Components
 import * as Accordion from "@/components/ui/accordion";
 import * as Alert from "@/components/ui/alert";
@@ -84,6 +86,7 @@ import { Separator } from "@/components/ui/separator";
 import * as Sheet from "@/components/ui/sheet";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Slider } from "@/components/ui/slider";
+import * as ScrollArea from "@/components/ui/scroll-area";
 import { Switch } from "@/components/ui/switch";
 import * as Tabs from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
@@ -1681,7 +1684,9 @@ export function ComparisonNavigation() {
                     </Breadcrumb.BreadcrumbItem>
                     <Breadcrumb.BreadcrumbSeparator />
                     <Breadcrumb.BreadcrumbItem>
-                      <Breadcrumb.BreadcrumbPage>Current</Breadcrumb.BreadcrumbPage>
+                      <Breadcrumb.BreadcrumbPage>
+                        Current
+                      </Breadcrumb.BreadcrumbPage>
                     </Breadcrumb.BreadcrumbItem>
                   </Breadcrumb.BreadcrumbList>
                 </Breadcrumb.Breadcrumb>
@@ -1720,7 +1725,9 @@ export function ComparisonNavigation() {
                     </Breadcrumb.BreadcrumbItem>
                     <Breadcrumb.BreadcrumbSeparator />
                     <Breadcrumb.BreadcrumbItem>
-                      <Breadcrumb.BreadcrumbPage>Current</Breadcrumb.BreadcrumbPage>
+                      <Breadcrumb.BreadcrumbPage>
+                        Current
+                      </Breadcrumb.BreadcrumbPage>
                     </Breadcrumb.BreadcrumbItem>
                   </Breadcrumb.BreadcrumbList>
                 </Breadcrumb.Breadcrumb>
@@ -1738,7 +1745,9 @@ export function ComparisonNavigation() {
                     </Breadcrumb.BreadcrumbItem>
                     <Breadcrumb.BreadcrumbSeparator />
                     <Breadcrumb.BreadcrumbItem>
-                      <Breadcrumb.BreadcrumbPage>Current</Breadcrumb.BreadcrumbPage>
+                      <Breadcrumb.BreadcrumbPage>
+                        Current
+                      </Breadcrumb.BreadcrumbPage>
                     </Breadcrumb.BreadcrumbItem>
                   </Breadcrumb.BreadcrumbList>
                 </Breadcrumb.Breadcrumb>
@@ -1806,8 +1815,8 @@ export function ComparisonNavigation() {
                   <Drawer.DrawerHeader className="text-left">
                     <Drawer.DrawerTitle>Edit profile</Drawer.DrawerTitle>
                     <Drawer.DrawerDescription>
-                      Make changes to your profile here. Click save when you&apos;re
-                      done.
+                      Make changes to your profile here. Click save when
+                      you&apos;re done.
                     </Drawer.DrawerDescription>
                   </Drawer.DrawerHeader>
                   <div>hi</div>
@@ -1981,7 +1990,11 @@ export function ComparisonNavigation() {
                 <mui.Pagination count={10} disabled />
                 <mui.Pagination variant="outlined" count={10} />
                 <mui.Pagination count={10} variant="outlined" color="primary" />
-                <mui.Pagination count={10} variant="outlined" color="secondary" />
+                <mui.Pagination
+                  count={10}
+                  variant="outlined"
+                  color="secondary"
+                />
                 <mui.Pagination count={10} variant="outlined" disabled />
               </mui.ThemeProvider>
             ),
@@ -2006,7 +2019,11 @@ export function ComparisonNavigation() {
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Box
-                  sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}
+                  sx={{
+                    height: 320,
+                    transform: "translateZ(0px)",
+                    flexGrow: 1,
+                  }}
                 >
                   <mui.SpeedDial
                     ariaLabel="SpeedDial basic example"
@@ -2116,6 +2133,557 @@ export function ComparisonNavigation() {
   );
 }
 
+export function ComparisonLayouts() {
+  const currentTheme = useTheme();
+  const [selectedGallery, setSelectedGallery] = React.useState("default");
+
+  const Item = mui.styled(mui.Paper)(({ theme }) => ({
+    backgroundColor: "#fff",
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: "center",
+    color: (theme.vars ?? theme).palette.text.secondary,
+    ...theme.applyStyles("dark", {
+      backgroundColor: "#1A2027",
+    }),
+  }));
+
+  const itemData = [
+    {
+      img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
+      title: "Breakfast",
+      author: "@bkristastucchio",
+      rows: 2,
+      cols: 2,
+      featured: true,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
+      title: "Burger",
+      author: "@rollelflex_graphy726",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
+      title: "Camera",
+      author: "@helloimnik",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
+      title: "Coffee",
+      author: "@nolanissac",
+      cols: 2,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
+      title: "Hats",
+      author: "@hjrc33",
+      cols: 2,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
+      title: "Honey",
+      author: "@arwinneil",
+      rows: 2,
+      cols: 2,
+      featured: true,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
+      title: "Basketball",
+      author: "@tjdragotta",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
+      title: "Fern",
+      author: "@katie_wasserman",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
+      title: "Mushrooms",
+      author: "@silverdalex",
+      rows: 2,
+      cols: 2,
+    },
+    {
+      img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
+      title: "Tomato basil",
+      author: "@shelleypauls",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
+      title: "Sea star",
+      author: "@peterlaster",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
+      title: "Bike",
+      author: "@southside_customs",
+      cols: 2,
+    },
+  ];
+
+  const itemData2 = [
+    {
+      img: "https://images.unsplash.com/photo-1549388604-817d15aa0110",
+      title: "Bed",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1525097487452-6278ff080c31",
+      title: "Books",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6",
+      title: "Sink",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3",
+      title: "Kitchen",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1588436706487-9d55d73a39e3",
+      title: "Blinds",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1574180045827-681f8a1a9622",
+      title: "Chairs",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1530731141654-5993c3016c77",
+      title: "Laptop",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1481277542470-605612bd2d61",
+      title: "Doors",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7",
+      title: "Coffee",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee",
+      title: "Storage",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62",
+      title: "Candle",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4",
+      title: "Coffee table",
+    },
+  ];
+
+  function srcset(image: string, size: number, rows = 1, cols = 1) {
+    return {
+      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+      srcSet: `${image}?w=${size * cols}&h=${
+        size * rows
+      }&fit=crop&auto=format&dpr=2 2x`,
+    };
+  }
+
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Box"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Use div with Tailwind classes for basic box styling.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-box/",
+            zone: (
+              <mui.Box
+                component="section"
+                sx={{ p: 2, border: "1px dashed grey" }}
+              >
+                This Box renders as an HTML section element.
+              </mui.Box>
+            ),
+            note: "Fundamental building block with sx prop for styling.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Container"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Use Tailwind container class or custom max-width wrapper.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-container/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Container
+                  maxWidth="lg"
+                  sx={{ p: 2, border: "1px dashed grey" }}
+                >
+                  <p>Lg maxwidth</p>
+                  <mui.Box
+                    sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
+                  >
+                    <p>set height 200px</p>
+                  </mui.Box>
+                </mui.Container>
+                <mui.Container
+                  fixed
+                  maxWidth="sm"
+                  sx={{ p: 2, border: "1px dashed grey" }}
+                >
+                  <p>Sm maxwidth</p>
+                  <mui.Box
+                    sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
+                  >
+                    <p>set height 200px</p>
+                  </mui.Box>
+                </mui.Container>
+              </mui.ThemeProvider>
+            ),
+            note: "Responsive container with predefined max-width breakpoints.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Grid"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Use Tailwind grid classes (grid, grid-cols-*, gap-*) for CSS Grid layouts.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-grid/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Grid
+                  container
+                  spacing={2}
+                  sx={{ p: 2, border: "1px dashed grey" }}
+                >
+                  <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+                    <Item>size=8</Item>
+                  </mui.Grid>
+                  <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+                    <Item>size=4</Item>
+                  </mui.Grid>
+                  <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+                    <Item>size=4</Item>
+                  </mui.Grid>
+                  <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+                    <Item>size=8</Item>
+                  </mui.Grid>
+                </mui.Grid>
+              </mui.ThemeProvider>
+            ),
+            note: "Accomplished by putting grids inside of a larger grid",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Image List (Gallery)"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/scroll-area",
+            zone: (
+              <div className="text-muted-foreground">
+                No direct equivalent - use custom grid layouts with ScrollArea
+              </div>
+            ),
+            note: "Combine CSS Grid/Flexbox with ScrollArea for image galleries.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-image-list/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Stack spacing={2}>
+                  <mui.ToggleButtonGroup
+                    value={selectedGallery}
+                    exclusive
+                    onChange={(event, newGallery) => {
+                      if (newGallery !== null) {
+                        setSelectedGallery(newGallery);
+                      }
+                    }}
+                    aria-label="gallery selection"
+                  >
+                    <mui.ToggleButton
+                      value="default"
+                      aria-label="default gallery"
+                    >
+                      Default
+                    </mui.ToggleButton>
+                    <mui.ToggleButton
+                      value="quilted"
+                      aria-label="quilted gallery"
+                    >
+                      Quilted
+                    </mui.ToggleButton>
+                    <mui.ToggleButton value="woven" aria-label="woven gallery">
+                      Woven
+                    </mui.ToggleButton>
+                    <mui.ToggleButton
+                      value="masonry"
+                      aria-label="masonry gallery"
+                    >
+                      Masonry
+                    </mui.ToggleButton>
+                    <mui.ToggleButton
+                      value="overlay"
+                      aria-label="overlay gallery"
+                    >
+                      Overlay
+                    </mui.ToggleButton>
+                  </mui.ToggleButtonGroup>
+
+                  {selectedGallery === "default" && (
+                    <mui.ImageList
+                      sx={{ width: 500, height: 450 }}
+                      cols={3}
+                      rowHeight={164}
+                    >
+                      {itemData.map((item) => (
+                        <mui.ImageListItem key={item.img}>
+                          <img
+                            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+                            alt={item.title}
+                            loading="lazy"
+                          />
+                        </mui.ImageListItem>
+                      ))}
+                    </mui.ImageList>
+                  )}
+
+                  {selectedGallery === "quilted" && (
+                    <mui.ImageList
+                      sx={{ width: 500, height: 450 }}
+                      variant="quilted"
+                      cols={4}
+                      rowHeight={121}
+                    >
+                      {itemData.map((item) => (
+                        <mui.ImageListItem
+                          key={item.img}
+                          cols={item.cols || 1}
+                          rows={item.rows || 1}
+                        >
+                          <img
+                            {...srcset(item.img, 121, item.rows, item.cols)}
+                            alt={item.title}
+                            loading="lazy"
+                          />
+                        </mui.ImageListItem>
+                      ))}
+                    </mui.ImageList>
+                  )}
+
+                  {selectedGallery === "woven" && (
+                    <mui.ImageList
+                      sx={{ width: 500, height: 450 }}
+                      variant="woven"
+                      cols={3}
+                      rowHeight={164}
+                    >
+                      {itemData2.map((item) => (
+                        <mui.ImageListItem key={item.img}>
+                          <img
+                            srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                            src={`${item.img}?w=161&fit=crop&auto=format`}
+                            alt={item.title}
+                            loading="lazy"
+                          />
+                        </mui.ImageListItem>
+                      ))}
+                    </mui.ImageList>
+                  )}
+
+                  {selectedGallery === "masonry" && (
+                    <mui.ImageList
+                      variant="masonry"
+                      cols={3}
+                      gap={8}
+                      sx={{ width: 500, height: 450 }}
+                    >
+                      {itemData2.map((item) => (
+                        <mui.ImageListItem key={item.img}>
+                          <img
+                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                            src={`${item.img}?w=248&fit=crop&auto=format`}
+                            alt={item.title}
+                            loading="lazy"
+                          />
+                        </mui.ImageListItem>
+                      ))}
+                    </mui.ImageList>
+                  )}
+
+                  {selectedGallery === "overlay" && (
+                    <mui.ImageList sx={{ width: 500, height: 450 }}>
+                      {itemData.map((item) => (
+                        <mui.ImageListItem key={item.img}>
+                          <img
+                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                            src={`${item.img}?w=248&fit=crop&auto=format`}
+                            alt={item.title}
+                            loading="lazy"
+                          />
+                          <mui.ImageListItemBar
+                            title={item.title}
+                            subtitle={item.author}
+                            actionIcon={
+                              <IconButton
+                                sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                                aria-label={`info about ${item.title}`}
+                              >
+                                <InfoIcon />
+                              </IconButton>
+                            }
+                          />
+                        </mui.ImageListItem>
+                      ))}
+                    </mui.ImageList>
+                  )}
+                </mui.Stack>
+              </mui.ThemeProvider>
+            ),
+            note: "Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Resizable"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/resizable",
+            zone: (
+              <Resizable.ResizablePanelGroup
+                direction="horizontal"
+                className="max-w-md rounded-lg border"
+              >
+                <Resizable.ResizablePanel defaultSize={50}>
+                  <div className="flex h-[200px] items-center justify-center p-6">
+                    <span className="font-semibold">One</span>
+                  </div>
+                </Resizable.ResizablePanel>
+                <Resizable.ResizableHandle />
+                <Resizable.ResizablePanel defaultSize={50}>
+                  <div className="flex h-[200px] items-center justify-center p-6">
+                    <span className="font-semibold">Two</span>
+                  </div>
+                </Resizable.ResizablePanel>
+              </Resizable.ResizablePanelGroup>
+            ),
+            note: "Excellent resizable panel system with handles and nested layouts.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Would need custom implementation or third-party library.",
+          },
+        ]}
+      />  
+      
+      <TestCompare
+        title="Scroll Area"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/scroll-area",
+            zone: (
+              <ScrollArea.ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+                <div className="space-y-4">
+                  <h4 className="mb-4 text-sm font-medium leading-none">
+                    Tags
+                  </h4>
+                  {Array.from({ length: 50 }).map((_, i) => (
+                    <div key={i} className="text-sm">
+                      Tag {i + 1}
+                    </div>
+                  ))}
+                </div>
+                <ScrollArea.ScrollBar orientation="vertical" />
+              </ScrollArea.ScrollArea>
+            ),
+            note: "Provides custom styled scrollbars with smooth scrolling behavior. Good for constrained content areas.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Use native browser scrollbars or custom CSS overflow styling.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Stack"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Use Tailwind flex classes (flex, flex-col, gap-*) for stacking layouts.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-stack/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Stack spacing={2} sx={{ p: 2, border: "1px dashed grey" }}>
+                  <Item>Item 1</Item>
+                  <Item>Item 2</Item>
+                  <Item>Item 3</Item>
+                </mui.Stack>
+                <mui.Stack
+                  direction="row"
+                  divider={<mui.Divider orientation="vertical" flexItem />}
+                  spacing={2}
+                  sx={{ p: 2, border: "1px dashed grey" }}
+                >
+                  <Item>Item 1</Item>
+                  <Item>Item 2</Item>
+                  <Item>Item 3</Item>
+                </mui.Stack>
+              </mui.ThemeProvider>
+            ),
+            note: "Pretty much the same as a flex-col. You can throw in a 'direction' prop to make it a row.",
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
 export function ComparisonSurfaces() {
   const currentTheme = useTheme();
   const pages = ["Products", "Pricing", "Blog"];
@@ -2195,12 +2763,14 @@ export function ComparisonSurfaces() {
                       aria-controls="panel1-content"
                       id="panel1-header"
                     >
-                      <mui.Typography component="span">Accordion 1</mui.Typography>
+                      <mui.Typography component="span">
+                        Accordion 1
+                      </mui.Typography>
                     </mui.AccordionSummary>
                     <mui.AccordionDetails>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                      eget.
+                      Suspendisse malesuada lacus ex, sit amet blandit leo
+                      lobortis eget.
                     </mui.AccordionDetails>
                   </mui.Accordion>
                   <mui.Accordion>
@@ -2209,12 +2779,14 @@ export function ComparisonSurfaces() {
                       aria-controls="panel2-content"
                       id="panel2-header"
                     >
-                      <mui.Typography component="span">Accordion 2</mui.Typography>
+                      <mui.Typography component="span">
+                        Accordion 2
+                      </mui.Typography>
                     </mui.AccordionSummary>
                     <mui.AccordionDetails>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                      eget.
+                      Suspendisse malesuada lacus ex, sit amet blandit leo
+                      lobortis eget.
                     </mui.AccordionDetails>
                   </mui.Accordion>
                   <mui.Accordion defaultExpanded>
@@ -2229,8 +2801,8 @@ export function ComparisonSurfaces() {
                     </mui.AccordionSummary>
                     <mui.AccordionDetails>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-                      eget.
+                      Suspendisse malesuada lacus ex, sit amet blandit leo
+                      lobortis eget.
                     </mui.AccordionDetails>
                     <mui.AccordionActions>
                       <mui.Button>Cancel</mui.Button>
@@ -2285,7 +2857,10 @@ export function ComparisonSurfaces() {
                       </mui.Typography>
 
                       <mui.Box
-                        sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+                        sx={{
+                          flexGrow: 1,
+                          display: { xs: "flex", md: "none" },
+                        }}
                       >
                         <mui.IconButton
                           size="large"
@@ -2314,7 +2889,10 @@ export function ComparisonSurfaces() {
                           sx={{ display: { xs: "block", md: "none" } }}
                         >
                           {pages.map((page) => (
-                            <mui.MenuItem key={page} onClick={handleCloseNavMenu}>
+                            <mui.MenuItem
+                              key={page}
+                              onClick={handleCloseNavMenu}
+                            >
                               <mui.Typography
                                 sx={{
                                   textAlign: "center",
@@ -2349,7 +2927,10 @@ export function ComparisonSurfaces() {
                         LOGO
                       </mui.Typography>
                       <mui.Box
-                        sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+                        sx={{
+                          flexGrow: 1,
+                          display: { xs: "none", md: "flex" },
+                        }}
                       >
                         {pages.map((page) => (
                           <mui.Button
@@ -2520,9 +3101,15 @@ export function ComparisonSurfaces() {
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-[10px] items-center">
-                  <mui.Paper sx={{ width: "80px", height: "80px" }} elevation={0} />
+                  <mui.Paper
+                    sx={{ width: "80px", height: "80px" }}
+                    elevation={0}
+                  />
                   <mui.Paper sx={{ width: "80px", height: "80px" }} />
-                  <mui.Paper sx={{ width: "80px", height: "80px" }} elevation={3} />
+                  <mui.Paper
+                    sx={{ width: "80px", height: "80px" }}
+                    elevation={3}
+                  />
                   <mui.Paper
                     sx={{
                       width: "80px",
@@ -2549,364 +3136,6 @@ export function ComparisonSurfaces() {
               </mui.ThemeProvider>
             ),
             note: "Light mode: elevation changes the box shadow around the box. Dark mode: elevation changes the lightness of the box.",
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonHI() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Hover Card"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/hover-card",
-            zone: (
-              <HoverCard.HoverCard>
-                <HoverCard.HoverCardTrigger>
-                  Hover me
-                </HoverCard.HoverCardTrigger>
-                <HoverCard.HoverCardContent>
-                  This content appears on hover.
-                </HoverCard.HoverCardContent>
-              </HoverCard.HoverCard>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonLMN() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Label"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/label",
-            zone: (
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" />
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Menubar"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/menubar",
-            zone: (
-              <Menubar.Menubar>
-                <Menubar.MenubarMenu>
-                  <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
-                  <Menubar.MenubarContent>
-                    <Menubar.MenubarItem>New</Menubar.MenubarItem>
-                    <Menubar.MenubarItem>Open</Menubar.MenubarItem>
-                  </Menubar.MenubarContent>
-                </Menubar.MenubarMenu>
-              </Menubar.Menubar>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Navigation Menu"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
-            zone: (
-              <NavigationMenu.NavigationMenu>
-                <NavigationMenu.NavigationMenuList>
-                  <NavigationMenu.NavigationMenuItem>
-                    <NavigationMenu.NavigationMenuTrigger>
-                      Getting started
-                    </NavigationMenu.NavigationMenuTrigger>
-                    <NavigationMenu.NavigationMenuContent>
-                      <NavigationMenu.NavigationMenuLink>
-                        Introduction
-                      </NavigationMenu.NavigationMenuLink>
-                    </NavigationMenu.NavigationMenuContent>
-                  </NavigationMenu.NavigationMenuItem>
-                </NavigationMenu.NavigationMenuList>
-              </NavigationMenu.NavigationMenu>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonPRS() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Pagination"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/pagination",
-            zone: (
-              <Pagination.Pagination>
-                <Pagination.PaginationContent>
-                  <Pagination.PaginationItem>
-                    <Pagination.PaginationPrevious href="#" />
-                  </Pagination.PaginationItem>
-                  <Pagination.PaginationItem>
-                    <Pagination.PaginationLink href="#">
-                      1
-                    </Pagination.PaginationLink>
-                  </Pagination.PaginationItem>
-                  <Pagination.PaginationItem>
-                    <Pagination.PaginationNext href="#" />
-                  </Pagination.PaginationItem>
-                </Pagination.PaginationContent>
-              </Pagination.Pagination>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Popover"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/popover",
-            zone: (
-              <Popover.Popover>
-                <Popover.PopoverTrigger asChild>
-                  <Button variant="outline">Open popover</Button>
-                </Popover.PopoverTrigger>
-                <Popover.PopoverContent>
-                  Place content for the popover here.
-                </Popover.PopoverContent>
-              </Popover.Popover>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Resizable"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/resizable",
-            zone: (
-              <Resizable.ResizablePanelGroup
-                direction="horizontal"
-                className="max-w-md rounded-lg border"
-              >
-                <Resizable.ResizablePanel defaultSize={50}>
-                  <div className="flex h-[200px] items-center justify-center p-6">
-                    <span className="font-semibold">One</span>
-                  </div>
-                </Resizable.ResizablePanel>
-                <Resizable.ResizableHandle />
-                <Resizable.ResizablePanel defaultSize={50}>
-                  <div className="flex h-[200px] items-center justify-center p-6">
-                    <span className="font-semibold">Two</span>
-                  </div>
-                </Resizable.ResizablePanel>
-              </Resizable.ResizablePanelGroup>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Separator"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/separator",
-            zone: (
-              <div>
-                <div className="space-y-1">
-                  <h4 className="text-sm font-medium leading-none">
-                    Radix Primitives
-                  </h4>
-                  <p className="text-sm text-muted-foreground">
-                    An open-source UI component library.
-                  </p>
-                </div>
-                <Separator className="my-4" />
-                <div className="flex h-5 items-center space-x-4 text-sm">
-                  <div>Blog</div>
-                  <Separator orientation="vertical" />
-                  <div>Docs</div>
-                  <Separator orientation="vertical" />
-                  <div>Source</div>
-                </div>
-              </div>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Sheet"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/sheet",
-            zone: (
-              <Sheet.Sheet>
-                <Sheet.SheetTrigger asChild>
-                  <Button variant="outline">Open Sheet</Button>
-                </Sheet.SheetTrigger>
-                <Sheet.SheetContent>
-                  <Sheet.SheetHeader>
-                    <Sheet.SheetTitle>Edit profile</Sheet.SheetTitle>
-                    <Sheet.SheetDescription>
-                      Make changes to your profile here.
-                    </Sheet.SheetDescription>
-                  </Sheet.SheetHeader>
-                </Sheet.SheetContent>
-              </Sheet.Sheet>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-    </div>
-  );
-}
-
-export function ComparisonT() {
-  return (
-    <div className="page-body testing">
-      <TestCompare
-        title="Tabs"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/tabs",
-            zone: (
-              <Tabs.Tabs defaultValue="account" className="w-[400px]">
-                <Tabs.TabsList>
-                  <Tabs.TabsTrigger value="account">Account</Tabs.TabsTrigger>
-                  <Tabs.TabsTrigger value="password">Password</Tabs.TabsTrigger>
-                </Tabs.TabsList>
-                <Tabs.TabsContent value="account">
-                  Make changes to your account here.
-                </Tabs.TabsContent>
-                <Tabs.TabsContent value="password">
-                  Change your password here.
-                </Tabs.TabsContent>
-              </Tabs.Tabs>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Tooltip"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/tooltip",
-            zone: (
-              <Tooltip.Tooltip>
-                <Tooltip.TooltipTrigger asChild>
-                  <Button variant="outline">Hover</Button>
-                </Tooltip.TooltipTrigger>
-                <Tooltip.TooltipContent>
-                  <p>Add to library</p>
-                </Tooltip.TooltipContent>
-              </Tooltip.Tooltip>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
           },
         ]}
       />

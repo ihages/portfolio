@@ -22,7 +22,7 @@ import {
   MUIUtils,
 } from "./mui-pages";
 import {
-  ComparisonDataDisplay, ComparisonFeedback, ComparisonInputs, ComparisonNavigation, ComparisonSurfaces
+  ComparisonDataDisplay, ComparisonFeedback, ComparisonInputs, ComparisonNavigation, ComparisonSurfaces, ComparisonLayouts
 } from "./comparison-pages";
 import PageNotFound from "@/components/pageNotFound";
 import { generateStaticParams as generateParams } from "./generateStaticParams";
@@ -117,17 +117,42 @@ export default async function Slugs({
       slugpage = <MUIUtils />;
       prevPage = "Surfaces";
       nextPage = null;
+      break; 
+      case "comparison-data-display":
+      slugpage = <ComparisonDataDisplay />;
+      prevPage = null;
+      nextPage = "Feedback";
+      break;
+          case "comparison-feedback":
+      slugpage = <ComparisonFeedback />;
+      prevPage = "Data Display";
+      nextPage = "Inputs";
       break;
     case "comparison-inputs":
       slugpage = <ComparisonInputs />;
-      prevPage = null;
-      nextPage = "A";
+      prevPage = "Feedback";
+      nextPage = "Navigation";
       break;
-    case "comparison-data-display":
-      slugpage = <ComparisonDataDisplay />;
-      prevPage = null;
-      nextPage = "Inputs";
+      case "comparison-navigation":
+      slugpage = <ComparisonNavigation />;
+      prevPage = "Inputs";
+      nextPage = "Layouts";
       break;
+      case "comparison-layouts":
+      slugpage = <ComparisonLayouts />;
+      prevPage = "Navigation";
+      nextPage = "Surfaces";
+      break;
+       case "comparison-surfaces":
+      slugpage = <ComparisonSurfaces />;
+      prevPage = "Layouts";
+      nextPage = "Utils";
+      break;
+      // case "comparison-utils":
+      // slugpage = <ComparisonUtils />;
+      // prevPage = "Surfaces";
+      // nextPage = null;
+      // break;
     case undefined:
     default:
       slugpage = <div>Page not found</div>;
