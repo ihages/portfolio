@@ -1,7 +1,7 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
-
 @import "tw-animate-css";
+
+@import "tailwindcss/preflight";
+@tailwind utilities;
 
 :root{
   --page-padding: 0 6%;
@@ -364,3 +364,4 @@ a {
     @apply bg-background text-foreground;
   }
 }
+

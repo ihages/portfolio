@@ -22,7 +22,13 @@ import {
   MUIUtils,
 } from "./mui-pages";
 import {
-  ComparisonDataDisplay, ComparisonFeedback, ComparisonInputs, ComparisonNavigation, ComparisonSurfaces, ComparisonLayouts
+  ComparisonDataDisplay,
+  ComparisonFeedback,
+  ComparisonInputs,
+  ComparisonNavigation,
+  ComparisonSurfaces,
+  ComparisonLayouts,
+  ComparisonUtils
 } from "./comparison-pages";
 import PageNotFound from "@/components/pageNotFound";
 import { generateStaticParams as generateParams } from "./generateStaticParams";
@@ -117,13 +123,13 @@ export default async function Slugs({
       slugpage = <MUIUtils />;
       prevPage = "Surfaces";
       nextPage = null;
-      break; 
-      case "comparison-data-display":
+      break;
+    case "comparison-data-display":
       slugpage = <ComparisonDataDisplay />;
       prevPage = null;
       nextPage = "Feedback";
       break;
-          case "comparison-feedback":
+    case "comparison-feedback":
       slugpage = <ComparisonFeedback />;
       prevPage = "Data Display";
       nextPage = "Inputs";
@@ -133,26 +139,26 @@ export default async function Slugs({
       prevPage = "Feedback";
       nextPage = "Navigation";
       break;
-      case "comparison-navigation":
+    case "comparison-navigation":
       slugpage = <ComparisonNavigation />;
       prevPage = "Inputs";
       nextPage = "Layouts";
       break;
-      case "comparison-layouts":
+    case "comparison-layouts":
       slugpage = <ComparisonLayouts />;
       prevPage = "Navigation";
       nextPage = "Surfaces";
       break;
-       case "comparison-surfaces":
+    case "comparison-surfaces":
       slugpage = <ComparisonSurfaces />;
       prevPage = "Layouts";
       nextPage = "Utils";
       break;
-      // case "comparison-utils":
-      // slugpage = <ComparisonUtils />;
-      // prevPage = "Surfaces";
-      // nextPage = null;
-      // break;
+    case "comparison-utils":
+      slugpage = <ComparisonUtils />;
+      prevPage = "Surfaces";
+      nextPage = null;
+      break;
     case undefined:
     default:
       slugpage = <div>Page not found</div>;

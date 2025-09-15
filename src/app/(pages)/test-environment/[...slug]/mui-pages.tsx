@@ -1102,7 +1102,7 @@ export function MUIInputs() {
 export function MUILayout() {
   const currentTheme = useTheme();
   const [selectedGallery, setSelectedGallery] = React.useState("default");
-  
+
   const Item = mui.styled(mui.Paper)(({ theme }) => ({
     backgroundColor: "#fff",
     ...theme.typography.body2,
@@ -1187,54 +1187,54 @@ export function MUILayout() {
     },
   ];
   const itemData2 = [
-   {
-    img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
-    title: 'Bed',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
-    title: 'Books',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
-    title: 'Sink',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
-    title: 'Kitchen',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
-    title: 'Blinds',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
-    title: 'Chairs',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
-    title: 'Laptop',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
-    title: 'Doors',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
-    title: 'Coffee',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
-    title: 'Storage',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
-    title: 'Candle',
-  },
-  {
-    img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
-    title: 'Coffee table',
-  },
+    {
+      img: "https://images.unsplash.com/photo-1549388604-817d15aa0110",
+      title: "Bed",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1525097487452-6278ff080c31",
+      title: "Books",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6",
+      title: "Sink",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3",
+      title: "Kitchen",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1588436706487-9d55d73a39e3",
+      title: "Blinds",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1574180045827-681f8a1a9622",
+      title: "Chairs",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1530731141654-5993c3016c77",
+      title: "Laptop",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1481277542470-605612bd2d61",
+      title: "Doors",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7",
+      title: "Coffee",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee",
+      title: "Storage",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62",
+      title: "Candle",
+    },
+    {
+      img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4",
+      title: "Coffee table",
+    },
   ];
   function srcset(image: string, size: number, rows = 1, cols = 1) {
     return {
@@ -1434,8 +1434,12 @@ export function MUILayout() {
               )}
 
               {selectedGallery === "masonry" && (
-                <mui.ImageList variant="masonry" cols={3} gap={8}
-                  sx={{ width: 500, height: 450 }}>
+                <mui.ImageList
+                  variant="masonry"
+                  cols={3}
+                  gap={8}
+                  sx={{ width: 500, height: 450 }}
+                >
                   {itemData2.map((item) => (
                     <mui.ImageListItem key={item.img}>
                       <img
@@ -1477,7 +1481,8 @@ export function MUILayout() {
               )}
             </mui.Stack>
           </mui.ThemeProvider>
-        } note="Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)"
+        }
+        note="Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)"
       />
     </div>
   );
@@ -2164,5 +2169,155 @@ export function MUISurfaces() {
 
 export function MUIUtils() {
   const currentTheme = useTheme();
-  return <div className="page-body testing"></div>;
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
+
+  function ChildModal() {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => {
+      setOpen(true);
+    };
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    return (
+      <React.Fragment>
+        <mui.Button onClick={handleOpen}>Open Child Modal</mui.Button>
+        <mui.Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="child-modal-title"
+          aria-describedby="child-modal-description"
+        >
+          <mui.Box sx={{ ...style, width: 200 }}>
+            <h2 id="child-modal-title">Text in a child modal</h2>
+            <p id="child-modal-description">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            </p>
+            <mui.Button onClick={handleClose}>Close Child Modal</mui.Button>
+          </mui.Box>
+        </mui.Modal>
+      </React.Fragment>
+    );
+  }
+
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const handleModalOpen = () => {
+    setModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  return (
+    <div className="page-body testing">
+      <TestBlock
+        title="Modal"
+        docLink="https://mui.com/material-ui/react-modal/"
+        note="Modal is a lower-level version of dialog that blocks use of the rest of the application. It is used in Dialog, Drawer, Menu, and Popover. This example uses the keepMounted prop so that the contents are always shown in the DOM and searchable by search engines. It also has a child modal inside the modal."
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Stack>
+              <mui.Button onClick={() => setModalOpen(true)}>
+                Open modal
+              </mui.Button>
+              <mui.Modal
+                keepMounted
+                open={modalOpen}
+                onClose={handleModalClose}
+                aria-labelledby="parent-modal-title"
+                aria-describedby="parent-modal-description"
+              >
+                <mui.Box sx={{ ...style, width: 400 }}>
+                  <h2 id="parent-modal-title">Text in a modal</h2>
+                  <p id="parent-modal-description">
+                    Duis mollis, est non commodo luctus, nisi erat porttitor
+                    ligula.
+                  </p>
+                  <ChildModal />
+                </mui.Box>
+              </mui.Modal>
+            </mui.Stack>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="Popover"
+        docLink="https://mui.com/material-ui/react-popover/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.Button
+              aria-describedby={id}
+              variant="contained"
+              onClick={handleClick}
+            >
+              Open Popover
+            </mui.Button>
+            <mui.Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+            >
+              <mui.Typography sx={{ p: 2 }}>
+                The content of the Popover.
+              </mui.Typography>
+            </mui.Popover>
+          </mui.ThemeProvider>
+        }
+      />
+      <TestBlock
+        title="TextArea"
+        docLink="https://mui.com/material-ui/react-textarea-autosize/"
+        zone={
+          <mui.ThemeProvider theme={currentTheme}>
+            <mui.TextareaAutosize
+              aria-label="minimum height"
+              minRows={3}
+              placeholder="Minimum 3 rows"
+              style={{ width: 200, border: "1px dashed grey" }}
+            />
+            <mui.TextareaAutosize
+              maxRows={4}
+              aria-label="maximum height"
+              placeholder="Maximum 4 rows"
+              defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+      ut labore et dolore magna aliqua."
+              style={{ width: 200, border: "1px dashed grey" }}
+            />
+          </mui.ThemeProvider>
+        }
+      />
+    </div>
+  );
 }

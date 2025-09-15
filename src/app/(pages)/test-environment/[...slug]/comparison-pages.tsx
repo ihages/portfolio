@@ -15,10 +15,11 @@ import {
   AlertCircleIcon,
   CheckCircle2Icon,
   PopcornIcon,
-  CalendarIcon,
+  CalendarDaysIcon,
   Bold,
   Italic,
   Underline,
+  ChevronsUpDown,
 } from "lucide-react";
 
 // MUI Icons
@@ -51,7 +52,6 @@ import DraftsIcon from "@mui/icons-material/Drafts";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
-// TODO: from shad ui, add Aspect Ratio, Carousel, and Sheet to ComparisonLayouts. Put Menubar in Navigation. Put Chart in DataDisplay. Put HoverCard and Contextmenu in feedback
 // Shad UI Components
 import * as Accordion from "@/components/ui/accordion";
 import * as Alert from "@/components/ui/alert";
@@ -98,6 +98,8 @@ import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
 
+import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+
 export function ComparisonDataDisplay() {
   const currentTheme = useTheme();
   const handleDelete = () => {
@@ -122,8 +124,71 @@ export function ComparisonDataDisplay() {
     createData("Gingerbread", 356, 16.0, 49, 3.9),
   ];
 
+  const chartData = [
+    { month: "January", desktop: 186, mobile: 80 },
+    { month: "February", desktop: 305, mobile: 200 },
+    { month: "March", desktop: 237, mobile: 120 },
+    { month: "April", desktop: 73, mobile: 190 },
+    { month: "May", desktop: 209, mobile: 130 },
+    { month: "June", desktop: 214, mobile: 140 },
+  ];
+
+  const chartConfig = {
+    desktop: {
+      label: "Desktop",
+      color: "#2563eb",
+    },
+    mobile: {
+      label: "Mobile",
+      color: "#60a5fa",
+    },
+  } satisfies Chart.ChartConfig;
+
   return (
     <div className="page-body testing">
+      <TestCompare
+        title="Chart"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/chart",
+            zone: (
+              <Chart.ChartContainer
+                config={chartConfig}
+                className="min-h-[200px]"
+              >
+                <BarChart accessibilityLayer data={chartData}>
+                  <CartesianGrid vertical={false} />
+                  <XAxis
+                    dataKey="month"
+                    tickLine={false}
+                    tickMargin={10}
+                    axisLine={false}
+                    tickFormatter={(value) => value.slice(0, 3)}
+                  />
+                  <Chart.ChartTooltip content={<Chart.ChartTooltipContent />} />
+                  <Bar
+                    dataKey="desktop"
+                    fill="var(--color-desktop)"
+                    radius={4}
+                  />
+                  <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+                </BarChart>
+              </Chart.ChartContainer>
+            ),
+            note: "Built on Recharts with consistent theming and accessibility features.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Available with MUI X Charts or integrate third-party charting libraries.",
+          },
+        ]}
+      />
+
       <TestCompare
         title="Avatar"
         components={[
@@ -1266,6 +1331,103 @@ export function ComparisonFeedback() {
   return (
     <div className="page-body testing">
       <TestCompare
+        title="Context Menu"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/context-menu",
+            zone: (
+              <ContextMenu.ContextMenu>
+                <ContextMenu.ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+                  Right click here
+                </ContextMenu.ContextMenuTrigger>
+                <ContextMenu.ContextMenuContent className="w-64">
+                  <ContextMenu.ContextMenuItem inset>
+                    Back
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘[
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                  <ContextMenu.ContextMenuItem inset disabled>
+                    Forward
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘]
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                  <ContextMenu.ContextMenuItem inset>
+                    Reload
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘R
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                  <ContextMenu.ContextMenuSeparator />
+                  <ContextMenu.ContextMenuItem inset>
+                    View Page Source
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘⌥U
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                </ContextMenu.ContextMenuContent>
+              </ContextMenu.ContextMenu>
+            ),
+            note: "Right-click context menu with keyboard shortcuts and nested submenus.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Could use Menu component with onContextMenu event handler for similar functionality.",
+          },
+        ]}
+      />
+      <TestCompare
+        title="Hover Card"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/hover-card",
+            zone: (
+              <HoverCard.HoverCard>
+                <HoverCard.HoverCardTrigger asChild>
+                  <Button variant="link">@nextjs</Button>
+                </HoverCard.HoverCardTrigger>
+                <HoverCard.HoverCardContent className="w-80">
+                  <div className="flex justify-between space-x-4">
+                    <Avatar.Avatar>
+                      <Avatar.AvatarImage src="https://github.com/vercel.png" />
+                      <Avatar.AvatarFallback>VC</Avatar.AvatarFallback>
+                    </Avatar.Avatar>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold">@nextjs</h4>
+                      <p className="text-sm">
+                        The React Framework – created and maintained by @vercel.
+                      </p>
+                      <div className="flex items-center pt-2">
+                        <CalendarDaysIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+                        <span className="text-xs text-muted-foreground">
+                          Joined December 2021
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </HoverCard.HoverCardContent>
+              </HoverCard.HoverCard>
+            ),
+            note: "Rich hover tooltip with custom content. Good for user previews and additional context.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Could use Popover component with hover triggers for similar functionality.",
+          },
+        ]}
+      />
+      <TestCompare
         title="Alert"
         components={[
           {
@@ -1428,6 +1590,59 @@ export function ComparisonFeedback() {
         ]}
       />{" "}
       <TestCompare
+        title="Sheet"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/sheet",
+            zone: (
+              <Sheet.Sheet>
+                <Sheet.SheetTrigger asChild>
+                  <Button variant="outline">Open</Button>
+                </Sheet.SheetTrigger>
+                <Sheet.SheetContent>
+                  <Sheet.SheetHeader>
+                    <Sheet.SheetTitle>Edit profile</Sheet.SheetTitle>
+                    <Sheet.SheetDescription>
+                      Make changes to your profile here. Click save when
+                      you&apos;re done.
+                    </Sheet.SheetDescription>
+                  </Sheet.SheetHeader>
+                  <div className="grid flex-1 auto-rows-min gap-6 px-4">
+                    <div className="grid gap-3">
+                      <Label htmlFor="sheet-demo-name">Name</Label>
+                      <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
+                    </div>
+                    <div className="grid gap-3">
+                      <Label htmlFor="sheet-demo-username">Username</Label>
+                      <Input
+                        id="sheet-demo-username"
+                        defaultValue="@peduarte"
+                      />
+                    </div>
+                  </div>
+                  <Sheet.SheetFooter>
+                    <Button type="submit">Save changes</Button>
+                    <Sheet.SheetClose asChild>
+                      <Button variant="outline">Close</Button>
+                    </Sheet.SheetClose>
+                  </Sheet.SheetFooter>
+                </Sheet.SheetContent>
+              </Sheet.Sheet>
+            ),
+            note: "Side panel overlay that slides in from screen edges. Good for forms and navigation.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Similar functionality available with Drawer component anchored to sides.",
+          },
+        ]}
+      />
+      <TestCompare
         title="Skeleton"
         components={[
           {
@@ -1447,7 +1662,21 @@ export function ComparisonFeedback() {
             title: "MUI",
             docLink: "",
             zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Skeleton
+                  variant="text"
+                  sx={{ width: "100%", fontSize: "1rem" }}
+                />
+                <mui.Skeleton variant="circular" width={40} height={40} />
+                <mui.Skeleton variant="rectangular" width={210} height={60} />
+                <mui.Skeleton variant="rounded" width={210} height={60} />
+                <mui.Skeleton
+                  animation="wave"
+                  variant="circular"
+                  width={40}
+                  height={40}
+                />
+              </mui.ThemeProvider>
             ),
           },
         ]}
@@ -2285,6 +2514,74 @@ export function ComparisonLayouts() {
   return (
     <div className="page-body testing">
       <TestCompare
+        title="Aspect Ratio"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/aspect-ratio",
+            zone: (
+              <AspectRatio ratio={16 / 9} className="bg-muted">
+                <img
+                  src="https://images.unsplash.com/photo-1588001508823-8e8b3b8b8b8b"
+                  alt="Image"
+                  className="rounded-md object-cover"
+                />
+              </AspectRatio>
+            ),
+            note: "Maintains aspect ratio while being responsive. Useful for images and video containers.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Use CSS aspect-ratio property or custom styling with padding-bottom hack.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Carousel"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/carousel",
+            zone: (
+              <Carousel.Carousel className="w-full max-w-xs">
+                <Carousel.CarouselContent>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Carousel.CarouselItem key={index}>
+                      <div className="p-1">
+                        <Card.Card>
+                          <Card.CardContent className="flex aspect-square items-center justify-center p-6">
+                            <span className="text-4xl font-semibold">
+                              {index + 1}
+                            </span>
+                          </Card.CardContent>
+                        </Card.Card>
+                      </div>
+                    </Carousel.CarouselItem>
+                  ))}
+                </Carousel.CarouselContent>
+                <Carousel.CarouselPrevious />
+                <Carousel.CarouselNext />
+              </Carousel.Carousel>
+            ),
+            note: "Built on Embla Carousel with navigation controls and touch/swipe support.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Would need third-party carousel library like Swiper or custom implementation.",
+          },
+        ]}
+      />
+
+      <TestCompare
         title="Box"
         components={[
           {
@@ -2607,8 +2904,8 @@ export function ComparisonLayouts() {
             note: "Would need custom implementation or third-party library.",
           },
         ]}
-      />  
-      
+      />
+
       <TestCompare
         title="Scroll Area"
         components={[
@@ -2683,7 +2980,6 @@ export function ComparisonLayouts() {
     </div>
   );
 }
-
 export function ComparisonSurfaces() {
   const currentTheme = useTheme();
   const pages = ["Products", "Pricing", "Blog"];
@@ -2724,7 +3020,7 @@ export function ComparisonSurfaces() {
         components={[
           {
             title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/accordion",
+            docLink: "https://ui.shadcn.com/docs/components/collapsible",
             zone: (
               <Accordion.Accordion
                 type="single"
@@ -2750,6 +3046,7 @@ export function ComparisonSurfaces() {
                 </Accordion.AccordionItem>
               </Accordion.Accordion>
             ),
+            note: "Simple expand/collapse functionality with smooth animations.",
           },
           {
             title: "MUI",
@@ -3086,6 +3383,51 @@ export function ComparisonSurfaces() {
       />
 
       <TestCompare
+        title="Collapsible"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/collapsible",
+            zone: (
+              <Collapsible.Collapsible>
+                <div className="flex items-center justify-between space-x-4 px-4">
+                  <h4 className="text-sm font-semibold">
+                    @peduarte starred 3 repositories
+                  </h4>
+                  <Collapsible.CollapsibleTrigger asChild>
+                    <Button variant="ghost" size="sm" className="w-9 p-0">
+                      <ChevronsUpDown className="h-4 w-4" />
+                      <span className="sr-only">Toggle</span>
+                    </Button>
+                  </Collapsible.CollapsibleTrigger>
+                </div>
+                <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                  @radix-ui/primitives
+                </div>
+                <Collapsible.CollapsibleContent className="space-y-2">
+                  <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                    @radix-ui/colors
+                  </div>
+                  <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                    @stitches/react
+                  </div>
+                </Collapsible.CollapsibleContent>
+              </Collapsible.Collapsible>
+            ),
+            note: "Simple expand/collapse functionality with smooth animations.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Use Accordion component for similar expand/collapse functionality.",
+          },
+        ]}
+      />
+
+      <TestCompare
         title="Paper"
         components={[
           {
@@ -3100,7 +3442,7 @@ export function ComparisonSurfaces() {
             docLink: "https://mui.com/material-ui/react-paper/",
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex gap-[10px] items-center">
+                <div className="flex gap-[10px] flex-wrap items-center">
                   <mui.Paper
                     sx={{ width: "80px", height: "80px" }}
                     elevation={0}
@@ -3136,6 +3478,190 @@ export function ComparisonSurfaces() {
               </mui.ThemeProvider>
             ),
             note: "Light mode: elevation changes the box shadow around the box. Dark mode: elevation changes the lightness of the box.",
+          },
+        ]}
+      />
+    </div>
+  );
+}
+
+export function ComparisonUtils() {
+  const currentTheme = useTheme();
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
+
+  // MUI Child Modal
+  function ChildModal() {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    return (
+      <React.Fragment>
+        <mui.Button onClick={handleOpen}>Open Child Modal</mui.Button>
+        <mui.Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="child-modal-title"
+          aria-describedby="child-modal-description"
+        >
+          <mui.Box sx={{ ...style, width: 200 }}>
+            <h2 id="child-modal-title">Text in a child modal</h2>
+            <p id="child-modal-description">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+            </p>
+            <mui.Button onClick={handleClose}>Close Child Modal</mui.Button>
+          </mui.Box>
+        </mui.Modal>
+      </React.Fragment>
+    );
+  }
+
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const handleModalOpen = () => setModalOpen(true);
+  const handleModalClose = () => setModalOpen(false);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
+    setAnchorEl(event.currentTarget);
+  const handleClose = () => setAnchorEl(null);
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  return (
+    <div className="page-body testing">
+      <TestCompare
+        title="Modal"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/dialog",
+            zone: (
+              <div className="text-muted-foreground">
+                See Feedback comparison for higher-level component comparison
+              </div>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-modal/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Stack>
+                  <mui.Button onClick={handleModalOpen}>Open modal</mui.Button>
+                  <mui.Modal
+                    keepMounted
+                    open={modalOpen}
+                    onClose={handleModalClose}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description"
+                  >
+                    <mui.Box sx={{ ...style, width: 400 }}>
+                      <h2 id="parent-modal-title">Text in a modal</h2>
+                      <p id="parent-modal-description">
+                        Duis mollis, est non commodo luctus, nisi erat porttitor
+                        ligula.
+                      </p>
+                      <ChildModal />
+                    </mui.Box>
+                  </mui.Modal>
+                </mui.Stack>
+              </mui.ThemeProvider>
+            ),
+            note: "Modal is a lower-level version of dialog that blocks use of the rest of the application. It is used in Dialog, Drawer, Menu, and Popover. This example uses the keepMounted prop so that the contents are always shown in the DOM and searchable by search engines. It also has a child modal inside the modal.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Popover"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/popover",
+            zone: (
+              <Popover.Popover>
+                <Popover.PopoverTrigger asChild>
+                  <Button variant="outline">Open Popover</Button>
+                </Popover.PopoverTrigger>
+                <Popover.PopoverContent>
+                  <div className="p-2">The content of the Popover.</div>
+                </Popover.PopoverContent>
+              </Popover.Popover>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-popover/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.Button
+                  aria-describedby={id}
+                  variant="contained"
+                  onClick={handleClick}
+                >
+                  Open Popover
+                </mui.Button>
+                <mui.Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                >
+                  <mui.Typography sx={{ p: 2 }}>
+                    The content of the Popover.
+                  </mui.Typography>
+                </mui.Popover>
+              </mui.ThemeProvider>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Text Area"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/textarea",
+            zone: (
+              <Textarea
+                placeholder="Minimum 3 rows"
+                className="w-[200px] border border-dashed"
+              />
+            ),
+            note: "Connect a variable by having a state variable and then using onChange.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-textarea-autosize/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <mui.TextareaAutosize
+                  aria-label="minimum height"
+                  minRows={3}
+                  placeholder="Minimum 3 rows"
+                  style={{ width: 200, border: "1px dashed grey" }}
+                />
+                <mui.TextareaAutosize
+                  maxRows={4}
+                  aria-label="maximum height"
+                  placeholder="Maximum 4 rows"
+                  defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\nut labore et dolore magna aliqua."
+                  style={{ width: 200, border: "1px dashed grey" }}
+                />
+              </mui.ThemeProvider>
+            ),
           },
         ]}
       />

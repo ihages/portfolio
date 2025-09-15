@@ -41,6 +41,9 @@ export default function TestEnvironment() {
           <Button asChild>
             <Link href="/test-environment/comparison-surfaces">Surfaces</Link>
           </Button>
+          <Button asChild>
+            <Link href="/test-environment/comparison-utils">Utils</Link>
+          </Button>
         </div>
         <h2>Shadcn Components</h2>
         <div className="flex gap-[20px]">
