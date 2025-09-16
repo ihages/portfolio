@@ -4,3 +4,9 @@
 	filter: invert(1);
   }
 }
+
+.not-found{
+  width:100vw;
+  display: flex;
+  justify-content: center;
+}

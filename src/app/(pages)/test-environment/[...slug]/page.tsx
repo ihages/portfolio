@@ -1,10 +1,7 @@
-import { Button } from "@/components/ui/button";
-import "./style.css";
-import "../style.css"; //ensure styles load with client rendering
-import Link from "next/link";
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
-
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   ShadA,
   ShadB,
@@ -15,7 +12,24 @@ import {
   ShadS,
   ShadT,
 } from "./shad-pages";
-import PageNotFound from "@/components/pageNotFound";
+import {
+  MUIDataDisplay,
+  MUIFeedback,
+  MUIInputs,
+  MUILayout,
+  MUINavigation,
+  MUISurfaces,
+  MUIUtils,
+} from "./mui-pages";
+import {
+  ComparisonDataDisplay,
+  ComparisonFeedback,
+  ComparisonInputs,
+  ComparisonNavigation,
+  ComparisonSurfaces,
+  ComparisonLayouts,
+  ComparisonUtils
+} from "./comparison-pages";
 import { generateStaticParams as generateParams } from "./generateStaticParams";
 
 export { generateParams as generateStaticParams };
@@ -32,6 +46,7 @@ export default async function Slugs({
   let prevPage;
   let nextPage;
   let slugpage;
+
   switch (slugValue) {
     case "shad-a":
       slugpage = <ShadA />;
@@ -58,55 +73,136 @@ export default async function Slugs({
       prevPage = "D";
       nextPage = "N-R";
       break;
-
     case "shad-n-r":
       slugpage = <ShadNR />;
       prevPage = "H-M";
       nextPage = "S";
       break;
-
     case "shad-s":
       slugpage = <ShadS />;
       prevPage = "N-R";
       nextPage = "T";
       break;
-
     case "shad-t":
       slugpage = <ShadT />;
       prevPage = "S";
       nextPage = null;
       break;
-
+    case "mui-data-display":
+      slugpage = <MUIDataDisplay />;
+      prevPage = null;
+      nextPage = "Feedback";
+      break;
+    case "mui-feedback":
+      slugpage = <MUIFeedback />;
+      prevPage = "Data Display";
+      nextPage = "Inputs";
+      break;
+    case "mui-inputs":
+      slugpage = <MUIInputs />;
+      prevPage = "Feedback";
+      nextPage = "Layouts";
+      break;
+    case "mui-layouts":
+      slugpage = <MUILayout />;
+      prevPage = "Inputs";
+      nextPage = "Navigation";
+      break;
+    case "mui-navigation":
+      slugpage = <MUINavigation />;
+      prevPage = "Layouts";
+      nextPage = "Surfaces";
+      break;
+    case "mui-surfaces":
+      slugpage = <MUISurfaces />;
+      prevPage = "Navigation";
+      nextPage = "Utils";
+      break;
+    case "mui-utils":
+      slugpage = <MUIUtils />;
+      prevPage = "Surfaces";
+      nextPage = null;
+      break;
+    case "comparison-data-display":
+      slugpage = <ComparisonDataDisplay />;
+      prevPage = null;
+      nextPage = "Feedback";
+      break;
+    case "comparison-feedback":
+      slugpage = <ComparisonFeedback />;
+      prevPage = "Data Display";
+      nextPage = "Inputs";
+      break;
+    case "comparison-inputs":
+      slugpage = <ComparisonInputs />;
+      prevPage = "Feedback";
+      nextPage = "Navigation";
+      break;
+    case "comparison-navigation":
+      slugpage = <ComparisonNavigation />;
+      prevPage = "Inputs";
+      nextPage = "Layouts";
+      break;
+    case "comparison-layouts":
+      slugpage = <ComparisonLayouts />;
+      prevPage = "Navigation";
+      nextPage = "Surfaces";
+      break;
+    case "comparison-surfaces":
+      slugpage = <ComparisonSurfaces />;
+      prevPage = "Layouts";
+      nextPage = "Utils";
+      break;
+    case "comparison-utils":
+      slugpage = <ComparisonUtils />;
+      prevPage = "Surfaces";
+      nextPage = null;
+      break;
     case undefined:
     default:
-      slugpage = <PageNotFound></PageNotFound>;
+      slugpage = <div>Page not found</div>;
+      prevPage = null;
+      nextPage = null;
       break;
   }
+
+  const prevSlug =
+    slugValue?.includes("shad") && !slugValue?.includes("mui")
+      ? `shad-${prevPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("mui") && !slugValue?.includes("shad")
+      ? `mui-${prevPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("comparison")
+      ? `comparison-${prevPage?.toLowerCase().replace(" ", "-")}`
+      : null;
+
+  const nextSlug =
+    slugValue?.includes("shad") && !slugValue?.includes("mui")
+      ? `shad-${nextPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("mui") && !slugValue?.includes("shad")
+      ? `mui-${nextPage?.toLowerCase().replace(" ", "-")}`
+      : slugValue?.includes("comparison")
+      ? `comparison-${nextPage?.toLowerCase().replace(" ", "-")}`
+      : null;
 
   const slughead = (
     <>
       <Breadcrumbs />
-      {slugpage === <PageNotFound></PageNotFound> ? null : (
+      <h1 className="flex justify-center m-[0px]">
+        {slugValue?.replace(/-/g, " ").toLocaleUpperCase()}
+      </h1>
+      {slugpage && (
         <div className="nav-buttons">
           <div className="nav-buttons-left">
             {prevPage !== null ? (
               <Button asChild variant={"default"} size={"default"}>
-                <Link
-                  href={`/test-environment/shad-${prevPage?.toLowerCase()}`}
-                >
-                  {prevPage}
-                </Link>
+                <Link href={`/test-environment/${prevSlug}`}>{prevPage}</Link>
               </Button>
             ) : null}
           </div>
           <div className="nav-buttons-right">
             {nextPage !== null ? (
               <Button asChild variant={"default"} size={"default"}>
-                <Link
-                  href={`/test-environment/shad-${nextPage?.toLowerCase()}`}
-                >
-                  {nextPage}
-                </Link>
+                <Link href={`/test-environment/${nextSlug}`}>{nextPage}</Link>
               </Button>
             ) : null}
           </div>
@@ -120,18 +216,14 @@ export default async function Slugs({
       <div className="nav-buttons-left">
         {prevPage !== null ? (
           <Button asChild variant={"default"} size={"default"}>
-            <Link href={`/test-environment/shad-${prevPage?.toLowerCase()}`}>
-              {prevPage}
-            </Link>
+            <Link href={`/test-environment/${prevSlug}`}>{prevPage}</Link>
           </Button>
         ) : null}
       </div>
       <div className="nav-buttons-right">
         {nextPage !== null ? (
           <Button asChild variant={"default"} size={"default"}>
-            <Link href={`/test-environment/shad-${nextPage?.toLowerCase()}`}>
-              {nextPage}
-            </Link>
+            <Link href={`/test-environment/${nextSlug}`}>{nextPage}</Link>
           </Button>
         ) : null}
       </div>
@@ -140,7 +232,6 @@ export default async function Slugs({
 
   return (
     <>
-      <title>Ihages | Testing Environment</title>
       <meta
         name="description"
         content="Isabelle Hageman's testing environment for various npm libraries, currently including ShadCN"
