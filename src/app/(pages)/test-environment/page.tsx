@@ -87,7 +87,7 @@ export default function TestEnvironment() {
                 <h3>MUI Components</h3>
                 <p>
                   Components use Roboto font by default. Colors do not access
-                  global.css. The disabled color's opacity also has difficulty
+                  global.css. The disabled color&apos;s opacity also has difficulty
                   rendering in dark mode.
                 </p>
                 <div className="flex gap-[20px]">

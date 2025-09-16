@@ -1,5 +1,6 @@
 "use client";
 import * as React from "react";
+import Image from "next/image";
 import * as mui from "@mui/material";
 import { TestBlock } from "@/components/testblock";
 import "./style.css";
@@ -31,7 +32,6 @@ import {
   Inbox as InboxIcon,
   Drafts as DraftsIcon,
   Delete as DeleteIcon,
-  WidthFull,
 } from "@mui/icons-material";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
@@ -1236,14 +1236,6 @@ export function MUILayout() {
       title: "Coffee table",
     },
   ];
-  function srcset(image: string, size: number, rows = 1, cols = 1) {
-    return {
-      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-      srcSet: `${image}?w=${size * cols}&h=${
-        size * rows
-      }&fit=crop&auto=format&dpr=2 2x`,
-    };
-  }
 
   return (
     <div className="page-body testing">
@@ -1379,11 +1371,12 @@ export function MUILayout() {
                 >
                   {itemData.map((item) => (
                     <mui.ImageListItem key={item.img}>
-                      <img
-                        srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                      <Image
                         src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
                         alt={item.title}
-                        loading="lazy"
+                        width={164}
+                        height={164}
+                        style={{ objectFit: 'cover' }}
                       />
                     </mui.ImageListItem>
                   ))}
@@ -1403,10 +1396,12 @@ export function MUILayout() {
                       cols={item.cols || 1}
                       rows={item.rows || 1}
                     >
-                      <img
-                        {...srcset(item.img, 121, item.rows, item.cols)}
+                      <Image
+                        src={item.img}
                         alt={item.title}
-                        loading="lazy"
+                        width={121}
+                        height={121}
+                        style={{ objectFit: 'cover' }}
                       />
                     </mui.ImageListItem>
                   ))}
@@ -1422,11 +1417,12 @@ export function MUILayout() {
                 >
                   {itemData2.map((item) => (
                     <mui.ImageListItem key={item.img}>
-                      <img
-                        srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                      <Image
                         src={`${item.img}?w=161&fit=crop&auto=format`}
                         alt={item.title}
-                        loading="lazy"
+                        width={161}
+                        height={164}
+                        style={{ objectFit: 'cover' }}
                       />
                     </mui.ImageListItem>
                   ))}
@@ -1442,11 +1438,12 @@ export function MUILayout() {
                 >
                   {itemData2.map((item) => (
                     <mui.ImageListItem key={item.img}>
-                      <img
-                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      <Image
                         src={`${item.img}?w=248&fit=crop&auto=format`}
                         alt={item.title}
-                        loading="lazy"
+                        width={248}
+                        height={200}
+                        style={{ objectFit: 'cover' }}
                       />
                     </mui.ImageListItem>
                   ))}
@@ -1457,11 +1454,12 @@ export function MUILayout() {
                 <mui.ImageList sx={{ width: 500, height: 450 }}>
                   {itemData.map((item) => (
                     <mui.ImageListItem key={item.img}>
-                      <img
-                        srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                      <Image
                         src={`${item.img}?w=248&fit=crop&auto=format`}
                         alt={item.title}
-                        loading="lazy"
+                        width={248}
+                        height={200}
+                        style={{ objectFit: 'cover' }}
                       />
                       <mui.ImageListItemBar
                         title={item.title}
@@ -2214,9 +2212,7 @@ export function MUIUtils() {
   }
 
   const [modalOpen, setModalOpen] = React.useState(false);
-  const handleModalOpen = () => {
-    setModalOpen(true);
-  };
+
   const handleModalClose = () => {
     setModalOpen(false);
   };

@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import "./style.css";
 import "../style.css";
 
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { TestCompare } from "@/components/testblock";
 import * as mui from "@mui/material";
 import { useTheme } from "@/utils/mui-theme";
@@ -563,17 +564,12 @@ export function ComparisonInputs() {
   const [date, setDate] = useState<Date>();
   const [checked, setChecked] = useState([false, false]);
   const CheckboxLabel = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [volume, setVolume] = React.useState(30);
   const [rating, setRating] = React.useState<number | null>(2);
   const [age, setAge] = React.useState("");
   const [toggleSelected, setToggleSelected] = React.useState<boolean>(false);
 
-  const [progress, setProgress] = useState(13);
   const [formats, setFormats] = React.useState(["bold"]);
 
-  const handleVolume = (event: Event, newValue: number | number[]) => {
-    setVolume(newValue as number);
-  };
 
   const handleFormat = (
     event: React.MouseEvent<HTMLElement>,
@@ -1279,7 +1275,7 @@ export function ComparisonInputs() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Interface user cannot resize text box. Multiline prop enables textarea autoresizing, though. ",
+            note: "Interface user cannot resize text box. Multiline prop enables textarea autoresizing, though.",
           },
         ]}
       />
@@ -1404,10 +1400,6 @@ export function ComparisonFeedback() {
     return () => clearTimeout(timer);
   }, []);
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
-
-  const handleSnackClick = () => {
-    setOpenSnackbar(true);
-  };
 
   const handleSnackClose = (
     event: React.SyntheticEvent | Event,
@@ -2246,7 +2238,7 @@ export function ComparisonNavigation() {
             title: "Shad",
             docLink: "",
             zone: (
-              <div className="text-muted-foreground">See Button's link variant</div>
+              <div className="text-muted-foreground">See Button&apos;s link variant</div>
             ),
           },
           {
@@ -2723,15 +2715,6 @@ export function ComparisonLayouts() {
     },
   ];
 
-  function srcset(image: string, size: number, rows = 1, cols = 1) {
-    return {
-      src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
-      srcSet: `${image}?w=${size * cols}&h=${
-        size * rows
-      }&fit=crop&auto=format&dpr=2 2x`,
-    };
-  }
-
   return (
     <div className="page-body testing">
       <TestCompare
@@ -2742,10 +2725,12 @@ export function ComparisonLayouts() {
             docLink: "https://ui.shadcn.com/docs/components/aspect-ratio",
             zone: (
               <AspectRatio ratio={16 / 9} className="bg-muted">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1757495361144-0c2bfba62b9e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Image"
                   className="rounded-md object-cover"
+                  width={1170}
+                  height={658} // Adjust dimensions as needed
                 />
               </AspectRatio>
             ),
@@ -2982,11 +2967,12 @@ export function ComparisonLayouts() {
                     >
                       {itemData.map((item) => (
                         <mui.ImageListItem key={item.img}>
-                          <img
-                            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+                          <Image
                             src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
                             alt={item.title}
-                            loading="lazy"
+                            width={164}
+                            height={164}
+                            style={{ objectFit: 'cover' }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -3006,10 +2992,12 @@ export function ComparisonLayouts() {
                           cols={item.cols || 1}
                           rows={item.rows || 1}
                         >
-                          <img
-                            {...srcset(item.img, 121, item.rows, item.cols)}
+                          <Image
+                            src={item.img}
                             alt={item.title}
-                            loading="lazy"
+                            width={121}
+                            height={121}
+                            style={{ objectFit: 'cover' }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -3025,11 +3013,12 @@ export function ComparisonLayouts() {
                     >
                       {itemData2.map((item) => (
                         <mui.ImageListItem key={item.img}>
-                          <img
-                            srcSet={`${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                          <Image
                             src={`${item.img}?w=161&fit=crop&auto=format`}
                             alt={item.title}
-                            loading="lazy"
+                            width={161}
+                            height={164}
+                            style={{ objectFit: 'cover' }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -3045,11 +3034,12 @@ export function ComparisonLayouts() {
                     >
                       {itemData2.map((item) => (
                         <mui.ImageListItem key={item.img}>
-                          <img
-                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                          <Image
                             src={`${item.img}?w=248&fit=crop&auto=format`}
                             alt={item.title}
-                            loading="lazy"
+                            width={248}
+                            height={200}
+                            style={{ objectFit: 'cover' }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -3060,11 +3050,12 @@ export function ComparisonLayouts() {
                     <mui.ImageList sx={{ width: 500, height: 450 }}>
                       {itemData.map((item) => (
                         <mui.ImageListItem key={item.img}>
-                          <img
-                            srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                          <Image
                             src={`${item.img}?w=248&fit=crop&auto=format`}
                             alt={item.title}
-                            loading="lazy"
+                            width={248}
+                            height={200}
+                            style={{ objectFit: 'cover' }}
                           />
                           <mui.ImageListItemBar
                             title={item.title}
@@ -3194,7 +3185,7 @@ export function ComparisonLayouts() {
                 </mui.Stack>
               </mui.ThemeProvider>
             ),
-            note: "Pretty much the same as a flex-col. You can throw in a 'direction' prop to make it a row.",
+            note: "Pretty much the same as a flex-col. You can throw in a &apos;direction&apos; prop to make it a row.",
           },
         ]}
       />

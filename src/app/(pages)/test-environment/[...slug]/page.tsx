@@ -30,7 +30,6 @@ import {
   ComparisonLayouts,
   ComparisonUtils
 } from "./comparison-pages";
-import PageNotFound from "@/components/pageNotFound";
 import { generateStaticParams as generateParams } from "./generateStaticParams";
 
 export { generateParams as generateStaticParams };

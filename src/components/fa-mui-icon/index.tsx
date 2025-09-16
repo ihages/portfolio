@@ -1,7 +1,8 @@
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import SvgIcon from '@mui/material/SvgIcon';
 import * as React from 'react';
 type FontAwesomeSvgIconProps = {
-  icon: any;
+  icon: IconDefinition;
 };
 
 const FontAwesomeSvgIcon = React.forwardRef<SVGSVGElement, FontAwesomeSvgIconProps>(
@@ -25,12 +26,14 @@ const FontAwesomeSvgIcon = React.forwardRef<SVGSVGElement, FontAwesomeSvgIconPro
            * @see https://fontawesome.com/how-to-use/on-the-web/styling/duotone-icons#changing-opacity
            */
           svgPathData.map((d: string, i: number) => (
-            <path style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
+            <path key={d} style={{ opacity: i === 0 ? 0.4 : 1 }} d={d} />
           ))
         )}
       </SvgIcon>
     );
   },
 );
+
+FontAwesomeSvgIcon.displayName = 'FontAwesomeSvgIcon';
 
 export default FontAwesomeSvgIcon;
