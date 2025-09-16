@@ -97,6 +97,7 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
+import HomeIcon from "@mui/icons-material/Home"
 
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
@@ -376,6 +377,43 @@ export function ComparisonDataDisplay() {
               </mui.ThemeProvider>
             ),
             note: "Same as ShadCN's separator component. Includes horizontal and vertical orientations with chip integration.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Icons"
+        components={[
+          {
+            title: "Shad",
+            docLink: "",
+            zone: (
+              <div className="flex gap-2">
+                <CheckCircle2Icon size={20} />
+                <AlertCircleIcon size={20} />
+                <ChevronRightIcon size={20} />
+                <PopcornIcon size={20} />
+              </div>
+            ),
+            note: "Uses Lucide React icons or other icon libraries.",
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/icons/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-2">
+                  <HomeIcon />
+                  <FavoriteIcon />
+                  <LocationOnIcon />
+                  <RestoreIcon />
+                  <mui.SvgIcon>
+                    <path d="m10 15 5.19-3L10 9v6z" />
+                  </mui.SvgIcon>
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Icons are in the library '@mui/icons-material'. The svgicon component lets you use non-mui components inside mui components.",
           },
         ]}
       />
@@ -708,6 +746,58 @@ export function ComparisonInputs() {
   return (
     <div className="page-body testing">
       <TestCompare
+        title="Basic Input"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/input",
+            zone: <Input type="email" placeholder="Email" />,
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-text-field/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-2">
+                  <mui.TextField variant="outlined" placeholder="Email" size="small" />
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Use TextField component for text inputs in MUI.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Label"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/label",
+            zone: (
+              <>
+                <Input type="email" placeholder="Email" id="email" />
+                <Label htmlFor="email">this is a label for that input above</Label>
+              </>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-form-label/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-2">
+                  <mui.FormLabel>Email Label</mui.FormLabel>
+                  <mui.TextField variant="outlined" placeholder="Email" size="small" />
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "MUI uses FormLabel or built-in TextField labels.",
+          },
+        ]}
+      />
+
+      <TestCompare
         title="Action Button"
         components={[
           {
@@ -747,7 +837,7 @@ export function ComparisonInputs() {
             title: "Shad",
             docLink: "https://ui.shadcn.com/docs/components/button",
             zone: (
-              <div className="flex gap-[5px]">
+              <div className="flex gap-[5px] flex-wrap">
                 <Button variant="default">Default</Button>
                 <Button variant="outline">Outline</Button>
                 <Button variant="secondary">Secondary</Button>
@@ -762,13 +852,13 @@ export function ComparisonInputs() {
             docLink: "https://mui.com/material-ui/react-button/",
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex gap-[20px]">
+                <div className="flex gap-[20px] flex-wrap">
                   Primary
                   <mui.Button variant="contained">Contained</mui.Button>
                   <mui.Button variant="outlined">Outlined</mui.Button>
                   <mui.Button variant="text">Text</mui.Button>
                 </div>
-                <div className="flex gap-[5px]">
+                <div className="flex gap-[5px] flex-wrap">
                   Seconday
                   <mui.Button color="secondary" variant="contained">
                     Contained
@@ -1305,6 +1395,8 @@ export function ComparisonInputs() {
 export function ComparisonFeedback() {
   const currentTheme = useTheme();
   const [openBackdrop, setOpenBackdrop] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [openAlertDialog, setOpenAlertDialog] = useState(false);
   const [progress, setProgress] = useState(13);
 
   useEffect(() => {
@@ -1395,7 +1487,7 @@ export function ComparisonFeedback() {
                 </HoverCard.HoverCardTrigger>
                 <HoverCard.HoverCardContent className="w-80">
                   <div className="flex justify-between space-x-4">
-                    <Avatar.Avatar>
+                    <Avatar.Avatar className="size-[50px]">
                       <Avatar.AvatarImage src="https://github.com/vercel.png" />
                       <Avatar.AvatarFallback>VC</Avatar.AvatarFallback>
                     </Avatar.Avatar>
@@ -1504,10 +1596,38 @@ export function ComparisonFeedback() {
           },
           {
             title: "MUI",
-            docLink: "",
+            docLink: "https://mui.com/material-ui/react-dialog/",
             zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
+              <mui.ThemeProvider theme={currentTheme}>
+                <React.Fragment>
+                  <mui.Button variant="outlined" onClick={() => setOpenAlertDialog(true)}>
+                    Show Alert
+                  </mui.Button>
+                  <mui.Dialog
+                    open={openAlertDialog}
+                    onClose={() => setOpenAlertDialog(false)}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <mui.DialogTitle id="alert-dialog-title">
+                      Are you sure?
+                    </mui.DialogTitle>
+                    <mui.DialogContent>
+                      <mui.DialogContentText id="alert-dialog-description">
+                        This action cannot be undone.
+                      </mui.DialogContentText>
+                    </mui.DialogContent>
+                    <mui.DialogActions>
+                      <mui.Button onClick={() => setOpenAlertDialog(false)}>Cancel</mui.Button>
+                      <mui.Button onClick={() => setOpenAlertDialog(false)} autoFocus>
+                        Continue
+                      </mui.Button>
+                    </mui.DialogActions>
+                  </mui.Dialog>
+                </React.Fragment>
+              </mui.ThemeProvider>
             ),
+            note: "MUI Dialog used for alert confirmation dialogs",
           },
         ]}
       />
@@ -1565,9 +1685,36 @@ export function ComparisonFeedback() {
           },
           {
             title: "MUI",
-            docLink: "",
+            docLink: "https://mui.com/material-ui/react-dialog/",
             zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
+              <mui.ThemeProvider theme={currentTheme}>
+                <React.Fragment>
+                  <mui.Button variant="outlined" onClick={() => setOpenDialog(true)}>
+                    Open Dialog
+                  </mui.Button>
+                  <mui.Dialog
+                    open={openDialog}
+                    onClose={() => setOpenDialog(false)}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                  >
+                    <mui.DialogTitle id="alert-dialog-title">
+                      Dialog Title
+                    </mui.DialogTitle>
+                    <mui.DialogContent>
+                      <mui.DialogContentText id="alert-dialog-description">
+                        This is a dialog description.
+                      </mui.DialogContentText>
+                    </mui.DialogContent>
+                    <mui.DialogActions>
+                      <mui.Button onClick={() => setOpenDialog(false)}>Cancel</mui.Button>
+                      <mui.Button onClick={() => setOpenDialog(false)} autoFocus>
+                        Confirm
+                      </mui.Button>
+                    </mui.DialogActions>
+                  </mui.Dialog>
+                </React.Fragment>
+              </mui.ThemeProvider>
             ),
           },
         ]}
@@ -1582,9 +1729,16 @@ export function ComparisonFeedback() {
           },
           {
             title: "MUI",
-            docLink: "",
+            docLink: "https://mui.com/material-ui/react-progress/",
             zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-[10px] w-[300px]">
+                  <mui.LinearProgress variant="determinate" value={progress} />
+                  <mui.CircularProgress variant="determinate" value={progress} />
+                  <mui.LinearProgress />
+                  <mui.CircularProgress />
+                </div>
+              </mui.ThemeProvider>
             ),
           },
         ]}
@@ -1649,18 +1803,18 @@ export function ComparisonFeedback() {
             title: "Shad",
             docLink: "https://ui.shadcn.com/docs/components/skeleton",
             zone: (
-              <div className="flex items-center space-x-4">
-                <Skeleton className="h-12 w-12 rounded-full" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-[250px]" />
-                  <Skeleton className="h-4 w-[200px]" />
+              <div className="flex items-center w-full gap-[2px] flex-col">
+                <Skeleton className="h-[20px] w-[20px] rounded-full" />
+                <div className="w-full flex gap-[5px]">
+                  <Skeleton className="h-[100px] w-full" />
+                  <Skeleton className="h-[100px] w-full" />
                 </div>
               </div>
             ),
           },
           {
             title: "MUI",
-            docLink: "",
+            docLink: "https://mui.com/material-ui/react-skeleton/",
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Skeleton
@@ -2092,7 +2246,7 @@ export function ComparisonNavigation() {
             title: "Shad",
             docLink: "",
             zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
+              <div className="text-muted-foreground">See Button's link variant</div>
             ),
           },
           {
@@ -2358,6 +2512,73 @@ export function ComparisonNavigation() {
           },
         ]}
       />
+
+      <TestCompare
+        title="Menubar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/menubar",
+            zone: (
+              <Menubar.Menubar>
+                <Menubar.MenubarMenu>
+                  <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
+                  <Menubar.MenubarContent side="bottom">
+                    <Menubar.MenubarItem>
+                      New Tab <Menubar.MenubarShortcut>⌘T</Menubar.MenubarShortcut>
+                    </Menubar.MenubarItem>
+                    <Menubar.MenubarItem>New Window</Menubar.MenubarItem>
+                    <Menubar.MenubarSeparator />
+                    <Menubar.MenubarItem>Share</Menubar.MenubarItem>
+                    <Menubar.MenubarSeparator />
+                    <Menubar.MenubarItem>Print</Menubar.MenubarItem>
+                  </Menubar.MenubarContent>
+                </Menubar.MenubarMenu>
+              </Menubar.Menubar>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent - use AppBar or Menu</div>
+            ),
+            note: "MUI doesn't have a direct menubar equivalent. Use AppBar for top navigation or Menu for contextual menus.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Navigation Menu"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
+            zone: (
+              <NavigationMenu.NavigationMenu>
+                <NavigationMenu.NavigationMenuList>
+                  <NavigationMenu.NavigationMenuItem>
+                    <NavigationMenu.NavigationMenuTrigger>
+                      Components
+                    </NavigationMenu.NavigationMenuTrigger>
+                    <NavigationMenu.NavigationMenuContent>
+                      <NavigationMenu.NavigationMenuLink>Link</NavigationMenu.NavigationMenuLink>
+                    </NavigationMenu.NavigationMenuContent>
+                  </NavigationMenu.NavigationMenuItem>
+                </NavigationMenu.NavigationMenuList>
+              </NavigationMenu.NavigationMenu>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent - use Tabs or Menu</div>
+            ),
+            note: "MUI doesn't have a direct navigation menu equivalent. Use Tabs for horizontal navigation or nested Menus.",
+          },
+        ]}
+      />
     </div>
   );
 }
@@ -2522,7 +2743,7 @@ export function ComparisonLayouts() {
             zone: (
               <AspectRatio ratio={16 / 9} className="bg-muted">
                 <img
-                  src="https://images.unsplash.com/photo-1588001508823-8e8b3b8b8b8b"
+                  src="https://images.unsplash.com/photo-1757495361144-0c2bfba62b9e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Image"
                   className="rounded-md object-cover"
                 />

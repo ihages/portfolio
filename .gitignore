@@ -16,6 +16,7 @@
 # next.js
 /.next/
 /out/
+/.out-of-code-insights
 
 # production
 /build
