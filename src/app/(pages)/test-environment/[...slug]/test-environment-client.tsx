@@ -37,7 +37,9 @@ interface TestEnvironmentClientProps {
   slug: string[];
 }
 
-export default function TestEnvironmentClient({ slug }: TestEnvironmentClientProps) {
+export default function TestEnvironmentClient({
+  slug,
+}: TestEnvironmentClientProps) {
   const slugValue = slug?.[0];
 
   let prevPage;
@@ -156,7 +158,11 @@ export default function TestEnvironmentClient({ slug }: TestEnvironmentClientPro
       nextPage = null;
       break;
     default:
-      return <PageNotFound />;
+      return (
+        <div className="pt-[100px]">
+          <PageNotFound />
+        </div>
+      );
   }
 
   return (
@@ -164,23 +170,35 @@ export default function TestEnvironmentClient({ slug }: TestEnvironmentClientPro
       <h1 className="flex justify-center m-[0px]">
         {slugValue?.replace(/-/g, " ").toUpperCase()}
       </h1>
-      {slugpage}
       <div className="nav-buttons">
         <div className="nav-buttons-left">
           {prevPage && (
             <Button asChild variant={"default"} size={"default"}>
-              <Link href={getNavigationUrl(slugValue, "prev")}>
-                Previous: {prevPage}
-              </Link>
+              <Link href={getNavigationUrl(slugValue, "prev")}>{prevPage}</Link>
             </Button>
           )}
         </div>
         <div className="nav-buttons-right">
           {nextPage && (
             <Button asChild variant={"default"} size={"default"}>
-              <Link href={getNavigationUrl(slugValue, "next")}>
-                Next: {nextPage}
-              </Link>
+              <Link href={getNavigationUrl(slugValue, "next")}>{nextPage}</Link>
+            </Button>
+          )}
+        </div>
+      </div>
+      {slugpage}
+      <div className="nav-buttons">
+        <div className="nav-buttons-left">
+          {prevPage && (
+            <Button asChild variant={"default"} size={"default"}>
+              <Link href={getNavigationUrl(slugValue, "prev")}>{prevPage}</Link>
+            </Button>
+          )}
+        </div>
+        <div className="nav-buttons-right">
+          {nextPage && (
+            <Button asChild variant={"default"} size={"default"}>
+              <Link href={getNavigationUrl(slugValue, "next")}>{nextPage}</Link>
             </Button>
           )}
         </div>
@@ -190,7 +208,10 @@ export default function TestEnvironmentClient({ slug }: TestEnvironmentClientPro
 }
 
 // Helper function to get the correct navigation URL
-function getNavigationUrl(currentSlug: string, direction: "prev" | "next"): string {
+function getNavigationUrl(
+  currentSlug: string,
+  direction: "prev" | "next"
+): string {
   const routes = {
     // Shad routes
     "shad-a": { prev: null, next: "shad-b" },
@@ -201,7 +222,7 @@ function getNavigationUrl(currentSlug: string, direction: "prev" | "next"): stri
     "shad-n-r": { prev: "shad-h-m", next: "shad-s" },
     "shad-s": { prev: "shad-n-r", next: "shad-t" },
     "shad-t": { prev: "shad-s", next: null },
-    
+
     // MUI routes
     "mui-data-display": { prev: null, next: "mui-feedback" },
     "mui-feedback": { prev: "mui-data-display", next: "mui-inputs" },
@@ -210,19 +231,34 @@ function getNavigationUrl(currentSlug: string, direction: "prev" | "next"): stri
     "mui-navigation": { prev: "mui-layouts", next: "mui-surfaces" },
     "mui-surfaces": { prev: "mui-navigation", next: "mui-utils" },
     "mui-utils": { prev: "mui-surfaces", next: null },
-    
+
     // Comparison routes
     "comparison-data-display": { prev: null, next: "comparison-feedback" },
-    "comparison-feedback": { prev: "comparison-data-display", next: "comparison-inputs" },
-    "comparison-inputs": { prev: "comparison-feedback", next: "comparison-layouts" },
-    "comparison-layouts": { prev: "comparison-inputs", next: "comparison-navigation" },
-    "comparison-navigation": { prev: "comparison-layouts", next: "comparison-surfaces" },
-    "comparison-surfaces": { prev: "comparison-navigation", next: "comparison-utils" },
+    "comparison-feedback": {
+      prev: "comparison-data-display",
+      next: "comparison-inputs",
+    },
+    "comparison-inputs": {
+      prev: "comparison-feedback",
+      next: "comparison-layouts",
+    },
+    "comparison-layouts": {
+      prev: "comparison-inputs",
+      next: "comparison-navigation",
+    },
+    "comparison-navigation": {
+      prev: "comparison-layouts",
+      next: "comparison-surfaces",
+    },
+    "comparison-surfaces": {
+      prev: "comparison-navigation",
+      next: "comparison-utils",
+    },
     "comparison-utils": { prev: "comparison-surfaces", next: null },
   };
 
   const route = routes[currentSlug as keyof typeof routes];
   const targetSlug = route?.[direction];
-  
+
   return targetSlug ? `/test-environment/${targetSlug}` : "#";
 }
