@@ -1,28 +1,23 @@
+"use client"
 import "./style.css";
 import "../style.css"; //ensure styles load with client rendering
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
 import PageNotFound from "@/components/pageNotFound";
+import { useParams } from "next/navigation";
 
-export default async function Slugs({
-  params,
-}: {
-  params: Promise<{ slug?: string[] }>;
-}) {
+export default function Slugs() {
   // slug will be an array or undefined
-  const { slug } = await params;
+  const params = useParams();
+  const slug = params.slug as string[] | undefined;
   const slugValue = slug?.[0];
 
   let slugpage;
-  
-  // Handle gallery routes dynamically
+
   switch (slugValue) {
-    // Add your gallery pages here as needed
-    // Example:
     // case "my-gallery":
     //   slugpage = <MyGalleryComponent />;
     //   break;
-    
     case undefined:
       // No slug provided - could redirect to gallery home or show default content
       slugpage = <div>Gallery Home - Select a gallery to view</div>;
@@ -39,10 +34,7 @@ export default async function Slugs({
     </>
   );
 
-  const slugfoot = (
-    <div className="nav-buttons">
-    </div>
-  );
+  const slugfoot = <div className="nav-buttons"></div>;
 
   return (
     <>
