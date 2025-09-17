@@ -4,6 +4,7 @@ import path from "path";
 const nextConfig: NextConfig = {
   basePath: "/portfolio",
   reactStrictMode: true,
+  trailingSlash: false,
   images: {
     unoptimized: true,
   },
