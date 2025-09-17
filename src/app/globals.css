@@ -1,6 +1,5 @@
+@import "tailwindcss";
 @import "tw-animate-css";
-@import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
 
 :root{
   --page-padding: 0 6%;

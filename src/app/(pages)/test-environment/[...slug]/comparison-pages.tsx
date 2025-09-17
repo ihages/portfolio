@@ -265,10 +265,10 @@ export function ComparisonDataDisplay() {
                   <Chart.ChartTooltip content={<Chart.ChartTooltipContent />} />
                   <Bar
                     dataKey="desktop"
-                    fill="var(--color-desktop)"
+                    fill="var(--chart-1)"
                     radius={4}
                   />
-                  <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+                  <Bar dataKey="mobile" fill="var(--chart-3)" radius={4} />
                 </BarChart>
               </Chart.ChartContainer>
             ),

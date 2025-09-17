@@ -48,6 +48,7 @@ import * as Pagination from "@/components/ui/pagination";
 import { Progress } from "@/components/ui/progress";
 import * as RadioGroup from "@/components/ui/radio-group";
 import * as Resizable from "@/components/ui/resizable";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import * as Select from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import * as Sheet from "@/components/ui/sheet";
@@ -230,7 +231,6 @@ export function ShadA() {
 }
 
 export function ShadB() {
-
   return (
     <div className="page-body testing">
       <TestBlock
@@ -608,8 +608,8 @@ export function ShadC() {
               />
               <Chart.ChartTooltip content={<Chart.ChartTooltipContent />} />
               <Chart.ChartLegend content={<Chart.ChartLegendContent />} />
-              <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-              <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+              <Bar dataKey="desktop" fill="var(--chart-1)" radius={4} />
+              <Bar dataKey="mobile" fill="var(--chart-3)" radius={4} />
             </BarChart>
           </Chart.ChartContainer>
         }
@@ -1091,12 +1091,79 @@ export function ShadS() {
         title="Scroll Area"
         docLink="https://ui.shadcn.com/docs/components/scroll-area"
         zone={
-          <p>
-            see this component on{" "}
-            <Link href="/gallery" className="underline">
-              gallery
-            </Link>
-          </p>
+          <ScrollArea className="w-full rounded-md whitespace-nowrap border-[1px] border-secondary">
+            <div className="flex w-max space-x-4 p-[20px] gap-[20px] bg-popover">
+              {[
+                {
+                  title: "Placeholder",
+                  description: "This is a placeholder image",
+                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
+                  alt: "A placeholder square of dark purple",
+                  url: "https://cultofthepartyparrot.com/",
+                },
+                {
+                  title: "Placeholder",
+                  description: "This is a placeholder image",
+                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
+                  alt: "A placeholder square of dark purple",
+                  url: "https://cultofthepartyparrot.com/",
+                },
+                {
+                  title: "Placeholder",
+                  description: "This is a placeholder image",
+                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
+                  alt: "A placeholder square of dark purple",
+                  url: "https://cultofthepartyparrot.com/",
+                },
+                {
+                  title: "Placeholder",
+                  description: "This is a placeholder image",
+                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
+                  alt: "A placeholder square of dark purple",
+                  url: "https://cultofthepartyparrot.com/",
+                },
+                {
+                  title: "Placeholder",
+                  description: "This is a placeholder image",
+                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
+                  alt: "A placeholder square of dark purple",
+                  url: "https://cultofthepartyparrot.com/",
+                },
+                {
+                  title: "Placeholder",
+                  description: "This is a placeholder image",
+                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
+                  alt: "A placeholder square of dark purple",
+                  url: "https://cultofthepartyparrot.com/",
+                },
+              ].map((img) => (
+                <div key={img.title}>
+                  <Image
+                    key={img.title}
+                    src={img.src}
+                    alt={img.alt}
+                    className="aspect-[3/4] h-fit w-fit object-cover"
+                    width={300}
+                    height={400}
+                    style={{
+                      maxWidth: "300px",
+                      maxHeight: "400px",
+                      ...(img.url ? { cursor: "pointer" } : {}),
+                    }}
+                    onClick={() => img.url && window.open(img.url, "_blank")}
+                  />
+                  <div className="caption flex flex-row gap-[5px]">
+                    {" "}
+                    <p className="text-foreground">{img.title}</p>
+                    <p className="text-popover-foreground/70">
+                      {img.description.substring(0, 100)}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
         }
       />
 
@@ -1126,7 +1193,11 @@ export function ShadS() {
         }
       />
 
-      <TestBlock title="Separator" docLink="https://ui.shadcn.com/docs/components/separator" zone={<Separator />} />
+      <TestBlock
+        title="Separator"
+        docLink="https://ui.shadcn.com/docs/components/separator"
+        zone={<Separator />}
+      />
 
       <TestBlock
         title="Sheet"
