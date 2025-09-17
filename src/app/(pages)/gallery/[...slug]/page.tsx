@@ -2,11 +2,7 @@ import "./style.css";
 import "../style.css"; //ensure styles load with client rendering
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
-
 import PageNotFound from "@/components/pageNotFound";
-import { generateStaticParams as generateParams } from "./generateStaticParams";
-
-export { generateParams as generateStaticParams };
 
 export default async function Slugs({
   params,
@@ -18,11 +14,22 @@ export default async function Slugs({
   const slugValue = slug?.[0];
 
   let slugpage;
+  
+  // Handle gallery routes dynamically
   switch (slugValue) {
+    // Add your gallery pages here as needed
+    // Example:
+    // case "my-gallery":
+    //   slugpage = <MyGalleryComponent />;
+    //   break;
     
     case undefined:
+      // No slug provided - could redirect to gallery home or show default content
+      slugpage = <div>Gallery Home - Select a gallery to view</div>;
+      break;
     default:
-      slugpage = <PageNotFound></PageNotFound>;
+      // Unknown slug - show 404
+      slugpage = <PageNotFound />;
       break;
   }
 
@@ -39,10 +46,10 @@ export default async function Slugs({
 
   return (
     <>
-      <title>Ihages | Testing Environment</title>
+      <title>Ihages | Gallery</title>
       <meta
         name="description"
-        content="Isabelle Hageman's testing environment for various npm libraries, currently including ShadCN"
+        content="Isabelle Hageman's portfolio gallery -- coming soon"
       />
       <div className="page-body testing">
         {slughead}

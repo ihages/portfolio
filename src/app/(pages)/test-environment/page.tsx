@@ -14,7 +14,7 @@ export default function TestEnvironment() {
       <title>Ihages | Testing Environment</title>
       <meta
         name="description"
-        content="Isabelle Hageman's testing environment for various npm libraries, currently including ShadCN"
+        content="Isabelle Hageman's testing environment for various style libraries and front-end functionality"
       />
       <div className="page-body testing">
         <Breadcrumbs />
@@ -66,7 +66,7 @@ export default function TestEnvironment() {
                     <Link href="/test-environment/shad-a">A</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/test-environment/shad-a">B</Link>
+                    <Link href="/test-environment/shad-b">B</Link>
                   </Button>
                   <Button asChild>
                     <Link href="/test-environment/shad-c">C</Link>
@@ -94,43 +94,43 @@ export default function TestEnvironment() {
                   <mui.ThemeProvider theme={useTheme()}>
                     <mui.Button
                       variant="contained"
-                      href="/portfolio/test-environment/mui-data-display"
+                      href="/test-environment/mui-data-display"
                     >
                       Data Display
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/portfolio/test-environment/mui-feedback"
+                      href="/test-environment/mui-feedback"
                     >
                       Feedback
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/portfolio/test-environment/mui-inputs"
+                      href="/test-environment/mui-inputs"
                     >
                       Inputs
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/portfolio/test-environment/mui-layouts"
+                      href="/test-environment/mui-layouts"
                     >
                       Layouts
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/portfolio/test-environment/mui-navigation"
+                      href="/test-environment/mui-navigation"
                     >
                       Navigation
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/portfolio/test-environment/mui-surfaces"
+                      href="/test-environment/mui-surfaces"
                     >
                       Surfaces
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/portfolio/test-environment/mui-utils"
+                      href="/test-environment/mui-utils"
                     >
                       Utils
                     </mui.Button>

@@ -98,7 +98,7 @@ import FileCopyIcon from "@mui/icons-material/FileCopy";
 import SaveIcon from "@mui/icons-material/Save";
 import PrintIcon from "@mui/icons-material/Print";
 import ShareIcon from "@mui/icons-material/Share";
-import HomeIcon from "@mui/icons-material/Home"
+import HomeIcon from "@mui/icons-material/Home";
 
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 
@@ -148,49 +148,6 @@ export function ComparisonDataDisplay() {
 
   return (
     <div className="page-body testing">
-      <TestCompare
-        title="Chart"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/chart",
-            zone: (
-              <Chart.ChartContainer
-                config={chartConfig}
-                className="min-h-[200px]"
-              >
-                <BarChart accessibilityLayer data={chartData}>
-                  <CartesianGrid vertical={false} />
-                  <XAxis
-                    dataKey="month"
-                    tickLine={false}
-                    tickMargin={10}
-                    axisLine={false}
-                    tickFormatter={(value) => value.slice(0, 3)}
-                  />
-                  <Chart.ChartTooltip content={<Chart.ChartTooltipContent />} />
-                  <Bar
-                    dataKey="desktop"
-                    fill="var(--color-desktop)"
-                    radius={4}
-                  />
-                  <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-                </BarChart>
-              </Chart.ChartContainer>
-            ),
-            note: "Built on Recharts with consistent theming and accessibility features.",
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-            note: "Available with MUI X Charts or integrate third-party charting libraries.",
-          },
-        ]}
-      />
-
       <TestCompare
         title="Avatar"
         components={[
@@ -285,7 +242,48 @@ export function ComparisonDataDisplay() {
           },
         ]}
       />
-
+      <TestCompare
+        title="Chart"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/chart",
+            zone: (
+              <Chart.ChartContainer
+                config={chartConfig}
+                className="min-h-[200px]"
+              >
+                <BarChart accessibilityLayer data={chartData}>
+                  <CartesianGrid vertical={false} />
+                  <XAxis
+                    dataKey="month"
+                    tickLine={false}
+                    tickMargin={10}
+                    axisLine={false}
+                    tickFormatter={(value) => value.slice(0, 3)}
+                  />
+                  <Chart.ChartTooltip content={<Chart.ChartTooltipContent />} />
+                  <Bar
+                    dataKey="desktop"
+                    fill="var(--color-desktop)"
+                    radius={4}
+                  />
+                  <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+                </BarChart>
+              </Chart.ChartContainer>
+            ),
+            note: "Built on Recharts with consistent theming and accessibility features.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Available with MUI X Charts or integrate third-party charting libraries.",
+          },
+        ]}
+      />
       <TestCompare
         title="Chip"
         components={[
@@ -570,7 +568,6 @@ export function ComparisonInputs() {
 
   const [formats, setFormats] = React.useState(["bold"]);
 
-
   const handleFormat = (
     event: React.MouseEvent<HTMLElement>,
     newFormats: string[]
@@ -742,58 +739,6 @@ export function ComparisonInputs() {
   return (
     <div className="page-body testing">
       <TestCompare
-        title="Basic Input"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/input",
-            zone: <Input type="email" placeholder="Email" />,
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-text-field/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex gap-2">
-                  <mui.TextField variant="outlined" placeholder="Email" size="small" />
-                </div>
-              </mui.ThemeProvider>
-            ),
-            note: "Use TextField component for text inputs in MUI.",
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Label"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/label",
-            zone: (
-              <>
-                <Input type="email" placeholder="Email" id="email" />
-                <Label htmlFor="email">this is a label for that input above</Label>
-              </>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-form-label/",
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex flex-col gap-2">
-                  <mui.FormLabel>Email Label</mui.FormLabel>
-                  <mui.TextField variant="outlined" placeholder="Email" size="small" />
-                </div>
-              </mui.ThemeProvider>
-            ),
-            note: "MUI uses FormLabel or built-in TextField labels.",
-          },
-        ]}
-      />
-
-      <TestCompare
         title="Action Button"
         components={[
           {
@@ -869,6 +814,32 @@ export function ComparisonInputs() {
               </mui.ThemeProvider>
             ),
             note: "Has three variants, with only one color for the entire button. This comes with a risk for accessability. Custom theme colors are also limited. Click animations are very nice.",
+          },
+        ]}
+      />
+      <TestCompare
+        title="Basic Input"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/input",
+            zone: <Input type="email" placeholder="Email" />,
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-text-field/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-2">
+                  <mui.TextField
+                    variant="outlined"
+                    placeholder="Email"
+                    size="small"
+                  />
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "Use TextField component for text inputs in MUI.",
           },
         ]}
       />
@@ -1050,6 +1021,41 @@ export function ComparisonInputs() {
           },
         ]}
       />
+      <TestCompare
+        title="Label"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/label",
+            zone: (
+              <>
+                <Input type="email" placeholder="Email" id="email" />
+                <Label htmlFor="email">
+                  this is a label for that input above
+                </Label>
+              </>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "https://mui.com/material-ui/react-form-label/",
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex flex-col gap-2">
+                  <mui.FormLabel>Email Label</mui.FormLabel>
+                  <mui.TextField
+                    variant="outlined"
+                    placeholder="Email"
+                    size="small"
+                  />
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: "MUI uses FormLabel or built-in TextField labels.",
+          },
+        ]}
+      />
+
       <TestCompare
         title="Radio Group"
         components={[
@@ -1415,103 +1421,6 @@ export function ComparisonFeedback() {
   return (
     <div className="page-body testing">
       <TestCompare
-        title="Context Menu"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/context-menu",
-            zone: (
-              <ContextMenu.ContextMenu>
-                <ContextMenu.ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
-                  Right click here
-                </ContextMenu.ContextMenuTrigger>
-                <ContextMenu.ContextMenuContent className="w-64">
-                  <ContextMenu.ContextMenuItem inset>
-                    Back
-                    <ContextMenu.ContextMenuShortcut>
-                      ⌘[
-                    </ContextMenu.ContextMenuShortcut>
-                  </ContextMenu.ContextMenuItem>
-                  <ContextMenu.ContextMenuItem inset disabled>
-                    Forward
-                    <ContextMenu.ContextMenuShortcut>
-                      ⌘]
-                    </ContextMenu.ContextMenuShortcut>
-                  </ContextMenu.ContextMenuItem>
-                  <ContextMenu.ContextMenuItem inset>
-                    Reload
-                    <ContextMenu.ContextMenuShortcut>
-                      ⌘R
-                    </ContextMenu.ContextMenuShortcut>
-                  </ContextMenu.ContextMenuItem>
-                  <ContextMenu.ContextMenuSeparator />
-                  <ContextMenu.ContextMenuItem inset>
-                    View Page Source
-                    <ContextMenu.ContextMenuShortcut>
-                      ⌘⌥U
-                    </ContextMenu.ContextMenuShortcut>
-                  </ContextMenu.ContextMenuItem>
-                </ContextMenu.ContextMenuContent>
-              </ContextMenu.ContextMenu>
-            ),
-            note: "Right-click context menu with keyboard shortcuts and nested submenus.",
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-            note: "Could use Menu component with onContextMenu event handler for similar functionality.",
-          },
-        ]}
-      />
-      <TestCompare
-        title="Hover Card"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/hover-card",
-            zone: (
-              <HoverCard.HoverCard>
-                <HoverCard.HoverCardTrigger asChild>
-                  <Button variant="link">@nextjs</Button>
-                </HoverCard.HoverCardTrigger>
-                <HoverCard.HoverCardContent className="w-80">
-                  <div className="flex justify-between space-x-4">
-                    <Avatar.Avatar className="size-[50px]">
-                      <Avatar.AvatarImage src="https://github.com/vercel.png" />
-                      <Avatar.AvatarFallback>VC</Avatar.AvatarFallback>
-                    </Avatar.Avatar>
-                    <div className="space-y-1">
-                      <h4 className="text-sm font-semibold">@nextjs</h4>
-                      <p className="text-sm">
-                        The React Framework – created and maintained by @vercel.
-                      </p>
-                      <div className="flex items-center pt-2">
-                        <CalendarDaysIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
-                        <span className="text-xs text-muted-foreground">
-                          Joined December 2021
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </HoverCard.HoverCardContent>
-              </HoverCard.HoverCard>
-            ),
-            note: "Rich hover tooltip with custom content. Good for user previews and additional context.",
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-            note: "Could use Popover component with hover triggers for similar functionality.",
-          },
-        ]}
-      />
-      <TestCompare
         title="Alert"
         components={[
           {
@@ -1592,7 +1501,10 @@ export function ComparisonFeedback() {
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <React.Fragment>
-                  <mui.Button variant="outlined" onClick={() => setOpenAlertDialog(true)}>
+                  <mui.Button
+                    variant="outlined"
+                    onClick={() => setOpenAlertDialog(true)}
+                  >
                     Show Alert
                   </mui.Button>
                   <mui.Dialog
@@ -1610,8 +1522,13 @@ export function ComparisonFeedback() {
                       </mui.DialogContentText>
                     </mui.DialogContent>
                     <mui.DialogActions>
-                      <mui.Button onClick={() => setOpenAlertDialog(false)}>Cancel</mui.Button>
-                      <mui.Button onClick={() => setOpenAlertDialog(false)} autoFocus>
+                      <mui.Button onClick={() => setOpenAlertDialog(false)}>
+                        Cancel
+                      </mui.Button>
+                      <mui.Button
+                        onClick={() => setOpenAlertDialog(false)}
+                        autoFocus
+                      >
                         Continue
                       </mui.Button>
                     </mui.DialogActions>
@@ -1654,6 +1571,58 @@ export function ComparisonFeedback() {
         ]}
       />{" "}
       <TestCompare
+        title="Context Menu"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/context-menu",
+            zone: (
+              <ContextMenu.ContextMenu>
+                <ContextMenu.ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+                  Right click here
+                </ContextMenu.ContextMenuTrigger>
+                <ContextMenu.ContextMenuContent className="w-64">
+                  <ContextMenu.ContextMenuItem inset>
+                    Back
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘[
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                  <ContextMenu.ContextMenuItem inset disabled>
+                    Forward
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘]
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                  <ContextMenu.ContextMenuItem inset>
+                    Reload
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘R
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                  <ContextMenu.ContextMenuSeparator />
+                  <ContextMenu.ContextMenuItem inset>
+                    View Page Source
+                    <ContextMenu.ContextMenuShortcut>
+                      ⌘⌥U
+                    </ContextMenu.ContextMenuShortcut>
+                  </ContextMenu.ContextMenuItem>
+                </ContextMenu.ContextMenuContent>
+              </ContextMenu.ContextMenu>
+            ),
+            note: "Right-click context menu with keyboard shortcuts and nested submenus.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Could use Menu component with onContextMenu event handler for similar functionality.",
+          },
+        ]}
+      />
+      <TestCompare
         title="Dialog"
         components={[
           {
@@ -1681,7 +1650,10 @@ export function ComparisonFeedback() {
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <React.Fragment>
-                  <mui.Button variant="outlined" onClick={() => setOpenDialog(true)}>
+                  <mui.Button
+                    variant="outlined"
+                    onClick={() => setOpenDialog(true)}
+                  >
                     Open Dialog
                   </mui.Button>
                   <mui.Dialog
@@ -1699,8 +1671,13 @@ export function ComparisonFeedback() {
                       </mui.DialogContentText>
                     </mui.DialogContent>
                     <mui.DialogActions>
-                      <mui.Button onClick={() => setOpenDialog(false)}>Cancel</mui.Button>
-                      <mui.Button onClick={() => setOpenDialog(false)} autoFocus>
+                      <mui.Button onClick={() => setOpenDialog(false)}>
+                        Cancel
+                      </mui.Button>
+                      <mui.Button
+                        onClick={() => setOpenDialog(false)}
+                        autoFocus
+                      >
                         Confirm
                       </mui.Button>
                     </mui.DialogActions>
@@ -1711,6 +1688,51 @@ export function ComparisonFeedback() {
           },
         ]}
       />{" "}
+      <TestCompare
+        title="Hover Card"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/hover-card",
+            zone: (
+              <HoverCard.HoverCard>
+                <HoverCard.HoverCardTrigger asChild>
+                  <Button variant="link">@nextjs</Button>
+                </HoverCard.HoverCardTrigger>
+                <HoverCard.HoverCardContent className="w-80">
+                  <div className="flex justify-between space-x-4">
+                    <Avatar.Avatar className="size-[50px]">
+                      <Avatar.AvatarImage src="https://github.com/vercel.png" />
+                      <Avatar.AvatarFallback>VC</Avatar.AvatarFallback>
+                    </Avatar.Avatar>
+                    <div className="space-y-1">
+                      <h4 className="text-sm font-semibold">@nextjs</h4>
+                      <p className="text-sm">
+                        The React Framework – created and maintained by @vercel.
+                      </p>
+                      <div className="flex items-center pt-2">
+                        <CalendarDaysIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+                        <span className="text-xs text-muted-foreground">
+                          Joined December 2021
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </HoverCard.HoverCardContent>
+              </HoverCard.HoverCard>
+            ),
+            note: "Rich hover tooltip with custom content. Good for user previews and additional context.",
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+            note: "Could use Popover component with hover triggers for similar functionality.",
+          },
+        ]}
+      />
       <TestCompare
         title="Progress"
         components={[
@@ -1726,7 +1748,10 @@ export function ComparisonFeedback() {
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-[10px] w-[300px]">
                   <mui.LinearProgress variant="determinate" value={progress} />
-                  <mui.CircularProgress variant="determinate" value={progress} />
+                  <mui.CircularProgress
+                    variant="determinate"
+                    value={progress}
+                  />
                   <mui.LinearProgress />
                   <mui.CircularProgress />
                 </div>
@@ -2238,7 +2263,9 @@ export function ComparisonNavigation() {
             title: "Shad",
             docLink: "",
             zone: (
-              <div className="text-muted-foreground">See Button&apos;s link variant</div>
+              <div className="text-muted-foreground">
+                See Button&apos;s link variant
+              </div>
             ),
           },
           {
@@ -2318,6 +2345,80 @@ export function ComparisonNavigation() {
               </mui.ThemeProvider>
             ),
             note: "Dynamic menu with anchor and close functionality.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Menubar"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/menubar",
+            zone: (
+              <Menubar.Menubar>
+                <Menubar.MenubarMenu>
+                  <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
+                  <Menubar.MenubarContent side="bottom">
+                    <Menubar.MenubarItem>
+                      New Tab{" "}
+                      <Menubar.MenubarShortcut>⌘T</Menubar.MenubarShortcut>
+                    </Menubar.MenubarItem>
+                    <Menubar.MenubarItem>New Window</Menubar.MenubarItem>
+                    <Menubar.MenubarSeparator />
+                    <Menubar.MenubarItem>Share</Menubar.MenubarItem>
+                    <Menubar.MenubarSeparator />
+                    <Menubar.MenubarItem>Print</Menubar.MenubarItem>
+                  </Menubar.MenubarContent>
+                </Menubar.MenubarMenu>
+              </Menubar.Menubar>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">
+                No direct equivalent - use AppBar or Menu
+              </div>
+            ),
+            note: "MUI doesn't have a direct menubar equivalent. Use AppBar for top navigation or Menu for contextual menus.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Navigation Menu"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
+            zone: (
+              <NavigationMenu.NavigationMenu>
+                <NavigationMenu.NavigationMenuList>
+                  <NavigationMenu.NavigationMenuItem>
+                    <NavigationMenu.NavigationMenuTrigger>
+                      Components
+                    </NavigationMenu.NavigationMenuTrigger>
+                    <NavigationMenu.NavigationMenuContent>
+                      <NavigationMenu.NavigationMenuLink>
+                        Link
+                      </NavigationMenu.NavigationMenuLink>
+                    </NavigationMenu.NavigationMenuContent>
+                  </NavigationMenu.NavigationMenuItem>
+                </NavigationMenu.NavigationMenuList>
+              </NavigationMenu.NavigationMenu>
+            ),
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">
+                No direct equivalent - use Tabs or Menu
+              </div>
+            ),
+            note: "MUI doesn't have a direct navigation menu equivalent. Use Tabs for horizontal navigation or nested Menus.",
           },
         ]}
       />
@@ -2504,73 +2605,6 @@ export function ComparisonNavigation() {
           },
         ]}
       />
-
-      <TestCompare
-        title="Menubar"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/menubar",
-            zone: (
-              <Menubar.Menubar>
-                <Menubar.MenubarMenu>
-                  <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
-                  <Menubar.MenubarContent side="bottom">
-                    <Menubar.MenubarItem>
-                      New Tab <Menubar.MenubarShortcut>⌘T</Menubar.MenubarShortcut>
-                    </Menubar.MenubarItem>
-                    <Menubar.MenubarItem>New Window</Menubar.MenubarItem>
-                    <Menubar.MenubarSeparator />
-                    <Menubar.MenubarItem>Share</Menubar.MenubarItem>
-                    <Menubar.MenubarSeparator />
-                    <Menubar.MenubarItem>Print</Menubar.MenubarItem>
-                  </Menubar.MenubarContent>
-                </Menubar.MenubarMenu>
-              </Menubar.Menubar>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent - use AppBar or Menu</div>
-            ),
-            note: "MUI doesn't have a direct menubar equivalent. Use AppBar for top navigation or Menu for contextual menus.",
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Navigation Menu"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
-            zone: (
-              <NavigationMenu.NavigationMenu>
-                <NavigationMenu.NavigationMenuList>
-                  <NavigationMenu.NavigationMenuItem>
-                    <NavigationMenu.NavigationMenuTrigger>
-                      Components
-                    </NavigationMenu.NavigationMenuTrigger>
-                    <NavigationMenu.NavigationMenuContent>
-                      <NavigationMenu.NavigationMenuLink>Link</NavigationMenu.NavigationMenuLink>
-                    </NavigationMenu.NavigationMenuContent>
-                  </NavigationMenu.NavigationMenuItem>
-                </NavigationMenu.NavigationMenuList>
-              </NavigationMenu.NavigationMenu>
-            ),
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent - use Tabs or Menu</div>
-            ),
-            note: "MUI doesn't have a direct navigation menu equivalent. Use Tabs for horizontal navigation or nested Menus.",
-          },
-        ]}
-      />
     </div>
   );
 }
@@ -2729,8 +2763,9 @@ export function ComparisonLayouts() {
                   src="https://images.unsplash.com/photo-1757495361144-0c2bfba62b9e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   alt="Image"
                   className="rounded-md object-cover"
-                  width={1170}
-                  height={658} // Adjust dimensions as needed
+                  width={0}
+                  height={0} 
+                  style={{width:"100%", height:"100%"}}
                 />
               </AspectRatio>
             ),
@@ -2743,46 +2778,6 @@ export function ComparisonLayouts() {
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
             note: "Use CSS aspect-ratio property or custom styling with padding-bottom hack.",
-          },
-        ]}
-      />
-
-      <TestCompare
-        title="Carousel"
-        components={[
-          {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/carousel",
-            zone: (
-              <Carousel.Carousel className="w-full max-w-xs">
-                <Carousel.CarouselContent>
-                  {Array.from({ length: 5 }).map((_, index) => (
-                    <Carousel.CarouselItem key={index}>
-                      <div className="p-1">
-                        <Card.Card>
-                          <Card.CardContent className="flex aspect-square items-center justify-center p-6">
-                            <span className="text-4xl font-semibold">
-                              {index + 1}
-                            </span>
-                          </Card.CardContent>
-                        </Card.Card>
-                      </div>
-                    </Carousel.CarouselItem>
-                  ))}
-                </Carousel.CarouselContent>
-                <Carousel.CarouselPrevious />
-                <Carousel.CarouselNext />
-              </Carousel.Carousel>
-            ),
-            note: "Built on Embla Carousel with navigation controls and touch/swipe support.",
-          },
-          {
-            title: "MUI",
-            docLink: "",
-            zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
-            ),
-            note: "Would need third-party carousel library like Swiper or custom implementation.",
           },
         ]}
       />
@@ -2810,6 +2805,45 @@ export function ComparisonLayouts() {
               </mui.Box>
             ),
             note: "Fundamental building block with sx prop for styling.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Carousel"
+        components={[
+          {
+            title: "Shad",
+            docLink: "https://ui.shadcn.com/docs/components/carousel",
+            zone: (
+              <Carousel.Carousel className="w-full max-w-xs">
+                <Carousel.CarouselContent>
+                  {Array.from({ length: 5 }).map((_, index) => (
+                    <Carousel.CarouselItem key={index}>
+                      <div className="p-[20px]">
+                        <Card.Card>
+                          <Card.CardContent className="flex aspect-square items-center justify-center p-6">
+                            <span className="text-4xl font-semibold">
+                              {index + 1}
+                            </span>
+                          </Card.CardContent>
+                        </Card.Card>
+                      </div>
+                    </Carousel.CarouselItem>
+                  ))}
+                </Carousel.CarouselContent>
+                <Carousel.CarouselPrevious />
+                <Carousel.CarouselNext />
+              </Carousel.Carousel>
+            ),
+            note: "Works with both swipe and button clicks"
+          },
+          {
+            title: "MUI",
+            docLink: "",
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
           },
         ]}
       />
@@ -2972,7 +3006,7 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={164}
                             height={164}
-                            style={{ objectFit: 'cover' }}
+                            style={{ objectFit: "cover" }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -2997,7 +3031,7 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={121}
                             height={121}
-                            style={{ objectFit: 'cover' }}
+                            style={{ objectFit: "cover" }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -3018,7 +3052,7 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={161}
                             height={164}
-                            style={{ objectFit: 'cover' }}
+                            style={{ objectFit: "cover" }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -3039,7 +3073,7 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={248}
                             height={200}
-                            style={{ objectFit: 'cover' }}
+                            style={{ objectFit: "cover" }}
                           />
                         </mui.ImageListItem>
                       ))}
@@ -3055,7 +3089,7 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={248}
                             height={200}
-                            style={{ objectFit: 'cover' }}
+                            style={{ objectFit: "cover" }}
                           />
                           <mui.ImageListItemBar
                             title={item.title}
