@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 import Breadcrumbs from "@/components/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import PageNotFound from "@/components/pageNotFound";
 import {
   ShadA,
   ShadB,
@@ -28,19 +31,13 @@ import {
   ComparisonNavigation,
   ComparisonSurfaces,
   ComparisonLayouts,
-  ComparisonUtils
+  ComparisonUtils,
 } from "./comparison-pages";
-import { generateStaticParams as generateParams } from "./generateStaticParams";
+import { useParams } from "next/navigation";
 
-export { generateParams as generateStaticParams };
-
-export default async function Slugs({
-  params,
-}: {
-  params: Promise<{ slug?: string[] }>;
-}) {
-  // slug will be an array or undefined
-  const { slug } = await params;
+export default function Slugs() {
+  const params = useParams();
+  const slug = params.slug as string[] | undefined;
   const slugValue = slug?.[0];
 
   let prevPage;
@@ -160,7 +157,7 @@ export default async function Slugs({
       break;
     case undefined:
     default:
-      slugpage = <div>Page not found</div>;
+      slugpage = <PageNotFound />;
       prevPage = null;
       nextPage = null;
       break;
@@ -187,9 +184,14 @@ export default async function Slugs({
   const slughead = (
     <>
       <Breadcrumbs />
-      <h1 className="flex justify-center m-[0px]">
-        {slugValue?.replace(/-/g, " ").toLocaleUpperCase()}
-      </h1>
+      {slugpage.type === PageNotFound ? (
+        ""
+      ) : (
+        <h1 className="flex justify-center m-[0px]">
+          {slugValue?.replace(/-/g, " ").toLocaleUpperCase()}
+        </h1>
+      )}
+
       {slugpage && (
         <div className="nav-buttons">
           <div className="nav-buttons-left">
@@ -232,15 +234,16 @@ export default async function Slugs({
 
   return (
     <>
-      <meta
+    <title>Ihages | ShadCN & MUI Comparison</title>
+    <meta
         name="description"
-        content="Isabelle Hageman's testing environment for various npm libraries, currently including ShadCN"
+        content="A summary-level comparison between ShadCN and MaterialUI component libraries"
       />
-      <div className="page-body testing">
-        {slughead}
-        {slugpage}
-        {slugfoot}
-      </div>
+    <div className="page-body testing">
+      {slughead}
+      {slugpage}
+      {slugfoot}
+    </div>
     </>
   );
 }
