@@ -10,7 +10,7 @@ export default function PageNotFound() {
         <ThemeProvider theme={useTheme()}>
           <Paper className="p-[40px] border-secondary border-[5px]">
             <h1>404 -- Page Not Found</h1>
-            <p>Oops! That page doesn't seem to exist!<br/>Try a different one out!</p>
+            <p>Oops! That page doesn&apos;t seem to exist!<br/>Try a different one out!</p>
           </Paper>
         </ThemeProvider>
         <Image

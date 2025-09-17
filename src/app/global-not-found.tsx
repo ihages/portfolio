@@ -3,7 +3,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import PageNotFound from "@/components/pageNotFound";
-const inter = Inter({ subsets: ["latin"] });
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header/index";
