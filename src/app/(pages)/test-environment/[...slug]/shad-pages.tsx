@@ -1095,42 +1095,42 @@ export function ShadS() {
             <div className="flex w-max space-x-4 p-[20px] gap-[20px] bg-popover">
               {[
                 {
-                  title: "Placeholder",
+                  title: "Placeholder2",
                   description: "This is a placeholder image",
                   src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
                   alt: "A placeholder square of dark purple",
                   url: "https://cultofthepartyparrot.com/",
                 },
                 {
-                  title: "Placeholder",
+                  title: "Placeholder2",
                   description: "This is a placeholder image",
                   src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
                   alt: "A placeholder square of dark purple",
                   url: "https://cultofthepartyparrot.com/",
                 },
                 {
-                  title: "Placeholder",
+                  title: "Placeholder3",
                   description: "This is a placeholder image",
                   src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
                   alt: "A placeholder square of dark purple",
                   url: "https://cultofthepartyparrot.com/",
                 },
                 {
-                  title: "Placeholder",
+                  title: "Placeholder4",
                   description: "This is a placeholder image",
                   src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
                   alt: "A placeholder square of dark purple",
                   url: "https://cultofthepartyparrot.com/",
                 },
                 {
-                  title: "Placeholder",
+                  title: "Placeholder5",
                   description: "This is a placeholder image",
                   src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
                   alt: "A placeholder square of dark purple",
                   url: "https://cultofthepartyparrot.com/",
                 },
                 {
-                  title: "Placeholder",
+                  title: "Placeholder6",
                   description: "This is a placeholder image",
                   src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
                   alt: "A placeholder square of dark purple",
