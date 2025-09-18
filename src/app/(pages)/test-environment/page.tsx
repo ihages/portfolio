@@ -140,6 +140,11 @@ export default function TestEnvironment() {
             </mui.Accordion>
           </mui.ThemeProvider>
         </div>
+        <h2>Shad Blocks</h2>
+        <div className="flex gap-[20px]">
+        <Button asChild>
+            <Link href="/test-environment/shad-blocks">Dashboard</Link>
+          </Button></div>
       </div>
     </>
   );

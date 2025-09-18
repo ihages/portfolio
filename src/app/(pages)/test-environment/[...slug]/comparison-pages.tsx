@@ -2228,7 +2228,7 @@ export function ComparisonNavigation() {
                 </Drawer.DrawerContent>
               </Drawer.Drawer>
             ),
-            note: "I could not get this component to work. The drawer contents never even show up in the DOM.",
+            note: "Works after tailwind is fixed",
           },
           {
             title: "MUI",

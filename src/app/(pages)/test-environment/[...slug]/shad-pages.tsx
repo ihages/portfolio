@@ -736,7 +736,7 @@ export function ShadD() {
       <TestBlock
         title="Drawer"
         docLink="https://ui.shadcn.com/docs/components/drawer"
-        note="I could not get this component to work. The drawer contents never even show up in the DOM."
+        note="Works after fixing tailwind"
         zone={
           <Drawer.Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
             <Drawer.DrawerTrigger asChild>
@@ -1202,7 +1202,7 @@ export function ShadS() {
       <TestBlock
         title="Sheet"
         docLink="https://ui.shadcn.com/docs/components/sheet"
-        note="This has the same structure as the Drawer component. Needs further tweaking to get it to display."
+        note="This has the same structure as the Drawer component."
         zone={
           <Sheet.Sheet>
             <Sheet.SheetTrigger asChild>
@@ -1240,7 +1240,7 @@ export function ShadS() {
       <TestBlock
         title="Skeleton"
         docLink="https://ui.shadcn.com/docs/components/skeleton"
-        note="Shape of the skeleton component needs to be programmed into the style. Further looking into how you can get the color to pulse like in the documentation."
+        note="Shape of the skeleton component needs to be programmed into the style."
         zone={
           <div className="flex items-center space-x-4">
             <Skeleton className="h-[24px] w-[24px] rounded-full" />
