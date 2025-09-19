@@ -22,29 +22,29 @@ export default function TestEnvironment() {
         <h2>ShadCN versus MUI</h2>
         <div className="flex gap-[20px]">
           <Button asChild>
-            <Link href="/test-environment/comparison-data-display">
+            <Link href="test-environment/comparison-data-display">
               Data Displays
             </Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/comparison-feedback">Feedback</Link>
+            <Link href="test-environment/comparison-feedback">Feedback</Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/comparison-inputs">Inputs</Link>
+            <Link href="test-environment/comparison-inputs">Inputs</Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/comparison-layouts">Layouts</Link>
+            <Link href="test-environment/comparison-layouts">Layouts</Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/comparison-navigation">
+            <Link href="test-environment/comparison-navigation">
               Navigation
             </Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/comparison-surfaces">Surfaces</Link>
+            <Link href="test-environment/comparison-surfaces">Surfaces</Link>
           </Button>
           <Button asChild>
-            <Link href="/test-environment/comparison-utils">Utils</Link>
+            <Link href="test-environment/comparison-utils">Utils</Link>
           </Button>
         </div>
         <div className="mt-[20px]">
@@ -63,74 +63,74 @@ export default function TestEnvironment() {
                 <h3>Shadcn Components</h3>
                 <div className="flex gap-[20px]">
                   <Button asChild>
-                    <Link href="/test-environment/shad-a">A</Link>
+                    <Link href="test-environment/shad-a">A</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/test-environment/shad-b">B</Link>
+                    <Link href="test-environment/shad-b">B</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/test-environment/shad-c">C</Link>
+                    <Link href="test-environment/shad-c">C</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/test-environment/shad-h-m">H-M</Link>
+                    <Link href="test-environment/shad-h-m">H-M</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/test-environment/shad-n-r">N-R</Link>
+                    <Link href="test-environment/shad-n-r">N-R</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/test-environment/shad-s">S</Link>
+                    <Link href="test-environment/shad-s">S</Link>
                   </Button>
                   <Button asChild>
-                    <Link href="/test-environment/shad-t">T</Link>
+                    <Link href="test-environment/shad-t">T</Link>
                   </Button>
                 </div>
                 <h3>MUI Components</h3>
                 <p>
                   Components use Roboto font by default. Colors do not access
-                  global.css. The disabled color&apos;s opacity also has difficulty
-                  rendering in dark mode.
+                  global.css. The disabled color&apos;s opacity also has
+                  difficulty rendering in dark mode.
                 </p>
                 <div className="flex gap-[20px]">
                   <mui.ThemeProvider theme={useTheme()}>
                     <mui.Button
                       variant="contained"
-                      href="/test-environment/mui-data-display"
+                      href="test-environment/mui-data-display"
                     >
                       Data Display
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/test-environment/mui-feedback"
+                      href="test-environment/mui-feedback"
                     >
                       Feedback
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/test-environment/mui-inputs"
+                      href="test-environment/mui-inputs"
                     >
                       Inputs
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/test-environment/mui-layouts"
+                      href="test-environment/mui-layouts"
                     >
                       Layouts
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/test-environment/mui-navigation"
+                      href="test-environment/mui-navigation"
                     >
                       Navigation
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/test-environment/mui-surfaces"
+                      href="test-environment/mui-surfaces"
                     >
                       Surfaces
                     </mui.Button>
                     <mui.Button
                       variant="contained"
-                      href="/test-environment/mui-utils"
+                      href="test-environment/mui-utils"
                     >
                       Utils
                     </mui.Button>
@@ -142,9 +142,10 @@ export default function TestEnvironment() {
         </div>
         <h2>Shad Blocks</h2>
         <div className="flex gap-[20px]">
-        <Button asChild>
-            <Link href="/test-environment/shad-blocks">Dashboard</Link>
-          </Button></div>
+          <Button asChild>
+            <Link href="test-environment/shad-blocks">Dashboard</Link>
+          </Button>
+        </div>
       </div>
     </>
   );

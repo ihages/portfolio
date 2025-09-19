@@ -1091,11 +1091,11 @@ export function ShadS() {
         title="Scroll Area"
         docLink="https://ui.shadcn.com/docs/components/scroll-area"
         zone={
-          <ScrollArea className="w-full rounded-md whitespace-nowrap border-[1px] border-secondary">
-            <div className="flex w-max space-x-4 p-[20px] gap-[20px] bg-popover">
+          <ScrollArea className="w-full rounded-md whitespace-nowrap border-[1px] border-transparent">
+            <div className="flex w-max space-x-4 p-[20px] gap-[20px] bg-transparent">
               {[
                 {
-                  title: "Placeholder2",
+                  title: "Placeholder1",
                   description: "This is a placeholder image",
                   src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
                   alt: "A placeholder square of dark purple",

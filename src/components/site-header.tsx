@@ -1,5 +1,7 @@
-import { Separator } from "@/components/ui/separator"
-import { SidebarTrigger } from "@/components/ui/sidebar"
+import { Separator } from "@/components/ui/separator";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 export function SiteHeader() {
   return (
@@ -10,8 +12,13 @@ export function SiteHeader() {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-4"
         />
-        <h1 className="text-base font-medium">Documents</h1>
+        <h1 className="text-base font-medium">Dashboard 1</h1>
+        <Button className="text-center" asChild variant="link">
+          <Link href="https://ui.shadcn.com/blocks#dashboard-01">
+            Documentation
+          </Link>
+        </Button>
       </div>
     </header>
-  )
+  );
 }
