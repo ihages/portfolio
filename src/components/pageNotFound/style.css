@@ -1,12 +1,13 @@
-
 @media (prefers-color-scheme: dark) {
   .not-found-image {
-  filter: invert(1);
+    filter: invert(1);
   }
 }
 
-.not-found{
+.not-found {
   display: flex;
   justify-content: center;
-  & .page-body{height:50vw;}
+  & .page-body {
+    height: 50vw;
+  }
 }

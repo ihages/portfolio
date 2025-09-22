@@ -1,19 +1,19 @@
-import * as React from "react";
-import Image from "next/image";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import "./style.css";
+import * as React from 'react'
+import Image from 'next/image'
+import {ScrollArea, ScrollBar} from '@/components/ui/scroll-area'
+import './style.css'
 
 export type ImageProps = {
-  title: string;
-  description: string;
-  src: string;
-  url?: string;
-  alt: string;
-};
+  title: string
+  description: string
+  src: string
+  url?: string
+  alt: string
+}
 
 export type GalleryProps = {
-  images: ImageProps[];
-};
+  images: ImageProps[]
+}
 
 export function ImageGallery(props: GalleryProps) {
   return (
@@ -29,14 +29,14 @@ export function ImageGallery(props: GalleryProps) {
               width={300}
               height={400}
               style={{
-                maxWidth: "300px",
-                maxHeight: "400px",
-                ...(img.url ? { cursor: "pointer" } : {}),
+                maxWidth: '300px',
+                maxHeight: '400px',
+                ...(img.url ? {cursor: 'pointer'} : {}),
               }}
-              onClick={() => img.url && window.open(img.url, "_blank")}
+              onClick={() => img.url && window.open(img.url, '_blank')}
             />
             <div className="caption flex flex-row gap-[5px]">
-              {" "}
+              {' '}
               <p className="text-foreground">{img.title}</p>
               <p className="text-popover-foreground/70">
                 {img.description.substring(0, 100)}
@@ -47,5 +47,5 @@ export function ImageGallery(props: GalleryProps) {
       </div>
       <ScrollBar orientation="horizontal" />
     </ScrollArea>
-  );
+  )
 }

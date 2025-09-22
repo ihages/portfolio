@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import "./style.css";
-import "../style.css"; //ensure styles load with client rendering
+import {Button} from '@/components/ui/button'
+import './style.css'
+import '../style.css' //ensure styles load with client rendering
 import {
   ChevronRightIcon,
   AlertCircleIcon,
@@ -12,85 +12,85 @@ import {
   Bold,
   Italic,
   Underline,
-} from "lucide-react";
-import { IconGitBranch } from "@tabler/icons-react";
-import Link from "next/link";
-import * as Accordion from "@/components/ui/accordion";
-import * as Alert from "@/components/ui/alert";
-import * as AlertDialog from "@/components/ui/alert-dialog";
-import Image from "next/image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import * as Avatar from "@/components/ui/avatar";
-import * as Breadcrumb from "@/components/ui/breadcrumb";
-import React, { useEffect, useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import * as DropdownMenu from "@/components/ui/dropdown-menu";
-import { Calendar } from "@/components/ui/calendar";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import * as Popover from "@/components/ui/popover";
-import * as chrono from "chrono-node";
-import Calendar24 from "@/components/calendar-24";
-import * as Card from "@/components/ui/card";
-import * as Carousel from "@/components/ui/carousel";
-import * as Collapsible from "@/components/ui/collapsible";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-import * as Chart from "@/components/ui/chart";
-import * as ContextMenu from "@/components/ui/context-menu";
-import { Checkbox } from "@/components/ui/checkbox";
-import * as Dialog from "@/components/ui/dialog";
-import * as Drawer from "@/components/ui/drawer";
-import * as HoverCard from "@/components/ui/hover-card";
-import * as InputOTP from "@/components/ui/input-otp";
-import * as Menubar from "@/components/ui/menubar";
-import * as NavigationMenu from "@/components/ui/navigation-menu";
-import * as Pagination from "@/components/ui/pagination";
-import { Progress } from "@/components/ui/progress";
-import * as RadioGroup from "@/components/ui/radio-group";
-import * as Resizable from "@/components/ui/resizable";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import * as Select from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import * as Sheet from "@/components/ui/sheet";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Slider } from "@/components/ui/slider";
-import { Switch } from "@/components/ui/switch";
-import * as Tabs from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
-import { Toggle } from "@/components/ui/toggle";
-import * as ToggleGroup from "@/components/ui/toggle-group";
-import * as Tooltip from "@/components/ui/tooltip";
-import { TestBlock } from "@/components/testblock";
+} from 'lucide-react'
+import {IconGitBranch} from '@tabler/icons-react'
+import Link from 'next/link'
+import * as Accordion from '@/components/ui/accordion'
+import * as Alert from '@/components/ui/alert'
+import * as AlertDialog from '@/components/ui/alert-dialog'
+import Image from 'next/image'
+import {AspectRatio} from '@/components/ui/aspect-ratio'
+import * as Avatar from '@/components/ui/avatar'
+import * as Breadcrumb from '@/components/ui/breadcrumb'
+import React, {useEffect, useState} from 'react'
+import {Badge} from '@/components/ui/badge'
+import * as DropdownMenu from '@/components/ui/dropdown-menu'
+import {Calendar} from '@/components/ui/calendar'
+import {Label} from '@/components/ui/label'
+import {Input} from '@/components/ui/input'
+import * as Popover from '@/components/ui/popover'
+import * as chrono from 'chrono-node'
+import Calendar24 from '@/components/calendar-24'
+import * as Card from '@/components/ui/card'
+import * as Carousel from '@/components/ui/carousel'
+import * as Collapsible from '@/components/ui/collapsible'
+import {Bar, BarChart, CartesianGrid, XAxis} from 'recharts'
+import * as Chart from '@/components/ui/chart'
+import * as ContextMenu from '@/components/ui/context-menu'
+import {Checkbox} from '@/components/ui/checkbox'
+import * as Dialog from '@/components/ui/dialog'
+import * as Drawer from '@/components/ui/drawer'
+import * as HoverCard from '@/components/ui/hover-card'
+import * as InputOTP from '@/components/ui/input-otp'
+import * as Menubar from '@/components/ui/menubar'
+import * as NavigationMenu from '@/components/ui/navigation-menu'
+import * as Pagination from '@/components/ui/pagination'
+import {Progress} from '@/components/ui/progress'
+import * as RadioGroup from '@/components/ui/radio-group'
+import * as Resizable from '@/components/ui/resizable'
+import {ScrollArea, ScrollBar} from '@/components/ui/scroll-area'
+import * as Select from '@/components/ui/select'
+import {Separator} from '@/components/ui/separator'
+import * as Sheet from '@/components/ui/sheet'
+import {Skeleton} from '@/components/ui/skeleton'
+import {Slider} from '@/components/ui/slider'
+import {Switch} from '@/components/ui/switch'
+import * as Tabs from '@/components/ui/tabs'
+import {Textarea} from '@/components/ui/textarea'
+import {Toggle} from '@/components/ui/toggle'
+import * as ToggleGroup from '@/components/ui/toggle-group'
+import * as Tooltip from '@/components/ui/tooltip'
+import {TestBlock} from '@/components/testblock'
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
+  {month: 'January', desktop: 186, mobile: 80},
+  {month: 'February', desktop: 305, mobile: 200},
+  {month: 'March', desktop: 237, mobile: 120},
+  {month: 'April', desktop: 73, mobile: 190},
+  {month: 'May', desktop: 209, mobile: 130},
+  {month: 'June', desktop: 214, mobile: 140},
+]
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
-    color: "#2563eb",
+    label: 'Desktop',
+    color: '#2563eb',
   },
   mobile: {
-    label: "Mobile",
-    color: "#60a5fa",
+    label: 'Mobile',
+    color: '#60a5fa',
   },
-} satisfies Chart.ChartConfig;
+} satisfies Chart.ChartConfig
 
 function formatDate(date: Date | undefined) {
   if (!date) {
-    return "";
+    return ''
   }
-  return date.toLocaleDateString("en-US", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
+  return date.toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  })
 }
 
 export function ShadA() {
@@ -108,7 +108,7 @@ export function ShadA() {
           >
             <Accordion.AccordionItem value="item 1">
               <Accordion.AccordionTrigger>
-                Accordion Trigger 1{" "}
+                Accordion Trigger 1{' '}
               </Accordion.AccordionTrigger>
               <Accordion.AccordionContent>
                 Accordion Contents 1
@@ -116,7 +116,7 @@ export function ShadA() {
             </Accordion.AccordionItem>
             <Accordion.AccordionItem value="item 2">
               <Accordion.AccordionTrigger>
-                Accordion Trigger 2{" "}
+                Accordion Trigger 2{' '}
               </Accordion.AccordionTrigger>
               <Accordion.AccordionContent>
                 Accordion Contents 2
@@ -131,7 +131,7 @@ export function ShadA() {
         zone={
           <>
             <Alert.Alert>
-              <CheckCircle2Icon size={20} style={{ paddingRight: "5px" }} />
+              <CheckCircle2Icon size={20} style={{paddingRight: '5px'}} />
               <Alert.AlertTitle>
                 Success! Your changes have been saved
               </Alert.AlertTitle>
@@ -140,13 +140,13 @@ export function ShadA() {
               </Alert.AlertDescription>
             </Alert.Alert>
             <Alert.Alert>
-              <PopcornIcon size={20} style={{ paddingRight: "5px" }} />
+              <PopcornIcon size={20} style={{paddingRight: '5px'}} />
               <Alert.AlertTitle>
                 This Alert has a title and an icon. No description.
               </Alert.AlertTitle>
             </Alert.Alert>
             <Alert.Alert variant="destructive">
-              <AlertCircleIcon size={20} style={{ paddingRight: "5px" }} />
+              <AlertCircleIcon size={20} style={{paddingRight: '5px'}} />
               <Alert.AlertTitle>
                 Unable to process your payment.
               </Alert.AlertTitle>
@@ -215,11 +215,11 @@ export function ShadA() {
         note="Changing the username in the image src will return different icons. This could be set up with a GitHub integrated login to get the username for the Avatar Fallback initials as well."
         zone={
           <>
-            <Avatar.Avatar style={{ width: "100px", height: "100px" }}>
+            <Avatar.Avatar style={{width: '100px', height: '100px'}}>
               <Avatar.AvatarImage src="https://github.com/ihages.png" />
               <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
             </Avatar.Avatar>
-            <Avatar.Avatar style={{ width: "100px", height: "100px" }}>
+            <Avatar.Avatar style={{width: '100px', height: '100px'}}>
               <Avatar.AvatarImage src="" />
               <Avatar.AvatarFallback>IH</Avatar.AvatarFallback>
             </Avatar.Avatar>
@@ -227,7 +227,7 @@ export function ShadA() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function ShadB() {
@@ -338,51 +338,51 @@ export function ShadB() {
         note="Destructive is red regardless of theme. My color palet just makes all the primary colors red."
         zone={
           <>
-            <Button asChild variant={"default"} size={"default"}>
+            <Button asChild variant={'default'} size={'default'}>
               <Link href="/">Default Button</Link>
             </Button>
-            <Button variant={"destructive"} size={"default"}>
+            <Button variant={'destructive'} size={'default'}>
               Destructive
             </Button>
-            <Button variant={"ghost"} size={"default"}>
+            <Button variant={'ghost'} size={'default'}>
               Ghost
             </Button>
-            <Button variant={"link"} size={"default"}>
+            <Button variant={'link'} size={'default'}>
               Link
             </Button>
-            <Button variant={"outline"} size={"default"}>
+            <Button variant={'outline'} size={'default'}>
               Outline
             </Button>
-            <Button variant={"secondary"} size={"default"}>
+            <Button variant={'secondary'} size={'default'}>
               Secondary
             </Button>
-            <Button variant={"outline"}>
+            <Button variant={'outline'}>
               <IconGitBranch /> New Branch
             </Button>
-            <Button size={"icon"}>
+            <Button size={'icon'}>
               <ChevronRightIcon />
             </Button>
-            <Button variant={"default"} size={"sm"}>
+            <Button variant={'default'} size={'sm'}>
               Small
             </Button>
-            <Button variant={"default"} size={"lg"}>
+            <Button variant={'default'} size={'lg'}>
               Large
             </Button>
           </>
         }
       />
     </div>
-  );
+  )
 }
 
 export function ShadC() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("In 2 days");
+  const [open, setOpen] = React.useState(false)
+  const [value, setValue] = React.useState('In 2 days')
   const [date, setDate] = React.useState<Date | undefined>(
     chrono.parseDate(value) || undefined
-  );
-  const [month, setMonth] = React.useState<Date | undefined>(date);
-  const [checked, setChecked] = React.useState<boolean>(false);
+  )
+  const [month, setMonth] = React.useState<Date | undefined>(date)
+  const [checked, setChecked] = React.useState<boolean>(false)
 
   return (
     <div className="page-body testing">
@@ -408,21 +408,21 @@ export function ShadC() {
                 <Input
                   id="date"
                   value={value}
-                  style={{ padding: "10px", paddingLeft: "50px" }}
+                  style={{padding: '10px', paddingLeft: '50px'}}
                   placeholder="Tomorrow or next week"
                   className="bg-background pr-10"
                   onChange={(e) => {
-                    setValue(e.target.value);
-                    const date = chrono.parseDate(e.target.value);
+                    setValue(e.target.value)
+                    const date = chrono.parseDate(e.target.value)
                     if (date) {
-                      setDate(date);
-                      setMonth(date);
+                      setDate(date)
+                      setMonth(date)
                     }
                   }}
                   onKeyDown={(e) => {
-                    if (e.key === "ArrowDown") {
-                      e.preventDefault();
-                      setOpen(true);
+                    if (e.key === 'ArrowDown') {
+                      e.preventDefault()
+                      setOpen(true)
                     }
                   }}
                 />
@@ -448,16 +448,16 @@ export function ShadC() {
                       month={month}
                       onMonthChange={setMonth}
                       onSelect={(date) => {
-                        setDate(date);
-                        setValue(formatDate(date));
-                        setOpen(false);
+                        setDate(date)
+                        setValue(formatDate(date))
+                        setOpen(false)
                       }}
                     />
                   </Popover.PopoverContent>
                 </Popover.Popover>
               </div>
               <div className="text-muted-foreground px-1 text-sm">
-                Your post will be published on{" "}
+                Your post will be published on{' '}
                 <span className="font-medium">{formatDate(date)}</span>.
               </div>
             </div>
@@ -540,14 +540,14 @@ export function ShadC() {
           <>
             <Carousel.Carousel className="w-[50%]">
               <Carousel.CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
+                {Array.from({length: 5}).map((_, index) => (
                   <Carousel.CarouselItem key={index}>
                     <div className="p-1">
                       <Card.Card>
                         <Card.CardContent className="flex aspect-square items-center justify-center p-2">
                           <span className="text-4xl font-semibold">
                             {index + 1}
-                            {"  "}no loop
+                            {'  '}no loop
                           </span>
                         </Card.CardContent>
                       </Card.Card>
@@ -560,20 +560,20 @@ export function ShadC() {
             </Carousel.Carousel>
             <Carousel.Carousel
               opts={{
-                align: "start",
+                align: 'start',
                 loop: true,
               }}
               className="w-[50%]"
             >
               <Carousel.CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
+                {Array.from({length: 5}).map((_, index) => (
                   <Carousel.CarouselItem key={index}>
                     <div className="p-1">
                       <Card.Card>
                         <Card.CardContent className="flex aspect-square items-center justify-center p-2">
                           <span className="text-4xl font-semibold">
                             {index + 1}
-                            {"  "}loop
+                            {'  '}loop
                           </span>
                         </Card.CardContent>
                       </Card.Card>
@@ -666,11 +666,11 @@ export function ShadC() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function ShadD() {
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
   return (
     <div className="page-body testing">
       <TestBlock
@@ -767,12 +767,12 @@ export function ShadD() {
         note="see radix API documentation for properties that can be passed on to different components."
         zone={
           <DropdownMenu.DropdownMenu>
-            <Button variant={"outline"} asChild>
+            <Button variant={'outline'} asChild>
               <DropdownMenu.DropdownMenuTrigger>
                 Open
               </DropdownMenu.DropdownMenuTrigger>
             </Button>
-            <DropdownMenu.DropdownMenuContent side="bottom" align={"start"}>
+            <DropdownMenu.DropdownMenuContent side="bottom" align={'start'}>
               <DropdownMenu.DropdownMenuLabel>
                 My Account
               </DropdownMenu.DropdownMenuLabel>
@@ -794,7 +794,7 @@ export function ShadD() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function ShadHM() {
@@ -872,20 +872,20 @@ export function ShadHM() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function ShadNR() {
-  const [progress, setProgress] = useState<number>(0);
-  const [progressOn, setProgressOn] = useState<boolean>(false);
+  const [progress, setProgress] = useState<number>(0)
+  const [progressOn, setProgressOn] = useState<boolean>(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => (progressOn ? (prev + 1) % 100 : prev));
-    }, 1000);
+      setProgress((prev) => (progressOn ? (prev + 1) % 100 : prev))
+    }, 1000)
 
-    return () => clearInterval(interval);
-  }, [progressOn]);
+    return () => clearInterval(interval)
+  }, [progressOn])
 
   return (
     <div className="page-body testing">
@@ -976,9 +976,9 @@ export function ShadNR() {
                 <Pagination.PaginationPrevious href="" />
               </Pagination.PaginationItem>
               <Pagination.PaginationItem>
-                <Button variant={"outline"} asChild>
+                <Button variant={'outline'} asChild>
                   <Pagination.PaginationLink
-                    style={{ textDecoration: "none" }}
+                    style={{textDecoration: 'none'}}
                     href=""
                   >
                     1
@@ -1016,7 +1016,7 @@ export function ShadNR() {
           <div className="flex flex-col gap-4">
             <Progress value={Math.min(100, Math.max(0, progress))} />
             <Button onClick={() => setProgressOn(!progressOn)}>
-              {progressOn ? "Stop" : "Start"} Progress
+              {progressOn ? 'Stop' : 'Start'} Progress
             </Button>
           </div>
         }
@@ -1081,7 +1081,7 @@ export function ShadNR() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function ShadS() {
@@ -1095,46 +1095,46 @@ export function ShadS() {
             <div className="flex w-max space-x-4 p-[20px] gap-[20px] bg-transparent">
               {[
                 {
-                  title: "Placeholder1",
-                  description: "This is a placeholder image",
-                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-                  alt: "A placeholder square of dark purple",
-                  url: "https://cultofthepartyparrot.com/",
+                  title: 'Placeholder1',
+                  description: 'This is a placeholder image',
+                  src: 'https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg',
+                  alt: 'A placeholder square of dark purple',
+                  url: 'https://cultofthepartyparrot.com/',
                 },
                 {
-                  title: "Placeholder2",
-                  description: "This is a placeholder image",
-                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-                  alt: "A placeholder square of dark purple",
-                  url: "https://cultofthepartyparrot.com/",
+                  title: 'Placeholder2',
+                  description: 'This is a placeholder image',
+                  src: 'https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg',
+                  alt: 'A placeholder square of dark purple',
+                  url: 'https://cultofthepartyparrot.com/',
                 },
                 {
-                  title: "Placeholder3",
-                  description: "This is a placeholder image",
-                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-                  alt: "A placeholder square of dark purple",
-                  url: "https://cultofthepartyparrot.com/",
+                  title: 'Placeholder3',
+                  description: 'This is a placeholder image',
+                  src: 'https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg',
+                  alt: 'A placeholder square of dark purple',
+                  url: 'https://cultofthepartyparrot.com/',
                 },
                 {
-                  title: "Placeholder4",
-                  description: "This is a placeholder image",
-                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-                  alt: "A placeholder square of dark purple",
-                  url: "https://cultofthepartyparrot.com/",
+                  title: 'Placeholder4',
+                  description: 'This is a placeholder image',
+                  src: 'https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg',
+                  alt: 'A placeholder square of dark purple',
+                  url: 'https://cultofthepartyparrot.com/',
                 },
                 {
-                  title: "Placeholder5",
-                  description: "This is a placeholder image",
-                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-                  alt: "A placeholder square of dark purple",
-                  url: "https://cultofthepartyparrot.com/",
+                  title: 'Placeholder5',
+                  description: 'This is a placeholder image',
+                  src: 'https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg',
+                  alt: 'A placeholder square of dark purple',
+                  url: 'https://cultofthepartyparrot.com/',
                 },
                 {
-                  title: "Placeholder6",
-                  description: "This is a placeholder image",
-                  src: "https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg",
-                  alt: "A placeholder square of dark purple",
-                  url: "https://cultofthepartyparrot.com/",
+                  title: 'Placeholder6',
+                  description: 'This is a placeholder image',
+                  src: 'https://wallpapers.com/images/hd/dark-plain-purple-rkouqp4mrlucwchv.jpg',
+                  alt: 'A placeholder square of dark purple',
+                  url: 'https://cultofthepartyparrot.com/',
                 },
               ].map((img) => (
                 <div key={img.title}>
@@ -1146,14 +1146,14 @@ export function ShadS() {
                     width={300}
                     height={400}
                     style={{
-                      maxWidth: "300px",
-                      maxHeight: "400px",
-                      ...(img.url ? { cursor: "pointer" } : {}),
+                      maxWidth: '300px',
+                      maxHeight: '400px',
+                      ...(img.url ? {cursor: 'pointer'} : {}),
                     }}
-                    onClick={() => img.url && window.open(img.url, "_blank")}
+                    onClick={() => img.url && window.open(img.url, '_blank')}
                   />
                   <div className="caption flex flex-row gap-[5px]">
-                    {" "}
+                    {' '}
                     <p className="text-foreground">{img.title}</p>
                     <p className="text-popover-foreground/70">
                       {img.description.substring(0, 100)}
@@ -1271,11 +1271,11 @@ export function ShadS() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function ShadT() {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('')
   return (
     <div className="page-body testing">
       <TestBlock
@@ -1353,5 +1353,5 @@ export function ShadT() {
         }
       />
     </div>
-  );
+  )
 }

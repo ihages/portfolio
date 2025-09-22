@@ -1,7 +1,7 @@
-import Image from "next/image";
-import "./style.css";
-import { Paper, ThemeProvider } from "@mui/material";
-import { useTheme } from "@/utils/mui-theme";
+import Image from 'next/image'
+import './style.css'
+import {Paper, ThemeProvider} from '@mui/material'
+import {useTheme} from '@/utils/mui-theme'
 
 export default function PageNotFound() {
   return (
@@ -10,7 +10,11 @@ export default function PageNotFound() {
         <ThemeProvider theme={useTheme()}>
           <Paper className="p-[40px] border-secondary border-[5px]">
             <h1>404 -- Page Not Found</h1>
-            <p>Oops! That page doesn&apos;t seem to exist!<br/>Try a different one out!</p>
+            <p>
+              Oops! That page doesn&apos;t seem to exist!
+              <br />
+              Try a different one out!
+            </p>
           </Paper>
         </ThemeProvider>
         <Image
@@ -19,10 +23,10 @@ export default function PageNotFound() {
           alt="could not find this page"
           width={0}
           height={0}
-          style={{ width: "40vw", height:"40vw", aspectRatio: "1 / 1" }}
+          style={{width: '40vw', height: '40vw', aspectRatio: '1 / 1'}}
           priority={true}
         />
       </div>
     </div>
-  );
+  )
 }

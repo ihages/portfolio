@@ -1,7 +1,7 @@
-import { LinkMap } from "@/linkmap";
-import React from "react";
-import "./style.css";
-import Image from "next/image";
+import {LinkMap} from '@/linkmap'
+import React from 'react'
+import './style.css'
+import Image from 'next/image'
 
 export default function Header() {
   return (
@@ -15,5 +15,5 @@ export default function Header() {
         ))}
       </div>
     </header>
-  );
+  )
 }

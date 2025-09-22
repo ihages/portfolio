@@ -1,7 +1,7 @@
-import { Separator } from "@/components/ui/separator";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Button } from "./ui/button";
-import Link from "next/link";
+import {Separator} from '@/components/ui/separator'
+import {SidebarTrigger} from '@/components/ui/sidebar'
+import {Button} from './ui/button'
+import Link from 'next/link'
 
 export function SiteHeader() {
   return (
@@ -20,5 +20,5 @@ export function SiteHeader() {
         </Button>
       </div>
     </header>
-  );
+  )
 }

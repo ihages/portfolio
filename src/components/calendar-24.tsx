@@ -1,17 +1,13 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { ChevronDownIcon } from "lucide-react"
+import * as React from 'react'
+import {ChevronDownIcon} from 'lucide-react'
 
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import {Button} from '@/components/ui/button'
+import {Calendar} from '@/components/ui/calendar'
+import {Input} from '@/components/ui/input'
+import {Label} from '@/components/ui/label'
+import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover'
 
 export default function Calendar24() {
   const [open, setOpen] = React.useState(false)
@@ -30,7 +26,7 @@ export default function Calendar24() {
               id="date-picker"
               className="w-32 justify-between font-normal"
             >
-              {date ? date.toLocaleDateString() : "Select date"}
+              {date ? date.toLocaleDateString() : 'Select date'}
               <ChevronDownIcon />
             </Button>
           </PopoverTrigger>

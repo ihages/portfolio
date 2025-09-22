@@ -1,13 +1,13 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { ChartAreaInteractive } from "@/components/chart-area-interactive";
-import { DataTable } from "@/components/data-table";
-import { SectionCards } from "@/components/section-cards";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import {AppSidebar} from '@/components/app-sidebar'
+import {ChartAreaInteractive} from '@/components/chart-area-interactive'
+import {DataTable} from '@/components/data-table'
+import {SectionCards} from '@/components/section-cards'
+import {SiteHeader} from '@/components/site-header'
+import {SidebarInset, SidebarProvider} from '@/components/ui/sidebar'
 
-import data from "./data.json";
-import { Separator } from "@/components/ui/separator";
-import Breadcrumbs from "@/components/breadcrumbs";
+import data from './data.json'
+import {Separator} from '@/components/ui/separator'
+import Breadcrumbs from '@/components/breadcrumbs'
 
 export default function Page() {
   return (
@@ -18,9 +18,9 @@ export default function Page() {
         className="h-fit"
         style={
           {
-            padding: "0",
-            "--sidebar-width": "calc(var(--spacing) * 72)",
-            "--header-height": "calc(var(--spacing) * 12)",
+            padding: '0',
+            '--sidebar-width': 'calc(var(--spacing) * 72)',
+            '--header-height': 'calc(var(--spacing) * 12)',
           } as React.CSSProperties
         }
       >
@@ -44,5 +44,5 @@ export default function Page() {
         </SidebarInset>
       </SidebarProvider>
     </>
-  );
+  )
 }

@@ -1,12 +1,12 @@
-"use client";
-import * as React from "react";
-import Image from "next/image";
-import * as mui from "@mui/material";
-import { TestBlock } from "@/components/testblock";
-import "./style.css";
-import "../style.css"; //ensure styles load with client rendering
-import { useTheme } from "@/utils/mui-theme";
-import { blue, red } from "@mui/material/colors";
+'use client'
+import * as React from 'react'
+import Image from 'next/image'
+import * as mui from '@mui/material'
+import {TestBlock} from '@/components/testblock'
+import './style.css'
+import '../style.css' //ensure styles load with client rendering
+import {useTheme} from '@/utils/mui-theme'
+import {blue, red} from '@mui/material/colors'
 import {
   ExpandMore as ExpandMoreIcon,
   Adb as AdbIcon,
@@ -32,27 +32,27 @@ import {
   Inbox as InboxIcon,
   Drafts as DraftsIcon,
   Delete as DeleteIcon,
-} from "@mui/icons-material";
-import IconButton from "@mui/material/IconButton";
-import InfoIcon from "@mui/icons-material/Info";
-import CircularProgress from "@mui/material/CircularProgress";
-import CloseIcon from "@mui/icons-material/Close";
-import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
-import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+} from '@mui/icons-material'
+import IconButton from '@mui/material/IconButton'
+import InfoIcon from '@mui/icons-material/Info'
+import CircularProgress from '@mui/material/CircularProgress'
+import CloseIcon from '@mui/icons-material/Close'
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined'
+import SaveIcon from '@mui/icons-material/Save'
+import PrintIcon from '@mui/icons-material/Print'
+import ShareIcon from '@mui/icons-material/Share'
+import SpeedDialIcon from '@mui/material/SpeedDialIcon'
 
-import { faEllipsisV, faInfo } from "@fortawesome/free-solid-svg-icons";
+import {faEllipsisV, faInfo} from '@fortawesome/free-solid-svg-icons'
 
-import FontAwesomeSvgIcon from "@/components/fa-mui-icon";
+import FontAwesomeSvgIcon from '@/components/fa-mui-icon'
 
 export function MUIDataDisplay() {
   //done
-  const currentTheme = useTheme();
+  const currentTheme = useTheme()
   const handleDelete = () => {
-    console.info("You clicked the delete icon.");
-  };
+    console.info('You clicked the delete icon.')
+  }
   function createData(
     name: string,
     calories: number,
@@ -60,16 +60,16 @@ export function MUIDataDisplay() {
     carbs: number,
     protein: number
   ) {
-    return { name, calories, fat, carbs, protein };
+    return {name, calories, fat, carbs, protein}
   }
 
   const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
+    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+    createData('Eclair', 262, 16.0, 24, 6.0),
+    createData('Cupcake', 305, 3.7, 67, 4.3),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
+  ]
   return (
     <div className="page-body testing">
       <TestBlock
@@ -95,21 +95,21 @@ export function MUIDataDisplay() {
             <div className="flex gap-[10px] flex-col justify-center">
               Initials
               <mui.Avatar>H</mui.Avatar>
-              <mui.Avatar sx={{ bgcolor: red }}>N</mui.Avatar>
-              <mui.Avatar sx={{ bgcolor: blue }}>OP</mui.Avatar>
+              <mui.Avatar sx={{bgcolor: red}}>N</mui.Avatar>
+              <mui.Avatar sx={{bgcolor: blue}}>OP</mui.Avatar>
             </div>
             <div className="flex gap-[10px] flex-col justify-center">
               Sizes
               <mui.Avatar
                 alt="Remy Sharp"
                 src="/static/images/avatar/1.jpg"
-                sx={{ width: 24, height: 24 }}
+                sx={{width: 24, height: 24}}
               />
               <mui.Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
               <mui.Avatar
                 alt="Remy Sharp"
                 src="/static/images/avatar/1.jpg"
-                sx={{ width: 56, height: 56 }}
+                sx={{width: 56, height: 56}}
               />
             </div>
           </mui.ThemeProvider>
@@ -190,7 +190,7 @@ export function MUIDataDisplay() {
               <div className="flex flex-col">
                 <p>Material UI</p> <FavoriteIcon></FavoriteIcon>
               </div>
-              <mui.Divider sx={{ borderColor: "primary.main" }} />
+              <mui.Divider sx={{borderColor: 'primary.main'}} />
               <div className="flex flex-col justify-center">
                 <p>Font Awesome with SVG Component</p>
                 <mui.Stack direction="row" spacing={2}>
@@ -244,7 +244,7 @@ export function MUIDataDisplay() {
         note="This is actually not a tanstack table. It is very nice looking. Sorting requires programmed logic (is not included in the library) and also requires you to define your header cells. There is also a sticky header prop that makes the header stick while you scroll through the table data. There is also an iption for built-in table pagination and virtualization."
         zone={
           <mui.TableContainer component={mui.Paper}>
-            <mui.Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <mui.Table sx={{minWidth: 650}} aria-label="simple table">
               <mui.TableHead>
                 <mui.TableRow>
                   <mui.TableCell>Dessert (100g serving)</mui.TableCell>
@@ -258,7 +258,7 @@ export function MUIDataDisplay() {
                 {rows.map((row) => (
                   <mui.TableRow
                     key={row.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    sx={{'&:last-child td, &:last-child th': {border: 0}}}
                   >
                     <mui.TableCell component="th" scope="row">
                       {row.name}
@@ -287,46 +287,46 @@ export function MUIDataDisplay() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function MUIFeedback() {
   //done
-  const currentTheme = useTheme();
-  const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false);
+  const currentTheme = useTheme()
+  const [openBackdrop, setOpenBackdrop] = React.useState<boolean>(false)
   const handleClose = () => {
-    setOpenBackdrop(false);
-  };
+    setOpenBackdrop(false)
+  }
   const handleOpen = () => {
-    setOpenBackdrop(true);
-  };
+    setOpenBackdrop(true)
+  }
 
-  const [dialogOpen, setDialogOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = React.useState(false)
 
   const handleDialogOpen = () => {
-    setDialogOpen(true);
-  };
+    setDialogOpen(true)
+  }
 
   const handleDialogClose = () => {
-    setDialogOpen(false);
-  };
+    setDialogOpen(false)
+  }
 
-  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+  const [openSnackbar, setOpenSnackbar] = React.useState(false)
 
   const handleSnackClick = () => {
-    setOpenSnackbar(true);
-  };
+    setOpenSnackbar(true)
+  }
 
   const handleSnackClose = (
     event: React.SyntheticEvent | Event,
     reason?: mui.SnackbarCloseReason
   ) => {
-    if (reason === "clickaway") {
-      return;
+    if (reason === 'clickaway') {
+      return
     }
 
-    setOpenSnackbar(false);
-  };
+    setOpenSnackbar(false)
+  }
 
   const action = (
     <React.Fragment>
@@ -342,7 +342,7 @@ export function MUIFeedback() {
         <CloseIcon fontSize="small" />
       </mui.IconButton>
     </React.Fragment>
-  );
+  )
   return (
     <div className="page-body testing">
       <TestBlock
@@ -390,7 +390,7 @@ export function MUIFeedback() {
             <mui.Button onClick={handleOpen}>Show backdrop</mui.Button>
             <mui.Backdrop
               sx={(theme) => ({
-                color: "#fff",
+                color: '#fff',
                 zIndex: theme.zIndex.drawer + 1,
               })}
               open={openBackdrop}
@@ -465,7 +465,7 @@ export function MUIFeedback() {
                 </defs>
               </svg>
               <mui.CircularProgress
-                sx={{ "svg circle": { stroke: "url(#my_gradient)" } }}
+                sx={{'svg circle': {stroke: 'url(#my_gradient)'}}}
               />
             </React.Fragment>
           </mui.ThemeProvider>
@@ -479,7 +479,7 @@ export function MUIFeedback() {
           <mui.ThemeProvider theme={currentTheme}>
             <mui.Skeleton
               variant="text"
-              sx={{ width: "100%", fontSize: "1rem" }}
+              sx={{width: '100%', fontSize: '1rem'}}
             />
             <mui.Skeleton variant="circular" width={40} height={40} />
             <mui.Skeleton variant="rectangular" width={210} height={60} />
@@ -512,96 +512,96 @@ export function MUIFeedback() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function MUIInputs() {
   //done
-  const currentTheme = useTheme();
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [checked, setChecked] = React.useState<boolean[]>([false, false]);
-  const [ratingValue, setRatingValue] = React.useState<number | null>(2);
+  const currentTheme = useTheme()
+  const label = {inputProps: {'aria-label': 'Checkbox demo'}}
+  const [checked, setChecked] = React.useState<boolean[]>([false, false])
+  const [ratingValue, setRatingValue] = React.useState<number | null>(2)
 
-  const [age, setAge] = React.useState("");
+  const [age, setAge] = React.useState('')
 
   const handleChange = (event: mui.SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
+    setAge(event.target.value as string)
+  }
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, event.target.checked]);
-  };
+    setChecked([event.target.checked, event.target.checked])
+  }
 
   const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, checked[1]]);
-  };
+    setChecked([event.target.checked, checked[1]])
+  }
 
   const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([checked[0], event.target.checked]);
-  };
+    setChecked([checked[0], event.target.checked])
+  }
 
-  const [volume, setVolume] = React.useState<number>(30);
+  const [volume, setVolume] = React.useState<number>(30)
 
   const handleVolume = (event: Event, newValue: number) => {
-    setVolume(newValue);
-  };
+    setVolume(newValue)
+  }
 
   function not(a: readonly number[], b: readonly number[]) {
-    return a.filter((value) => !b.includes(value));
+    return a.filter((value) => !b.includes(value))
   }
 
   function intersection(a: readonly number[], b: readonly number[]) {
-    return a.filter((value) => b.includes(value));
+    return a.filter((value) => b.includes(value))
   }
 
   function TransferList() {
-    const [trChecked, setTrChecked] = React.useState<readonly number[]>([]);
-    const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
-    const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
+    const [trChecked, setTrChecked] = React.useState<readonly number[]>([])
+    const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3])
+    const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7])
 
-    const leftChecked: readonly number[] = intersection(trChecked, left);
-    const rightChecked: readonly number[] = intersection(trChecked, right);
+    const leftChecked: readonly number[] = intersection(trChecked, left)
+    const rightChecked: readonly number[] = intersection(trChecked, right)
 
     const handleToggle = (value: number) => () => {
-      const currentIndex = trChecked.indexOf(value);
-      const newChecked = [...trChecked];
+      const currentIndex = trChecked.indexOf(value)
+      const newChecked = [...trChecked]
 
       if (currentIndex === -1) {
-        newChecked.push(value);
+        newChecked.push(value)
       } else {
-        newChecked.splice(currentIndex, 1);
+        newChecked.splice(currentIndex, 1)
       }
 
-      setTrChecked(newChecked);
-    };
+      setTrChecked(newChecked)
+    }
 
     const handleAllRight = () => {
-      setRight(right.concat(left));
-      setLeft([]);
-    };
+      setRight(right.concat(left))
+      setLeft([])
+    }
 
     const handleCheckedRight = () => {
-      setRight(right.concat(leftChecked));
-      setLeft(not(left, leftChecked));
-      setTrChecked(not(trChecked, leftChecked));
-    };
+      setRight(right.concat(leftChecked))
+      setLeft(not(left, leftChecked))
+      setTrChecked(not(trChecked, leftChecked))
+    }
 
     const handleCheckedLeft = () => {
-      setLeft(left.concat(rightChecked));
-      setRight(not(right, rightChecked));
-      setTrChecked(not(trChecked, rightChecked));
-    };
+      setLeft(left.concat(rightChecked))
+      setRight(not(right, rightChecked))
+      setTrChecked(not(trChecked, rightChecked))
+    }
 
     const handleAllLeft = () => {
-      setLeft(left.concat(right));
-      setRight([]);
-    };
+      setLeft(left.concat(right))
+      setRight([])
+    }
 
     const customList = (items: readonly number[]) => (
-      <mui.Paper sx={{ width: 200, height: 230, overflow: "auto" }}>
+      <mui.Paper sx={{width: 200, height: 230, overflow: 'auto'}}>
         <mui.List dense component="div" role="list">
           {items.map((value: number) => {
-            const labelId = `transfer-list-item-${value}-label`;
+            const labelId = `transfer-list-item-${value}-label`
 
             return (
               <mui.ListItemButton
@@ -615,7 +615,7 @@ export function MUIInputs() {
                     tabIndex={-1}
                     disableRipple
                     inputProps={{
-                      "aria-labelledby": labelId,
+                      'aria-labelledby': labelId,
                     }}
                   />
                 </mui.ListItemIcon>
@@ -624,27 +624,23 @@ export function MUIInputs() {
                   primary={`List item ${value + 1}`}
                 />
               </mui.ListItemButton>
-            );
+            )
           })}
         </mui.List>
       </mui.Paper>
-    );
+    )
     return (
       <mui.ThemeProvider theme={currentTheme}>
         <mui.Grid
           container
           spacing={2}
-          sx={{ justifyContent: "center", alignItems: "center" }}
+          sx={{justifyContent: 'center', alignItems: 'center'}}
         >
           <mui.Grid>{customList(left)}</mui.Grid>
           <mui.Grid>
-            <mui.Grid
-              container
-              direction="column"
-              sx={{ alignItems: "center" }}
-            >
+            <mui.Grid container direction="column" sx={{alignItems: 'center'}}>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleAllRight}
@@ -654,7 +650,7 @@ export function MUIInputs() {
                 ≫
               </mui.Button>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleCheckedRight}
@@ -664,7 +660,7 @@ export function MUIInputs() {
                 &gt;
               </mui.Button>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleCheckedLeft}
@@ -674,7 +670,7 @@ export function MUIInputs() {
                 &lt;
               </mui.Button>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleAllLeft}
@@ -688,17 +684,17 @@ export function MUIInputs() {
           <mui.Grid>{customList(right)}</mui.Grid>
         </mui.Grid>
       </mui.ThemeProvider>
-    );
+    )
   }
 
-  const [formats, setFormats] = React.useState(() => ["bold", "italic"]);
+  const [formats, setFormats] = React.useState(() => ['bold', 'italic'])
 
   const handleFormat = (
     event: React.MouseEvent<HTMLElement>,
     newFormats: string[]
   ) => {
-    setFormats(newFormats);
-  };
+    setFormats(newFormats)
+  }
 
   return (
     <div className="page-body testing">
@@ -708,7 +704,7 @@ export function MUIInputs() {
         zone={
           <div className="flex gap-[10px] flex-row flex-wrap alig-center">
             <div className="flex gap-[20px] flex-row flex-wrap">
-              <mui.ThemeProvider theme={useTheme("light")}>
+              <mui.ThemeProvider theme={useTheme('light')}>
                 <div className="flex gap-[10px] flex-col justify-center">
                   Primary
                   <mui.Button variant="text">Text</mui.Button>
@@ -743,7 +739,7 @@ export function MUIInputs() {
             </div>
             <mui.Divider />
             <div className="flex gap-[20px] flex-row flex-wrap">
-              <mui.ThemeProvider theme={useTheme("dark")}>
+              <mui.ThemeProvider theme={useTheme('dark')}>
                 <div className="flex gap-[10px] flex-col justify-center">
                   Primary
                   <mui.Button variant="text">Text</mui.Button>
@@ -848,7 +844,7 @@ export function MUIInputs() {
                   />
                 }
               />
-              <mui.Box sx={{ display: "flex", flexDirection: "column", ml: 3 }}>
+              <mui.Box sx={{display: 'flex', flexDirection: 'column', ml: 3}}>
                 <mui.FormControlLabel
                   label="Child 1"
                   control={
@@ -895,7 +891,7 @@ export function MUIInputs() {
               <EditIcon />
             </mui.Fab>
             <mui.Fab variant="extended">
-              <NavigationIcon sx={{ mr: 1 }} />
+              <NavigationIcon sx={{mr: 1}} />
               Navigate
             </mui.Fab>
             <mui.Fab disabled aria-label="like">
@@ -945,20 +941,20 @@ export function MUIInputs() {
         docLink="https://mui.com/material-ui/react-rating/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            <mui.Box sx={{ "& > legend": { mt: 2 } }}>
+            <mui.Box sx={{'& > legend': {mt: 2}}}>
               <mui.Typography component="legend">Controlled</mui.Typography>
               <mui.Rating
                 name="simple-controlled"
                 value={ratingValue}
                 onChange={(event, newValue) => {
-                  setRatingValue(newValue);
+                  setRatingValue(newValue)
                 }}
               />
               <mui.Typography component="legend">Uncontrolled</mui.Typography>
               <mui.Rating
                 name="simple-uncontrolled"
                 onChange={(event, newValue) => {
-                  console.log(newValue);
+                  console.log(newValue)
                 }}
                 defaultValue={2}
               />
@@ -1003,12 +999,12 @@ export function MUIInputs() {
         docLink="https://mui.com/material-ui/react-slider/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            <mui.Box sx={{ width: 200 }}>
+            <mui.Box sx={{width: 200}}>
               Enabled
               <mui.Stack
                 spacing={2}
                 direction="row"
-                sx={{ alignItems: "center", mb: 1 }}
+                sx={{alignItems: 'center', mb: 1}}
               >
                 <VolumeDown />
                 <mui.Slider
@@ -1096,146 +1092,146 @@ export function MUIInputs() {
         }
       />
     </div>
-  );
+  )
 }
 
 export function MUILayout() {
-  const currentTheme = useTheme();
-  const [selectedGallery, setSelectedGallery] = React.useState("default");
+  const currentTheme = useTheme()
+  const [selectedGallery, setSelectedGallery] = React.useState('default')
 
-  const Item = mui.styled(mui.Paper)(({ theme }) => ({
-    backgroundColor: "#fff",
+  const Item = mui.styled(mui.Paper)(({theme}) => ({
+    backgroundColor: '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    textAlign: "center",
+    textAlign: 'center',
     color: (theme.vars ?? theme).palette.text.secondary,
-    ...theme.applyStyles("dark", {
-      backgroundColor: "#1A2027",
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1A2027',
     }),
-  }));
+  }))
   const itemData = [
     {
-      img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
-      title: "Breakfast",
-      author: "@bkristastucchio",
+      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+      title: 'Breakfast',
+      author: '@bkristastucchio',
       rows: 2,
       cols: 2,
       featured: true,
     },
     {
-      img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
-      title: "Burger",
-      author: "@rollelflex_graphy726",
+      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+      title: 'Burger',
+      author: '@rollelflex_graphy726',
     },
     {
-      img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
-      title: "Camera",
-      author: "@helloimnik",
+      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+      title: 'Camera',
+      author: '@helloimnik',
     },
     {
-      img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
-      title: "Coffee",
-      author: "@nolanissac",
+      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+      title: 'Coffee',
+      author: '@nolanissac',
       cols: 2,
     },
     {
-      img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
-      title: "Hats",
-      author: "@hjrc33",
+      img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+      title: 'Hats',
+      author: '@hjrc33',
       cols: 2,
     },
     {
-      img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
-      title: "Honey",
-      author: "@arwinneil",
+      img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+      title: 'Honey',
+      author: '@arwinneil',
       rows: 2,
       cols: 2,
       featured: true,
     },
     {
-      img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
-      title: "Basketball",
-      author: "@tjdragotta",
+      img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+      title: 'Basketball',
+      author: '@tjdragotta',
     },
     {
-      img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
-      title: "Fern",
-      author: "@katie_wasserman",
+      img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+      title: 'Fern',
+      author: '@katie_wasserman',
     },
     {
-      img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
-      title: "Mushrooms",
-      author: "@silverdalex",
+      img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+      title: 'Mushrooms',
+      author: '@silverdalex',
       rows: 2,
       cols: 2,
     },
     {
-      img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
-      title: "Tomato basil",
-      author: "@shelleypauls",
+      img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+      title: 'Tomato basil',
+      author: '@shelleypauls',
     },
     {
-      img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
-      title: "Sea star",
-      author: "@peterlaster",
+      img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+      title: 'Sea star',
+      author: '@peterlaster',
     },
     {
-      img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-      title: "Bike",
-      author: "@southside_customs",
+      img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+      title: 'Bike',
+      author: '@southside_customs',
       cols: 2,
     },
-  ];
+  ]
   const itemData2 = [
     {
-      img: "https://images.unsplash.com/photo-1549388604-817d15aa0110",
-      title: "Bed",
+      img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
+      title: 'Bed',
     },
     {
-      img: "https://images.unsplash.com/photo-1525097487452-6278ff080c31",
-      title: "Books",
+      img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
+      title: 'Books',
     },
     {
-      img: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6",
-      title: "Sink",
+      img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
+      title: 'Sink',
     },
     {
-      img: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3",
-      title: "Kitchen",
+      img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
+      title: 'Kitchen',
     },
     {
-      img: "https://images.unsplash.com/photo-1588436706487-9d55d73a39e3",
-      title: "Blinds",
+      img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
+      title: 'Blinds',
     },
     {
-      img: "https://images.unsplash.com/photo-1574180045827-681f8a1a9622",
-      title: "Chairs",
+      img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
+      title: 'Chairs',
     },
     {
-      img: "https://images.unsplash.com/photo-1530731141654-5993c3016c77",
-      title: "Laptop",
+      img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
+      title: 'Laptop',
     },
     {
-      img: "https://images.unsplash.com/photo-1481277542470-605612bd2d61",
-      title: "Doors",
+      img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
+      title: 'Doors',
     },
     {
-      img: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7",
-      title: "Coffee",
+      img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
+      title: 'Coffee',
     },
     {
-      img: "https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee",
-      title: "Storage",
+      img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
+      title: 'Storage',
     },
     {
-      img: "https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62",
-      title: "Candle",
+      img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
+      title: 'Candle',
     },
     {
-      img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4",
-      title: "Coffee table",
+      img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
+      title: 'Coffee table',
     },
-  ];
+  ]
 
   return (
     <div className="page-body testing">
@@ -1243,7 +1239,7 @@ export function MUILayout() {
         title="Box"
         docLink="https://mui.com/material-ui/react-box/"
         zone={
-          <mui.Box component="section" sx={{ p: 2, border: "1px dashed grey" }}>
+          <mui.Box component="section" sx={{p: 2, border: '1px dashed grey'}}>
             This Box renders as an HTML section element.
           </mui.Box>
         }
@@ -1253,26 +1249,19 @@ export function MUILayout() {
         docLink="https://mui.com/material-ui/react-container/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            <mui.Container
-              maxWidth="lg"
-              sx={{ p: 2, border: "1px dashed grey" }}
-            >
+            <mui.Container maxWidth="lg" sx={{p: 2, border: '1px dashed grey'}}>
               <p>Lg maxwidth</p>
-              <mui.Box
-                sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
-              >
+              <mui.Box sx={{p: 2, border: '1px dashed grey', height: '200px'}}>
                 <p>set height 200px</p>
               </mui.Box>
             </mui.Container>
             <mui.Container
               fixed
               maxWidth="sm"
-              sx={{ p: 2, border: "1px dashed grey" }}
+              sx={{p: 2, border: '1px dashed grey'}}
             >
               <p>Sm maxwidth</p>
-              <mui.Box
-                sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
-              >
+              <mui.Box sx={{p: 2, border: '1px dashed grey', height: '200px'}}>
                 <p>set height 200px</p>
               </mui.Box>
             </mui.Container>
@@ -1287,18 +1276,18 @@ export function MUILayout() {
             <mui.Grid
               container
               spacing={2}
-              sx={{ p: 2, border: "1px dashed grey" }}
+              sx={{p: 2, border: '1px dashed grey'}}
             >
-              <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+              <mui.Grid size={8} sx={{p: 2, border: '1px dashed grey'}}>
                 <Item>size=8</Item>
               </mui.Grid>
-              <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+              <mui.Grid size={4} sx={{p: 2, border: '1px dashed grey'}}>
                 <Item>size=4</Item>
               </mui.Grid>
-              <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+              <mui.Grid size={4} sx={{p: 2, border: '1px dashed grey'}}>
                 <Item>size=4</Item>
               </mui.Grid>
-              <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+              <mui.Grid size={8} sx={{p: 2, border: '1px dashed grey'}}>
                 <Item>size=8</Item>
               </mui.Grid>
             </mui.Grid>
@@ -1311,7 +1300,7 @@ export function MUILayout() {
         docLink="https://mui.com/material-ui/react-stack/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            <mui.Stack spacing={2} sx={{ p: 2, border: "1px dashed grey" }}>
+            <mui.Stack spacing={2} sx={{p: 2, border: '1px dashed grey'}}>
               <Item>Item 1</Item>
               <Item>Item 2</Item>
               <Item>Item 3</Item>
@@ -1320,7 +1309,7 @@ export function MUILayout() {
               direction="row"
               divider={<mui.Divider orientation="vertical" flexItem />}
               spacing={2}
-              sx={{ p: 2, border: "1px dashed grey" }}
+              sx={{p: 2, border: '1px dashed grey'}}
             >
               <Item>Item 1</Item>
               <Item>Item 2</Item>
@@ -1329,7 +1318,7 @@ export function MUILayout() {
           </mui.ThemeProvider>
         }
         note="Pretty much the same as a flex-col. You can throw in a 'direction' prop to make it a row."
-      />{" "}
+      />{' '}
       <TestBlock
         title="Image List"
         docLink="https://mui.com/material-ui/react-image-list/"
@@ -1341,7 +1330,7 @@ export function MUILayout() {
                 exclusive
                 onChange={(event, newGallery) => {
                   if (newGallery !== null) {
-                    setSelectedGallery(newGallery);
+                    setSelectedGallery(newGallery)
                   }
                 }}
                 aria-label="gallery selection"
@@ -1363,9 +1352,9 @@ export function MUILayout() {
                 </mui.ToggleButton>
               </mui.ToggleButtonGroup>
 
-              {selectedGallery === "default" && (
+              {selectedGallery === 'default' && (
                 <mui.ImageList
-                  sx={{ width: 500, height: 450 }}
+                  sx={{width: 500, height: 450}}
                   cols={3}
                   rowHeight={164}
                 >
@@ -1376,16 +1365,16 @@ export function MUILayout() {
                         alt={item.title}
                         width={164}
                         height={164}
-                        style={{ objectFit: 'cover' }}
+                        style={{objectFit: 'cover'}}
                       />
                     </mui.ImageListItem>
                   ))}
                 </mui.ImageList>
               )}
 
-              {selectedGallery === "quilted" && (
+              {selectedGallery === 'quilted' && (
                 <mui.ImageList
-                  sx={{ width: 500, height: 450 }}
+                  sx={{width: 500, height: 450}}
                   variant="quilted"
                   cols={4}
                   rowHeight={121}
@@ -1401,16 +1390,16 @@ export function MUILayout() {
                         alt={item.title}
                         width={121}
                         height={121}
-                        style={{ objectFit: 'cover' }}
+                        style={{objectFit: 'cover'}}
                       />
                     </mui.ImageListItem>
                   ))}
                 </mui.ImageList>
               )}
 
-              {selectedGallery === "woven" && (
+              {selectedGallery === 'woven' && (
                 <mui.ImageList
-                  sx={{ width: 500, height: 450 }}
+                  sx={{width: 500, height: 450}}
                   variant="woven"
                   cols={3}
                   rowHeight={164}
@@ -1422,19 +1411,19 @@ export function MUILayout() {
                         alt={item.title}
                         width={161}
                         height={164}
-                        style={{ objectFit: 'cover' }}
+                        style={{objectFit: 'cover'}}
                       />
                     </mui.ImageListItem>
                   ))}
                 </mui.ImageList>
               )}
 
-              {selectedGallery === "masonry" && (
+              {selectedGallery === 'masonry' && (
                 <mui.ImageList
                   variant="masonry"
                   cols={3}
                   gap={8}
-                  sx={{ width: 500, height: 450 }}
+                  sx={{width: 500, height: 450}}
                 >
                   {itemData2.map((item) => (
                     <mui.ImageListItem key={item.img}>
@@ -1443,15 +1432,15 @@ export function MUILayout() {
                         alt={item.title}
                         width={248}
                         height={200}
-                        style={{ objectFit: 'cover' }}
+                        style={{objectFit: 'cover'}}
                       />
                     </mui.ImageListItem>
                   ))}
                 </mui.ImageList>
               )}
 
-              {selectedGallery === "overlay" && (
-                <mui.ImageList sx={{ width: 500, height: 450 }}>
+              {selectedGallery === 'overlay' && (
+                <mui.ImageList sx={{width: 500, height: 450}}>
                   {itemData.map((item) => (
                     <mui.ImageListItem key={item.img}>
                       <Image
@@ -1459,14 +1448,14 @@ export function MUILayout() {
                         alt={item.title}
                         width={248}
                         height={200}
-                        style={{ objectFit: 'cover' }}
+                        style={{objectFit: 'cover'}}
                       />
                       <mui.ImageListItemBar
                         title={item.title}
                         subtitle={item.author}
                         actionIcon={
                           <IconButton
-                            sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                            sx={{color: 'rgba(255, 255, 255, 0.54)'}}
                             aria-label={`info about ${item.title}`}
                           >
                             <InfoIcon />
@@ -1483,51 +1472,51 @@ export function MUILayout() {
         note="Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)"
       />
     </div>
-  );
+  )
 }
 
 export function MUINavigation() {
   //done
-  const currentTheme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const currentTheme = useTheme()
+  const [value, setValue] = React.useState(0)
   const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
     null
-  );
-  const menuOpen = Boolean(menuAnchorEl);
+  )
+  const menuOpen = Boolean(menuAnchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setMenuAnchorEl(event.currentTarget);
-  };
+    setMenuAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setMenuAnchorEl(null);
-  };
+    setMenuAnchorEl(null)
+  }
   const [openDrawer, setOpenDrawer] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
-  });
-  type Anchor = "top" | "left" | "bottom" | "right";
+  })
+  type Anchor = 'top' | 'left' | 'bottom' | 'right'
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
       ) {
-        return;
+        return
       }
 
-      setOpenDrawer({ ...openDrawer, [anchor]: open });
-    };
+      setOpenDrawer({...openDrawer, [anchor]: open})
+    }
   const drawerList = (anchor: Anchor) => (
     <mui.Box
-      sx={{ width: 250 }}
+      sx={{width: 250}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
     >
       <mui.List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <mui.ListItem key={text} disablePadding>
             <mui.ListItemButton>
               <mui.ListItemIcon>
@@ -1540,7 +1529,7 @@ export function MUINavigation() {
       </mui.List>
       <mui.Divider />
       <mui.List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <mui.ListItem key={text} disablePadding>
             <mui.ListItemButton>
               <mui.ListItemIcon>
@@ -1552,27 +1541,27 @@ export function MUINavigation() {
         ))}
       </mui.List>
     </mui.Box>
-  );
+  )
   const speedDialActions = [
-    { icon: <FileCopyIcon />, name: "Copy" },
-    { icon: <SaveIcon />, name: "Save" },
-    { icon: <PrintIcon />, name: "Print" },
-    { icon: <ShareIcon />, name: "Share" },
-  ];
+    {icon: <FileCopyIcon />, name: 'Copy'},
+    {icon: <SaveIcon />, name: 'Save'},
+    {icon: <PrintIcon />, name: 'Print'},
+    {icon: <ShareIcon />, name: 'Share'},
+  ]
 
   const steps = [
-    "Select master blaster campaign settings",
-    "Create an ad group",
-    "Create an ad",
-  ];
+    'Select master blaster campaign settings',
+    'Create an ad group',
+    'Create an ad',
+  ]
   interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+    children?: React.ReactNode
+    index: number
+    value: number
   }
 
   function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props
 
     return (
       <div
@@ -1582,22 +1571,22 @@ export function MUINavigation() {
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {value === index && <mui.Box sx={{ p: 3 }}>{children}</mui.Box>}
+        {value === index && <mui.Box sx={{p: 3}}>{children}</mui.Box>}
       </div>
-    );
+    )
   }
 
   function a11yProps(index: number) {
     return {
       id: `simple-tab-${index}`,
-      "aria-controls": `simple-tabpanel-${index}`,
-    };
+      'aria-controls': `simple-tabpanel-${index}`,
+    }
   }
-  const [tabValue, setTabValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState(0)
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
+    setTabValue(newValue)
+  }
 
   return (
     <div className="page-body testing">
@@ -1606,12 +1595,12 @@ export function MUINavigation() {
         docLink="https://mui.com/material-ui/react-bottom-nagivation/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            <mui.Box sx={{ width: 500 }}>
+            <mui.Box sx={{width: 500}}>
               <mui.BottomNavigation
                 showLabels
                 value={value}
                 onChange={(event, newValue) => {
-                  setValue(newValue);
+                  setValue(newValue)
                 }}
               >
                 <mui.BottomNavigationAction
@@ -1643,7 +1632,7 @@ export function MUINavigation() {
               <mui.Link underline="hover" color="inherit" href={undefined}>
                 Core
               </mui.Link>
-              <mui.Typography sx={{ color: "text.primary" }}>
+              <mui.Typography sx={{color: 'text.primary'}}>
                 Breadcrumbs
               </mui.Typography>
             </mui.Breadcrumbs>
@@ -1654,7 +1643,7 @@ export function MUINavigation() {
               <mui.Link underline="hover" color="inherit" href={undefined}>
                 Core
               </mui.Link>
-              <mui.Typography sx={{ color: "text.primary" }}>
+              <mui.Typography sx={{color: 'text.primary'}}>
                 Breadcrumbs
               </mui.Typography>
             </mui.Breadcrumbs>
@@ -1665,7 +1654,7 @@ export function MUINavigation() {
               <mui.Link underline="hover" color="inherit" href={undefined}>
                 Core
               </mui.Link>
-              <mui.Typography sx={{ color: "text.primary" }}>
+              <mui.Typography sx={{color: 'text.primary'}}>
                 Breadcrumbs
               </mui.Typography>
             </mui.Breadcrumbs>
@@ -1677,7 +1666,7 @@ export function MUINavigation() {
         docLink="https://mui.com/material-ui/react-drawer/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            {(["left", "right", "top", "bottom"] as const).map((anchor) => (
+            {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
               <React.Fragment key={anchor}>
                 <mui.Button onClick={toggleDrawer(anchor, true)}>
                   {anchor}
@@ -1717,9 +1706,9 @@ export function MUINavigation() {
           <mui.ThemeProvider theme={currentTheme}>
             <mui.Button
               id="basic-button"
-              aria-controls={menuOpen ? "basic-menu" : undefined}
+              aria-controls={menuOpen ? 'basic-menu' : undefined}
               aria-haspopup="true"
-              aria-expanded={menuOpen ? "true" : undefined}
+              aria-expanded={menuOpen ? 'true' : undefined}
               onClick={handleClick}
             >
               Dashboard
@@ -1731,7 +1720,7 @@ export function MUINavigation() {
               onClose={handleClose}
               slotProps={{
                 list: {
-                  "aria-labelledby": "basic-button",
+                  'aria-labelledby': 'basic-button',
                 },
               }}
             >
@@ -1767,11 +1756,11 @@ export function MUINavigation() {
         zone={
           <mui.ThemeProvider theme={currentTheme}>
             <mui.Box
-              sx={{ height: 320, transform: "translateZ(0px)", flexGrow: 1 }}
+              sx={{height: 320, transform: 'translateZ(0px)', flexGrow: 1}}
             >
               <mui.SpeedDial
                 ariaLabel="SpeedDial basic example"
-                sx={{ position: "absolute", bottom: 16, right: 16 }}
+                sx={{position: 'absolute', bottom: 16, right: 16}}
                 icon={<SpeedDialIcon />}
               >
                 {speedDialActions.map((action) => (
@@ -1815,7 +1804,7 @@ export function MUINavigation() {
         zone={
           <mui.ThemeProvider theme={currentTheme}>
             <mui.Stack>
-              <mui.Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <mui.Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <mui.Tabs
                   value={tabValue}
                   onChange={handleTabChange}
@@ -1841,42 +1830,42 @@ export function MUINavigation() {
         note="style works best if you put it in a mui.Stack component. You have to make a custom component CustomTabPanel with value same as the mui.Tabs value. This CustomTabPanel component is listed in the documentation."
       />
     </div>
-  );
+  )
 }
 
 export function MUISurfaces() {
   //done
-  const currentTheme = useTheme();
-  const pages = ["Products", "Pricing", "Blog"];
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const currentTheme = useTheme()
+  const pages = ['Products', 'Pricing', 'Blog']
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
   const [menuAnchorElNav, setmenuAnchorElNav] =
-    React.useState<HTMLElement | null>(null);
+    React.useState<HTMLElement | null>(null)
   const [menuAnchorElUser, setmenuAnchorElUser] =
-    React.useState<HTMLElement | null>(null);
+    React.useState<HTMLElement | null>(null)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
-    setmenuAnchorElNav(event.currentTarget);
-  };
+    setmenuAnchorElNav(event.currentTarget)
+  }
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setmenuAnchorElUser(event.currentTarget);
-  };
+    setmenuAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseNavMenu = () => {
-    setmenuAnchorElNav(null);
-  };
+    setmenuAnchorElNav(null)
+  }
 
   const handleCloseUserMenu = () => {
-    setmenuAnchorElUser(null);
-  };
+    setmenuAnchorElUser(null)
+  }
   const bull = (
     <mui.Box
       component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+      sx={{display: 'inline-block', mx: '2px', transform: 'scale(0.8)'}}
     >
       •
     </mui.Box>
-  );
+  )
   return (
     <div className="page-body testing">
       <TestBlock
@@ -1947,9 +1936,7 @@ export function MUISurfaces() {
             <mui.AppBar color="secondary" position="static">
               <mui.Container maxWidth="xl">
                 <mui.Toolbar disableGutters>
-                  <AdbIcon
-                    sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-                  />
+                  <AdbIcon sx={{display: {xs: 'none', md: 'flex'}, mr: 1}} />
                   <mui.Typography
                     variant="h6"
                     noWrap
@@ -1957,19 +1944,19 @@ export function MUISurfaces() {
                     href="#app-bar-with-responsive-menu"
                     sx={{
                       mr: 2,
-                      display: { xs: "none", md: "flex" },
-                      fontFamily: "monospace",
+                      display: {xs: 'none', md: 'flex'},
+                      fontFamily: 'monospace',
                       fontWeight: 700,
-                      letterSpacing: ".3rem",
-                      color: "var(--secondary)",
-                      textDecoration: "none",
+                      letterSpacing: '.3rem',
+                      color: 'var(--secondary)',
+                      textDecoration: 'none',
                     }}
                   >
                     LOGO
                   </mui.Typography>
 
                   <mui.Box
-                    sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
+                    sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}
                   >
                     <mui.IconButton
                       size="large"
@@ -1985,24 +1972,24 @@ export function MUISurfaces() {
                       id="menu-appbar"
                       anchorEl={menuAnchorElNav}
                       anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "left",
+                        vertical: 'bottom',
+                        horizontal: 'left',
                       }}
                       keepMounted
                       transformOrigin={{
-                        vertical: "top",
-                        horizontal: "left",
+                        vertical: 'top',
+                        horizontal: 'left',
                       }}
                       open={Boolean(menuAnchorElNav)}
                       onClose={handleCloseNavMenu}
-                      sx={{ display: { xs: "block", md: "none" } }}
+                      sx={{display: {xs: 'block', md: 'none'}}}
                     >
                       {pages.map((page) => (
                         <mui.MenuItem key={page} onClick={handleCloseNavMenu}>
                           <mui.Typography
                             sx={{
-                              textAlign: "center",
-                              color: "var(--secondary)",
+                              textAlign: 'center',
+                              color: 'var(--secondary)',
                             }}
                           >
                             {page}
@@ -2011,9 +1998,7 @@ export function MUISurfaces() {
                       ))}
                     </mui.Menu>
                   </mui.Box>
-                  <AdbIcon
-                    sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-                  />
+                  <AdbIcon sx={{display: {xs: 'flex', md: 'none'}, mr: 1}} />
                   <mui.Typography
                     variant="h5"
                     noWrap
@@ -2021,19 +2006,19 @@ export function MUISurfaces() {
                     href="#app-bar-with-responsive-menu"
                     sx={{
                       mr: 2,
-                      display: { xs: "flex", md: "none" },
+                      display: {xs: 'flex', md: 'none'},
                       flexGrow: 1,
-                      fontFamily: "monospace",
+                      fontFamily: 'monospace',
                       fontWeight: 700,
-                      letterSpacing: ".3rem",
-                      color: "var(--secondary)",
-                      textDecoration: "none",
+                      letterSpacing: '.3rem',
+                      color: 'var(--secondary)',
+                      textDecoration: 'none',
                     }}
                   >
                     LOGO
                   </mui.Typography>
                   <mui.Box
-                    sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}
+                    sx={{flexGrow: 1, display: {xs: 'none', md: 'flex'}}}
                   >
                     {pages.map((page) => (
                       <mui.Button
@@ -2041,20 +2026,17 @@ export function MUISurfaces() {
                         onClick={handleCloseNavMenu}
                         sx={{
                           my: 2,
-                          color: "var(--secondary)",
-                          display: "block",
+                          color: 'var(--secondary)',
+                          display: 'block',
                         }}
                       >
                         {page}
                       </mui.Button>
                     ))}
                   </mui.Box>
-                  <mui.Box sx={{ flexGrow: 0 }}>
+                  <mui.Box sx={{flexGrow: 0}}>
                     <mui.Tooltip title="Open settings">
-                      <mui.IconButton
-                        onClick={handleOpenUserMenu}
-                        sx={{ p: 0 }}
-                      >
+                      <mui.IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
                         <mui.Avatar
                           alt="Remy Sharp"
                           src="/static/images/avatar/2.jpg"
@@ -2062,17 +2044,17 @@ export function MUISurfaces() {
                       </mui.IconButton>
                     </mui.Tooltip>
                     <mui.Menu
-                      sx={{ mt: "45px" }}
+                      sx={{mt: '45px'}}
                       id="menu-appbar"
                       anchorEl={menuAnchorElUser}
                       anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
+                        vertical: 'top',
+                        horizontal: 'right',
                       }}
                       keepMounted
                       transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
+                        vertical: 'top',
+                        horizontal: 'right',
                       }}
                       open={Boolean(menuAnchorElUser)}
                       onClose={handleCloseUserMenu}
@@ -2082,7 +2064,7 @@ export function MUISurfaces() {
                           key={setting}
                           onClick={handleCloseUserMenu}
                         >
-                          <mui.Typography sx={{ textAlign: "center" }}>
+                          <mui.Typography sx={{textAlign: 'center'}}>
                             {setting}
                           </mui.Typography>
                         </mui.MenuItem>
@@ -2100,18 +2082,18 @@ export function MUISurfaces() {
         docLink="https://mui.com/material-ui/react-card/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            <mui.Card sx={{ minWidth: 275 }}>
+            <mui.Card sx={{minWidth: 275}}>
               <mui.CardContent>
                 <mui.Typography
                   gutterBottom
-                  sx={{ color: "text.secondary", fontSize: 14 }}
+                  sx={{color: 'text.secondary', fontSize: 14}}
                 >
                   Word of the Day
                 </mui.Typography>
                 <mui.Typography variant="h5" component="div">
                   be{bull}nev{bull}o{bull}lent
                 </mui.Typography>
-                <mui.Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                <mui.Typography sx={{color: 'text.secondary', mb: 1.5}}>
                   adjective
                 </mui.Typography>
                 <mui.Typography variant="body2">
@@ -2132,15 +2114,15 @@ export function MUISurfaces() {
         docLink="https://mui.com/material-ui/react-paper/"
         zone={
           <mui.ThemeProvider theme={currentTheme}>
-            <mui.Paper sx={{ width: "80px", height: "80px" }} elevation={0} />
-            <mui.Paper sx={{ width: "80px", height: "80px" }} />
-            <mui.Paper sx={{ width: "80px", height: "80px" }} elevation={3} />
+            <mui.Paper sx={{width: '80px', height: '80px'}} elevation={0} />
+            <mui.Paper sx={{width: '80px', height: '80px'}} />
+            <mui.Paper sx={{width: '80px', height: '80px'}} elevation={3} />
             <mui.Paper
               sx={{
-                width: "80px",
-                height: "80px",
-                textAlign: "center",
-                alignContent: "center",
+                width: '80px',
+                height: '80px',
+                textAlign: 'center',
+                alignContent: 'center',
               }}
               variant="elevation"
             >
@@ -2148,10 +2130,10 @@ export function MUISurfaces() {
             </mui.Paper>
             <mui.Paper
               sx={{
-                width: "80px",
-                height: "80px",
-                textAlign: "center",
-                alignContent: "center",
+                width: '80px',
+                height: '80px',
+                textAlign: 'center',
+                alignContent: 'center',
               }}
               variant="outlined"
             >
@@ -2162,33 +2144,33 @@ export function MUISurfaces() {
         note="Light mode: elevation changes the box shadow around the box. Dark mode:elevation changes the lightness of the box."
       />
     </div>
-  );
+  )
 }
 
 export function MUIUtils() {
-  const currentTheme = useTheme();
+  const currentTheme = useTheme()
   const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
     boxShadow: 24,
     pt: 2,
     px: 4,
     pb: 3,
-  };
+  }
 
   function ChildModal() {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
     const handleOpen = () => {
-      setOpen(true);
-    };
+      setOpen(true)
+    }
     const handleClose = () => {
-      setOpen(false);
-    };
+      setOpen(false)
+    }
 
     return (
       <React.Fragment>
@@ -2199,7 +2181,7 @@ export function MUIUtils() {
           aria-labelledby="child-modal-title"
           aria-describedby="child-modal-description"
         >
-          <mui.Box sx={{ ...style, width: 200 }}>
+          <mui.Box sx={{...style, width: 200}}>
             <h2 id="child-modal-title">Text in a child modal</h2>
             <p id="child-modal-description">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -2208,28 +2190,26 @@ export function MUIUtils() {
           </mui.Box>
         </mui.Modal>
       </React.Fragment>
-    );
+    )
   }
 
-  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false)
 
   const handleModalClose = () => {
-    setModalOpen(false);
-  };
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
-    null
-  );
+    setModalOpen(false)
+  }
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
 
   return (
     <div className="page-body testing">
@@ -2250,7 +2230,7 @@ export function MUIUtils() {
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
               >
-                <mui.Box sx={{ ...style, width: 400 }}>
+                <mui.Box sx={{...style, width: 400}}>
                   <h2 id="parent-modal-title">Text in a modal</h2>
                   <p id="parent-modal-description">
                     Duis mollis, est non commodo luctus, nisi erat porttitor
@@ -2281,11 +2261,11 @@ export function MUIUtils() {
               anchorEl={anchorEl}
               onClose={handleClose}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: 'bottom',
+                horizontal: 'left',
               }}
             >
-              <mui.Typography sx={{ p: 2 }}>
+              <mui.Typography sx={{p: 2}}>
                 The content of the Popover.
               </mui.Typography>
             </mui.Popover>
@@ -2301,7 +2281,7 @@ export function MUIUtils() {
               aria-label="minimum height"
               minRows={3}
               placeholder="Minimum 3 rows"
-              style={{ width: 200, border: "1px dashed grey" }}
+              style={{width: 200, border: '1px dashed grey'}}
             />
             <mui.TextareaAutosize
               maxRows={4}
@@ -2309,11 +2289,11 @@ export function MUIUtils() {
               placeholder="Maximum 4 rows"
               defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
       ut labore et dolore magna aliqua."
-              style={{ width: 200, border: "1px dashed grey" }}
+              style={{width: 200, border: '1px dashed grey'}}
             />
           </mui.ThemeProvider>
         }
       />
     </div>
-  );
+  )
 }

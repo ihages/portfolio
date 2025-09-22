@@ -1,27 +1,27 @@
-import { ReactNode } from "react";
-import { Button } from "../ui/button";
-import Link from "next/link";
-import "./style.css";
+import {ReactNode} from 'react'
+import {Button} from '../ui/button'
+import Link from 'next/link'
+import './style.css'
 
 export type TestBlockProps = {
-  title: string;
-  docLink: string;
-  zone: ReactNode;
-  note?: string;
-};
+  title: string
+  docLink: string
+  zone: ReactNode
+  note?: string
+}
 
 export function TestBlock(props: TestBlockProps) {
-  const { title, docLink, zone, note } = props;
+  const {title, docLink, zone, note} = props
   return (
     <div className="test-block">
       <h3>{title}</h3>
       <Button
-        variant={"link"}
+        variant={'link'}
         asChild
         style={{
-          padding: "0",
-          marginBottom: "20px",
-          textDecoration: "underline",
+          padding: '0',
+          marginBottom: '20px',
+          textDecoration: 'underline',
         }}
       >
         <Link href={`${docLink}`}>Documentation</Link>
@@ -34,22 +34,22 @@ export function TestBlock(props: TestBlockProps) {
       ) : null}
       <div className="test-zone">{zone}</div>
     </div>
-  );
+  )
 }
 export type CompareBlock = {
-  title: string;
-  docLink: string;
-  zone: ReactNode;
-  note?: string;
-};
+  title: string
+  docLink: string
+  zone: ReactNode
+  note?: string
+}
 
 export type TestCompareProps = {
-  title: string;
-  components: CompareBlock[];
-};
+  title: string
+  components: CompareBlock[]
+}
 
 export function TestCompare(props: TestCompareProps) {
-  const { title, components } = props;
+  const {title, components} = props
   return (
     <>
       <h3 className="compare-title">{title}</h3>
@@ -58,12 +58,12 @@ export function TestCompare(props: TestCompareProps) {
           <div className="compare-component" key={component.title}>
             <h4>{component.title}</h4>
             <Button
-              variant={"link"}
+              variant={'link'}
               asChild
               style={{
-                padding: "0",
-                marginBottom: "20px",
-                textDecoration: "underline",
+                padding: '0',
+                marginBottom: '20px',
+                textDecoration: 'underline',
               }}
             >
               <Link href={`${component.docLink}`}>Documentation</Link>
@@ -79,5 +79,5 @@ export function TestCompare(props: TestCompareProps) {
         ))}
       </div>
     </>
-  );
+  )
 }

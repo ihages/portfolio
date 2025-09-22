@@ -1,15 +1,15 @@
-"use client";
+'use client'
 
-import "./style.css";
-import React from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import * as mui from "@mui/material";
-import { useTheme } from "@/utils/mui-theme";
+import './style.css'
+import React from 'react'
+import Link from 'next/link'
+import {usePathname} from 'next/navigation'
+import * as mui from '@mui/material'
+import {useTheme} from '@/utils/mui-theme'
 
 export default function Breadcrumbs() {
-  const pathname = usePathname().replace("/", " ").trimStart();
-  const pathlist = pathname.split("/");
+  const pathname = usePathname().replace('/', ' ').trimStart()
+  const pathlist = pathname.split('/')
 
   return (
     <mui.ThemeProvider theme={useTheme()}>
@@ -22,15 +22,15 @@ export default function Breadcrumbs() {
           Home
         </mui.Link>
         {pathlist.map((crumb, index) => {
-          const fullPath = "/" + pathlist.slice(0, index + 1).join("/");
+          const fullPath = '/' + pathlist.slice(0, index + 1).join('/')
 
           return index === pathlist.length - 1 ? (
             <mui.Typography
               key={crumb}
-              sx={{ color: "text.primary", textTransform: "capitalize" }}
+              sx={{color: 'text.primary', textTransform: 'capitalize'}}
             >
               {crumb
-                .replace(/-/g, " ")
+                .replace(/-/g, ' ')
                 .replace(/\b\w/g, (char) => char.toUpperCase())}
             </mui.Typography>
           ) : (
@@ -40,15 +40,15 @@ export default function Breadcrumbs() {
               href={fullPath}
               underline="hover"
               color="inherit"
-              sx={{ textTransform: "capitalize" }}
+              sx={{textTransform: 'capitalize'}}
             >
               {crumb
-                .replace(/-/g, " ")
+                .replace(/-/g, ' ')
                 .replace(/\b\w/g, (char) => char.toUpperCase())}
             </mui.Link>
-          );
+          )
         })}
       </mui.Breadcrumbs>
     </mui.ThemeProvider>
-  );
+  )
 }

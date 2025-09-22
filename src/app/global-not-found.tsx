@@ -1,25 +1,25 @@
 // Import global styles and fonts
-"use client";
-import "./globals.css";
-import PageNotFound from "@/components/pageNotFound";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/header/index";
-import Footer from "@/components/footer";
-import "@fontsource/roboto/300.css";
-import "@fontsource/roboto/400.css";
-import "@fontsource/roboto/500.css";
-import "@fontsource/roboto/700.css";
+'use client'
+import './globals.css'
+import PageNotFound from '@/components/pageNotFound'
+import {Geist, Geist_Mono} from 'next/font/google'
+import './globals.css'
+import Header from '@/components/header/index'
+import Footer from '@/components/footer'
+import '@fontsource/roboto/300.css'
+import '@fontsource/roboto/400.css'
+import '@fontsource/roboto/500.css'
+import '@fontsource/roboto/700.css'
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
+})
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+})
 
 export default function GlobalNotFound() {
   return (
@@ -37,9 +37,9 @@ export default function GlobalNotFound() {
         />
         <title>Ihages | 404</title>
         <meta
-        name="description"
-        content="This page doesn't seem to exist! Try a different one out!"
-      />
+          name="description"
+          content="This page doesn't seem to exist! Try a different one out!"
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
@@ -49,5 +49,5 @@ export default function GlobalNotFound() {
         <Footer />
       </body>
     </html>
-  );
+  )
 }

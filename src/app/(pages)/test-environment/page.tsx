@@ -1,12 +1,12 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import "./style.css";
-import Link from "next/link";
-import Breadcrumbs from "@/components/breadcrumbs";
-import * as mui from "@mui/material";
-import { useTheme } from "@/utils/mui-theme";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {Button} from '@/components/ui/button'
+import './style.css'
+import Link from 'next/link'
+import Breadcrumbs from '@/components/breadcrumbs'
+import * as mui from '@mui/material'
+import {useTheme} from '@/utils/mui-theme'
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
 export default function TestEnvironment() {
   return (
@@ -148,5 +148,5 @@ export default function TestEnvironment() {
         </div>
       </div>
     </>
-  );
+  )
 }

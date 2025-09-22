@@ -1,18 +1,17 @@
-
-
 .nav-buttons {
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  a{
+  a {
     text-decoration: none;
   }
 }
 
-.nav-buttons-left, .nav-buttons-right{
-  display:flex;
-  gap:20px;
+.nav-buttons-left,
+.nav-buttons-right {
+  display: flex;
+  gap: 20px;
 }
 
-.breadcrumb-div{
+.breadcrumb-div {
   display: flex;
 }

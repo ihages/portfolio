@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import { Button } from "@/components/ui/button";
-import "./style.css";
-import "../style.css";
+import {Button} from '@/components/ui/button'
+import './style.css'
+import '../style.css'
 
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
-import { TestCompare } from "@/components/testblock";
-import * as mui from "@mui/material";
-import { useTheme } from "@/utils/mui-theme";
+import React, {useEffect, useState} from 'react'
+import Image from 'next/image'
+import {TestCompare} from '@/components/testblock'
+import * as mui from '@mui/material'
+import {useTheme} from '@/utils/mui-theme'
 
 // Lucide Icons
 import {
@@ -21,92 +21,92 @@ import {
   Italic,
   Underline,
   ChevronsUpDown,
-} from "lucide-react";
+} from 'lucide-react'
 
 // MUI Icons
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import RestoreIcon from "@mui/icons-material/Restore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import CircularProgress from "@mui/material/CircularProgress";
-import AdbIcon from "@mui/icons-material/Adb";
-import MenuIcon from "@mui/icons-material/Menu";
-import FormatBoldIcon from "@mui/icons-material/FormatBold";
-import FormatItalicIcon from "@mui/icons-material/FormatItalic";
-import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
-import FormatColorFillIcon from "@mui/icons-material/FormatColorFill";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import AddIcon from "@mui/icons-material/Add";
-import EditIcon from "@mui/icons-material/Edit";
-import NavigationIcon from "@mui/icons-material/Navigation";
-import VolumeDown from "@mui/icons-material/VolumeDown";
-import VolumeUp from "@mui/icons-material/VolumeUp";
-import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
-import Favorite from "@mui/icons-material/Favorite";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import CheckIcon from "@mui/icons-material/Check";
-import MailIcon from "@mui/icons-material/Mail";
-import DeleteIcon from "@mui/icons-material/Delete";
-import InboxIcon from "@mui/icons-material/Inbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import CloseIcon from "@mui/icons-material/Close";
-import IconButton from "@mui/material/IconButton";
-import InfoIcon from "@mui/icons-material/Info";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import RestoreIcon from '@mui/icons-material/Restore'
+import FavoriteIcon from '@mui/icons-material/Favorite'
+import LocationOnIcon from '@mui/icons-material/LocationOn'
+import CircularProgress from '@mui/material/CircularProgress'
+import AdbIcon from '@mui/icons-material/Adb'
+import MenuIcon from '@mui/icons-material/Menu'
+import FormatBoldIcon from '@mui/icons-material/FormatBold'
+import FormatItalicIcon from '@mui/icons-material/FormatItalic'
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined'
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
+import AddIcon from '@mui/icons-material/Add'
+import EditIcon from '@mui/icons-material/Edit'
+import NavigationIcon from '@mui/icons-material/Navigation'
+import VolumeDown from '@mui/icons-material/VolumeDown'
+import VolumeUp from '@mui/icons-material/VolumeUp'
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
+import Favorite from '@mui/icons-material/Favorite'
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder'
+import BookmarkIcon from '@mui/icons-material/Bookmark'
+import CheckIcon from '@mui/icons-material/Check'
+import MailIcon from '@mui/icons-material/Mail'
+import DeleteIcon from '@mui/icons-material/Delete'
+import InboxIcon from '@mui/icons-material/Inbox'
+import DraftsIcon from '@mui/icons-material/Drafts'
+import CloseIcon from '@mui/icons-material/Close'
+import IconButton from '@mui/material/IconButton'
+import InfoIcon from '@mui/icons-material/Info'
 // Shad UI Components
-import * as Accordion from "@/components/ui/accordion";
-import * as Alert from "@/components/ui/alert";
-import * as AlertDialog from "@/components/ui/alert-dialog";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
-import * as Avatar from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import * as Breadcrumb from "@/components/ui/breadcrumb";
-import { Calendar } from "@/components/ui/calendar";
-import * as Card from "@/components/ui/card";
-import * as Carousel from "@/components/ui/carousel";
-import * as Chart from "@/components/ui/chart";
-import { Checkbox } from "@/components/ui/checkbox";
-import * as Collapsible from "@/components/ui/collapsible";
-import * as ContextMenu from "@/components/ui/context-menu";
-import * as Dialog from "@/components/ui/dialog";
-import * as Drawer from "@/components/ui/drawer";
-import * as DropdownMenu from "@/components/ui/dropdown-menu";
-import * as HoverCard from "@/components/ui/hover-card";
-import { Input } from "@/components/ui/input";
-import * as InputOTP from "@/components/ui/input-otp";
-import { Label } from "@/components/ui/label";
-import * as Menubar from "@/components/ui/menubar";
-import * as NavigationMenu from "@/components/ui/navigation-menu";
-import * as Pagination from "@/components/ui/pagination";
-import * as Popover from "@/components/ui/popover";
-import { Progress } from "@/components/ui/progress";
-import * as RadioGroup from "@/components/ui/radio-group";
-import * as Resizable from "@/components/ui/resizable";
-import * as Select from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import * as Sheet from "@/components/ui/sheet";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Slider } from "@/components/ui/slider";
-import * as ScrollArea from "@/components/ui/scroll-area";
-import { Switch } from "@/components/ui/switch";
-import * as Tabs from "@/components/ui/tabs";
-import { Textarea } from "@/components/ui/textarea";
-import { Toggle } from "@/components/ui/toggle";
-import * as ToggleGroup from "@/components/ui/toggle-group";
-import * as Tooltip from "@/components/ui/tooltip";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import SaveIcon from "@mui/icons-material/Save";
-import PrintIcon from "@mui/icons-material/Print";
-import ShareIcon from "@mui/icons-material/Share";
-import HomeIcon from "@mui/icons-material/Home";
+import * as Accordion from '@/components/ui/accordion'
+import * as Alert from '@/components/ui/alert'
+import * as AlertDialog from '@/components/ui/alert-dialog'
+import {AspectRatio} from '@/components/ui/aspect-ratio'
+import * as Avatar from '@/components/ui/avatar'
+import {Badge} from '@/components/ui/badge'
+import * as Breadcrumb from '@/components/ui/breadcrumb'
+import {Calendar} from '@/components/ui/calendar'
+import * as Card from '@/components/ui/card'
+import * as Carousel from '@/components/ui/carousel'
+import * as Chart from '@/components/ui/chart'
+import {Checkbox} from '@/components/ui/checkbox'
+import * as Collapsible from '@/components/ui/collapsible'
+import * as ContextMenu from '@/components/ui/context-menu'
+import * as Dialog from '@/components/ui/dialog'
+import * as Drawer from '@/components/ui/drawer'
+import * as DropdownMenu from '@/components/ui/dropdown-menu'
+import * as HoverCard from '@/components/ui/hover-card'
+import {Input} from '@/components/ui/input'
+import * as InputOTP from '@/components/ui/input-otp'
+import {Label} from '@/components/ui/label'
+import * as Menubar from '@/components/ui/menubar'
+import * as NavigationMenu from '@/components/ui/navigation-menu'
+import * as Pagination from '@/components/ui/pagination'
+import * as Popover from '@/components/ui/popover'
+import {Progress} from '@/components/ui/progress'
+import * as RadioGroup from '@/components/ui/radio-group'
+import * as Resizable from '@/components/ui/resizable'
+import * as Select from '@/components/ui/select'
+import {Separator} from '@/components/ui/separator'
+import * as Sheet from '@/components/ui/sheet'
+import {Skeleton} from '@/components/ui/skeleton'
+import {Slider} from '@/components/ui/slider'
+import * as ScrollArea from '@/components/ui/scroll-area'
+import {Switch} from '@/components/ui/switch'
+import * as Tabs from '@/components/ui/tabs'
+import {Textarea} from '@/components/ui/textarea'
+import {Toggle} from '@/components/ui/toggle'
+import * as ToggleGroup from '@/components/ui/toggle-group'
+import * as Tooltip from '@/components/ui/tooltip'
+import FileCopyIcon from '@mui/icons-material/FileCopy'
+import SaveIcon from '@mui/icons-material/Save'
+import PrintIcon from '@mui/icons-material/Print'
+import ShareIcon from '@mui/icons-material/Share'
+import HomeIcon from '@mui/icons-material/Home'
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import {Bar, BarChart, CartesianGrid, XAxis} from 'recharts'
 
 export function ComparisonDataDisplay() {
-  const currentTheme = useTheme();
+  const currentTheme = useTheme()
   const handleDelete = () => {
-    console.info("You clicked the delete icon.");
-  };
+    console.info('You clicked the delete icon.')
+  }
 
   function createData(
     name: string,
@@ -115,36 +115,36 @@ export function ComparisonDataDisplay() {
     carbs: number,
     protein: number
   ) {
-    return { name, calories, fat, carbs, protein };
+    return {name, calories, fat, carbs, protein}
   }
 
   const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
+    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+    createData('Eclair', 262, 16.0, 24, 6.0),
+    createData('Cupcake', 305, 3.7, 67, 4.3),
+    createData('Gingerbread', 356, 16.0, 49, 3.9),
+  ]
 
   const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-  ];
+    {month: 'January', desktop: 186, mobile: 80},
+    {month: 'February', desktop: 305, mobile: 200},
+    {month: 'March', desktop: 237, mobile: 120},
+    {month: 'April', desktop: 73, mobile: 190},
+    {month: 'May', desktop: 209, mobile: 130},
+    {month: 'June', desktop: 214, mobile: 140},
+  ]
 
   const chartConfig = {
     desktop: {
-      label: "Desktop",
-      color: "#2563eb",
+      label: 'Desktop',
+      color: '#2563eb',
     },
     mobile: {
-      label: "Mobile",
-      color: "#60a5fa",
+      label: 'Mobile',
+      color: '#60a5fa',
     },
-  } satisfies Chart.ChartConfig;
+  } satisfies Chart.ChartConfig
 
   return (
     <div className="page-body testing">
@@ -152,8 +152,8 @@ export function ComparisonDataDisplay() {
         title="Avatar"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/avatar",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/avatar',
             zone: (
               <div className="flex gap-[5px]">
                 <Avatar.Avatar className="size-[50px]">
@@ -165,11 +165,11 @@ export function ComparisonDataDisplay() {
                 </Avatar.Avatar>
               </div>
             ),
-            note: "Size by default is 100%. Changing the username in the image src will return different icons.",
+            note: 'Size by default is 100%. Changing the username in the image src will return different icons.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-avatar/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-avatar/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-[5px] flex-col justify-center">
@@ -185,7 +185,7 @@ export function ComparisonDataDisplay() {
                     <mui.Avatar
                       alt="Small"
                       src="https://github.com/ihages.png"
-                      sx={{ width: 24, height: 24 }}
+                      sx={{width: 24, height: 24}}
                     />
                     <mui.Avatar
                       alt="Medium"
@@ -194,7 +194,7 @@ export function ComparisonDataDisplay() {
                     <mui.Avatar
                       alt="Large"
                       src="https://github.com/ihages.png"
-                      sx={{ width: 56, height: 56 }}
+                      sx={{width: 56, height: 56}}
                     />
                   </div>
                 </div>
@@ -209,8 +209,8 @@ export function ComparisonDataDisplay() {
         title="Badge"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/badge",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/badge',
             zone: (
               <div className="flex gap-[5px]">
                 <Badge variant="default">Default</Badge>
@@ -221,8 +221,8 @@ export function ComparisonDataDisplay() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-badge/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-badge/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-[5px] items-center">
@@ -246,8 +246,8 @@ export function ComparisonDataDisplay() {
         title="Chart"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/chart",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/chart',
             zone: (
               <Chart.ChartContainer
                 config={chartConfig}
@@ -263,24 +263,20 @@ export function ComparisonDataDisplay() {
                     tickFormatter={(value) => value.slice(0, 3)}
                   />
                   <Chart.ChartTooltip content={<Chart.ChartTooltipContent />} />
-                  <Bar
-                    dataKey="desktop"
-                    fill="var(--chart-1)"
-                    radius={4}
-                  />
+                  <Bar dataKey="desktop" fill="var(--chart-1)" radius={4} />
                   <Bar dataKey="mobile" fill="var(--chart-3)" radius={4} />
                 </BarChart>
               </Chart.ChartContainer>
             ),
-            note: "Built on Recharts with consistent theming and accessibility features.",
+            note: 'Built on Recharts with consistent theming and accessibility features.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Available with MUI X Charts or integrate third-party charting libraries.",
+            note: 'Available with MUI X Charts or integrate third-party charting libraries.',
           },
         ]}
       />
@@ -288,15 +284,15 @@ export function ComparisonDataDisplay() {
         title="Chip"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-chip/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-chip/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-[5px] flex-wrap">
@@ -319,8 +315,8 @@ export function ComparisonDataDisplay() {
         title="Divider (Separator)"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/separator",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/separator',
             zone: (
               <div>
                 <div className="space-y-1">
@@ -343,8 +339,8 @@ export function ComparisonDataDisplay() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-divider/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-divider/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-[10px]">
@@ -384,8 +380,8 @@ export function ComparisonDataDisplay() {
         title="Icons"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="flex gap-2">
                 <CheckCircle2Icon size={20} />
@@ -394,11 +390,11 @@ export function ComparisonDataDisplay() {
                 <PopcornIcon size={20} />
               </div>
             ),
-            note: "Uses Lucide React icons or other icon libraries.",
+            note: 'Uses Lucide React icons or other icon libraries.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/icons/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/icons/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-2">
@@ -421,15 +417,15 @@ export function ComparisonDataDisplay() {
         title="List"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-list/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-list/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.List>
@@ -460,8 +456,8 @@ export function ComparisonDataDisplay() {
         title="Table"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">
                 No direct equivalent - use Tanstack Table
@@ -469,12 +465,12 @@ export function ComparisonDataDisplay() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-table/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-table/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.TableContainer component={mui.Paper}>
-                  <mui.Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <mui.Table sx={{minWidth: 650}} aria-label="simple table">
                     <mui.TableHead>
                       <mui.TableRow>
                         <mui.TableCell>Dessert (100g serving)</mui.TableCell>
@@ -495,7 +491,7 @@ export function ComparisonDataDisplay() {
                         <mui.TableRow
                           key={row.name}
                           sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
+                            '&:last-child td, &:last-child th': {border: 0},
                           }}
                         >
                           <mui.TableCell component="th" scope="row">
@@ -518,7 +514,7 @@ export function ComparisonDataDisplay() {
                 </mui.TableContainer>
               </mui.ThemeProvider>
             ),
-            note: "Not a Tanstack table. Very nice looking. Sorting requires custom logic. Has sticky header and pagination options.",
+            note: 'Not a Tanstack table. Very nice looking. Sorting requires custom logic. Has sticky header and pagination options.',
           },
         ]}
       />
@@ -527,8 +523,8 @@ export function ComparisonDataDisplay() {
         title="Tooltip"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/tooltip",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/tooltip',
             zone: (
               <Tooltip.Tooltip>
                 <Tooltip.TooltipTrigger asChild>
@@ -541,8 +537,8 @@ export function ComparisonDataDisplay() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-tooltip/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-tooltip/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Tooltip title="Delete">
@@ -556,97 +552,97 @@ export function ComparisonDataDisplay() {
         ]}
       />
     </div>
-  );
+  )
 }
 export function ComparisonInputs() {
-  const [date, setDate] = useState<Date>();
-  const [checked, setChecked] = useState([false, false]);
-  const CheckboxLabel = { inputProps: { "aria-label": "Checkbox demo" } };
-  const [rating, setRating] = React.useState<number | null>(2);
-  const [age, setAge] = React.useState("");
-  const [toggleSelected, setToggleSelected] = React.useState<boolean>(false);
+  const [date, setDate] = useState<Date>()
+  const [checked, setChecked] = useState([false, false])
+  const CheckboxLabel = {inputProps: {'aria-label': 'Checkbox demo'}}
+  const [rating, setRating] = React.useState<number | null>(2)
+  const [age, setAge] = React.useState('')
+  const [toggleSelected, setToggleSelected] = React.useState<boolean>(false)
 
-  const [formats, setFormats] = React.useState(["bold"]);
+  const [formats, setFormats] = React.useState(['bold'])
 
   const handleFormat = (
     event: React.MouseEvent<HTMLElement>,
     newFormats: string[]
   ) => {
-    setFormats(newFormats);
-  };
+    setFormats(newFormats)
+  }
   const handleAgeChange = (event: mui.SelectChangeEvent) => {
-    setAge(event.target.value as string);
-  };
+    setAge(event.target.value as string)
+  }
 
   const handleChange1 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, event.target.checked]);
-  };
+    setChecked([event.target.checked, event.target.checked])
+  }
 
   const handleChange2 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([event.target.checked, checked[1]]);
-  };
+    setChecked([event.target.checked, checked[1]])
+  }
 
   const handleChange3 = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked([checked[0], event.target.checked]);
-  };
-  const switchLabel = { inputProps: { "aria-label": "Switch demo" } };
+    setChecked([checked[0], event.target.checked])
+  }
+  const switchLabel = {inputProps: {'aria-label': 'Switch demo'}}
 
   function not(a: readonly number[], b: readonly number[]) {
-    return a.filter((value) => !b.includes(value));
+    return a.filter((value) => !b.includes(value))
   }
 
   function intersection(a: readonly number[], b: readonly number[]) {
-    return a.filter((value) => b.includes(value));
+    return a.filter((value) => b.includes(value))
   }
-  const currentTheme = useTheme();
+  const currentTheme = useTheme()
   function TransferList() {
-    const [trChecked, setTrChecked] = React.useState<readonly number[]>([]);
-    const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3]);
-    const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7]);
+    const [trChecked, setTrChecked] = React.useState<readonly number[]>([])
+    const [left, setLeft] = React.useState<readonly number[]>([0, 1, 2, 3])
+    const [right, setRight] = React.useState<readonly number[]>([4, 5, 6, 7])
 
-    const leftChecked: readonly number[] = intersection(trChecked, left);
-    const rightChecked: readonly number[] = intersection(trChecked, right);
+    const leftChecked: readonly number[] = intersection(trChecked, left)
+    const rightChecked: readonly number[] = intersection(trChecked, right)
 
     const handleToggle = (value: number) => () => {
-      const currentIndex = trChecked.indexOf(value);
-      const newChecked = [...trChecked];
+      const currentIndex = trChecked.indexOf(value)
+      const newChecked = [...trChecked]
 
       if (currentIndex === -1) {
-        newChecked.push(value);
+        newChecked.push(value)
       } else {
-        newChecked.splice(currentIndex, 1);
+        newChecked.splice(currentIndex, 1)
       }
 
-      setTrChecked(newChecked);
-    };
+      setTrChecked(newChecked)
+    }
 
     const handleAllRight = () => {
-      setRight(right.concat(left));
-      setLeft([]);
-    };
+      setRight(right.concat(left))
+      setLeft([])
+    }
 
     const handleCheckedRight = () => {
-      setRight(right.concat(leftChecked));
-      setLeft(not(left, leftChecked));
-      setTrChecked(not(trChecked, leftChecked));
-    };
+      setRight(right.concat(leftChecked))
+      setLeft(not(left, leftChecked))
+      setTrChecked(not(trChecked, leftChecked))
+    }
 
     const handleCheckedLeft = () => {
-      setLeft(left.concat(rightChecked));
-      setRight(not(right, rightChecked));
-      setTrChecked(not(trChecked, rightChecked));
-    };
+      setLeft(left.concat(rightChecked))
+      setRight(not(right, rightChecked))
+      setTrChecked(not(trChecked, rightChecked))
+    }
 
     const handleAllLeft = () => {
-      setLeft(left.concat(right));
-      setRight([]);
-    };
+      setLeft(left.concat(right))
+      setRight([])
+    }
 
     const customList = (items: readonly number[]) => (
-      <mui.Paper sx={{ width: 200, height: 230, overflow: "auto" }}>
+      <mui.Paper sx={{width: 200, height: 230, overflow: 'auto'}}>
         <mui.List dense component="div" role="list">
           {items.map((value: number) => {
-            const labelId = `transfer-list-item-${value}-label`;
+            const labelId = `transfer-list-item-${value}-label`
 
             return (
               <mui.ListItemButton
@@ -660,7 +656,7 @@ export function ComparisonInputs() {
                     tabIndex={-1}
                     disableRipple
                     inputProps={{
-                      "aria-labelledby": labelId,
+                      'aria-labelledby': labelId,
                     }}
                   />
                 </mui.ListItemIcon>
@@ -669,28 +665,24 @@ export function ComparisonInputs() {
                   primary={`List item ${value + 1}`}
                 />
               </mui.ListItemButton>
-            );
+            )
           })}
         </mui.List>
       </mui.Paper>
-    );
+    )
 
     return (
       <mui.ThemeProvider theme={currentTheme}>
         <mui.Grid
           container
           spacing={2}
-          sx={{ justifyContent: "center", alignItems: "center" }}
+          sx={{justifyContent: 'center', alignItems: 'center'}}
         >
           <mui.Grid>{customList(left)}</mui.Grid>
           <mui.Grid>
-            <mui.Grid
-              container
-              direction="column"
-              sx={{ alignItems: "center" }}
-            >
+            <mui.Grid container direction="column" sx={{alignItems: 'center'}}>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleAllRight}
@@ -700,7 +692,7 @@ export function ComparisonInputs() {
                 ≫
               </mui.Button>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleCheckedRight}
@@ -710,7 +702,7 @@ export function ComparisonInputs() {
                 &gt;
               </mui.Button>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleCheckedLeft}
@@ -720,7 +712,7 @@ export function ComparisonInputs() {
                 &lt;
               </mui.Button>
               <mui.Button
-                sx={{ my: 0.5 }}
+                sx={{my: 0.5}}
                 variant="outlined"
                 size="small"
                 onClick={handleAllLeft}
@@ -734,7 +726,7 @@ export function ComparisonInputs() {
           <mui.Grid>{customList(right)}</mui.Grid>
         </mui.Grid>
       </mui.ThemeProvider>
-    );
+    )
   }
   return (
     <div className="page-body testing">
@@ -742,16 +734,16 @@ export function ComparisonInputs() {
         title="Action Button"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
+            title: 'MUI',
             docLink:
-              "https://mui.com/material-ui/react-floating-action-button/",
+              'https://mui.com/material-ui/react-floating-action-button/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-[5px]">
@@ -762,7 +754,7 @@ export function ComparisonInputs() {
                     <EditIcon />
                   </mui.Fab>
                   <mui.Fab variant="extended">
-                    <NavigationIcon sx={{ mr: 1 }} />
+                    <NavigationIcon sx={{mr: 1}} />
                     Navigate
                   </mui.Fab>
                 </div>
@@ -775,8 +767,8 @@ export function ComparisonInputs() {
         title="Button"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/button",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/button',
             zone: (
               <div className="flex gap-[5px] flex-wrap">
                 <Button variant="default">Default</Button>
@@ -786,11 +778,11 @@ export function ComparisonInputs() {
                 <Button variant="ghost">Ghost</Button>
               </div>
             ),
-            note: "Has five variants, all with customizable colors. No click animations, but there is still a hover color.",
+            note: 'Has five variants, all with customizable colors. No click animations, but there is still a hover color.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-button/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-button/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-[20px] flex-wrap">
@@ -813,7 +805,7 @@ export function ComparisonInputs() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Has three variants, with only one color for the entire button. This comes with a risk for accessability. Custom theme colors are also limited. Click animations are very nice.",
+            note: 'Has three variants, with only one color for the entire button. This comes with a risk for accessability. Custom theme colors are also limited. Click animations are very nice.',
           },
         ]}
       />
@@ -821,13 +813,13 @@ export function ComparisonInputs() {
         title="Basic Input"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/input",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/input',
             zone: <Input type="email" placeholder="Email" />,
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-text-field/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-text-field/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-2">
@@ -839,7 +831,7 @@ export function ComparisonInputs() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Use TextField component for text inputs in MUI.",
+            note: 'Use TextField component for text inputs in MUI.',
           },
         ]}
       />
@@ -847,15 +839,15 @@ export function ComparisonInputs() {
         title="Button Group"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-button-group/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-button-group/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.ButtonGroup variant="contained">
@@ -872,8 +864,8 @@ export function ComparisonInputs() {
         title="Calendar"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/calendar",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/calendar',
             zone: (
               <Calendar
                 mode="single"
@@ -884,12 +876,12 @@ export function ComparisonInputs() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Available with MUIX.",
+            note: 'Available with MUIX.',
           },
         ]}
       />
@@ -897,8 +889,8 @@ export function ComparisonInputs() {
         title="Checkbox"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/checkbox",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/checkbox',
             zone: (
               <div className="flex flex-col gap-[5px]">
                 <div className="flex items-center space-x-2">
@@ -911,11 +903,11 @@ export function ComparisonInputs() {
                 </div>
               </div>
             ),
-            note: "Lower thickness of checkbox border may make it harder to see. This can be changed, but the thin line is standard.",
+            note: 'Lower thickness of checkbox border may make it harder to see. This can be changed, but the thin line is standard.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-checkbox/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-checkbox/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-wrap gap-[5px]">
@@ -950,7 +942,7 @@ export function ComparisonInputs() {
                       }
                     />
                     <mui.Box
-                      sx={{ display: "flex", flexDirection: "column", ml: 3 }}
+                      sx={{display: 'flex', flexDirection: 'column', ml: 3}}
                     >
                       <mui.FormControlLabel
                         label="Child 1"
@@ -985,7 +977,7 @@ export function ComparisonInputs() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Has far more options and better visibility on checkboxes",
+            note: 'Has far more options and better visibility on checkboxes',
           },
         ]}
       />
@@ -994,8 +986,8 @@ export function ComparisonInputs() {
         title="Input One Time Password"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/input-otp",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/input-otp',
             zone: (
               <InputOTP.InputOTP maxLength={6}>
                 <InputOTP.InputOTPGroup>
@@ -1013,8 +1005,8 @@ export function ComparisonInputs() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
@@ -1025,8 +1017,8 @@ export function ComparisonInputs() {
         title="Label"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/label",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/label',
             zone: (
               <>
                 <Input type="email" placeholder="Email" id="email" />
@@ -1037,8 +1029,8 @@ export function ComparisonInputs() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-form-label/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-form-label/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-2">
@@ -1051,7 +1043,7 @@ export function ComparisonInputs() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "MUI uses FormLabel or built-in TextField labels.",
+            note: 'MUI uses FormLabel or built-in TextField labels.',
           },
         ]}
       />
@@ -1060,8 +1052,8 @@ export function ComparisonInputs() {
         title="Radio Group"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/radio-group",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/radio-group',
             zone: (
               <RadioGroup.RadioGroup defaultValue="option-one">
                 <div className="flex items-center space-x-2">
@@ -1074,11 +1066,11 @@ export function ComparisonInputs() {
                 </div>
               </RadioGroup.RadioGroup>
             ),
-            note: "This is by far the least visually appealing of the two.",
+            note: 'This is by far the least visually appealing of the two.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-radio-button/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-radio-button/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.FormControl>
@@ -1103,7 +1095,7 @@ export function ComparisonInputs() {
                 </mui.FormControl>
               </mui.ThemeProvider>
             ),
-            note: "This one is gorgous.",
+            note: 'This one is gorgous.',
           },
         ]}
       />
@@ -1112,15 +1104,15 @@ export function ComparisonInputs() {
         title="Rating"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-rating/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-rating/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-[5px]">
@@ -1142,8 +1134,8 @@ export function ComparisonInputs() {
         title="Select"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/select",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/select',
             zone: (
               <Select.Select>
                 <Select.SelectTrigger className="w-[180px]">
@@ -1158,8 +1150,8 @@ export function ComparisonInputs() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-select/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-select/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.FormControl fullWidth>
@@ -1188,8 +1180,8 @@ export function ComparisonInputs() {
         title="Slider"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/slider",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/slider',
             zone: (
               <Slider
                 defaultValue={[50]}
@@ -1200,15 +1192,15 @@ export function ComparisonInputs() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-slider/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-slider/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <mui.Box sx={{ width: 200 }}>
+                <mui.Box sx={{width: 200}}>
                   <mui.Stack
                     spacing={2}
                     direction="row"
-                    sx={{ alignItems: "center" }}
+                    sx={{alignItems: 'center'}}
                   >
                     <VolumeDown />
                     <mui.Slider aria-label="Volume" defaultValue={30} />
@@ -1225,19 +1217,19 @@ export function ComparisonInputs() {
         title="Switch"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/switch",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/switch',
             zone: (
               <div className="flex items-center space-x-2">
                 <Switch id="airplane-mode" />
                 <Label htmlFor="airplane-mode">Airplane Mode</Label>
               </div>
             ),
-            note: "No animations or built-in hover state.",
+            note: 'No animations or built-in hover state.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-switch/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-switch/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-[5px]">
@@ -1255,8 +1247,8 @@ export function ComparisonInputs() {
         title="Text Field"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/input",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/input',
             zone: (
               <div className="flex flex-col gap-[5px]">
                 <Input placeholder="Enter text" />
@@ -1265,8 +1257,8 @@ export function ComparisonInputs() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-text-field/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-text-field/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-[5px]">
@@ -1281,7 +1273,7 @@ export function ComparisonInputs() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Interface user cannot resize text box. Multiline prop enables textarea autoresizing, though.",
+            note: 'Interface user cannot resize text box. Multiline prop enables textarea autoresizing, though.',
           },
         ]}
       />
@@ -1290,14 +1282,14 @@ export function ComparisonInputs() {
         title="Toggle"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/toggle",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/toggle',
             zone: <Toggle aria-label="Toggle italic">Toggle</Toggle>,
-            note: "Simplistic animations are nice, could use more styling.",
+            note: 'Simplistic animations are nice, could use more styling.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-toggle-button/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-toggle-button/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.ToggleButton
@@ -1311,7 +1303,7 @@ export function ComparisonInputs() {
                 </mui.ToggleButton>
               </mui.ThemeProvider>
             ),
-            note: "Animations can be very overwhelming, plus the hover state makes it harder to determine state.",
+            note: 'Animations can be very overwhelming, plus the hover state makes it harder to determine state.',
           },
         ]}
       />
@@ -1320,8 +1312,8 @@ export function ComparisonInputs() {
         title="Toggle Group"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/toggle-group",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/toggle-group',
             zone: (
               <ToggleGroup.ToggleGroup type="multiple">
                 <ToggleGroup.ToggleGroupItem
@@ -1346,8 +1338,8 @@ export function ComparisonInputs() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-toggle-button/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-toggle-button/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.ToggleButtonGroup value={formats} onChange={handleFormat}>
@@ -1374,15 +1366,15 @@ export function ComparisonInputs() {
         title="Transfer List"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-transfer-list/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-transfer-list/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <TransferList />
@@ -1392,31 +1384,31 @@ export function ComparisonInputs() {
         ]}
       />
     </div>
-  );
+  )
 }
 export function ComparisonFeedback() {
-  const currentTheme = useTheme();
-  const [openBackdrop, setOpenBackdrop] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [openAlertDialog, setOpenAlertDialog] = useState(false);
-  const [progress, setProgress] = useState(13);
+  const currentTheme = useTheme()
+  const [openBackdrop, setOpenBackdrop] = useState(false)
+  const [openDialog, setOpenDialog] = useState(false)
+  const [openAlertDialog, setOpenAlertDialog] = useState(false)
+  const [progress, setProgress] = useState(13)
 
   useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500);
-    return () => clearTimeout(timer);
-  }, []);
-  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+    const timer = setTimeout(() => setProgress(66), 500)
+    return () => clearTimeout(timer)
+  }, [])
+  const [openSnackbar, setOpenSnackbar] = React.useState(false)
 
   const handleSnackClose = (
     event: React.SyntheticEvent | Event,
     reason?: mui.SnackbarCloseReason
   ) => {
-    if (reason === "clickaway") {
-      return;
+    if (reason === 'clickaway') {
+      return
     }
 
-    setOpenSnackbar(false);
-  };
+    setOpenSnackbar(false)
+  }
 
   return (
     <div className="page-body testing">
@@ -1424,8 +1416,8 @@ export function ComparisonFeedback() {
         title="Alert"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/alert",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/alert',
             zone: (
               <div className="flex flex-col gap-[5px]">
                 <Alert.Alert>
@@ -1444,11 +1436,11 @@ export function ComparisonFeedback() {
                 </Alert.Alert>
               </div>
             ),
-            note: "Uses primary color for success and destructive color for error.",
+            note: 'Uses primary color for success and destructive color for error.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-alert/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-alert/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-[5px]">
@@ -1459,7 +1451,7 @@ export function ComparisonFeedback() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Uses distinct and recognizable success/failure colors",
+            note: 'Uses distinct and recognizable success/failure colors',
           },
         ]}
       />
@@ -1467,8 +1459,8 @@ export function ComparisonFeedback() {
         title="Alert Dialog"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/alert-dialog",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/alert-dialog',
             zone: (
               <AlertDialog.AlertDialog>
                 <AlertDialog.AlertDialogTrigger asChild>
@@ -1496,8 +1488,8 @@ export function ComparisonFeedback() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-dialog/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-dialog/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <React.Fragment>
@@ -1536,7 +1528,7 @@ export function ComparisonFeedback() {
                 </React.Fragment>
               </mui.ThemeProvider>
             ),
-            note: "MUI Dialog used for alert confirmation dialogs",
+            note: 'MUI Dialog used for alert confirmation dialogs',
           },
         ]}
       />
@@ -1544,22 +1536,22 @@ export function ComparisonFeedback() {
         title="Backdrop"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-backdrop/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-backdrop/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <Button onClick={() => setOpenBackdrop(true)}>
                   Show Backdrop
                 </Button>
                 <mui.Backdrop
-                  sx={{ color: "#fff", zIndex: 9999 }}
+                  sx={{color: '#fff', zIndex: 9999}}
                   open={openBackdrop}
                   onClick={() => setOpenBackdrop(false)}
                 >
@@ -1569,13 +1561,13 @@ export function ComparisonFeedback() {
             ),
           },
         ]}
-      />{" "}
+      />{' '}
       <TestCompare
         title="Context Menu"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/context-menu",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/context-menu',
             zone: (
               <ContextMenu.ContextMenu>
                 <ContextMenu.ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
@@ -1610,15 +1602,15 @@ export function ComparisonFeedback() {
                 </ContextMenu.ContextMenuContent>
               </ContextMenu.ContextMenu>
             ),
-            note: "Right-click context menu with keyboard shortcuts and nested submenus.",
+            note: 'Right-click context menu with keyboard shortcuts and nested submenus.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Could use Menu component with onContextMenu event handler for similar functionality.",
+            note: 'Could use Menu component with onContextMenu event handler for similar functionality.',
           },
         ]}
       />
@@ -1626,8 +1618,8 @@ export function ComparisonFeedback() {
         title="Dialog"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/dialog",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/dialog',
             zone: (
               <Dialog.Dialog>
                 <Dialog.DialogTrigger asChild>
@@ -1645,8 +1637,8 @@ export function ComparisonFeedback() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-dialog/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-dialog/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <React.Fragment>
@@ -1687,13 +1679,13 @@ export function ComparisonFeedback() {
             ),
           },
         ]}
-      />{" "}
+      />{' '}
       <TestCompare
         title="Hover Card"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/hover-card",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/hover-card',
             zone: (
               <HoverCard.HoverCard>
                 <HoverCard.HoverCardTrigger asChild>
@@ -1711,7 +1703,7 @@ export function ComparisonFeedback() {
                         The React Framework – created and maintained by @vercel.
                       </p>
                       <div className="flex items-center pt-2">
-                        <CalendarDaysIcon className="mr-2 h-4 w-4 opacity-70" />{" "}
+                        <CalendarDaysIcon className="mr-2 h-4 w-4 opacity-70" />{' '}
                         <span className="text-xs text-muted-foreground">
                           Joined December 2021
                         </span>
@@ -1721,15 +1713,15 @@ export function ComparisonFeedback() {
                 </HoverCard.HoverCardContent>
               </HoverCard.HoverCard>
             ),
-            note: "Rich hover tooltip with custom content. Good for user previews and additional context.",
+            note: 'Rich hover tooltip with custom content. Good for user previews and additional context.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Could use Popover component with hover triggers for similar functionality.",
+            note: 'Could use Popover component with hover triggers for similar functionality.',
           },
         ]}
       />
@@ -1737,13 +1729,13 @@ export function ComparisonFeedback() {
         title="Progress"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/progress",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/progress',
             zone: <Progress value={progress} className="w-[60%]" />,
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-progress/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-progress/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex flex-col gap-[10px] w-[300px]">
@@ -1759,13 +1751,13 @@ export function ComparisonFeedback() {
             ),
           },
         ]}
-      />{" "}
+      />{' '}
       <TestCompare
         title="Sheet"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/sheet",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/sheet',
             zone: (
               <Sheet.Sheet>
                 <Sheet.SheetTrigger asChild>
@@ -1801,15 +1793,15 @@ export function ComparisonFeedback() {
                 </Sheet.SheetContent>
               </Sheet.Sheet>
             ),
-            note: "Side panel overlay that slides in from screen edges. Good for forms and navigation.",
+            note: 'Side panel overlay that slides in from screen edges. Good for forms and navigation.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Similar functionality available with Drawer component anchored to sides.",
+            note: 'Similar functionality available with Drawer component anchored to sides.',
           },
         ]}
       />
@@ -1817,8 +1809,8 @@ export function ComparisonFeedback() {
         title="Skeleton"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/skeleton",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/skeleton',
             zone: (
               <div className="flex items-center w-full gap-[2px] flex-col">
                 <Skeleton className="h-[20px] w-[20px] rounded-full" />
@@ -1830,13 +1822,13 @@ export function ComparisonFeedback() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-skeleton/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-skeleton/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Skeleton
                   variant="text"
-                  sx={{ width: "100%", fontSize: "1rem" }}
+                  sx={{width: '100%', fontSize: '1rem'}}
                 />
                 <mui.Skeleton variant="circular" width={40} height={40} />
                 <mui.Skeleton variant="rectangular" width={210} height={60} />
@@ -1856,15 +1848,15 @@ export function ComparisonFeedback() {
         title="Snackbar"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-snackbar/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-snackbar/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Button onClick={() => setOpenSnackbar(true)}>
@@ -1901,50 +1893,50 @@ export function ComparisonFeedback() {
         ]}
       />
     </div>
-  );
+  )
 }
 
 export function ComparisonNavigation() {
-  const currentTheme = useTheme();
-  const [value, setValue] = React.useState(0);
+  const currentTheme = useTheme()
+  const [value, setValue] = React.useState(0)
   const [menuAnchorEl, setMenuAnchorEl] = React.useState<null | HTMLElement>(
     null
-  );
-  const menuOpen = Boolean(menuAnchorEl);
+  )
+  const menuOpen = Boolean(menuAnchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setMenuAnchorEl(event.currentTarget);
-  };
+    setMenuAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setMenuAnchorEl(null);
-  };
+    setMenuAnchorEl(null)
+  }
   const [openDrawer, setOpenDrawer] = React.useState({
     top: false,
     left: false,
     bottom: false,
     right: false,
-  });
-  type Anchor = "top" | "left" | "bottom" | "right";
+  })
+  type Anchor = 'top' | 'left' | 'bottom' | 'right'
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
       ) {
-        return;
+        return
       }
 
-      setOpenDrawer({ ...openDrawer, [anchor]: open });
-    };
+      setOpenDrawer({...openDrawer, [anchor]: open})
+    }
   const drawerList = (anchor: Anchor) => (
     <mui.Box
-      sx={{ width: 250 }}
+      sx={{width: 250}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
     >
       <mui.List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <mui.ListItem key={text} disablePadding>
             <mui.ListItemButton>
               <mui.ListItemIcon>
@@ -1957,7 +1949,7 @@ export function ComparisonNavigation() {
       </mui.List>
       <mui.Divider />
       <mui.List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
+        {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <mui.ListItem key={text} disablePadding>
             <mui.ListItemButton>
               <mui.ListItemIcon>
@@ -1969,27 +1961,27 @@ export function ComparisonNavigation() {
         ))}
       </mui.List>
     </mui.Box>
-  );
+  )
   const speedDialActions = [
-    { icon: <FileCopyIcon />, name: "Copy" },
-    { icon: <SaveIcon />, name: "Save" },
-    { icon: <PrintIcon />, name: "Print" },
-    { icon: <ShareIcon />, name: "Share" },
-  ];
+    {icon: <FileCopyIcon />, name: 'Copy'},
+    {icon: <SaveIcon />, name: 'Save'},
+    {icon: <PrintIcon />, name: 'Print'},
+    {icon: <ShareIcon />, name: 'Share'},
+  ]
 
   const steps = [
-    "Select master blaster campaign settings",
-    "Create an ad group",
-    "Create an ad",
-  ];
+    'Select master blaster campaign settings',
+    'Create an ad group',
+    'Create an ad',
+  ]
   interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
+    children?: React.ReactNode
+    index: number
+    value: number
   }
 
   function CustomTabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props
 
     return (
       <div
@@ -1999,22 +1991,22 @@ export function ComparisonNavigation() {
         aria-labelledby={`simple-tab-${index}`}
         {...other}
       >
-        {value === index && <mui.Box sx={{ p: 3 }}>{children}</mui.Box>}
+        {value === index && <mui.Box sx={{p: 3}}>{children}</mui.Box>}
       </div>
-    );
+    )
   }
 
   function a11yProps(index: number) {
     return {
       id: `simple-tab-${index}`,
-      "aria-controls": `simple-tabpanel-${index}`,
-    };
+      'aria-controls': `simple-tabpanel-${index}`,
+    }
   }
-  const [tabValue, setTabValue] = React.useState(0);
+  const [tabValue, setTabValue] = React.useState(0)
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
+    setTabValue(newValue)
+  }
 
   return (
     <div className="page-body testing">
@@ -2022,23 +2014,23 @@ export function ComparisonNavigation() {
         title="Bottom Navigation"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-bottom-navigation/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-bottom-navigation/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <mui.Box sx={{ width: 500 }}>
+                <mui.Box sx={{width: 500}}>
                   <mui.BottomNavigation
                     showLabels
                     value={value}
                     onChange={(event, newValue) => {
-                      setValue(newValue);
+                      setValue(newValue)
                     }}
                   >
                     <mui.BottomNavigationAction
@@ -2065,8 +2057,8 @@ export function ComparisonNavigation() {
         title="Breadcrumb"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/breadcrumb",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/breadcrumb',
             zone: (
               <div className="vertical">
                 <Breadcrumb.Breadcrumb>
@@ -2153,11 +2145,11 @@ export function ComparisonNavigation() {
                 </Breadcrumb.Breadcrumb>
               </div>
             ),
-            note: "Breadcrumbs by default are staticly defined. For dynamic implementation, see the top of each page. There are two more examples--custom separator and responsive--in the documentation.",
+            note: 'Breadcrumbs by default are staticly defined. For dynamic implementation, see the top of each page. There are two more examples--custom separator and responsive--in the documentation.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-breadcrumbs/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-breadcrumbs/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Breadcrumbs aria-label="breadcrumb">
@@ -2167,7 +2159,7 @@ export function ComparisonNavigation() {
                   <mui.Link underline="hover" color="inherit" href={undefined}>
                     Core
                   </mui.Link>
-                  <mui.Typography sx={{ color: "text.primary" }}>
+                  <mui.Typography sx={{color: 'text.primary'}}>
                     Breadcrumbs
                   </mui.Typography>
                 </mui.Breadcrumbs>
@@ -2178,7 +2170,7 @@ export function ComparisonNavigation() {
                   <mui.Link underline="hover" color="inherit" href={undefined}>
                     Core
                   </mui.Link>
-                  <mui.Typography sx={{ color: "text.primary" }}>
+                  <mui.Typography sx={{color: 'text.primary'}}>
                     Breadcrumbs
                   </mui.Typography>
                 </mui.Breadcrumbs>
@@ -2189,13 +2181,13 @@ export function ComparisonNavigation() {
                   <mui.Link underline="hover" color="inherit" href={undefined}>
                     Core
                   </mui.Link>
-                  <mui.Typography sx={{ color: "text.primary" }}>
+                  <mui.Typography sx={{color: 'text.primary'}}>
                     Breadcrumbs
                   </mui.Typography>
                 </mui.Breadcrumbs>
               </mui.ThemeProvider>
             ),
-            note: "Supports dynamic and static breadcrumbs with custom separators.",
+            note: 'Supports dynamic and static breadcrumbs with custom separators.',
           },
         ]}
       />
@@ -2204,8 +2196,8 @@ export function ComparisonNavigation() {
         title="Drawer"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/drawer",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/drawer',
             zone: (
               <Drawer.Drawer>
                 <Drawer.DrawerTrigger asChild>
@@ -2228,14 +2220,14 @@ export function ComparisonNavigation() {
                 </Drawer.DrawerContent>
               </Drawer.Drawer>
             ),
-            note: "Works after tailwind is fixed",
+            note: 'Works after tailwind is fixed',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-drawer/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-drawer/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                {(["left", "right", "top", "bottom"] as const).map((anchor) => (
+                {(['left', 'right', 'top', 'bottom'] as const).map((anchor) => (
                   <React.Fragment key={anchor}>
                     <mui.Button onClick={toggleDrawer(anchor, true)}>
                       {anchor}
@@ -2251,7 +2243,7 @@ export function ComparisonNavigation() {
                 ))}
               </mui.ThemeProvider>
             ),
-            note: "Fully functional with customizable anchor positions.",
+            note: 'Fully functional with customizable anchor positions.',
           },
         ]}
       />
@@ -2260,8 +2252,8 @@ export function ComparisonNavigation() {
         title="Link"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">
                 See Button&apos;s link variant
@@ -2269,8 +2261,8 @@ export function ComparisonNavigation() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-link/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-link/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Link href="#">Link</mui.Link>
@@ -2290,8 +2282,8 @@ export function ComparisonNavigation() {
         title="Menu"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/navigation-menu',
             zone: (
               <NavigationMenu.NavigationMenu>
                 <NavigationMenu.NavigationMenuList>
@@ -2311,18 +2303,18 @@ export function ComparisonNavigation() {
                 </NavigationMenu.NavigationMenuList>
               </NavigationMenu.NavigationMenu>
             ),
-            note: "see radix API documentation for properties that can be passed on to different components.",
+            note: 'see radix API documentation for properties that can be passed on to different components.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-menu/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-menu/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Button
                   id="basic-button"
-                  aria-controls={menuOpen ? "basic-menu" : undefined}
+                  aria-controls={menuOpen ? 'basic-menu' : undefined}
                   aria-haspopup="true"
-                  aria-expanded={menuOpen ? "true" : undefined}
+                  aria-expanded={menuOpen ? 'true' : undefined}
                   onClick={handleClick}
                 >
                   Dashboard
@@ -2334,7 +2326,7 @@ export function ComparisonNavigation() {
                   onClose={handleClose}
                   slotProps={{
                     list: {
-                      "aria-labelledby": "basic-button",
+                      'aria-labelledby': 'basic-button',
                     },
                   }}
                 >
@@ -2344,7 +2336,7 @@ export function ComparisonNavigation() {
                 </mui.Menu>
               </mui.ThemeProvider>
             ),
-            note: "Dynamic menu with anchor and close functionality.",
+            note: 'Dynamic menu with anchor and close functionality.',
           },
         ]}
       />
@@ -2353,15 +2345,15 @@ export function ComparisonNavigation() {
         title="Menubar"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/menubar",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/menubar',
             zone: (
               <Menubar.Menubar>
                 <Menubar.MenubarMenu>
                   <Menubar.MenubarTrigger>File</Menubar.MenubarTrigger>
                   <Menubar.MenubarContent side="bottom">
                     <Menubar.MenubarItem>
-                      New Tab{" "}
+                      New Tab{' '}
                       <Menubar.MenubarShortcut>⌘T</Menubar.MenubarShortcut>
                     </Menubar.MenubarItem>
                     <Menubar.MenubarItem>New Window</Menubar.MenubarItem>
@@ -2375,8 +2367,8 @@ export function ComparisonNavigation() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">
                 No direct equivalent - use AppBar or Menu
@@ -2391,8 +2383,8 @@ export function ComparisonNavigation() {
         title="Navigation Menu"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/navigation-menu",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/navigation-menu',
             zone: (
               <NavigationMenu.NavigationMenu>
                 <NavigationMenu.NavigationMenuList>
@@ -2411,8 +2403,8 @@ export function ComparisonNavigation() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">
                 No direct equivalent - use Tabs or Menu
@@ -2427,8 +2419,8 @@ export function ComparisonNavigation() {
         title="Pagination"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/pagination",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/pagination',
             zone: (
               <Pagination.Pagination>
                 <Pagination.PaginationContent>
@@ -2436,9 +2428,9 @@ export function ComparisonNavigation() {
                     <Pagination.PaginationPrevious href="" />
                   </Pagination.PaginationItem>
                   <Pagination.PaginationItem>
-                    <Button variant={"outline"} asChild>
+                    <Button variant={'outline'} asChild>
                       <Pagination.PaginationLink
-                        style={{ textDecoration: "none" }}
+                        style={{textDecoration: 'none'}}
                         href=""
                       >
                         1
@@ -2456,8 +2448,8 @@ export function ComparisonNavigation() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-pagination/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-pagination/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Pagination count={10} />
@@ -2474,7 +2466,7 @@ export function ComparisonNavigation() {
                 <mui.Pagination count={10} variant="outlined" disabled />
               </mui.ThemeProvider>
             ),
-            note: "Pagination state is done via API, not via state variable. Add props page and onChange to make it controlled state.",
+            note: 'Pagination state is done via API, not via state variable. Add props page and onChange to make it controlled state.',
           },
         ]}
       />
@@ -2483,27 +2475,27 @@ export function ComparisonNavigation() {
         title="Speed Dial"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-speed-dial/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-speed-dial/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Box
                   sx={{
                     height: 320,
-                    transform: "translateZ(0px)",
+                    transform: 'translateZ(0px)',
                     flexGrow: 1,
                   }}
                 >
                   <mui.SpeedDial
                     ariaLabel="SpeedDial basic example"
-                    sx={{ position: "absolute", bottom: 16, right: 16 }}
+                    sx={{position: 'absolute', bottom: 16, right: 16}}
                     icon={<mui.SpeedDialIcon />}
                   >
                     {speedDialActions.map((action) => (
@@ -2521,7 +2513,7 @@ export function ComparisonNavigation() {
                 </mui.Box>
               </mui.ThemeProvider>
             ),
-            note: "Can opt for a controlled component with open, onOpen, and onClose states. Can also format to open to bottom, left, or right in addition to top.",
+            note: 'Can opt for a controlled component with open, onOpen, and onClose states. Can also format to open to bottom, left, or right in addition to top.',
           },
         ]}
       />
@@ -2530,15 +2522,15 @@ export function ComparisonNavigation() {
         title="Stepper"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-stepper/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-stepper/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Stepper activeStep={1} alternativeLabel>
@@ -2559,8 +2551,8 @@ export function ComparisonNavigation() {
         title="Tabs"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/tabs",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/tabs',
             zone: (
               <Tabs.Tabs defaultValue="t1" className="w-full">
                 <Tabs.TabsList>
@@ -2573,12 +2565,12 @@ export function ComparisonNavigation() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-tabs/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-tabs/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Stack>
-                  <mui.Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+                  <mui.Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                     <mui.Tabs
                       value={tabValue}
                       onChange={handleTabChange}
@@ -2601,153 +2593,153 @@ export function ComparisonNavigation() {
                 </mui.Stack>
               </mui.ThemeProvider>
             ),
-            note: "style works best if you put it in a mui.Stack component. You have to make a custom component CustomTabPanel with value same as the mui.Tabs value. This CustomTabPanel component is listed in the documentation.",
+            note: 'style works best if you put it in a mui.Stack component. You have to make a custom component CustomTabPanel with value same as the mui.Tabs value. This CustomTabPanel component is listed in the documentation.',
           },
         ]}
       />
     </div>
-  );
+  )
 }
 
 export function ComparisonLayouts() {
-  const currentTheme = useTheme();
-  const [selectedGallery, setSelectedGallery] = React.useState("default");
+  const currentTheme = useTheme()
+  const [selectedGallery, setSelectedGallery] = React.useState('default')
 
-  const Item = mui.styled(mui.Paper)(({ theme }) => ({
-    backgroundColor: "#fff",
+  const Item = mui.styled(mui.Paper)(({theme}) => ({
+    backgroundColor: '#fff',
     ...theme.typography.body2,
     padding: theme.spacing(1),
-    textAlign: "center",
+    textAlign: 'center',
     color: (theme.vars ?? theme).palette.text.secondary,
-    ...theme.applyStyles("dark", {
-      backgroundColor: "#1A2027",
+    ...theme.applyStyles('dark', {
+      backgroundColor: '#1A2027',
     }),
-  }));
+  }))
 
   const itemData = [
     {
-      img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
-      title: "Breakfast",
-      author: "@bkristastucchio",
+      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+      title: 'Breakfast',
+      author: '@bkristastucchio',
       rows: 2,
       cols: 2,
       featured: true,
     },
     {
-      img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
-      title: "Burger",
-      author: "@rollelflex_graphy726",
+      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+      title: 'Burger',
+      author: '@rollelflex_graphy726',
     },
     {
-      img: "https://images.unsplash.com/photo-1522770179533-24471fcdba45",
-      title: "Camera",
-      author: "@helloimnik",
+      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+      title: 'Camera',
+      author: '@helloimnik',
     },
     {
-      img: "https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c",
-      title: "Coffee",
-      author: "@nolanissac",
+      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+      title: 'Coffee',
+      author: '@nolanissac',
       cols: 2,
     },
     {
-      img: "https://images.unsplash.com/photo-1533827432537-70133748f5c8",
-      title: "Hats",
-      author: "@hjrc33",
+      img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+      title: 'Hats',
+      author: '@hjrc33',
       cols: 2,
     },
     {
-      img: "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62",
-      title: "Honey",
-      author: "@arwinneil",
+      img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+      title: 'Honey',
+      author: '@arwinneil',
       rows: 2,
       cols: 2,
       featured: true,
     },
     {
-      img: "https://images.unsplash.com/photo-1516802273409-68526ee1bdd6",
-      title: "Basketball",
-      author: "@tjdragotta",
+      img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
+      title: 'Basketball',
+      author: '@tjdragotta',
     },
     {
-      img: "https://images.unsplash.com/photo-1518756131217-31eb79b20e8f",
-      title: "Fern",
-      author: "@katie_wasserman",
+      img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
+      title: 'Fern',
+      author: '@katie_wasserman',
     },
     {
-      img: "https://images.unsplash.com/photo-1597645587822-e99fa5d45d25",
-      title: "Mushrooms",
-      author: "@silverdalex",
+      img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
+      title: 'Mushrooms',
+      author: '@silverdalex',
       rows: 2,
       cols: 2,
     },
     {
-      img: "https://images.unsplash.com/photo-1567306301408-9b74779a11af",
-      title: "Tomato basil",
-      author: "@shelleypauls",
+      img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
+      title: 'Tomato basil',
+      author: '@shelleypauls',
     },
     {
-      img: "https://images.unsplash.com/photo-1471357674240-e1a485acb3e1",
-      title: "Sea star",
-      author: "@peterlaster",
+      img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
+      title: 'Sea star',
+      author: '@peterlaster',
     },
     {
-      img: "https://images.unsplash.com/photo-1589118949245-7d38baf380d6",
-      title: "Bike",
-      author: "@southside_customs",
+      img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
+      title: 'Bike',
+      author: '@southside_customs',
       cols: 2,
     },
-  ];
+  ]
 
   const itemData2 = [
     {
-      img: "https://images.unsplash.com/photo-1549388604-817d15aa0110",
-      title: "Bed",
+      img: 'https://images.unsplash.com/photo-1549388604-817d15aa0110',
+      title: 'Bed',
     },
     {
-      img: "https://images.unsplash.com/photo-1525097487452-6278ff080c31",
-      title: "Books",
+      img: 'https://images.unsplash.com/photo-1525097487452-6278ff080c31',
+      title: 'Books',
     },
     {
-      img: "https://images.unsplash.com/photo-1523413651479-597eb2da0ad6",
-      title: "Sink",
+      img: 'https://images.unsplash.com/photo-1523413651479-597eb2da0ad6',
+      title: 'Sink',
     },
     {
-      img: "https://images.unsplash.com/photo-1563298723-dcfebaa392e3",
-      title: "Kitchen",
+      img: 'https://images.unsplash.com/photo-1563298723-dcfebaa392e3',
+      title: 'Kitchen',
     },
     {
-      img: "https://images.unsplash.com/photo-1588436706487-9d55d73a39e3",
-      title: "Blinds",
+      img: 'https://images.unsplash.com/photo-1588436706487-9d55d73a39e3',
+      title: 'Blinds',
     },
     {
-      img: "https://images.unsplash.com/photo-1574180045827-681f8a1a9622",
-      title: "Chairs",
+      img: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622',
+      title: 'Chairs',
     },
     {
-      img: "https://images.unsplash.com/photo-1530731141654-5993c3016c77",
-      title: "Laptop",
+      img: 'https://images.unsplash.com/photo-1530731141654-5993c3016c77',
+      title: 'Laptop',
     },
     {
-      img: "https://images.unsplash.com/photo-1481277542470-605612bd2d61",
-      title: "Doors",
+      img: 'https://images.unsplash.com/photo-1481277542470-605612bd2d61',
+      title: 'Doors',
     },
     {
-      img: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7",
-      title: "Coffee",
+      img: 'https://images.unsplash.com/photo-1517487881594-2787fef5ebf7',
+      title: 'Coffee',
     },
     {
-      img: "https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee",
-      title: "Storage",
+      img: 'https://images.unsplash.com/photo-1516455207990-7a41ce80f7ee',
+      title: 'Storage',
     },
     {
-      img: "https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62",
-      title: "Candle",
+      img: 'https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62',
+      title: 'Candle',
     },
     {
-      img: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4",
-      title: "Coffee table",
+      img: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4',
+      title: 'Coffee table',
     },
-  ];
+  ]
 
   return (
     <div className="page-body testing">
@@ -2755,8 +2747,8 @@ export function ComparisonLayouts() {
         title="Aspect Ratio"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/aspect-ratio",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/aspect-ratio',
             zone: (
               <AspectRatio ratio={16 / 9} className="bg-muted">
                 <Image
@@ -2764,20 +2756,20 @@ export function ComparisonLayouts() {
                   alt="Image"
                   className="rounded-md object-cover"
                   width={0}
-                  height={0} 
-                  style={{width:"100%", height:"100%"}}
+                  height={0}
+                  style={{width: '100%', height: '100%'}}
                 />
               </AspectRatio>
             ),
-            note: "Maintains aspect ratio while being responsive. Useful for images and video containers.",
+            note: 'Maintains aspect ratio while being responsive. Useful for images and video containers.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Use CSS aspect-ratio property or custom styling with padding-bottom hack.",
+            note: 'Use CSS aspect-ratio property or custom styling with padding-bottom hack.',
           },
         ]}
       />
@@ -2786,25 +2778,25 @@ export function ComparisonLayouts() {
         title="Box"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Use div with Tailwind classes for basic box styling.",
+            note: 'Use div with Tailwind classes for basic box styling.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-box/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-box/',
             zone: (
               <mui.Box
                 component="section"
-                sx={{ p: 2, border: "1px dashed grey" }}
+                sx={{p: 2, border: '1px dashed grey'}}
               >
                 This Box renders as an HTML section element.
               </mui.Box>
             ),
-            note: "Fundamental building block with sx prop for styling.",
+            note: 'Fundamental building block with sx prop for styling.',
           },
         ]}
       />
@@ -2813,12 +2805,12 @@ export function ComparisonLayouts() {
         title="Carousel"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/carousel",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/carousel',
             zone: (
               <Carousel.Carousel className="w-full max-w-xs">
                 <Carousel.CarouselContent>
-                  {Array.from({ length: 5 }).map((_, index) => (
+                  {Array.from({length: 5}).map((_, index) => (
                     <Carousel.CarouselItem key={index}>
                       <div className="p-[20px]">
                         <Card.Card>
@@ -2836,11 +2828,11 @@ export function ComparisonLayouts() {
                 <Carousel.CarouselNext />
               </Carousel.Carousel>
             ),
-            note: "Works with both swipe and button clicks"
+            note: 'Works with both swipe and button clicks',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
@@ -2852,25 +2844,25 @@ export function ComparisonLayouts() {
         title="Container"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Use Tailwind container class or custom max-width wrapper.",
+            note: 'Use Tailwind container class or custom max-width wrapper.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-container/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-container/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Container
                   maxWidth="lg"
-                  sx={{ p: 2, border: "1px dashed grey" }}
+                  sx={{p: 2, border: '1px dashed grey'}}
                 >
                   <p>Lg maxwidth</p>
                   <mui.Box
-                    sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
+                    sx={{p: 2, border: '1px dashed grey', height: '200px'}}
                   >
                     <p>set height 200px</p>
                   </mui.Box>
@@ -2878,18 +2870,18 @@ export function ComparisonLayouts() {
                 <mui.Container
                   fixed
                   maxWidth="sm"
-                  sx={{ p: 2, border: "1px dashed grey" }}
+                  sx={{p: 2, border: '1px dashed grey'}}
                 >
                   <p>Sm maxwidth</p>
                   <mui.Box
-                    sx={{ p: 2, border: "1px dashed grey", height: "200px" }}
+                    sx={{p: 2, border: '1px dashed grey', height: '200px'}}
                   >
                     <p>set height 200px</p>
                   </mui.Box>
                 </mui.Container>
               </mui.ThemeProvider>
             ),
-            note: "Responsive container with predefined max-width breakpoints.",
+            note: 'Responsive container with predefined max-width breakpoints.',
           },
         ]}
       />
@@ -2898,39 +2890,39 @@ export function ComparisonLayouts() {
         title="Grid"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Use Tailwind grid classes (grid, grid-cols-*, gap-*) for CSS Grid layouts.",
+            note: 'Use Tailwind grid classes (grid, grid-cols-*, gap-*) for CSS Grid layouts.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-grid/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-grid/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Grid
                   container
                   spacing={2}
-                  sx={{ p: 2, border: "1px dashed grey" }}
+                  sx={{p: 2, border: '1px dashed grey'}}
                 >
-                  <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+                  <mui.Grid size={8} sx={{p: 2, border: '1px dashed grey'}}>
                     <Item>size=8</Item>
                   </mui.Grid>
-                  <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+                  <mui.Grid size={4} sx={{p: 2, border: '1px dashed grey'}}>
                     <Item>size=4</Item>
                   </mui.Grid>
-                  <mui.Grid size={4} sx={{ p: 2, border: "1px dashed grey" }}>
+                  <mui.Grid size={4} sx={{p: 2, border: '1px dashed grey'}}>
                     <Item>size=4</Item>
                   </mui.Grid>
-                  <mui.Grid size={8} sx={{ p: 2, border: "1px dashed grey" }}>
+                  <mui.Grid size={8} sx={{p: 2, border: '1px dashed grey'}}>
                     <Item>size=8</Item>
                   </mui.Grid>
                 </mui.Grid>
               </mui.ThemeProvider>
             ),
-            note: "Accomplished by putting grids inside of a larger grid",
+            note: 'Accomplished by putting grids inside of a larger grid',
           },
         ]}
       />
@@ -2939,18 +2931,18 @@ export function ComparisonLayouts() {
         title="Image List (Gallery)"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/scroll-area",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/scroll-area',
             zone: (
               <div className="text-muted-foreground">
                 No direct equivalent - use custom grid layouts with ScrollArea
               </div>
             ),
-            note: "Combine CSS Grid/Flexbox with ScrollArea for image galleries.",
+            note: 'Combine CSS Grid/Flexbox with ScrollArea for image galleries.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-image-list/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-image-list/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Stack spacing={2}>
@@ -2959,7 +2951,7 @@ export function ComparisonLayouts() {
                     exclusive
                     onChange={(event, newGallery) => {
                       if (newGallery !== null) {
-                        setSelectedGallery(newGallery);
+                        setSelectedGallery(newGallery)
                       }
                     }}
                     aria-label="gallery selection"
@@ -2993,9 +2985,9 @@ export function ComparisonLayouts() {
                     </mui.ToggleButton>
                   </mui.ToggleButtonGroup>
 
-                  {selectedGallery === "default" && (
+                  {selectedGallery === 'default' && (
                     <mui.ImageList
-                      sx={{ width: 500, height: 450 }}
+                      sx={{width: 500, height: 450}}
                       cols={3}
                       rowHeight={164}
                     >
@@ -3006,16 +2998,16 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={164}
                             height={164}
-                            style={{ objectFit: "cover" }}
+                            style={{objectFit: 'cover'}}
                           />
                         </mui.ImageListItem>
                       ))}
                     </mui.ImageList>
                   )}
 
-                  {selectedGallery === "quilted" && (
+                  {selectedGallery === 'quilted' && (
                     <mui.ImageList
-                      sx={{ width: 500, height: 450 }}
+                      sx={{width: 500, height: 450}}
                       variant="quilted"
                       cols={4}
                       rowHeight={121}
@@ -3031,16 +3023,16 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={121}
                             height={121}
-                            style={{ objectFit: "cover" }}
+                            style={{objectFit: 'cover'}}
                           />
                         </mui.ImageListItem>
                       ))}
                     </mui.ImageList>
                   )}
 
-                  {selectedGallery === "woven" && (
+                  {selectedGallery === 'woven' && (
                     <mui.ImageList
-                      sx={{ width: 500, height: 450 }}
+                      sx={{width: 500, height: 450}}
                       variant="woven"
                       cols={3}
                       rowHeight={164}
@@ -3052,19 +3044,19 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={161}
                             height={164}
-                            style={{ objectFit: "cover" }}
+                            style={{objectFit: 'cover'}}
                           />
                         </mui.ImageListItem>
                       ))}
                     </mui.ImageList>
                   )}
 
-                  {selectedGallery === "masonry" && (
+                  {selectedGallery === 'masonry' && (
                     <mui.ImageList
                       variant="masonry"
                       cols={3}
                       gap={8}
-                      sx={{ width: 500, height: 450 }}
+                      sx={{width: 500, height: 450}}
                     >
                       {itemData2.map((item) => (
                         <mui.ImageListItem key={item.img}>
@@ -3073,15 +3065,15 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={248}
                             height={200}
-                            style={{ objectFit: "cover" }}
+                            style={{objectFit: 'cover'}}
                           />
                         </mui.ImageListItem>
                       ))}
                     </mui.ImageList>
                   )}
 
-                  {selectedGallery === "overlay" && (
-                    <mui.ImageList sx={{ width: 500, height: 450 }}>
+                  {selectedGallery === 'overlay' && (
+                    <mui.ImageList sx={{width: 500, height: 450}}>
                       {itemData.map((item) => (
                         <mui.ImageListItem key={item.img}>
                           <Image
@@ -3089,14 +3081,14 @@ export function ComparisonLayouts() {
                             alt={item.title}
                             width={248}
                             height={200}
-                            style={{ objectFit: "cover" }}
+                            style={{objectFit: 'cover'}}
                           />
                           <mui.ImageListItemBar
                             title={item.title}
                             subtitle={item.author}
                             actionIcon={
                               <IconButton
-                                sx={{ color: "rgba(255, 255, 255, 0.54)" }}
+                                sx={{color: 'rgba(255, 255, 255, 0.54)'}}
                                 aria-label={`info about ${item.title}`}
                               >
                                 <InfoIcon />
@@ -3110,7 +3102,7 @@ export function ComparisonLayouts() {
                 </mui.Stack>
               </mui.ThemeProvider>
             ),
-            note: "Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)",
+            note: 'Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)',
           },
         ]}
       />
@@ -3119,8 +3111,8 @@ export function ComparisonLayouts() {
         title="Resizable"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/resizable",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/resizable',
             zone: (
               <Resizable.ResizablePanelGroup
                 direction="horizontal"
@@ -3139,15 +3131,15 @@ export function ComparisonLayouts() {
                 </Resizable.ResizablePanel>
               </Resizable.ResizablePanelGroup>
             ),
-            note: "Excellent resizable panel system with handles and nested layouts.",
+            note: 'Excellent resizable panel system with handles and nested layouts.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Would need custom implementation or third-party library.",
+            note: 'Would need custom implementation or third-party library.',
           },
         ]}
       />
@@ -3156,15 +3148,15 @@ export function ComparisonLayouts() {
         title="Scroll Area"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/scroll-area",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/scroll-area',
             zone: (
               <ScrollArea.ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
                 <div className="space-y-4">
                   <h4 className="mb-4 text-sm font-medium leading-none">
                     Tags
                   </h4>
-                  {Array.from({ length: 50 }).map((_, i) => (
+                  {Array.from({length: 50}).map((_, i) => (
                     <div key={i} className="text-sm">
                       Tag {i + 1}
                     </div>
@@ -3173,15 +3165,15 @@ export function ComparisonLayouts() {
                 <ScrollArea.ScrollBar orientation="vertical" />
               </ScrollArea.ScrollArea>
             ),
-            note: "Provides custom styled scrollbars with smooth scrolling behavior. Good for constrained content areas.",
+            note: 'Provides custom styled scrollbars with smooth scrolling behavior. Good for constrained content areas.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Use native browser scrollbars or custom CSS overflow styling.",
+            note: 'Use native browser scrollbars or custom CSS overflow styling.',
           },
         ]}
       />
@@ -3190,19 +3182,19 @@ export function ComparisonLayouts() {
         title="Stack"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Use Tailwind flex classes (flex, flex-col, gap-*) for stacking layouts.",
+            note: 'Use Tailwind flex classes (flex, flex-col, gap-*) for stacking layouts.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-stack/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-stack/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <mui.Stack spacing={2} sx={{ p: 2, border: "1px dashed grey" }}>
+                <mui.Stack spacing={2} sx={{p: 2, border: '1px dashed grey'}}>
                   <Item>Item 1</Item>
                   <Item>Item 2</Item>
                   <Item>Item 3</Item>
@@ -3211,7 +3203,7 @@ export function ComparisonLayouts() {
                   direction="row"
                   divider={<mui.Divider orientation="vertical" flexItem />}
                   spacing={2}
-                  sx={{ p: 2, border: "1px dashed grey" }}
+                  sx={{p: 2, border: '1px dashed grey'}}
                 >
                   <Item>Item 1</Item>
                   <Item>Item 2</Item>
@@ -3219,45 +3211,45 @@ export function ComparisonLayouts() {
                 </mui.Stack>
               </mui.ThemeProvider>
             ),
-            note: "Pretty much the same as a flex-col. You can throw in a &apos;direction&apos; prop to make it a row.",
+            note: 'Pretty much the same as a flex-col. You can throw in a &apos;direction&apos; prop to make it a row.',
           },
         ]}
       />
     </div>
-  );
+  )
 }
 export function ComparisonSurfaces() {
-  const currentTheme = useTheme();
-  const pages = ["Products", "Pricing", "Blog"];
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
+  const currentTheme = useTheme()
+  const pages = ['Products', 'Pricing', 'Blog']
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout']
 
   const [menuAnchorElNav, setmenuAnchorElNav] =
-    React.useState<HTMLElement | null>(null);
+    React.useState<HTMLElement | null>(null)
   const [menuAnchorElUser, setmenuAnchorElUser] =
-    React.useState<HTMLElement | null>(null);
+    React.useState<HTMLElement | null>(null)
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void => {
-    setmenuAnchorElNav(event.currentTarget);
-  };
+    setmenuAnchorElNav(event.currentTarget)
+  }
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setmenuAnchorElUser(event.currentTarget);
-  };
+    setmenuAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseNavMenu = () => {
-    setmenuAnchorElNav(null);
-  };
+    setmenuAnchorElNav(null)
+  }
 
   const handleCloseUserMenu = () => {
-    setmenuAnchorElUser(null);
-  };
+    setmenuAnchorElUser(null)
+  }
   const bull = (
     <mui.Box
       component="span"
-      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+      sx={{display: 'inline-block', mx: '2px', transform: 'scale(0.8)'}}
     >
       •
     </mui.Box>
-  );
+  )
 
   return (
     <div className="page-body testing">
@@ -3265,8 +3257,8 @@ export function ComparisonSurfaces() {
         title="Accordion"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/collapsible",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/collapsible',
             zone: (
               <Accordion.Accordion
                 type="single"
@@ -3292,11 +3284,11 @@ export function ComparisonSurfaces() {
                 </Accordion.AccordionItem>
               </Accordion.Accordion>
             ),
-            note: "Simple expand/collapse functionality with smooth animations.",
+            note: 'Simple expand/collapse functionality with smooth animations.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-accordion/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-accordion/',
             zone: (
               <div className="gap-0">
                 <mui.ThemeProvider theme={currentTheme}>
@@ -3355,7 +3347,7 @@ export function ComparisonSurfaces() {
                 </mui.ThemeProvider>
               </div>
             ),
-            note: "All folds are called accordion, so they are technically separate components wrapped in a div. Because of this, container gaps will push contents farther apart. So watch out for that. I also put this inside a theme provider.",
+            note: 'All folds are called accordion, so they are technically separate components wrapped in a div. Because of this, container gaps will push contents farther apart. So watch out for that. I also put this inside a theme provider.',
           },
         ]}
       />
@@ -3364,22 +3356,22 @@ export function ComparisonSurfaces() {
         title="App Bar"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-app-bar/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-app-bar/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.AppBar color="secondary" position="static">
                   <mui.Container maxWidth="xl">
                     <mui.Toolbar disableGutters>
                       <AdbIcon
-                        sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                        sx={{display: {xs: 'none', md: 'flex'}, mr: 1}}
                       />
                       <mui.Typography
                         variant="h6"
@@ -3388,12 +3380,12 @@ export function ComparisonSurfaces() {
                         href="#app-bar-with-responsive-menu"
                         sx={{
                           mr: 2,
-                          display: { xs: "none", md: "flex" },
-                          fontFamily: "monospace",
+                          display: {xs: 'none', md: 'flex'},
+                          fontFamily: 'monospace',
                           fontWeight: 700,
-                          letterSpacing: ".3rem",
-                          color: "var(--secondary)",
-                          textDecoration: "none",
+                          letterSpacing: '.3rem',
+                          color: 'var(--secondary)',
+                          textDecoration: 'none',
                         }}
                       >
                         LOGO
@@ -3402,7 +3394,7 @@ export function ComparisonSurfaces() {
                       <mui.Box
                         sx={{
                           flexGrow: 1,
-                          display: { xs: "flex", md: "none" },
+                          display: {xs: 'flex', md: 'none'},
                         }}
                       >
                         <mui.IconButton
@@ -3419,17 +3411,17 @@ export function ComparisonSurfaces() {
                           id="menu-appbar"
                           anchorEl={menuAnchorElNav}
                           anchorOrigin={{
-                            vertical: "bottom",
-                            horizontal: "left",
+                            vertical: 'bottom',
+                            horizontal: 'left',
                           }}
                           keepMounted
                           transformOrigin={{
-                            vertical: "top",
-                            horizontal: "left",
+                            vertical: 'top',
+                            horizontal: 'left',
                           }}
                           open={Boolean(menuAnchorElNav)}
                           onClose={handleCloseNavMenu}
-                          sx={{ display: { xs: "block", md: "none" } }}
+                          sx={{display: {xs: 'block', md: 'none'}}}
                         >
                           {pages.map((page) => (
                             <mui.MenuItem
@@ -3438,8 +3430,8 @@ export function ComparisonSurfaces() {
                             >
                               <mui.Typography
                                 sx={{
-                                  textAlign: "center",
-                                  color: "var(--secondary)",
+                                  textAlign: 'center',
+                                  color: 'var(--secondary)',
                                 }}
                               >
                                 {page}
@@ -3449,7 +3441,7 @@ export function ComparisonSurfaces() {
                         </mui.Menu>
                       </mui.Box>
                       <AdbIcon
-                        sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+                        sx={{display: {xs: 'flex', md: 'none'}, mr: 1}}
                       />
                       <mui.Typography
                         variant="h5"
@@ -3458,13 +3450,13 @@ export function ComparisonSurfaces() {
                         href="#app-bar-with-responsive-menu"
                         sx={{
                           mr: 2,
-                          display: { xs: "flex", md: "none" },
+                          display: {xs: 'flex', md: 'none'},
                           flexGrow: 1,
-                          fontFamily: "monospace",
+                          fontFamily: 'monospace',
                           fontWeight: 700,
-                          letterSpacing: ".3rem",
-                          color: "var(--secondary)",
-                          textDecoration: "none",
+                          letterSpacing: '.3rem',
+                          color: 'var(--secondary)',
+                          textDecoration: 'none',
                         }}
                       >
                         LOGO
@@ -3472,7 +3464,7 @@ export function ComparisonSurfaces() {
                       <mui.Box
                         sx={{
                           flexGrow: 1,
-                          display: { xs: "none", md: "flex" },
+                          display: {xs: 'none', md: 'flex'},
                         }}
                       >
                         {pages.map((page) => (
@@ -3481,19 +3473,19 @@ export function ComparisonSurfaces() {
                             onClick={handleCloseNavMenu}
                             sx={{
                               my: 2,
-                              color: "var(--secondary)",
-                              display: "block",
+                              color: 'var(--secondary)',
+                              display: 'block',
                             }}
                           >
                             {page}
                           </mui.Button>
                         ))}
                       </mui.Box>
-                      <mui.Box sx={{ flexGrow: 0 }}>
+                      <mui.Box sx={{flexGrow: 0}}>
                         <mui.Tooltip title="Open settings">
                           <mui.IconButton
                             onClick={handleOpenUserMenu}
-                            sx={{ p: 0 }}
+                            sx={{p: 0}}
                           >
                             <mui.Avatar
                               alt="Remy Sharp"
@@ -3502,17 +3494,17 @@ export function ComparisonSurfaces() {
                           </mui.IconButton>
                         </mui.Tooltip>
                         <mui.Menu
-                          sx={{ mt: "45px" }}
+                          sx={{mt: '45px'}}
                           id="menu-appbar"
                           anchorEl={menuAnchorElUser}
                           anchorOrigin={{
-                            vertical: "top",
-                            horizontal: "right",
+                            vertical: 'top',
+                            horizontal: 'right',
                           }}
                           keepMounted
                           transformOrigin={{
-                            vertical: "top",
-                            horizontal: "right",
+                            vertical: 'top',
+                            horizontal: 'right',
                           }}
                           open={Boolean(menuAnchorElUser)}
                           onClose={handleCloseUserMenu}
@@ -3522,7 +3514,7 @@ export function ComparisonSurfaces() {
                               key={setting}
                               onClick={handleCloseUserMenu}
                             >
-                              <mui.Typography sx={{ textAlign: "center" }}>
+                              <mui.Typography sx={{textAlign: 'center'}}>
                                 {setting}
                               </mui.Typography>
                             </mui.MenuItem>
@@ -3542,8 +3534,8 @@ export function ComparisonSurfaces() {
         title="Card"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/card",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/card',
             zone: (
               <Card.Card className="w-full max-w-sm">
                 <Card.CardHeader>
@@ -3594,22 +3586,22 @@ export function ComparisonSurfaces() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-card/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-card/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
-                <mui.Card sx={{ minWidth: 275 }}>
+                <mui.Card sx={{minWidth: 275}}>
                   <mui.CardContent>
                     <mui.Typography
                       gutterBottom
-                      sx={{ color: "text.secondary", fontSize: 14 }}
+                      sx={{color: 'text.secondary', fontSize: 14}}
                     >
                       Word of the Day
                     </mui.Typography>
                     <mui.Typography variant="h5" component="div">
                       be{bull}nev{bull}o{bull}lent
                     </mui.Typography>
-                    <mui.Typography sx={{ color: "text.secondary", mb: 1.5 }}>
+                    <mui.Typography sx={{color: 'text.secondary', mb: 1.5}}>
                       adjective
                     </mui.Typography>
                     <mui.Typography variant="body2">
@@ -3632,8 +3624,8 @@ export function ComparisonSurfaces() {
         title="Collapsible"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/collapsible",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/collapsible',
             zone: (
               <Collapsible.Collapsible>
                 <div className="flex items-center justify-between space-x-4 px-4">
@@ -3660,15 +3652,15 @@ export function ComparisonSurfaces() {
                 </Collapsible.CollapsibleContent>
               </Collapsible.Collapsible>
             ),
-            note: "Simple expand/collapse functionality with smooth animations.",
+            note: 'Simple expand/collapse functionality with smooth animations.',
           },
           {
-            title: "MUI",
-            docLink: "",
+            title: 'MUI',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
-            note: "Use Accordion component for similar expand/collapse functionality.",
+            note: 'Use Accordion component for similar expand/collapse functionality.',
           },
         ]}
       />
@@ -3677,33 +3669,33 @@ export function ComparisonSurfaces() {
         title="Paper"
         components={[
           {
-            title: "Shad",
-            docLink: "",
+            title: 'Shad',
+            docLink: '',
             zone: (
               <div className="text-muted-foreground">No direct equivalent</div>
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-paper/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-paper/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <div className="flex gap-[10px] flex-wrap items-center">
                   <mui.Paper
-                    sx={{ width: "80px", height: "80px" }}
+                    sx={{width: '80px', height: '80px'}}
                     elevation={0}
                   />
-                  <mui.Paper sx={{ width: "80px", height: "80px" }} />
+                  <mui.Paper sx={{width: '80px', height: '80px'}} />
                   <mui.Paper
-                    sx={{ width: "80px", height: "80px" }}
+                    sx={{width: '80px', height: '80px'}}
                     elevation={3}
                   />
                   <mui.Paper
                     sx={{
-                      width: "80px",
-                      height: "80px",
-                      textAlign: "center",
-                      alignContent: "center",
+                      width: '80px',
+                      height: '80px',
+                      textAlign: 'center',
+                      alignContent: 'center',
                     }}
                     variant="elevation"
                   >
@@ -3711,10 +3703,10 @@ export function ComparisonSurfaces() {
                   </mui.Paper>
                   <mui.Paper
                     sx={{
-                      width: "80px",
-                      height: "80px",
-                      textAlign: "center",
-                      alignContent: "center",
+                      width: '80px',
+                      height: '80px',
+                      textAlign: 'center',
+                      alignContent: 'center',
                     }}
                     variant="outlined"
                   >
@@ -3723,35 +3715,35 @@ export function ComparisonSurfaces() {
                 </div>
               </mui.ThemeProvider>
             ),
-            note: "Light mode: elevation changes the box shadow around the box. Dark mode: elevation changes the lightness of the box.",
+            note: 'Light mode: elevation changes the box shadow around the box. Dark mode: elevation changes the lightness of the box.',
           },
         ]}
       />
     </div>
-  );
+  )
 }
 
 export function ComparisonUtils() {
-  const currentTheme = useTheme();
+  const currentTheme = useTheme()
   const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
     boxShadow: 24,
     pt: 2,
     px: 4,
     pb: 3,
-  };
+  }
 
   // MUI Child Modal
   function ChildModal() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [open, setOpen] = React.useState(false)
+    const handleOpen = () => setOpen(true)
+    const handleClose = () => setOpen(false)
     return (
       <React.Fragment>
         <mui.Button onClick={handleOpen}>Open Child Modal</mui.Button>
@@ -3761,7 +3753,7 @@ export function ComparisonUtils() {
           aria-labelledby="child-modal-title"
           aria-describedby="child-modal-description"
         >
-          <mui.Box sx={{ ...style, width: 200 }}>
+          <mui.Box sx={{...style, width: 200}}>
             <h2 id="child-modal-title">Text in a child modal</h2>
             <p id="child-modal-description">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -3770,18 +3762,18 @@ export function ComparisonUtils() {
           </mui.Box>
         </mui.Modal>
       </React.Fragment>
-    );
+    )
   }
 
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const handleModalOpen = () => setModalOpen(true);
-  const handleModalClose = () => setModalOpen(false);
-  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
+  const [modalOpen, setModalOpen] = React.useState(false)
+  const handleModalOpen = () => setModalOpen(true)
+  const handleModalClose = () => setModalOpen(false)
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) =>
-    setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+    setAnchorEl(event.currentTarget)
+  const handleClose = () => setAnchorEl(null)
+  const open = Boolean(anchorEl)
+  const id = open ? 'simple-popover' : undefined
 
   return (
     <div className="page-body testing">
@@ -3789,8 +3781,8 @@ export function ComparisonUtils() {
         title="Modal"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/dialog",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/dialog',
             zone: (
               <div className="text-muted-foreground">
                 See Feedback comparison for higher-level component comparison
@@ -3798,8 +3790,8 @@ export function ComparisonUtils() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-modal/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-modal/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Stack>
@@ -3811,7 +3803,7 @@ export function ComparisonUtils() {
                     aria-labelledby="parent-modal-title"
                     aria-describedby="parent-modal-description"
                   >
-                    <mui.Box sx={{ ...style, width: 400 }}>
+                    <mui.Box sx={{...style, width: 400}}>
                       <h2 id="parent-modal-title">Text in a modal</h2>
                       <p id="parent-modal-description">
                         Duis mollis, est non commodo luctus, nisi erat porttitor
@@ -3823,7 +3815,7 @@ export function ComparisonUtils() {
                 </mui.Stack>
               </mui.ThemeProvider>
             ),
-            note: "Modal is a lower-level version of dialog that blocks use of the rest of the application. It is used in Dialog, Drawer, Menu, and Popover. This example uses the keepMounted prop so that the contents are always shown in the DOM and searchable by search engines. It also has a child modal inside the modal.",
+            note: 'Modal is a lower-level version of dialog that blocks use of the rest of the application. It is used in Dialog, Drawer, Menu, and Popover. This example uses the keepMounted prop so that the contents are always shown in the DOM and searchable by search engines. It also has a child modal inside the modal.',
           },
         ]}
       />
@@ -3832,8 +3824,8 @@ export function ComparisonUtils() {
         title="Popover"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/popover",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/popover',
             zone: (
               <Popover.Popover>
                 <Popover.PopoverTrigger asChild>
@@ -3846,8 +3838,8 @@ export function ComparisonUtils() {
             ),
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-popover/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-popover/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.Button
@@ -3862,9 +3854,9 @@ export function ComparisonUtils() {
                   open={open}
                   anchorEl={anchorEl}
                   onClose={handleClose}
-                  anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+                  anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
                 >
-                  <mui.Typography sx={{ p: 2 }}>
+                  <mui.Typography sx={{p: 2}}>
                     The content of the Popover.
                   </mui.Typography>
                 </mui.Popover>
@@ -3878,33 +3870,33 @@ export function ComparisonUtils() {
         title="Text Area"
         components={[
           {
-            title: "Shad",
-            docLink: "https://ui.shadcn.com/docs/components/textarea",
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/textarea',
             zone: (
               <Textarea
                 placeholder="Minimum 3 rows"
                 className="w-[200px] border border-dashed"
               />
             ),
-            note: "Connect a variable by having a state variable and then using onChange.",
+            note: 'Connect a variable by having a state variable and then using onChange.',
           },
           {
-            title: "MUI",
-            docLink: "https://mui.com/material-ui/react-textarea-autosize/",
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-textarea-autosize/',
             zone: (
               <mui.ThemeProvider theme={currentTheme}>
                 <mui.TextareaAutosize
                   aria-label="minimum height"
                   minRows={3}
                   placeholder="Minimum 3 rows"
-                  style={{ width: 200, border: "1px dashed grey" }}
+                  style={{width: 200, border: '1px dashed grey'}}
                 />
                 <mui.TextareaAutosize
                   maxRows={4}
                   aria-label="maximum height"
                   placeholder="Maximum 4 rows"
                   defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\nut labore et dolore magna aliqua."
-                  style={{ width: 200, border: "1px dashed grey" }}
+                  style={{width: 200, border: '1px dashed grey'}}
                 />
               </mui.ThemeProvider>
             ),
@@ -3912,5 +3904,5 @@ export function ComparisonUtils() {
         ]}
       />
     </div>
-  );
+  )
 }

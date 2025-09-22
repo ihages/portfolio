@@ -1,8 +1,8 @@
 .testing {
   --test-zone-bg: var(--background);
   --test-zone-border: var(--background);
-  padding-bottom: 100px ;
-} 
+  padding-bottom: 100px;
+}
 
 .test-zone {
   display: flex;
@@ -16,13 +16,11 @@
   border-radius: 8px;
   gap: 20px;
   flex-wrap: wrap;
-
- 
 }
- .vertical{
-    flex-direction: column;
-  }
-.nav-pages{
+.vertical {
+  flex-direction: column;
+}
+.nav-pages {
   display: flex;
   gap: 10px;
 }
