@@ -17,7 +17,12 @@ export default function Footer() {
         <p className="!mb-0">Isabelle Hageman 2025</p>
       </div>
       <div className="right">
-        <Image src="./images/IHlogo.png" width={80} height={80} alt="IH logo" />
+        <Image
+          src="./portfolio/images/IHlogo.png"
+          width={80}
+          height={80}
+          alt="IH logo"
+        />
       </div>
     </footer>
   )

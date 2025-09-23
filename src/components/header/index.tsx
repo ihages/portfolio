@@ -7,7 +7,12 @@ export default function Header() {
   return (
     <header className="header">
       <div className="flex flex-row gap-6">
-        <Image src="./images/IHlogo.png" width={24} height={24} alt="IH logo" />
+        <Image
+          src="./portfolio/images/IHlogo.png"
+          width={24}
+          height={24}
+          alt="IH logo"
+        />
         {LinkMap.map((link) => (
           <a key={link.name} href={link.url}>
             {link.name}
