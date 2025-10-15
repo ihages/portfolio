@@ -21,6 +21,8 @@ import {
   Italic,
   Underline,
   ChevronsUpDown,
+  SearchIcon,
+  FolderCode,
 } from 'lucide-react'
 
 // MUI Icons
@@ -99,6 +101,17 @@ import SaveIcon from '@mui/icons-material/Save'
 import PrintIcon from '@mui/icons-material/Print'
 import ShareIcon from '@mui/icons-material/Share'
 import HomeIcon from '@mui/icons-material/Home'
+import * as InputGroup from '@/components/ui/input-group'
+import {ButtonGroup} from '@/components/ui/button-group'
+import * as Empty from '@/components/ui/empty'
+import {
+  ItemActions,
+  ItemContent,
+  ItemDescription,
+  ItemTitle,
+} from '@/components/ui/item'
+import {Spinner} from '@/components/ui/spinner'
+import {Kbd, KbdGroup} from '@/components/ui/kbd'
 
 import {Bar, BarChart, CartesianGrid, XAxis} from 'recharts'
 
@@ -409,6 +422,39 @@ export function ComparisonDataDisplay() {
               </mui.ThemeProvider>
             ),
             note: "Icons are in the library '@mui/icons-material'. The svgicon component lets you use non-mui components inside mui components.",
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="KBD (Keyboard Display)"
+        components={[
+          {
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/kbd',
+            zone: (
+              <>
+                <KbdGroup>
+                  <Kbd>⌘</Kbd>
+                  <Kbd>⇧</Kbd>
+                  <Kbd>⌥</Kbd>
+                  <Kbd>⌃</Kbd>
+                </KbdGroup>
+                <KbdGroup>
+                  <Kbd>Ctrl</Kbd>
+                  <span>+</span>
+                  <Kbd>B</Kbd>
+                </KbdGroup>
+                <Kbd>Ctrl + B</Kbd>
+              </>
+            ),
+          },
+          {
+            title: 'MUI',
+            docLink: '',
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
           },
         ]}
       />
@@ -810,39 +856,22 @@ export function ComparisonInputs() {
         ]}
       />
       <TestCompare
-        title="Basic Input"
-        components={[
-          {
-            title: 'Shad',
-            docLink: 'https://ui.shadcn.com/docs/components/input',
-            zone: <Input type="email" placeholder="Email" />,
-          },
-          {
-            title: 'MUI',
-            docLink: 'https://mui.com/material-ui/react-text-field/',
-            zone: (
-              <mui.ThemeProvider theme={currentTheme}>
-                <div className="flex gap-2">
-                  <mui.TextField
-                    variant="outlined"
-                    placeholder="Email"
-                    size="small"
-                  />
-                </div>
-              </mui.ThemeProvider>
-            ),
-            note: 'Use TextField component for text inputs in MUI.',
-          },
-        ]}
-      />
-      <TestCompare
         title="Button Group"
         components={[
           {
             title: 'Shad',
-            docLink: '',
+            docLink: 'https://ui.shadcn.com/docs/components/button-group',
             zone: (
-              <div className="text-muted-foreground">No direct equivalent</div>
+              <>
+                <ButtonGroup>
+                  <Button>Button 1</Button>
+                  <Button>Button 2</Button>
+                </ButtonGroup>
+                <ButtonGroup orientation="vertical">
+                  <Button variant="outline">Button 1</Button>
+                  <Button variant="outline">Button 2</Button>
+                </ButtonGroup>
+              </>
             ),
           },
           {
@@ -982,6 +1011,62 @@ export function ComparisonInputs() {
         ]}
       />
 
+      <TestCompare
+        title="Input"
+        components={[
+          {
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/input',
+            zone: <Input type="email" placeholder="Email" />,
+          },
+          {
+            title: 'MUI',
+            docLink: 'https://mui.com/material-ui/react-text-field/',
+            zone: (
+              <mui.ThemeProvider theme={currentTheme}>
+                <div className="flex gap-2">
+                  <mui.TextField
+                    variant="outlined"
+                    placeholder="Email"
+                    size="small"
+                  />
+                </div>
+              </mui.ThemeProvider>
+            ),
+            note: 'Use TextField component for text inputs in MUI.',
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Input Group"
+        components={[
+          {
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/input-group',
+            zone: (
+              <InputGroup.InputGroup>
+                <InputGroup.InputGroupInput placeholder="Search..." />
+                <InputGroup.InputGroupAddon>
+                  <SearchIcon />
+                </InputGroup.InputGroupAddon>
+                <InputGroup.InputGroupAddon align="inline-end">
+                  <InputGroup.InputGroupButton>
+                    Search
+                  </InputGroup.InputGroupButton>
+                </InputGroup.InputGroupAddon>
+              </InputGroup.InputGroup>
+            ),
+          },
+          {
+            title: 'MUI',
+            docLink: '',
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
       <TestCompare
         title="Input One Time Password"
         components={[
@@ -1726,12 +1811,17 @@ export function ComparisonFeedback() {
         ]}
       />
       <TestCompare
-        title="Progress"
+        title="Progress / Spinner"
         components={[
           {
             title: 'Shad',
             docLink: 'https://ui.shadcn.com/docs/components/progress',
-            zone: <Progress value={progress} className="w-[60%]" />,
+            zone: (
+              <>
+                <Progress value={progress} className="w-[60%]" />
+                <Spinner className="size-6 text-primary"></Spinner>
+              </>
+            ),
           },
           {
             title: 'MUI',
@@ -2887,6 +2977,37 @@ export function ComparisonLayouts() {
       />
 
       <TestCompare
+        title="Empty"
+        components={[
+          {
+            title: 'Shad',
+            docLink: '',
+            zone: (
+              <Empty.Empty>
+                <Empty.EmptyHeader>
+                  <Empty.EmptyMedia variant="icon">
+                    <FolderCode />
+                  </Empty.EmptyMedia>
+                  <Empty.EmptyTitle>No data</Empty.EmptyTitle>
+                  <Empty.EmptyDescription>No data found</Empty.EmptyDescription>
+                </Empty.EmptyHeader>
+                <Empty.EmptyContent>
+                  <Button>Add data</Button>
+                </Empty.EmptyContent>
+              </Empty.Empty>
+            ),
+          },
+          {
+            title: 'MIU',
+            docLink: '',
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
+          },
+        ]}
+      />
+
+      <TestCompare
         title="Grid"
         components={[
           {
@@ -3103,6 +3224,40 @@ export function ComparisonLayouts() {
               </mui.ThemeProvider>
             ),
             note: 'Very lovely component with great use of maps. Good applications for gallery (rather than the scroll component from shad)',
+          },
+        ]}
+      />
+
+      <TestCompare
+        title="Item"
+        components={[
+          {
+            title: 'Shad',
+            docLink: 'https://ui.shadcn.com/docs/components/item',
+            zone: (
+              <>
+                <Item>
+                  <ItemContent>
+                    <ItemTitle>Basic Item</ItemTitle>
+                    <ItemDescription>
+                      A simple item with title and description.
+                    </ItemDescription>
+                  </ItemContent>
+                  <ItemActions>
+                    <Button variant="outline" size="sm">
+                      Action
+                    </Button>
+                  </ItemActions>
+                </Item>
+              </>
+            ),
+          },
+          {
+            title: 'MIU',
+            docLink: '',
+            zone: (
+              <div className="text-muted-foreground">No direct equivalent</div>
+            ),
           },
         ]}
       />

@@ -8,7 +8,7 @@ import {
   ShadA,
   ShadB,
   ShadC,
-  ShadD,
+  ShadDE,
   ShadHM,
   ShadNR,
   ShadS,
@@ -60,16 +60,16 @@ export default function TestEnvironmentClient({
     case 'shad-c':
       slugpage = <ShadC />
       prevPage = 'B'
-      nextPage = 'D'
+      nextPage = 'D-E'
       break
-    case 'shad-d':
-      slugpage = <ShadD />
+    case 'shad-d-e':
+      slugpage = <ShadDE />
       prevPage = 'C'
       nextPage = 'H-M'
       break
     case 'shad-h-m':
       slugpage = <ShadHM />
-      prevPage = 'D'
+      prevPage = 'D-E'
       nextPage = 'N-R'
       break
     case 'shad-n-r':

@@ -12,6 +12,8 @@ import {
   Bold,
   Italic,
   Underline,
+  SearchIcon,
+  FolderCode,
 } from 'lucide-react'
 import {IconGitBranch} from '@tabler/icons-react'
 import Link from 'next/link'
@@ -61,6 +63,12 @@ import {Toggle} from '@/components/ui/toggle'
 import * as ToggleGroup from '@/components/ui/toggle-group'
 import * as Tooltip from '@/components/ui/tooltip'
 import {TestBlock} from '@/components/testblock'
+import * as InputGroup from '@/components/ui/input-group'
+import {ButtonGroup} from '@/components/ui/button-group'
+import * as Empty from '@/components/ui/empty'
+import * as Item from '@/components/ui/item'
+import {Spinner} from '@/components/ui/spinner'
+import {Kbd, KbdGroup} from '@/components/ui/kbd'
 
 const chartData = [
   {month: 'January', desktop: 186, mobile: 80},
@@ -371,6 +379,23 @@ export function ShadB() {
           </>
         }
       />
+
+      <TestBlock
+        title="Button Group"
+        docLink="https://ui.shadcn.com/docs/components/button-group"
+        zone={
+          <>
+            <ButtonGroup>
+              <Button>Button 1</Button>
+              <Button>Button 2</Button>
+            </ButtonGroup>
+            <ButtonGroup orientation="vertical">
+              <Button variant="outline">Button 1</Button>
+              <Button variant="outline">Button 2</Button>
+            </ButtonGroup>
+          </>
+        }
+      />
     </div>
   )
 }
@@ -669,7 +694,7 @@ export function ShadC() {
   )
 }
 
-export function ShadD() {
+export function ShadDE() {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
   return (
     <div className="page-body testing">
@@ -793,6 +818,25 @@ export function ShadD() {
           </DropdownMenu.DropdownMenu>
         }
       />
+
+      <TestBlock
+        title="Dropdown Menu"
+        docLink="https://ui.shadcn.com/docs/components/dropdown-menu"
+        zone={
+          <Empty.Empty>
+            <Empty.EmptyHeader>
+              <Empty.EmptyMedia variant="icon">
+                <FolderCode />
+              </Empty.EmptyMedia>
+              <Empty.EmptyTitle>No data</Empty.EmptyTitle>
+              <Empty.EmptyDescription>No data found</Empty.EmptyDescription>
+            </Empty.EmptyHeader>
+            <Empty.EmptyContent>
+              <Button>Add data</Button>
+            </Empty.EmptyContent>
+          </Empty.Empty>
+        }
+      />
     </div>
   )
 }
@@ -820,6 +864,23 @@ export function ShadHM() {
       />
 
       <TestBlock
+        title="Input Group"
+        docLink="https://ui.shadcn.com/docs/components/input-group"
+        note="Allows embedded items inside input div"
+        zone={
+          <InputGroup.InputGroup>
+            <InputGroup.InputGroupInput placeholder="Search..." />
+            <InputGroup.InputGroupAddon>
+              <SearchIcon />
+            </InputGroup.InputGroupAddon>
+            <InputGroup.InputGroupAddon align="inline-end">
+              <InputGroup.InputGroupButton>Search</InputGroup.InputGroupButton>
+            </InputGroup.InputGroupAddon>
+          </InputGroup.InputGroup>
+        }
+      />
+
+      <TestBlock
         title="Input OTP"
         docLink="https://ui.shadcn.com/docs/components/input-otp"
         zone={
@@ -836,6 +897,46 @@ export function ShadHM() {
               <InputOTP.InputOTPSlot index={5} />
             </InputOTP.InputOTPGroup>
           </InputOTP.InputOTP>
+        }
+      />
+      <TestBlock
+        title="Item"
+        docLink="https://ui.shadcn.com/docs/components/item"
+        zone={
+          <Item.Item variant="outline">
+            <Item.ItemContent>
+              <Item.ItemTitle>Basic Item</Item.ItemTitle>
+              <Item.ItemDescription>
+                A simple item with title and description.
+              </Item.ItemDescription>
+            </Item.ItemContent>
+            <Item.ItemActions>
+              <Button variant="outline" size="sm">
+                Action
+              </Button>
+            </Item.ItemActions>
+          </Item.Item>
+        }
+      />
+
+      <TestBlock
+        title="KBD (Keyboard Display)"
+        docLink="https://ui.shadcn.com/docs/components/kbd"
+        zone={
+          <>
+            <KbdGroup>
+              <Kbd>⌘</Kbd>
+              <Kbd>⇧</Kbd>
+              <Kbd>⌥</Kbd>
+              <Kbd>⌃</Kbd>
+            </KbdGroup>
+            <KbdGroup>
+              <Kbd>Ctrl</Kbd>
+              <span>+</span>
+              <Kbd>B</Kbd>
+            </KbdGroup>
+            <Kbd>Ctrl + B</Kbd>
+          </>
         }
       />
 
@@ -1257,6 +1358,13 @@ export function ShadS() {
         docLink="https://ui.shadcn.com/docs/components/slider"
         note="Look into connecting to a variable"
         zone={<Slider defaultValue={[50]} max={100} step={1} />}
+      />
+
+      <TestBlock
+        title="Spinner"
+        docLink="https://ui.shadcn.com/docs/components/spinner"
+        note="Look into connecting to a variable"
+        zone={<Spinner className="size-3" />}
       />
 
       <TestBlock
