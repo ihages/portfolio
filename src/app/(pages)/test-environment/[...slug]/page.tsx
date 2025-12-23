@@ -61,8 +61,8 @@ export default async function DynamicTestEnvironmentPage({params}: PageProps) {
 
   return (
     <>
+      {!validSlugs.includes(slugValue) ? null : <Breadcrumbs />}
       <div className="page-body testing">
-        {!validSlugs.includes(slugValue) ? null : <Breadcrumbs />}
         <TestEnvironmentClient slug={slug} />
       </div>
     </>

@@ -16,8 +16,8 @@ export default function TestEnvironment() {
         name="description"
         content="Isabelle Hageman's testing environment for various style libraries and front-end functionality"
       />
+      <Breadcrumbs />
       <div className="page-body testing">
-        <Breadcrumbs />
         <h1>Testing Grounds</h1>
         <h2>ShadCN versus MUI</h2>
         <div className="flex gap-[20px]">
