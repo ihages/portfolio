@@ -25,7 +25,7 @@ export default function Home() {
           grade school and high school
         </li>
         <li>
-          I have passions in creative writing, although I havenr&apos;t
+          I have passions in creative writing, although I haven&apos;t
           published any content. I am dabbling with the idea of starting a blog
         </li>
       </ul>
