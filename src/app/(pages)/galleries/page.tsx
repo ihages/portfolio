@@ -11,23 +11,12 @@ export default function Galleries() {
     <>
       <title>Ihages | Galleries</title>
       <meta name="description" content="" />
+      <Breadcrumbs />
       <div className="page-body galleries">
         <Breadcrumbs />
-        <h1>Galleries</h1>
-        <p>
-          At my very roots, I am a creative. For that reason, I like to show
-          both my technical and artistic sides of my creativity as much as I
-          can. Here you will find both my art and my projects, both of which
-          have contributed largely to my professional development and career.
-        </p>
-        <ThemeProvider theme={theme}>
-          <Button component={Link} href="galleries/art">
-            Art
-          </Button>
-          <Button component={Link} href="galleries/tech">
-            Tech
-          </Button>
-        </ThemeProvider>
+        <h1>H1</h1>
+        <h2>H2</h2>
+        <div className="flex gap-[20px]">div</div>
       </div>
     </>
   )
