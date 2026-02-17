@@ -2,7 +2,7 @@
 @import 'tw-animate-css';
 
 :root {
-  --page-padding: 50px 6%;
+  --page-padding: 6%;
 }
 
 :root {
@@ -339,6 +339,30 @@ p {
   margin: 20px 0;
 }
 
+.page-body {
+  ol {
+    list-style-type: decimal;
+    padding-left: 40px;
+    margin: 20px 0;
+  }
+
+  ul {
+    list-style: none;
+    margin-left: 10px;
+    padding-left: 0;
+  }
+
+  li {
+    padding-left: 1em;
+    text-indent: -1em;
+    margin: 10px 0;
+  }
+
+  li:before {
+    content: '★ ';
+  }
+}
+
 /* * {
   box-sizing: border-box;
   padding: 0;
@@ -351,7 +375,7 @@ a {
 }
 
 .page-body {
-  padding: var(--page-padding);
+  padding: 0 var(--page-padding);
   min-height: 900px;
 }
 

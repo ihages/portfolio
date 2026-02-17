@@ -1,15 +1,17 @@
 'use client'
-
-import Link from 'next/link'
-import {pieces} from './art/pieces'
+import {useTheme} from '@/utils/mui-theme'
+import {Button, ThemeProvider} from '@mui/material'
 import './style.css'
 import Breadcrumbs from '@/components/breadcrumbs'
+import Link from 'next/link'
 
 export default function Galleries() {
+  const theme = useTheme()
   return (
     <>
       <title>Ihages | Galleries</title>
       <meta name="description" content="" />
+      <Breadcrumbs />
       <div className="page-body galleries">
         <Breadcrumbs />
         <h1>Galleries</h1>

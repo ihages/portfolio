@@ -12,7 +12,7 @@ Main branch has github-pages workflow automation. Please ensure pages are proper
 
 Branch naming convention: `P#/branch-name`
 
-Feel free to add to the issues list with reccomendations and/or bugs. 
+Feel free to add to the issues list with recommendations and/or bugs.
 
 ## For non-developers:
 
