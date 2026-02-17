@@ -1,4 +1,5 @@
 import type {Metadata} from 'next'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'Ihages | Home',
@@ -25,8 +26,8 @@ export default function Home() {
           grade school and high school
         </li>
         <li>
-          I have passions in creative writing, although I haven&apos;t
-          published any content. I am dabbling with the idea of starting a blog
+          I have passions in creative writing, although I haven&apos;t published
+          any content. I am dabbling with the idea of starting a blog
         </li>
       </ul>
       <h2>Featured In</h2>
@@ -71,6 +72,30 @@ export default function Home() {
           </a>
         </li>
       </ul>
+      <div className="grid grid-cols-2">
+        <h2>Tech Stack</h2>
+        <h2>Art Supplies</h2>
+        <ul>
+          <li>TypeScript/Javascript</li>
+          <li>CSS</li>
+          <li>HTML</li>
+          <li>Python</li>
+          <li>C++</li>
+          <li>SQL</li>
+          <li>Prolog</li>
+          <li>LC-3 Assembly Language</li>
+        </ul>
+
+        <ul>
+          <li>Artist Loft Acrylic Paints</li>
+          <li>Ohuhu alcohol markers</li>
+          <li>Bianyo alcohol markers</li>
+          <li>Procreate for Ipad</li>
+          <li>Various mechanical pencils/pens</li>
+          <li>Prismacolor Colored Pencils</li>
+          <li>Gelly Roll white pens</li>
+        </ul>
+      </div>
     </div>
   )
 }

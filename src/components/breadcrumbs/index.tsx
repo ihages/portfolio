@@ -24,22 +24,13 @@ export default function Breadcrumbs() {
         {pathlist.map((crumb, index) => {
           const fullPath = '/' + pathlist.slice(0, index + 1).join('/')
 
-          return index === pathlist.length - 1 ? (
-            <mui.Typography
-              key={crumb}
-              sx={{color: 'text.primary', textTransform: 'capitalize'}}
-            >
-              {crumb
-                .replace(/-/g, ' ')
-                .replace(/\b\w/g, (char) => char.toUpperCase())}
-            </mui.Typography>
-          ) : (
+          return (
             <mui.Link
               key={crumb}
               component={Link}
               href={fullPath}
               underline="hover"
-              color="inherit"
+              color={index !== pathlist.length - 1 ? 'inherit' : 'text.primary'}
               sx={{textTransform: 'capitalize'}}
             >
               {crumb
