@@ -5,6 +5,8 @@ import './style.css'
 import Breadcrumbs from '@/components/breadcrumbs'
 import Link from 'next/link'
 
+// comment
+
 export default function Galleries() {
   const theme = useTheme()
   return (
