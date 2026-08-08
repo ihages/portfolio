@@ -10,6 +10,7 @@ import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
 import Breadcrumbs from '@/components/breadcrumbs'
 import {usePathname} from 'next/navigation'
+import {Suspense} from 'react'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -46,14 +47,16 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Header />
-        <div className="page-body">
-          {page !== '/' && <Breadcrumbs />}
-          {children}
-        </div>
-        <Footer />
-      </body>
+      <Suspense>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+          <Header />
+          <div className="page-body">
+            {page !== '/' && <Breadcrumbs />}
+            {children}
+          </div>
+          <Footer />
+        </body>
+      </Suspense>
     </html>
   )
 }
