@@ -166,7 +166,7 @@ export default function TestEnvironmentClient({
   }
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <h1 className="flex justify-center m-[0px]">
         {slugValue?.replace(/-/g, ' ').toUpperCase()}
       </h1>

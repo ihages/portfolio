@@ -12,8 +12,4 @@ export const LinkMap: Page[] = [
     name: 'Galleries',
     url: '/portfolio/galleries',
   },
-  {
-    name: 'Test Environment',
-    url: '/portfolio/test-environment',
-  },
 ]

@@ -3,7 +3,6 @@
 import {Button} from '@/components/ui/button'
 import './style.css'
 import Link from 'next/link'
-import Breadcrumbs from '@/components/breadcrumbs'
 import * as mui from '@mui/material'
 import {useTheme} from '@/utils/mui-theme'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
@@ -16,9 +15,13 @@ export default function TestEnvironment() {
         name="description"
         content="Isabelle Hageman's testing environment for various style libraries and front-end functionality"
       />
-      <Breadcrumbs />
-      <div className="page-body testing">
+      <div className="testing">
         <h1>Testing Grounds</h1>
+        <p>
+          If you&apos;re here, it&apos;s likely because I linked it to you.
+          Here&apos;s my test and research gallery of different things I find
+          across the interwebs.
+        </p>
         <h2>ShadCN versus MUI</h2>
         <div className="flex gap-[20px]">
           <Button asChild>

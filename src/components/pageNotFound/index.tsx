@@ -5,7 +5,7 @@ import {useTheme} from '@/utils/mui-theme'
 
 export default function PageNotFound() {
   return (
-    <div className="page-body not-found">
+    <div className="not-found">
       <div className="flex flex-wrap h-fit">
         <ThemeProvider theme={useTheme()}>
           <Paper className="p-[40px] border-secondary border-[5px]">

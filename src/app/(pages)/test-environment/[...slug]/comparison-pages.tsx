@@ -160,7 +160,7 @@ export function ComparisonDataDisplay() {
   } satisfies Chart.ChartConfig
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestCompare
         title="Avatar"
         components={[
@@ -775,7 +775,7 @@ export function ComparisonInputs() {
     )
   }
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestCompare
         title="Action Button"
         components={[
@@ -1496,7 +1496,7 @@ export function ComparisonFeedback() {
   }
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestCompare
         title="Alert"
         components={[
@@ -2099,7 +2099,7 @@ export function ComparisonNavigation() {
   }
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestCompare
         title="Bottom Navigation"
         components={[
@@ -2832,7 +2832,7 @@ export function ComparisonLayouts() {
   ]
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestCompare
         title="Aspect Ratio"
         components={[
@@ -3407,7 +3407,7 @@ export function ComparisonSurfaces() {
   )
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestCompare
         title="Accordion"
         components={[
@@ -3931,7 +3931,7 @@ export function ComparisonUtils() {
   const id = open ? 'simple-popover' : undefined
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestCompare
         title="Modal"
         components={[

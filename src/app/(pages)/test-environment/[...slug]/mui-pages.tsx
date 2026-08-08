@@ -71,7 +71,7 @@ export function MUIDataDisplay() {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ]
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Avatar"
         docLink="https://mui.com/material-ui/avatar/"
@@ -344,7 +344,7 @@ export function MUIFeedback() {
     </React.Fragment>
   )
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Alert"
         docLink="https://mui.com/material-ui/react-alert/"
@@ -697,7 +697,7 @@ export function MUIInputs() {
   }
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Button"
         docLink="https://mui.com/material-ui/react-button/"
@@ -1234,7 +1234,7 @@ export function MUILayout() {
   ]
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Box"
         docLink="https://mui.com/material-ui/react-box/"
@@ -1589,7 +1589,7 @@ export function MUINavigation() {
   }
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Bottom Navigation"
         docLink="https://mui.com/material-ui/react-bottom-nagivation/"
@@ -1867,7 +1867,7 @@ export function MUISurfaces() {
     </mui.Box>
   )
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Accordion"
         docLink="https://mui.com/material-ui/react-accordion/"
@@ -2212,7 +2212,7 @@ export function MUIUtils() {
   const id = open ? 'simple-popover' : undefined
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Modal"
         docLink="https://mui.com/material-ui/react-modal/"
