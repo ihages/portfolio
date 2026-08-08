@@ -6,6 +6,8 @@ import {pieces} from './art/pieces'
 import {projects} from './tech/projects'
 import Image from 'next/image'
 
+// comment
+
 export default function Galleries() {
   const theme = useTheme()
   return (
