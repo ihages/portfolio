@@ -103,7 +103,7 @@ function formatDate(date: Date | undefined) {
 
 export function ShadA() {
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Accordion"
         docLink="https://ui.shadcn.com/docs/components/accordion"
@@ -240,7 +240,7 @@ export function ShadA() {
 
 export function ShadB() {
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Badge"
         docLink="https://ui.shadcn.com/docs/components/badge"
@@ -410,7 +410,7 @@ export function ShadC() {
   const [checked, setChecked] = React.useState<boolean>(false)
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Calendar"
         docLink="https://ui.shadcn.com/docs/components/calendar"
@@ -697,7 +697,7 @@ export function ShadC() {
 export function ShadDE() {
   const [drawerOpen, setDrawerOpen] = useState<boolean>(false)
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Dialog"
         docLink="https://ui.shadcn.com/docs/components/dialog"
@@ -843,7 +843,7 @@ export function ShadDE() {
 
 export function ShadHM() {
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Hover Card"
         docLink="https://ui.shadcn.com/docs/components/hover-card"
@@ -989,7 +989,7 @@ export function ShadNR() {
   }, [progressOn])
 
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Navigation Menu"
         docLink="https://ui.shadcn.com/docs/components/navigation-menu"
@@ -1187,7 +1187,7 @@ export function ShadNR() {
 
 export function ShadS() {
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Scroll Area"
         docLink="https://ui.shadcn.com/docs/components/scroll-area"
@@ -1385,7 +1385,7 @@ export function ShadS() {
 export function ShadT() {
   const [input, setInput] = useState('')
   return (
-    <div className="page-body testing">
+    <div className="testing">
       <TestBlock
         title="Tabs"
         docLink="https://ui.shadcn.com/docs/components/tabs"

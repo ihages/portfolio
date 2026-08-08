@@ -1,10 +1,10 @@
 'use client'
 
-import Breadcrumbs from '@/components/breadcrumbs'
 import {useSearchParams} from 'next/navigation'
 import {pieces} from './pieces'
 import {ImageList, ImageListItem, ImageListItemBar} from '@mui/material'
 import {usePathname} from 'next/navigation'
+import Image from 'next/image'
 
 export default function Galleries() {
   const pathname = usePathname()
@@ -15,8 +15,7 @@ export default function Galleries() {
       <>
         <title>Ihages | Galleries</title>
         <meta name="description" content="" />
-        <div className="page-body galleries">
-          <Breadcrumbs />
+        <div className="galleries">
           <h1>Art Gallery</h1>
           {/* todo : add a sort and filter here */}
           <p>
@@ -33,6 +32,7 @@ export default function Galleries() {
             <ImageList cols={3}>
               {pieces.map((p) => (
                 <ImageListItem
+                  className="cursor-pointer list-none before:display-none"
                   key={p.title}
                   onClick={() =>
                     window.history.pushState(
@@ -42,11 +42,14 @@ export default function Galleries() {
                     )
                   }
                 >
-                  <img
-                    srcSet={`${p.imgUrl}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                    src={`${p.imgUrl}?w=164&h=164&fit=crop&auto=format`}
+                  <Image
+                    src={`${p.imgUrl}`}
                     alt={p.title}
                     loading="lazy"
+                    width={400}
+                    height={400}
+                    className="w-fit min-w-[calc(100%/3-20px)] h-auto"
+                    objectFit="cover"
                   />
                   <ImageListItemBar
                     title={p.title}
@@ -65,30 +68,35 @@ export default function Galleries() {
       <>
         <title>{`Ihages | ${title}`}</title>
         <meta name="description" content={`Gallery: ${title}`} />
-        <div className="page-body galleries">
-          <Breadcrumbs />
-          <h1>{title}</h1>
-          {piece_info ? (
-            <div key={piece_info.title}>
-              <p>{piece_info.title}</p>
-              <p>{piece_info.date.toString()}</p>
-              <p>Materials</p>
-              <ul className="pl-4">
-                {piece_info.materials.map((m, i) => (
-                  <li key={`${m}-${i}`}>&#9733; {m}</li>
-                ))}
-              </ul>
-              <p>{piece_info.description}</p>
+        <div className="galleries">
+          <main className="flex flex-row gap-3 ">
+            <div id="details" className="">
+              <h1>{title}</h1>
+              {piece_info ? (
+                <div key={piece_info.title}>
+                  <p>{piece_info.date.toString()}</p>
+                  <p>Materials</p>
+                  <ul className="pl-4">
+                    {piece_info.materials.map((m, i) => (
+                      <li key={`${m}-${i}`}>&#9733; {m}</li>
+                    ))}
+                  </ul>
+                  <p>
+                    <strong>Description:</strong> {piece_info.description}
+                  </p>
+                </div>
+              ) : null}
             </div>
-          ) : null}
-          {piece_info?.imgUrl ? (
-            <img
-              src={piece_info.imgUrl}
-              width={400}
-              height={400}
-              alt={piece_info.title ?? ''}
-            />
-          ) : null}
+            {piece_info?.imgUrl ? (
+              <Image
+                src={piece_info.imgUrl}
+                height={400}
+                width={400}
+                className="w-[50%] max-h-[calc(100vh-50px)] self-center translate-[25%]"
+                alt={piece_info.title ?? ''}
+              />
+            ) : null}
+          </main>
         </div>
       </>
     )

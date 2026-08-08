@@ -4,5 +4,11 @@
 
 .custom-breadcrumbs {
   margin: 0 !important;
-  padding: 50px 6% 0;
+  ol {
+    list-style: none;
+  }
+  li {
+    padding-left: 0;
+    padding-right: 24px;
+  }
 }

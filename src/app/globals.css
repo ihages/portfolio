@@ -342,7 +342,6 @@ p {
 .page-body {
   ol {
     list-style-type: decimal;
-    padding-left: 40px;
     margin: 20px 0;
   }
 
@@ -354,12 +353,14 @@ p {
 
   li {
     padding-left: 1em;
-    text-indent: -1em;
     margin: 10px 0;
   }
 
-  li:before {
-    content: '★ ';
+  .star-list {
+    li:before {
+      content: '★ ';
+      padding-right: 12px;
+    }
   }
 }
 

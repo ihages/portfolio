@@ -1,3 +1,5 @@
+'use client'
+
 import {Geist, Geist_Mono} from 'next/font/google'
 import './globals.css'
 import Header from '@/components/header/index'
@@ -6,6 +8,8 @@ import '@fontsource/roboto/300.css'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
+import Breadcrumbs from '@/components/breadcrumbs'
+import {usePathname} from 'next/navigation'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -22,6 +26,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const page = usePathname()
+
   return (
     <html lang="en">
       <head>
@@ -42,7 +48,10 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <Header />
-        {children}
+        <div className="page-body">
+          {page !== '/' && <Breadcrumbs />}
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
