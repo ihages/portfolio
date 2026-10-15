@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 export default function TestEnvironment() {
   return (
     <>
-      <title>Ihages | Testing Environment</title>
+      <title>Isabelle Hageman | Testing Environment</title>
       <meta
         name="description"
         content="Isabelle Hageman's testing environment for various style libraries and front-end functionality"

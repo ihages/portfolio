@@ -3,6 +3,8 @@ import React from 'react'
 import './style.css'
 import Image from 'next/image'
 
+const currentYear = new Date().getFullYear()
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -14,7 +16,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="!mb-0">Isabelle Hageman 2025</p>
+        <p className="!mb-0">Isabelle Hageman {currentYear}</p>
       </div>
       <div className="right">
         <Image

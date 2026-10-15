@@ -12,7 +12,7 @@ export default function Galleries() {
   const theme = useTheme()
   return (
     <>
-      <title>Ihages | Galleries</title>
+      <title>Isabelle Hageman | Galleries</title>
       <meta name="description" content="" />
 
       <div className="galleries">

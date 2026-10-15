@@ -5,4 +5,18 @@
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: var(--header-color);
+  border-bottom: 1px dashed var(--primary);
+  color: var(--foreground);
+  font-size: large;
+  font-weight: 700;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline dotted;
+      text-decoration-color: rgba(var(--foreground) / 0.5);
+      text-underline-offset: 4px;
+    }
+  }
 }

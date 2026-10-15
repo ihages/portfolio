@@ -9,6 +9,10 @@ export const LinkMap: Page[] = [
     url: '/portfolio/',
   },
   {
+    name: 'Resume',
+    url: '/portfolio/resume',
+  },
+  {
     name: 'Galleries',
     url: '/portfolio/galleries',
   },

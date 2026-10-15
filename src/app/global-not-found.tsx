@@ -35,7 +35,7 @@ export default function GlobalNotFound() {
           rel="stylesheet"
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
-        <title>Ihages | 404</title>
+        <title>Isabelle Hageman | 404</title>
         <meta
           name="description"
           content="This page doesn't seem to exist! Try a different one out!"

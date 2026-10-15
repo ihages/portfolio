@@ -13,7 +13,7 @@ export default function Galleries() {
   if (!title) {
     return (
       <>
-        <title>Ihages | Galleries</title>
+        <title>Isabelle Hageman | Galleries</title>
         <meta name="description" content="" />
         <div className="galleries">
           <h1>Art Gallery</h1>

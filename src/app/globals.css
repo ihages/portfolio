@@ -6,7 +6,7 @@
 }
 
 :root {
-  --background: #ffeeee;
+  --background: #ffefef;
   --foreground: #331c22;
   --card: #ffffff;
   --card-foreground: #331c22;
@@ -14,7 +14,7 @@
   --popover-foreground: #331c22;
   --primary: #c63939;
   --primary-foreground: #ffffff;
-  --secondary: #eac3ce;
+  --secondary: #ff8585;
   --secondary-foreground: #522e37;
   --muted: #fff0f3;
   --muted-foreground: #6e555d;
@@ -128,8 +128,8 @@
     --popover-foreground: #f5e9ed;
     --primary: #ff7f7f;
     --primary-foreground: #1a1115;
-    --secondary: #833f50;
-    --secondary-foreground: #ffffff;
+    --secondary: #9f1b3c;
+    --secondary-foreground: #000000;
     --muted: #2e1f20;
     --muted-foreground: #b2a2a8;
     --accent: #5c1f1f;
@@ -378,6 +378,30 @@ a {
 .page-body {
   padding: 0 var(--page-padding);
   min-height: 900px;
+}
+
+h2 {
+  font-size: x-large;
+  font-weight: 600;
+  width: 100%;
+  border-bottom: 1px solid var(--secondary);
+}
+h3 {
+  font-size: large;
+  font-weight: 700;
+  text-decoration: underline;
+  margin: 8px 0;
+}
+h4 {
+  font-size: large;
+  font-weight: 700;
+}
+ul {
+  padding: 0px 24px;
+  list-style-type: circle;
+}
+li {
+  padding-left: 8px;
 }
 
 @media (prefers-color-scheme: dark) {
