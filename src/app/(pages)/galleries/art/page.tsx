@@ -66,10 +66,10 @@ export default function Galleries() {
     const piece_info = pieces.find((p) => p.title === title)
     return (
       <>
-        <title>{`Ihages | ${title}`}</title>
+        <title>{`Isabelle Hageman | ${title}`}</title>
         <meta name="description" content={`Gallery: ${title}`} />
         <div className="galleries">
-          <main className="flex flex-row gap-3 ">
+          <main className="flex flex-row gap-3 flex-wrap-reverse justify-center">
             <div id="details" className="">
               <h1>{title}</h1>
               {piece_info ? (
@@ -92,7 +92,7 @@ export default function Galleries() {
                 src={piece_info.imgUrl}
                 height={400}
                 width={400}
-                className="w-[50%] max-h-[calc(100vh-50px)] self-center translate-[25%]"
+                className="w-[50%] max-h-[calc(100vh-50px)] sm:!w-[calc(100vw-16px)] sm:h-auto"
                 alt={piece_info.title ?? ''}
               />
             ) : null}

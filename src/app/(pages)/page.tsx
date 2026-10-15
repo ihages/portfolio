@@ -20,7 +20,7 @@ export default function Home() {
         </p>
       </div>
       <h2>About Me</h2>
-      <div className="flex flex-row gap-6">
+      <div className="flex flex-row gap-6 flex-wrap items-center justify-center">
         <p>
           I am an undergraduate student at the University of Cincinnat studying
           for a Bachelor&apos;s in Computer Science with a Certificate in

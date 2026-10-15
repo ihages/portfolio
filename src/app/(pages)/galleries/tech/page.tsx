@@ -70,37 +70,42 @@ export default function Galleries() {
     const piece_info = projects.find((p) => p.title === title)
     return (
       <>
-        <title>{`Ihages | ${title}`}</title>
+        <title>{`Isabelle Hageman | ${title}`}</title>
         <meta name="description" content={`Gallery: ${title}`} />
-        <div className="galleries">
-          <h1>{title}</h1>
-          {piece_info && (
-            <div key={piece_info.title}>
-              <p>{piece_info.title}</p>
-              <p>{piece_info.date.toString()}</p>
-              {piece_info.technologies && (
-                <>
-                  <p>Technologies</p>
-                  <ul className="pl-4">
-                    {piece_info.technologies.map((m, i) => (
-                      <li key={`${m}-${i}`}>&#9733; {m}</li>
-                    ))}
-                  </ul>
-                </>
+        <main className="flex flex-row gap-3 flex-wrap-reverse justify-center">
+          {' '}
+          <div className="galleries">
+            <div id="details" className="">
+              <h1>{title}</h1>
+              {piece_info && (
+                <div key={piece_info.title}>
+                  <p>{piece_info.title}</p>
+                  <p>{piece_info.date.toString()}</p>
+                  {piece_info.technologies && (
+                    <>
+                      <p>Technologies</p>
+                      <ul className="pl-4">
+                        {piece_info.technologies.map((m, i) => (
+                          <li key={`${m}-${i}`}>&#9733; {m}</li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
+                  <p>{piece_info.description}</p>
+                </div>
               )}
-              <p>{piece_info.description}</p>
+              {piece_info?.imgUrl && (
+                <Image
+                  src={piece_info.imgUrl}
+                  height={400}
+                  width={400}
+                  className="w-[50%] max-h-[calc(100vh-50px)] sm:!w-[calc(100vw-16px)] sm:h-auto"
+                  alt={piece_info.title ?? ''}
+                />
+              )}
             </div>
-          )}
-          {piece_info?.imgUrl && (
-            <Image
-              src={piece_info.imgUrl}
-              height={400}
-              width={400}
-              className="w-[50%] max-h-[calc(100vh-50px)] self-center translate-[25%]"
-              alt={piece_info.title ?? ''}
-            />
-          )}
-        </div>
+          </div>
+        </main>
       </>
     )
   }
